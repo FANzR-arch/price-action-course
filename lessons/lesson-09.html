@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第九课：测量移动 · 价格行为交易入门课</title>
+<meta name="description" content="价格行为第九课：测量移动（Measured Move）——用已经走完的一段，等距投影出下一个目标区。">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">第九课 · 阶段二收尾 · 估目标</p>
+    <h1>测量移动：<br>它大概能走到哪</h1>
+    <p class="lede">价格走完一段，常会再走<strong>差不多长的一段</strong>。用这个规律，你能估出一个合理的目标区——这就是<strong>测量移动（Measured Move）</strong>。它不保证一定到，但给了你一个有依据的“大概到哪”。</p>
+    <div id="heroCandles"></div>
+  </header>
+
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 一段 → 等距投影</div>
+    <h2>用第一段量第二段</h2>
+    <p class="muted">最常见的一种测量移动：</p>
+    <ul class="clean muted">
+      <li>价格从 <strong>A</strong> 涨到 <strong>B</strong>（第一段，高度 = B − A）；</li>
+      <li>然后回调到 <strong>C</strong>；</li>
+      <li>常常会再从 C 往上走<strong>约等于第一段的高度</strong>，目标 ≈ <strong>C + (B − A)</strong>。</li>
+    </ul>
+    <div class="callout">
+      <div class="t">概率，不是保证</div>
+      Brooks 的经验值：强趋势里到达测量目标的概率较高（约 70%+），区间突破后约 60%。<strong>它是“目标参考”，不是“一定到”</strong>——到了目标区附近，就该考虑止盈，而不是幻想它无限涨。
+    </div>
+  </section>
+
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 看图：两段差不多长</div>
+    <h2>第一段量出目标</h2>
+    <p class="muted">图上标了 A、B、C 和投影出来的<strong>测量目标</strong>。注意第二段和第一段差不多长。</p>
+    <div id="w-chart"></div>
+  </section>
+
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 轮到你估</div>
+    <h2>画出你预期的目标位</h2>
+    <p class="muted">下面这段，第一段已经走完、正在回调。用测量移动估一下：它大概会涨到哪？<strong>在图上点一下</strong>画出你的目标。</p>
+    <div id="w-draw"></div>
+  </section>
+
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 随堂自测</div>
+    <h2>算一算、填一填</h2>
+    <div id="w-q1"></div>
+    <div id="w-fill" style="margin-top:16px"></div>
+  </section>
+
+  <footer>
+    <h2 style="color:var(--ink)">这一课你已经拿下：</h2>
+    <ul class="clean muted">
+      <li><strong>测量移动</strong>：目标 ≈ 回调低点 C + 第一段高度（B − A）；</li>
+      <li>它是<strong>概率性目标</strong>（强趋势约 70%+），不是保证；</li>
+      <li>价格到<strong>目标区附近</strong>就该考虑止盈，别幻想无限涨。</li>
+    </ul>
+    <div class="next">
+      <a class="btn" href="../lessons/lesson-08.html">← 上一课</a>
+      <a class="btn" href="../index.html">课程首页</a>
+      <span class="chip" style="color:var(--ink)">阶段二完成 🎉 下一阶段：交易区间与突破（即将推出）</span>
+    </div>
+    <p class="disclaim">本课件仅用于交易知识的入门学习，不构成任何投资建议。真实交易有风险，任何方法都需在模拟盘充分练习并验证后再考虑投入极小资金。颜色、示例价格均为教学演示，非真实行情。</p>
+  </footer>
+</div>
+
+<script src="../assets/vendor/klinecharts.min.js"></script>
+<script src="../assets/js/candles.js"></script>
+<script src="../assets/js/shell.js"></script>
+<script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+  PA.mountPlayground(document.getElementById("heroCandles"), { ma:[7,30] });
+  var acc = PA.cssv("--accent");
+
+  // 看图：完整测量移动（手工构造，A/B/C 与目标从数据算）
+  var bars = [
+    [38,40,37,39],[39,43,38,42],[42,46,41,45],[45,50,44,49],[49,51,47,48],
+    [48,49,45,46],[46,47,44,45],
+    [45,49,44,48],[48,52,47,51],[51,54,50,53],[53,57,52,56],[56,59,55,58]
+  ];
+  function minLow(a,b){ var v=Infinity; for(var i=a;i<=b;i++) v=Math.min(v,bars[i][2]); return v; }
+  function maxHigh(a,b){ var v=-Infinity; for(var i=a;i<=b;i++) v=Math.max(v,bars[i][1]); return v; }
+  var A=minLow(0,1), B=maxHigh(3,4), C=minLow(5,6), target=Math.round((C+(B-A))*10)/10;
+  PA.widgets.annotatedChart(document.getElementById("w-chart"), {
+    bars:bars,
+    annotations:[
+      {type:"label", i:0, value:A-1.6, text:"A", color:acc},
+      {type:"label", i:4, value:B+1.6, text:"B", color:acc},
+      {type:"label", i:6, value:C-1.6, text:"C", color:acc},
+      {type:"hline", value:target, label:"测量目标", color:acc}
+    ],
+    note:'<span class="lead">第一段 A→B 涨了约 '+Math.round(B-A)+'。</span> 从回调低点 C 再投影相同高度，得到<strong>测量目标 ≈ '+target+'</strong>（C + (B−A)）。看第二段，是不是和第一段差不多长？'
+  });
+
+  // 你来估：第一段走完、正在回调，让用户画目标
+  var d = [
+    [40,42,39,41],[41,45,40,44],[44,48,43,47],[47,52,46,51],[51,53,49,50],
+    [50,51,47,48],[48,49,46,47]
+  ];
+  function dMinLow(a,b){ var v=Infinity; for(var i=a;i<=b;i++) v=Math.min(v,d[i][2]); return v; }
+  function dMaxHigh(a,b){ var v=-Infinity; for(var i=a;i<=b;i++) v=Math.max(v,d[i][1]); return v; }
+  var dA=dMinLow(0,1), dB=dMaxHigh(3,4), dC=dMinLow(5,6), dTarget=Math.round((dC+(dB-dA))*10)/10;
+  PA.widgets.drawOnChart(document.getElementById("w-draw"), {
+    bars:d,
+    prompt:'第一段涨了约 '+Math.round(dB-dA)+'。用测量移动估目标：<strong>在图上点一下</strong>画出你认为价格大概会涨到的位置。',
+    targets:[ { low: Math.round((dTarget-2)*10)/10, high: Math.round((dTarget+2)*10)/10, label:"测量目标", tip:" 目标 ≈ 回调低点 + 第一段高度。" } ]
+  });
+
+  PA.widgets.quizChoice(document.getElementById("w-q1"), {
+    q:"① 第一段从 40 涨到 52，回调到 46。测量移动的目标大约是？",
+    options:[
+      { t:"约 58（46 + (52−40)）", ok:true, why:"对！第一段高度 = 52−40 = 12；从回调低点 46 再投影 12 → 目标 ≈ 58。" },
+      { t:"约 52（回到前高就到顶）", why:"前高只是第一段的顶，测量移动是从回调低点再投影一段，通常会超过前高。" },
+      { t:"约 40（回到起点）", why:"那是跌回起点，不是向上的测量目标。" }
+    ]
+  });
+  PA.widgets.fillBlank(document.getElementById("w-fill"), {
+    prompt:"② 填空",
+    parts:[
+      "测量移动的目标 ≈ 回调低点 C 加上第一段的", { a:["高度","长度","幅度"] }, "（B − A）；",
+      "它是一个", { a:["概率","概率性","参考"] }, "目标，到了附近就该考虑止盈。"
+    ],
+    okText:"✓ 全对！目标≈C+(B−A)，是概率性参考，别当成一定到。",
+    revealText:"答案：加上第一段的<strong>高度</strong>；它是<strong>概率</strong>性目标。"
+  });
+
+  PA.initLesson({ n:9, sections:[ {id:"s1",label:"等距投影"},{id:"s2",label:"看图"},{id:"s3",label:"你来估"},{id:"s4",label:"随堂自测"} ] });
+})();
+</script>
+</body>
+</html>

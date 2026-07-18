@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第四课：市场三态——趋势 · 通道 · 区间 · 价格行为交易入门课</title>
+<meta name="description" content="价格行为第四课：任何行情都在趋势、通道、区间三种状态间循环。看图认状态，并亲手用沙盘调出三态；每种状态的正确做法与常见亏法。">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">第四课 · 先看懂“现在是哪种行情”</p>
+    <h1>市场三态：<br>趋势 · 通道 · 区间</h1>
+    <p class="lede">价格再复杂，也逃不出三种状态：<strong>趋势、通道、区间</strong>。它们不停地互相切换。<strong>先判断你在哪种状态，再决定怎么做</strong>——这是价格行为最重要的第一步。用错状态，就是最常见的亏损方式。</p>
+    <div id="heroCandles"></div>
+  </header>
+
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 只有三种状态</div>
+    <h2>先定位，再动手</h2>
+    <p class="muted">高手和新手最大的区别之一：动手前先问自己一句“<strong>现在是哪种状态？</strong>”</p>
+    <ul class="clean muted">
+      <li><span class="hl">趋势</span>：价格<strong>一路往一个方向走</strong>，一浪高过一浪（或一浪低过一浪）。</li>
+      <li><span class="hl">通道</span>：趋势带着<strong>斜率</strong>，在两条平行线之间推进。</li>
+      <li><span class="hl">区间</span>：价格<strong>横着来回</strong>，在支撑和阻力之间震荡，没有明显方向。</li>
+    </ul>
+    <div class="callout">
+      <div class="t">每种状态都有“唯一正确的做法”</div>
+      同一根 K 线，在趋势里和在区间里，含义完全不同。<strong>状态判断错了，后面全错。</strong>下一站看图把三种状态认清楚。
+    </div>
+  </section>
+
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 看图：三种状态长什么样</div>
+    <h2>点上面切换，看懂每一种</h2>
+    <p class="muted">每种状态都标出了它的结构线，下面写了<strong>正确做法</strong>和<strong>最常见的亏法</strong>。</p>
+    <div id="w-chart"></div>
+  </section>
+
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 自己调出三态</div>
+    <h2>动手感受状态是怎么变的</h2>
+    <p class="muted">拖下面的滑块，看同一套逻辑怎么长出不同状态：</p>
+    <ul class="clean muted">
+      <li>把 <strong>趋势</strong> 滑块拉大（往两端）→ 出现明显<strong>趋势</strong>；</li>
+      <li>把 <strong>趋势</strong> 拉回中间（0 附近）→ 变成横盘<strong>区间</strong>；</li>
+      <li>中等趋势 + 较大<strong>波动</strong> → 像一条<strong>通道</strong>。</li>
+    </ul>
+    <div id="heroPlay"></div>
+  </section>
+
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 随堂自测</div>
+    <h2>认状态、选做法</h2>
+    <div id="w-q1"></div>
+    <div id="w-q2" style="margin-top:16px"></div>
+    <div id="w-fill" style="margin-top:16px"></div>
+  </section>
+
+  <footer>
+    <h2 style="color:var(--ink)">这一课你已经拿下：</h2>
+    <ul class="clean muted">
+      <li>行情只有三种状态：<strong>趋势 · 通道 · 区间</strong>，先判断状态再动手；</li>
+      <li>趋势里<strong>顺势、回调进场</strong>；区间里<strong>边界找反转、中间不追</strong>；通道里贴着轨道顺势做；</li>
+      <li>用错状态（如在区间中部追突破、在趋势里猜顶逆势）＝最常见的亏损方式。</li>
+    </ul>
+    <div class="next">
+      <a class="btn" href="../lessons/lesson-03.html">← 上一课</a>
+      <a class="btn" href="../index.html">课程首页</a>
+      <span class="chip" style="color:var(--ink)">阶段一完成 🎉 下一阶段：趋势的解剖（即将推出）</span>
+    </div>
+    <p class="disclaim">本课件仅用于交易知识的入门学习，不构成任何投资建议。真实交易有风险，任何方法都需在模拟盘充分练习并验证后再考虑投入极小资金。颜色、示例价格均为教学演示，非真实行情。</p>
+  </footer>
+</div>
+
+<script src="../assets/vendor/klinecharts.min.js"></script>
+<script src="../assets/js/candles.js"></script>
+<script src="../assets/js/shell.js"></script>
+<script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+  PA.mountPlayground(document.getElementById("heroCandles"), { ma:[7,30] });
+  PA.mountPlayground(document.getElementById("heroPlay"), { ma:[7,30] });
+
+  var acc = PA.cssv("--accent");
+  function swingLow(bs, a, b){ var idx=a, v=bs[a][2]; for(var i=a;i<b;i++){ if(bs[i][2]<v){ v=bs[i][2]; idx=i; } } return [idx, v]; }
+  function swingHigh(bs, a, b){ var idx=a, v=bs[a][1]; for(var i=a;i<b;i++){ if(bs[i][1]>v){ v=bs[i][1]; idx=i; } } return [idx, v]; }
+  function nth(arr, k, desc){ var s=arr.slice().sort(function(a,b){ return desc?b-a:a-b; }); return s[Math.min(k, s.length-1)]; }
+
+  // 趋势
+  var trend = PA.genSeries(44, 4401, {start:36, vol:0.8, rise:22, amp:2});
+  var tn=trend.length, tl1=swingLow(trend, 1, Math.floor(tn*0.4)), tl2=swingLow(trend, Math.floor(tn*0.5), tn-1);
+  // 通道
+  var chan = PA.genSeries(48, 4402, {start:38, vol:0.7, rise:13, amp:6});
+  var cn=chan.length, cu1=swingHigh(chan,1,Math.floor(cn*0.4)), cu2=swingHigh(chan,Math.floor(cn*0.55),cn-1),
+      cl1=swingLow(chan,1,Math.floor(cn*0.4)), cl2=swingLow(chan,Math.floor(cn*0.55),cn-1);
+  // 区间
+  var range = PA.genSeries(46, 4403, {start:44, vol:1.0, rise:0, amp:2.2});
+  var rRes=nth(range.map(function(b){return b[1];}),2,true), rSup=nth(range.map(function(b){return b[2];}),2,false);
+
+  PA.widgets.annotatedChart(document.getElementById("w-chart"), {
+    scenes:[
+      { name:"① 趋势", bars:trend,
+        annotations:[ {type:"line", points:[[tl1[0],tl1[1]],[tl2[0],tl2[1]]], label:"趋势线", color:acc} ],
+        note:'<span class="lead">趋势：一浪高过一浪。</span> 价格沿着一个方向持续推进，回调都很浅。<br><strong>✔ 正确做法：</strong>顺着趋势方向，在<strong>回调</strong>时进场。 <strong>✘ 常见亏法：</strong>看它涨多了就去猜顶做空——逆势最容易被趋势碾压。' },
+      { name:"② 通道", bars:chan,
+        annotations:[ {type:"line", points:[[cu1[0],cu1[1]],[cu2[0],cu2[1]]], label:"上轨", color:acc}, {type:"line", points:[[cl1[0],cl1[1]],[cl2[0],cl2[1]]], label:"下轨", color:acc} ],
+        note:'<span class="lead">通道：带斜率的趋势，在两条平行线之间走。</span><br><strong>✔ 正确做法：</strong>在<strong>下轨附近</strong>顺势找机会，<strong>上轨附近</strong>减磅别追。 <strong>✘ 常见亏法：</strong>把通道当区间，在上轨<strong>全力做空</strong>——通道是会一格格往上抬的。' },
+      { name:"③ 区间", bars:range,
+        annotations:[ {type:"hline", value:rRes, label:"阻力", color:acc}, {type:"hline", value:rSup, label:"支撑", color:acc} ],
+        note:'<span class="lead">区间：横着来回，没有明显方向。</span><br><strong>✔ 正确做法：</strong>在<strong>边界附近</strong>做反转（高抛低吸），中间不动手。 <strong>✘ 常见亏法：</strong>在区间<strong>中部追突破</strong>——两边挨打，来回止损。' }
+    ]
+  });
+
+  // 自测
+  PA.widgets.quizChoice(document.getElementById("w-q1"), {
+    q:"① 价格<strong>一浪高过一浪、明显向上</strong>。这是哪种状态，该怎么做？",
+    options:[
+      { t:"趋势——顺势，在回调时进场", ok:true, why:"对！这是上涨趋势，正确做法是顺着方向、等回调再进场，别逆势。" },
+      { t:"区间——在上沿做空、下沿做多", why:"这是<strong>区间</strong>的做法。用在趋势上＝逆势猜顶，最容易被碾压。" },
+      { t:"看不出来，随便做", why:"恰恰相反——一浪高过一浪就是典型的上涨趋势，特征很清楚。" }
+    ]
+  });
+  PA.widgets.quizChoice(document.getElementById("w-q2"), {
+    q:"② 价格在一个<strong>水平区间</strong>里横着来回。下面哪种做法<strong>最容易亏</strong>？",
+    options:[
+      { t:"在区间中部追突破", ok:true, why:"没错，这是区间里最常见的亏法——中部追突破，往往被两边来回打止损。" },
+      { t:"在支撑附近找做多机会", why:"这是区间里合理的做法（边界找反转），不是最容易亏的。" },
+      { t:"暂时空仓、等更清楚的信号", why:"空仓等待在区间里往往是聪明的——不是亏法。" }
+    ]
+  });
+  PA.widgets.fillBlank(document.getElementById("w-fill"), {
+    prompt:"③ 填空",
+    parts:[
+      "在<strong>趋势</strong>里，顺势并在", { a:["回调"] }, "时进场；",
+      "在<strong>区间</strong>里，在", { a:["边界"] }, "附近找反转，中间不追。",
+      "　动手前先判断：现在是趋势、通道、还是", { a:["区间"] }, "。"
+    ],
+    okText:"✓ 全对！先定位状态，再选做法——这就是价格行为的第一步。",
+    revealText:"答案：趋势里在<strong>回调</strong>进场；区间里在<strong>边界</strong>找反转；三态是趋势、通道、<strong>区间</strong>。"
+  });
+
+  PA.initLesson({
+    n:4,
+    sections:[ {id:"s1", label:"只有三种状态"}, {id:"s2", label:"看图"}, {id:"s3", label:"自己调"}, {id:"s4", label:"随堂自测"} ]
+  });
+})();
+</script>
+</body>
+</html>

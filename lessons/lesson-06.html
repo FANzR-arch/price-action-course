@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第六课：H1/H2、L1/L2 计数 · 价格行为交易入门课</title>
+<meta name="description" content="价格行为第六课：在趋势的回调里数买卖方尝试——H1/H2、L1/L2，以及为什么 H2 是更可靠的顺势入场点。">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">第六课 · 趋势里怎么进场</p>
+    <h1>H1 / H2 计数：<br>回调里的“第几次尝试”</h1>
+    <p class="lede">趋势里最好的进场点，往往在<strong>回调之后</strong>。价格行为用一个简单的数法，把回调后的机会数清楚——这就是 H1、H2（上涨）和 L1、L2（下跌）。学会它，你在趋势里就知道该等哪一下。</p>
+    <div id="heroCandles"></div>
+  </header>
+
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 怎么数</div>
+    <h2>数“买方向上的尝试”</h2>
+    <p class="muted">在上涨趋势里，价格回调一段后，买方会试着重新往上。我们数的就是这些尝试：</p>
+    <ul class="clean muted">
+      <li><span class="hl">H1（High 1）</span>：回调后，<strong>第一根</strong>向上突破前一根 K 线高点的 K 线——买方第一次尝试。</li>
+      <li><span class="hl">H2（High 2）</span>：如果 H1 没走成、又回调一下，<strong>第二次</strong>向上突破前一根高点——买方第二次尝试。</li>
+    </ul>
+    <p class="muted">下跌趋势里镜像过来，就是 <strong>L1 / L2</strong>（数卖方向下的尝试）。关键：数的是“<strong>突破前一根极点</strong>的那一下”，不是数回调了几根。</p>
+  </section>
+
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 看图：H1 和 H2</div>
+    <h2>标出来就清楚了</h2>
+    <p class="muted">图上标出了一段上涨里的 H1 和 H2。每个都出现在一次小回调之后。</p>
+    <div id="w-chart"></div>
+  </section>
+
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 为什么很多人偏爱 H2</div>
+    <h2>H2 通常比 H1 更稳</h2>
+    <p class="muted">H1 是第一次尝试，容易失败（尤其在趋势刚启动、或回调很浅时）。H2 是“第一次没成、再来一次”，经过了一次筛选，<strong>成功率通常更高</strong>。</p>
+    <div class="callout">
+      <div class="t">什么时候更要等 H2</div>
+      趋势<strong>刚反转、还不确定方向</strong>时，或价格在<strong>区间边界第二次测试</strong>时——别急着做 H1，等 H2 更稳妥。反过来，在很强的窄通道里，H1 也可以做。
+    </div>
+    <div id="w-q1"></div>
+  </section>
+
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 随堂自测</div>
+    <h2>数一数、填一填</h2>
+    <div id="w-q2"></div>
+    <div id="w-fill" style="margin-top:16px"></div>
+  </section>
+
+  <footer>
+    <h2 style="color:var(--ink)">这一课你已经拿下：</h2>
+    <ul class="clean muted">
+      <li><strong>H1</strong>=回调后第一次破前一根高点，<strong>H2</strong>=第二次；下跌镜像为 L1/L2；</li>
+      <li>数的是“突破前一根极点的那一下”，不是数回调根数；</li>
+      <li><strong>H2 通常比 H1 更可靠</strong>，趋势不明或区间边界时尤其要等 H2。</li>
+    </ul>
+    <div class="next">
+      <a class="btn" href="../lessons/lesson-05.html">← 上一课</a>
+      <a class="btn" href="../index.html">课程首页</a>
+      <span class="chip" style="color:var(--ink)">下一课 · 第七课：通道——窄 vs 宽（即将推出）</span>
+    </div>
+    <p class="disclaim">本课件仅用于交易知识的入门学习，不构成任何投资建议。真实交易有风险，任何方法都需在模拟盘充分练习并验证后再考虑投入极小资金。颜色、示例价格均为教学演示，非真实行情。</p>
+  </footer>
+</div>
+
+<script src="../assets/vendor/klinecharts.min.js"></script>
+<script src="../assets/js/candles.js"></script>
+<script src="../assets/js/shell.js"></script>
+<script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+  PA.mountPlayground(document.getElementById("heroCandles"), { ma:[7,30] });
+  var acc = PA.cssv("--accent");
+
+  // 手工构造：上涨 → 回调 → H1 → 上涨 → 回调 → H2 → 上涨
+  var bars = [
+    [38,40,37,39],[39,42,38,41],[41,45,40,44],[44,48,43,47],
+    [47,48,44,45],[45,46,42,43],
+    [43,49,43,48],                 // idx6 = H1（破前一根高点46）
+    [48,51,47,50],[50,52,49,51],
+    [51,52,48,49],[49,50,47,48],
+    [48,54,47,53],                 // idx11 = H2（破前一根高点50）
+    [53,56,52,55],[55,58,54,57]
+  ];
+  PA.widgets.annotatedChart(document.getElementById("w-chart"), {
+    bars:bars,
+    annotations:[
+      {type:"label", i:6, value:bars[6][1]+1.8, text:"H1", color:acc},
+      {type:"label", i:11, value:bars[11][1]+1.8, text:"H2", color:acc}
+    ],
+    note:'<span class="lead">H1、H2 都出现在一次小回调之后，是买方“第一次 / 第二次”重新向上突破前一根高点。</span> 在上涨趋势里，它们就是顺势进场的经典触发点。'
+  });
+
+  PA.widgets.quizChoice(document.getElementById("w-q1"), {
+    q:"③ 趋势刚刚反转、方向还不太确定时，更稳妥的做法是？",
+    options:[
+      { t:"抓紧做 H1，先上车再说", why:"趋势不明时 H1 最容易失败。第一次尝试往往被打回。" },
+      { t:"耐心等 H2（第二次尝试）", ok:true, why:"对！趋势不明或区间边界，等 H2 经过一次筛选，成功率更高。" },
+      { t:"反手做空", why:"没有反转确认就逆势，风险很大——这不是这里该做的。" }
+    ]
+  });
+
+  PA.widgets.quizChoice(document.getElementById("w-q2"), {
+    q:"① 关于 H1 / H2 的数法，哪句是对的？",
+    options:[
+      { t:"数的是“突破前一根 K 线极点”的那一下", ok:true, why:"对！以突破前一根极点的入场棒为触发来数，不是数回调了几根。" },
+      { t:"回调几根，就叫 H 几", why:"不对——和回调根数无关，看的是第几次突破前一根极点。" },
+      { t:"H1 一定比 H2 好", why:"通常相反：H2 经过一次筛选，往往比 H1 更可靠。" }
+    ]
+  });
+  PA.widgets.fillBlank(document.getElementById("w-fill"), {
+    prompt:"② 填空",
+    parts:[
+      "上涨趋势里，回调后第一次突破前一根高点叫", { a:["H1","h1"] }, "，第二次叫", { a:["H2","h2"] }, "；",
+      "通常", { a:["H2","h2"] }, "比 H1 更可靠。"
+    ],
+    okText:"✓ 全对！H1 第一次、H2 第二次，H2 更稳。",
+    revealText:"答案：第一次=<strong>H1</strong>，第二次=<strong>H2</strong>，通常 <strong>H2</strong> 更可靠。"
+  });
+
+  PA.initLesson({ n:6, sections:[ {id:"s1",label:"怎么数"},{id:"s2",label:"看图"},{id:"s3",label:"为什么爱H2"},{id:"s4",label:"随堂自测"} ] });
+})();
+</script>
+</body>
+</html>

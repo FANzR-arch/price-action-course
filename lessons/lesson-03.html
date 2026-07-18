@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第三课：支撑与阻力 · 价格行为交易入门课</title>
+<meta name="description" content="价格行为第三课：支撑与阻力——价格的“记忆”。看图理解反弹与突破，并在真实图上亲手画一条阻力线。">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">第三课 · 价格的“记忆”</p>
+    <h1>支撑与阻力：<br>价格为什么会“碰壁”</h1>
+    <p class="lede">价格不是乱走的——它会在某些价位反复停下、反弹、或加速。这些价位就是<strong>支撑</strong>和<strong>阻力</strong>。学会认它们，你就能看懂图上大半的“转折点”。</p>
+    <div id="heroCandles"></div>
+  </header>
+
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 什么是支撑与阻力</div>
+    <h2>价格也有“记忆”</h2>
+    <p class="muted">在一个之前价格<strong>停过、反转过</strong>的位置，买卖双方会记得它。于是价格再回到那里时，往往会有反应：</p>
+    <ul class="clean muted">
+      <li><span class="hl">阻力（Resistance）</span>：<strong>前高附近</strong>。价格涨到这里，卖方容易出手，把价格<strong>压回去</strong>。</li>
+      <li><span class="hl">支撑（Support）</span>：<strong>前低附近</strong>。价格跌到这里，买方容易进场，把价格<strong>接起来</strong>。</li>
+    </ul>
+    <div class="callout">
+      <div class="t">它们是“区域”，不是精确的一条线</div>
+      支撑/阻力是一段价格<strong>区域</strong>，不是分毫不差的某个数字。别指望价格每次都精确碰到同一个点——差不多到了那一带、出现反应，就算数。
+    </div>
+  </section>
+
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 看图：反弹与突破</div>
+    <h2>价格在支撑阻力之间怎么走</h2>
+    <p class="muted">上面切换两个场景。右上角还能换涨跌颜色——支撑阻力的位置不变。</p>
+    <div id="w-chart"></div>
+  </section>
+
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 轮到你画</div>
+    <h2>在图上画一条阻力线</h2>
+    <p class="muted">下面是一段真实感的行情。价格好几次冲到某个高度就被压了回来——那里就是阻力。<strong>在图上点一下</strong>，画出你认为的阻力位，看看猜得准不准。</p>
+    <div id="w-draw"></div>
+    <p class="muted" style="margin-top:12px;font-size:14px">画完想再试？点图下方的<strong>「清除重画」</strong>。</p>
+  </section>
+
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 随堂自测</div>
+    <h2>点一点、填一填</h2>
+    <div id="w-q1"></div>
+    <div id="w-q2" style="margin-top:16px"></div>
+    <div id="w-fill" style="margin-top:16px"></div>
+  </section>
+
+  <footer>
+    <h2 style="color:var(--ink)">这一课你已经拿下：</h2>
+    <ul class="clean muted">
+      <li><strong>阻力</strong>在前高附近（卖方压回），<strong>支撑</strong>在前低附近（买方接起）；</li>
+      <li>它们是<strong>区域</strong>，不是精确一条线；</li>
+      <li>价格<strong>突破</strong>阻力后，这条线常常“变身”成支撑（反之亦然）。</li>
+    </ul>
+    <div class="next">
+      <a class="btn" href="../lessons/lesson-02.html">← 上一课</a>
+      <a class="btn" href="../index.html">课程首页</a>
+      <span class="chip" style="color:var(--ink)">下一课 · 第四课：市场三态——趋势 · 通道 · 区间（即将推出）</span>
+    </div>
+    <p class="disclaim">本课件仅用于交易知识的入门学习，不构成任何投资建议。真实交易有风险，任何方法都需在模拟盘充分练习并验证后再考虑投入极小资金。颜色、示例价格均为教学演示，非真实行情。</p>
+  </footer>
+</div>
+
+<script src="../assets/vendor/klinecharts.min.js"></script>
+<script src="../assets/js/candles.js"></script>
+<script src="../assets/js/shell.js"></script>
+<script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+  PA.mountPlayground(document.getElementById("heroCandles"), { ma:[7,30] });
+
+  function highs(bs){ return bs.map(function(b){ return b[1]; }); }
+  function lows(bs){ return bs.map(function(b){ return b[2]; }); }
+  function nth(arr, k, desc){ var s=arr.slice().sort(function(a,b){ return desc?b-a:a-b; }); return s[Math.min(k, s.length-1)]; }
+  var acc = PA.cssv("--accent");
+
+  // 场景1：区间反弹（固定种子 → 稳定；支撑阻力从数据算出）
+  var rangeBars = PA.genSeries(46, 7701, {start:44, vol:0.95, rise:0, amp:2});
+  var res1 = nth(highs(rangeBars), 2, true), sup1 = nth(lows(rangeBars), 2, false);
+  // 场景2：突破变身（用前 55% 的最高点当阻力，后半段突破它）
+  var boBars = PA.genSeries(44, 8802, {start:42, vol:0.85, rise:13, amp:3});
+  var boRes = Math.max.apply(null, highs(boBars.slice(0, Math.round(boBars.length*0.55))));
+
+  PA.widgets.annotatedChart(document.getElementById("w-chart"), {
+    scenes:[
+      { name:"在区间里反弹", bars:rangeBars,
+        annotations:[ {type:"hline", value:res1, label:"阻力", color:acc}, {type:"hline", value:sup1, label:"支撑", color:acc} ],
+        note:'<span class="lead">价格在支撑和阻力之间来回反弹。</span> 碰到<strong>阻力</strong>（前高附近）容易被卖方压回，碰到<strong>支撑</strong>（前低附近）容易被买方接住。区间里的常见做法：靠近边界找机会，中间不追。' },
+      { name:"突破后角色互换", bars:boBars,
+        annotations:[ {type:"hline", value:boRes, label:"阻力 → 支撑", color:acc} ],
+        note:'<span class="lead">价格向上突破阻力后，这条线常常“变身”成支撑。</span> 突破前它压制价格（阻力），突破后价格回踩它又被撑住（支撑）——这就是“阻力变支撑”，非常实用的一个直觉。' }
+    ]
+  });
+
+  // 你来画：目标 = 数据里的阻力区（几次触顶处）
+  var qBars = PA.genSeries(40, 9903, {start:44, vol:0.9, rise:2, amp:4.5});
+  var qRes = Math.max.apply(null, highs(qBars));
+  PA.widgets.drawOnChart(document.getElementById("w-draw"), {
+    bars:qBars,
+    prompt:'在图上点一下，画出你认为的<strong>阻力位</strong>（价格几次冲顶被压回的地方）。',
+    targets:[ { low: Math.round((qRes-3)*10)/10, high: Math.round(qRes*10)/10, label:"阻力区", tip:" 价格几次摸到这里都被压回，就是阻力。" } ]
+  });
+
+  // 自测
+  PA.widgets.quizChoice(document.getElementById("w-q1"), {
+    q:"① 图上的<strong>支撑</strong>，大致对应哪种位置？",
+    options:[
+      { t:"前高附近——价格涨到这里容易被压回", why:"这是<strong>阻力</strong>的定义，方向反了。支撑在下方。" },
+      { t:"前低附近——价格跌到这里容易被买方接起", ok:true, why:"对！支撑 = 前低附近，买方在这里容易进场，把价格接起来。" },
+      { t:"图的正中间", why:"支撑阻力由“价格之前停过/反转过的位置”决定，不是图的几何中间。" }
+    ]
+  });
+  PA.widgets.quizChoice(document.getElementById("w-q2"), {
+    q:"② 价格<strong>向上突破</strong>了阻力线，接下来这条线常常会？",
+    options:[
+      { t:"直接消失，不再有作用", why:"不会——之前反复起作用的价位，记忆还在。" },
+      { t:"变成支撑（价格回踩它常被撑住）", ok:true, why:"对！这就是“阻力变支撑”——突破后价格回踩，常在这条线附近获得支撑。" },
+      { t:"变成更强的阻力", why:"方向反了。被有效突破后，它对上方价格不再是压制，反而成了下方支撑。" }
+    ]
+  });
+  PA.widgets.fillBlank(document.getElementById("w-fill"), {
+    prompt:"③ 填空",
+    parts:[
+      "价格涨到前高附近容易被压回，那里叫", { a:["阻力"] }, "；跌到前低附近容易被接住，那里叫", { a:["支撑"] }, "。",
+      "　价格有效突破阻力后，这条线常常变成", { a:["支撑"] }, "。"
+    ],
+    okText:"✓ 全对！阻力在上、支撑在下，突破后角色互换——这就是支撑阻力的核心。",
+    revealText:"答案：前高附近=<strong>阻力</strong>，前低附近=<strong>支撑</strong>，突破阻力后常变成<strong>支撑</strong>。"
+  });
+
+  PA.initLesson({
+    n:3,
+    sections:[ {id:"s1", label:"什么是支撑阻力"}, {id:"s2", label:"看图"}, {id:"s3", label:"你来画"}, {id:"s4", label:"随堂自测"} ]
+  });
+})();
+</script>
+</body>
+</html>

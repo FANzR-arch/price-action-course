@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>价格行为交易 · 入门课</title>
+<meta name="description" content="从零开始、图文可交互的价格行为（Price Action）交易入门课程。完全新手向，动手拖一拖、点一点就学会。">
+<link rel="stylesheet" href="./assets/css/site.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="row">
+    <a class="brand" href="./index.html">价格行为 · <b>入门课</b></a>
+    <nav class="steps" style="flex:1">
+      <a href="#lessons">课程目录</a>
+      <a href="#how">怎么学</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="homehero">
+    <p class="eyebrow">交互式课程 · 完全新手向</p>
+    <h1>看懂 K 线，<br>从会读“一根”开始。</h1>
+    <p class="lede">这是一套图文并茂、能动手玩的价格行为（Price Action）交易入门课。不堆术语、不放空话——每一课都能拖、能点、能填、能切换，边玩边懂。适合完全没接触过交易的人。</p>
+    <div id="heroCandles"></div>
+    <div class="tagrow">
+      <span class="chip">零基础起步</span>
+      <span class="chip">一课一个主题</span>
+      <span class="chip">先学 · 再模拟盘 · 后实盘</span>
+    </div>
+  </header>
+
+  <section id="lessons">
+    <div class="kicker"><span class="num">目</span> 课程目录</div>
+    <h2>六个阶段，24 课，走完整个价格行为体系</h2>
+    <p class="muted">从“看懂一根 K 线”一路到“反转结构与仓位管理”，覆盖 Al Brooks 式价格行为的完整知识，由浅入深。第一课已经可以开学，其余正陆续做成同样的交互形式。</p>
+    <div id="catalog"></div>
+  </section>
+
+  <section id="how">
+    <div class="kicker"><span class="num">法</span> 这门课怎么学</div>
+    <h2>先把技能练出来，再谈钱</h2>
+    <p class="muted">新手最常见的结局是钱亏光了却什么都没学到。正确的顺序是：</p>
+    <ul class="clean muted">
+      <li><strong>① 学概念</strong>——就是这套课，搞懂 K 线、趋势、支撑阻力、止损盈亏比；</li>
+      <li><strong>② 练复盘</strong>——用历史行情回放，一根一根往后放，自己先判断再看结果（免费、零风险）；</li>
+      <li><strong>③ 模拟盘</strong>——开虚拟账户按规则走全流程、记交易日志，至少几个月；</li>
+      <li><strong>④ 极小真钱</strong>——只有模拟盘能稳定不亏了，才拿一点点真钱去体验情绪。</li>
+    </ul>
+    <div class="callout">
+      <div class="t">最重要的一句</div>
+      任何“胜率”“信号”都要用历史数据验证过才算数。真钱交易，永远从<strong>亏得起的极小金额</strong>开始。
+    </div>
+  </section>
+
+  <footer>
+    <p>价格行为交易 · 入门课 &nbsp;·&nbsp; 一套可交互的静态课程</p>
+    <p class="disclaim">本课程仅用于交易知识的入门学习，不构成任何投资建议，也不承诺任何收益。交易有风险，任何方法都需在模拟盘充分练习并验证后再考虑投入极小资金，盈亏后果自负。课程内的颜色、价格均为教学演示，非真实行情。</p>
+  </footer>
+</div>
+
+<script src="./assets/vendor/klinecharts.min.js"></script>
+<script src="./assets/js/candles.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  // 头图：真实图表 + 可拖动参数随机沙盘
+  PA.mountPlayground(document.getElementById("heroCandles"), { ma:[7,30] });
+
+  // 完整课程体系（改 live:true + href 即可上线新课）
+  var CURRICULUM = [
+    { tag:"阶段一", name:"看懂图（地基）", goal:"把一张 K 线图彻底看懂", lessons:[
+      { n:"01", t:"读懂一根 K 线", d:"开高低收、实体影线；涨跌看收盘 vs 开盘，颜色只是可切换的设置。", href:"./lessons/lesson-01.html", live:true },
+      { n:"02", t:"K 线信号：单根的语言", d:"趋势棒、十字星、锤子、流星、吞没——每一根 K 线在说什么。", href:"./lessons/lesson-02.html", live:true },
+      { n:"03", t:"支撑与阻力", d:"价格的“记忆”：为什么总在某些位置停下、反弹或加速。", href:"./lessons/lesson-03.html", live:true },
+      { n:"04", t:"市场三态：趋势·通道·区间", d:"任何行情都在这三种状态间循环，先学会分辨你现在在哪。", href:"./lessons/lesson-04.html", live:true }
+    ]},
+    { tag:"阶段二", name:"趋势", goal:"读懂并跟随趋势", lessons:[
+      { n:"05", t:"趋势的解剖", d:"更高的高点与更高的低点；趋势的强弱到底怎么看。", href:"./lessons/lesson-05.html", live:true },
+      { n:"06", t:"回调与波段：H1/H2、L1/L2 计数", d:"趋势中的回踩怎么数、二次进场点怎么找。", href:"./lessons/lesson-06.html", live:true },
+      { n:"07", t:"通道：窄通道 vs 宽通道", d:"通道怎么画、斜率说明什么、边界怎么用。", href:"./lessons/lesson-07.html", live:true },
+      { n:"08", t:"均线与 Always In（20 均线）", d:"用一条均线判断“当前该做多还是做空”。", href:"./lessons/lesson-08.html", live:true },
+      { n:"09", t:"测量移动（Measured Move）", d:"用已经走过的一段，估计价格还能走多远。", href:"./lessons/lesson-09.html", live:true }
+    ]},
+    { tag:"阶段三", name:"交易区间与突破", goal:"横盘与突破怎么应对", lessons:[
+      { n:"10", t:"交易区间：高抛低吸", d:"区间里在边界做反转、在中间不动手。" },
+      { n:"11", t:"突破：真突破还是假突破", d:"突破的力度、跟随、回踩怎么判断。" },
+      { n:"12", t:"突破失败与突破测试", d:"假突破，往往是最好的反向机会。" },
+      { n:"13", t:"铁丝网与无交易环境", d:"什么时候，最该做的事是——空仓、不交易。" }
+    ]},
+    { tag:"阶段四", name:"形态", goal:"识别高胜率结构", lessons:[
+      { n:"14", t:"楔形与三推", d:"三段式收敛，趋势衰竭的经典信号。" },
+      { n:"15", t:"三角形与收敛形态", d:"对称 / 上升 / 下降三角，往哪个方向突破。" },
+      { n:"16", t:"双重顶 / 底与微型结构", d:"反转结构的骨架，大小级别通吃。" },
+      { n:"17", t:"最终旗形与趋势末端", d:"趋势最后的冲刺，怎么不追在山顶。" }
+    ]},
+    { tag:"阶段五", name:"反转", goal:"抓住趋势的转折", lessons:[
+      { n:"18", t:"主要趋势反转（MTR）", d:"趋势反转的完整剧本与确认条件。" },
+      { n:"19", t:"信号失败后的磁力位", d:"信号失败后，价格常被“吸”向哪里。" },
+      { n:"20", t:"二次入场机会", d:"第一次错过或止损后，更稳的第二次机会。" }
+    ]},
+    { tag:"阶段六", name:"风控与执行（保命 + 落地）", goal:"活下来、能复利", lessons:[
+      { n:"21", t:"止损、止盈与仓位管理", d:"止损放哪、止盈怎么设、一次到底下多少。" },
+      { n:"22", t:"交易者方程与盈亏比", d:"胜率 × 盈亏比 = 能不能赚钱的期望值思维。" },
+      { n:"23", t:"逐棒检查单 & 二元决策", d:"一套“下不下单”的固定流程，把情绪剔除掉。" },
+      { n:"24", t:"交易计划、复盘与交易日志", d:"把每一笔，都变成可复盘、可改进的数据。" }
+    ]}
+  ];
+
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function card(L){
+    var foot = L.live
+      ? '<div class="lfoot"><span class="pill go">可以开学</span><span class="arrow">开始 →</span></div>'
+      : '<div class="lfoot"><span class="pill wait">即将推出</span></div>';
+    var inner =
+      '<span class="lnum">'+esc(L.n)+'</span>' +
+      '<div class="ltitle">'+esc(L.t)+'</div>' +
+      '<p class="ldesc">'+esc(L.d)+'</p>' + foot;
+    return L.live
+      ? '<a class="lcard live" href="'+L.href+'">'+inner+'</a>'
+      : '<div class="lcard soon">'+inner+'</div>';
+  }
+  var html = CURRICULUM.map(function(S){
+    return '<div class="stage"><div class="stage-head">' +
+      '<span class="stage-tag">'+esc(S.tag)+'</span>' +
+      '<h3>'+esc(S.name)+'</h3>' +
+      '<p class="goal">目标 · '+esc(S.goal)+'</p></div>' +
+      '<div class="lessons">' + S.lessons.map(card).join("") + '</div></div>';
+  }).join("");
+  document.getElementById("catalog").innerHTML = html;
+})();
+</script>
+</body>
+</html>

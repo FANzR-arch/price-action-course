@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第五课：趋势的解剖 · 价格行为交易入门课</title>
+<meta name="description" content="价格行为第五课：趋势的解剖——更高的高点与更高的低点，强趋势与弱趋势怎么分。">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">第五课 · 阶段二 · 趋势</p>
+    <h1>趋势的解剖：<br>它是怎么“搭”出来的</h1>
+    <p class="lede">上一课我们学会认出“趋势”。这一课拆开看它的骨架——趋势不是一条直线，而是由<strong>一个个更高的高点和更高的低点</strong>搭起来的台阶。看懂骨架，你就能判断趋势的强弱、还能不能跟。</p>
+    <div id="heroCandles"></div>
+  </header>
+
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 趋势的骨架</div>
+    <h2>更高的高点 + 更高的低点</h2>
+    <p class="muted">一段上涨趋势，本质就是：</p>
+    <ul class="clean muted">
+      <li><span class="hl">更高的高点（HH，Higher High）</span>：每一波往上冲，都比上一波冲得更高；</li>
+      <li><span class="hl">更高的低点（HL，Higher Low）</span>：每一次回调，都停在比上一次更高的位置。</li>
+    </ul>
+    <p class="muted">下跌趋势正好相反：<strong>更低的高点 + 更低的低点</strong>。只要这个“台阶”还在一级级往上（或往下），趋势就还在。</p>
+    <div class="callout">
+      <div class="t">趋势结束的信号</div>
+      当价格<strong>跌破前一个更高的低点</strong>（HL 被打破），上涨趋势的台阶就断了——这往往是趋势转弱或结束的第一个提示。
+    </div>
+  </section>
+
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 看图：认出台阶</div>
+    <h2>HH 和 HL 标在哪</h2>
+    <p class="muted">图上标出了几个高点（HH）和低点（HL）。注意它们是不是一个比一个高。</p>
+    <div id="w-chart"></div>
+  </section>
+
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 强趋势 vs 弱趋势</div>
+    <h2>看“回调有多深”</h2>
+    <p class="muted">同样是上涨，强弱差很多。关键看<strong>回调的深浅</strong>：</p>
+    <div id="w-strength"></div>
+  </section>
+
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 随堂自测</div>
+    <h2>认一认、填一填</h2>
+    <div id="w-q1"></div>
+    <div id="w-q2" style="margin-top:16px"></div>
+    <div id="w-fill" style="margin-top:16px"></div>
+  </section>
+
+  <footer>
+    <h2 style="color:var(--ink)">这一课你已经拿下：</h2>
+    <ul class="clean muted">
+      <li>上涨趋势 = <strong>更高的高点（HH）+ 更高的低点（HL）</strong>；下跌相反；</li>
+      <li>趋势强弱看<strong>回调深浅</strong>：回调越浅越强；</li>
+      <li>价格<strong>跌破前一个 HL</strong>，是上涨趋势转弱/结束的第一个信号。</li>
+    </ul>
+    <div class="next">
+      <a class="btn" href="../lessons/lesson-04.html">← 上一课</a>
+      <a class="btn" href="../index.html">课程首页</a>
+      <span class="chip" style="color:var(--ink)">下一课 · 第六课：H1/H2、L1/L2 计数（即将推出）</span>
+    </div>
+    <p class="disclaim">本课件仅用于交易知识的入门学习，不构成任何投资建议。真实交易有风险，任何方法都需在模拟盘充分练习并验证后再考虑投入极小资金。颜色、示例价格均为教学演示，非真实行情。</p>
+  </footer>
+</div>
+
+<script src="../assets/vendor/klinecharts.min.js"></script>
+<script src="../assets/js/candles.js"></script>
+<script src="../assets/js/shell.js"></script>
+<script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+  PA.mountPlayground(document.getElementById("heroCandles"), { ma:[7,30] });
+  var acc = PA.cssv("--accent");
+
+  // 上涨趋势 + HH/HL 标注（从数据的波段点自动标）
+  var up = PA.genSeries(46, 5501, {start:36, vol:0.75, rise:20, amp:4});
+  var pv = PA.pivots(up, 2);
+  function pick3(a){ if(a.length<=3) return a; return [a[0], a[Math.floor(a.length/2)], a[a.length-1]]; }
+  var anns = [];
+  pick3(pv.highs).forEach(function(i){ anns.push({type:"label", i:i, value:up[i][1]+1.6, text:"HH", color:acc}); });
+  pick3(pv.lows).forEach(function(i){ anns.push({type:"label", i:i, value:up[i][2]-1.6, text:"HL", color:acc}); });
+  PA.widgets.annotatedChart(document.getElementById("w-chart"), {
+    bars:up, annotations:anns,
+    note:'<span class="lead">看这些标记：每个 HH 都比前一个高，每个 HL 也一个比一个高。</span> 这就是上涨趋势的台阶——只要台阶还在一级级往上，趋势就还在。'
+  });
+
+  // 强 vs 弱趋势
+  var strong = PA.genSeries(44, 5502, {start:36, vol:0.5, rise:22, amp:1.5}); // 浅回撤
+  var weak   = PA.genSeries(44, 5503, {start:38, vol:1.3, rise:12, amp:6});   // 深回撤
+  PA.widgets.annotatedChart(document.getElementById("w-strength"), {
+    scenes:[
+      { name:"强趋势（浅回撤）", bars:strong, annotations:[ {type:"line", points:[[2,PA.swingLow(strong,1,10)[1]],[strong.length-2,PA.swingLow(strong,Math.floor(strong.length*0.5),strong.length-1)[1]]], label:"趋势线", color:acc} ],
+        note:'<span class="lead">强趋势：回调很浅，实体连贯、几乎不重叠。</span> 想等一个深回调进场？往往等不到。常见做法：顺势，别指望便宜的入场点，更别去猜顶逆势。' },
+      { name:"弱趋势（深回撤）", bars:weak, annotations:[ {type:"line", points:[[2,PA.swingLow(weak,1,10)[1]],[weak.length-2,PA.swingLow(weak,Math.floor(weak.length*0.5),weak.length-1)[1]]], label:"趋势线", color:acc} ],
+        note:'<span class="lead">弱趋势：回调很深、K 线上下重叠多、来回锯齿。</span> 方向还在，但两边都有机会——更接近“倾斜的区间”，可以在回调深处顺势找机会。' }
+    ]
+  });
+
+  // 自测
+  PA.widgets.quizChoice(document.getElementById("w-q1"), {
+    q:"① 一段上涨趋势，最本质的特征是？",
+    options:[
+      { t:"更高的高点 + 更高的低点", ok:true, why:"对！趋势就是一级级往上的台阶：每个高点更高、每个低点也更高。" },
+      { t:"每一根 K 线都是阳线", why:"趋势里也会有阴线、有回调，不需要根根阳线。关键是高低点整体在抬高。" },
+      { t:"价格一直贴着最高点不回落", why:"那是极端的尖峰，不是趋势的通用定义。正常趋势都有回调。" }
+    ]
+  });
+  PA.widgets.quizChoice(document.getElementById("w-q2"), {
+    q:"② 下面哪种情况，说明上涨趋势可能<strong>要转弱或结束</strong>了？",
+    options:[
+      { t:"价格创了一个新的更高的高点", why:"这恰恰是趋势健康的表现，不是转弱。" },
+      { t:"价格跌破了前一个“更高的低点（HL）”", ok:true, why:"对！HL 被打破 = 台阶断了，是上涨趋势转弱/结束的第一个提示。" },
+      { t:"出现了一根很长的阳线", why:"长阳线通常是趋势有力的表现，不是转弱。" }
+    ]
+  });
+  PA.widgets.fillBlank(document.getElementById("w-fill"), {
+    prompt:"③ 填空",
+    parts:[
+      "上涨趋势由更高的高点和更高的", { a:["低点","低"] }, "搭成；判断趋势强弱，主要看",
+      { a:["回调","回撤"] }, "的深浅——越浅越强。"
+    ],
+    okText:"✓ 全对！更高的高点+更高的低点=趋势；回调越浅=趋势越强。",
+    revealText:"答案：更高的高点 + 更高的<strong>低点</strong>；强弱看<strong>回调</strong>深浅。"
+  });
+
+  PA.initLesson({ n:5, sections:[ {id:"s1",label:"趋势骨架"},{id:"s2",label:"看图"},{id:"s3",label:"强弱趋势"},{id:"s4",label:"随堂自测"} ] });
+})();
+</script>
+</body>
+</html>

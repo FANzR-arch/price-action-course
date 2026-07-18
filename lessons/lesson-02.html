@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第二课：K 线信号——单根 K 线的语言 · 价格行为交易入门课</title>
+<meta name="description" content="价格行为第二课：常见 K 线信号图鉴（趋势棒/十字星/锤子/流星/吞没/内包），点一个看一个；并学会"信号要被确认"这条保命规矩。">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">第二课 · 从一根到一个“信号”</p>
+    <h1>K 线信号：<br>单根 K 线的语言</h1>
+    <p class="lede">上一课你学会了读懂一根 K 线。这一课再进一步：某些特定形状的 K 线，会提示买方或卖方可能要占上风——这就是<strong>信号</strong>。点一个看一个，把最常见的几种记进脑子里。</p>
+    <div id="heroCandles"></div>
+  </header>
+
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 什么是“信号”</div>
+    <h2>不是每根 K 线都值得动手</h2>
+    <p class="muted">大多数 K 线只是噪音。价格行为真正关心的，是少数几种“形状特别”的 K 线——它们提示某一方可能要发力。这种 K 线叫 <span class="hl">信号棒（Signal Bar）</span>。</p>
+    <p class="muted">一根好的信号棒，通常长这样：</p>
+    <ul class="clean muted">
+      <li><strong>收盘接近极点</strong>——做多信号收在最高点附近，做空信号收在最低点附近（说明这一方赢到了最后）；</li>
+      <li><strong>实体够大、尾巴够短</strong>——态度坚决，不是犹豫；</li>
+      <li>但也<strong>别太长</strong>——超长实体反而可能是冲过头了，不安全。</li>
+    </ul>
+    <div class="callout">
+      <div class="t">这一课先建立一个直觉</div>
+      信号 = “某一方可能要赢”的提示。但<strong>提示不等于成交</strong>——下一站先认全这些形状，再学最关键的一条规矩（第 4 站）。
+    </div>
+  </section>
+
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 常见信号图鉴</div>
+    <h2>点一个，看一个</h2>
+    <p class="muted">左边点一下，右边看形状 + 讲解。右上角还能切换涨跌颜色——形状不变，含义不变。</p>
+    <div id="w-gallery"></div>
+  </section>
+
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 同样是信号，有强有弱</div>
+    <h2>强信号 vs 弱信号</h2>
+    <p class="muted">形状对了还不够，还要看“质量”。<strong>强信号</strong>：实体大、收盘贴着极点、尾巴短。<strong>弱信号</strong>：收盘收在中间、上下长尾（多空还在犹豫）、或实体长到离谱（可能冲过头）。</p>
+    <div id="w-q1"></div>
+  </section>
+
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 最关键的一条规矩</div>
+    <h2>信号，要等“确认”才算数</h2>
+    <p class="muted">这是新手最容易亏钱的地方，务必记牢：</p>
+    <div class="callout">
+      <div class="t">信号棒 → 入场棒</div>
+      看到一根漂亮的信号棒，<strong>不要马上动手</strong>。要等<strong>下一根 K 线突破它的极点</strong>，信号才算真正生效——那根突破的 K 线叫 <span class="hl">入场棒（Entry Bar）</span>。<br>
+      举例：看到一根锤子线（底部反转），要等下一根 K 线<strong>涨过锤子线的最高点</strong>，才算确认反转、才考虑做多。没突破，信号就可能作废。
+    </div>
+    <p class="muted">为什么？因为漂亮的信号也会失败。多等一根 K 线的“确认”，就能过滤掉一大批陷阱——这一根的耐心，往往就是赚和亏的区别。</p>
+    <div id="w-q2"></div>
+  </section>
+
+  <section id="s5" class="reveal">
+    <div class="kicker"><span class="num">5</span> 随堂自测</div>
+    <h2>认一认、填一填</h2>
+    <div id="w-q3"></div>
+    <div id="w-q4" style="margin-top:16px"></div>
+    <div id="w-fill" style="margin-top:16px"></div>
+  </section>
+
+  <footer>
+    <h2 style="color:var(--ink)">这一课你已经拿下：</h2>
+    <ul class="clean muted">
+      <li>常见信号：<strong>趋势棒 / 十字星 / 锤子 / 流星 / 吞没 / 内包线</strong>，各自在说什么；</li>
+      <li>信号有<strong>强弱</strong>：实体大、收盘贴极点、尾短 = 强；</li>
+      <li>最重要——<strong>信号要等下一根 K 线突破极点（入场棒）确认</strong>，别看到就冲。</li>
+    </ul>
+    <div class="next">
+      <a class="btn" href="../lessons/lesson-01.html">← 上一课</a>
+      <a class="btn" href="../index.html">课程首页</a>
+      <span class="chip" style="color:var(--ink)">下一课 · 第三课：支撑与阻力（即将推出）</span>
+    </div>
+    <p class="disclaim">本课件仅用于交易知识的入门学习，不构成任何投资建议。真实交易有风险，任何方法都需在模拟盘充分练习并验证后再考虑投入极小资金。颜色、示例价格均为教学演示，非真实行情。</p>
+  </footer>
+</div>
+
+<script src="../assets/vendor/klinecharts.min.js"></script>
+<script src="../assets/js/candles.js"></script>
+<script src="../assets/js/shell.js"></script>
+<script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  PA.mountPlayground(document.getElementById("heroCandles"), { ma:[7,30] });
+
+  // 信号图鉴（底稿：prompt_engineering/文件16-K线信号识别）
+  PA.widgets.patternGallery(document.getElementById("w-gallery"), {
+    items:[
+      { name:"多头趋势棒", tag:"强 · 多方", bars:[[42,44,40,41],[41,44,40,43],[43,56,42,55]],
+        desc:"大阳线：实体长、几乎没影线——这段时间买方<strong>一边倒地赢</strong>。收盘越贴近最高点，信号越强；连续几根趋势棒，就是强趋势。" },
+      { name:"空头趋势棒", tag:"强 · 空方", bars:[[55,60,54,58],[58,59,55,57],[57,58,44,45]],
+        desc:"大阴线：实体长、影线短——卖方一边倒地赢。出现在关键位置（如前高、阻力）时，是很强的做空信号。" },
+      { name:"十字星", tag:"中性 · 犹豫", bars:[[48,52,46,51],[51,53,48,49],[49,54,45,49]],
+        desc:"实体极小，开盘≈收盘——多空<strong>僵持，谁也没赢</strong>。单独出现是中性信号，常是趋势停顿、变盘前的犹豫。" },
+      { name:"锤子线", tag:"反转 · 底部", bars:[[54,55,50,51],[51,52,47,48],[47,49,40,48]],
+        desc:"长下影 + 实体在上方——价格一度被砸得很低，但<strong>买方把它接了回来</strong>。出现在下跌末端时，是经典的底部反转信号。" },
+      { name:"流星（上影）", tag:"反转 · 顶部", bars:[[46,48,44,47],[47,52,46,51],[51,61,50,52]],
+        desc:"长上影 + 实体在下方——价格冲高后<strong>被卖方压了回来</strong>。出现在上涨末端时，是经典的顶部反转信号。" },
+      { name:"吞没", tag:"强反转", bars:[[54,55,51,52],[52,53,48,49],[48,55,47,54]],
+        desc:"后一根的实体<strong>完全“吞掉”前一根</strong>。大阳吞阴 = 强底部反转；大阴吞阳 = 强顶部反转。双棒反转里最有力的一种。" },
+      { name:"内包线", tag:"收缩 · 蓄力", bars:[[42,45,40,44],[44,52,42,50],[46,49,44,47]],
+        desc:"后一根整个<strong>躲在前一根的范围里</strong>——波动在收缩、市场在犹豫、蓄力待发。往哪突破还不知道，要等被突破的那一刻（见第 4 站）。" }
+    ]
+  });
+
+  // 强弱信号：选最强做多信号棒
+  PA.widgets.quizCandleGrid(document.getElementById("w-q1"), {
+    q:"下面哪一根是<strong>最强的做多信号棒</strong>？（实体大、收盘贴近最高点、尾巴短）",
+    candles:[
+      { ohlc:[30,74,26,72], cap:"大阳线", ok:true, why:"实体长、收盘几乎贴着最高点、上下尾很短——买方从头赢到尾，这就是最强的做多信号棒。" },
+      { ohlc:[40,72,36,44], cap:"长上影阳", why:"虽然是阳线，但上影很长——价格冲高后被卖方压了回来，态度不够坚决，属于<strong>弱</strong>信号。" },
+      { ohlc:[50,72,28,50], cap:"十字星", why:"开盘≈收盘，多空僵持、谁也没赢——这是<strong>中性</strong>信号，不算做多信号棒。" },
+      { ohlc:[45,58,42,48], cap:"小实体", why:"实体太小，说明这一方赢得不干脆——信号偏<strong>弱</strong>。" }
+    ]
+  });
+
+  // 确认规矩：看到锤子能马上买吗
+  PA.widgets.quizChoice(document.getElementById("w-q2"), {
+    q:"你在下跌末端看到一根漂亮的<strong>锤子线</strong>，应该？",
+    options:[
+      { t:"立刻买入，机会难得", why:"这正是新手最常亏钱的做法——信号还没被确认就冲进去。漂亮的信号也会失败。" },
+      { t:"等下一根 K 线涨过锤子线的最高点（入场棒）再考虑", ok:true, why:"信号要<strong>确认</strong>：等下一根 K 线突破信号棒的极点才算数。多等这一根，就能躲开一大批陷阱。" },
+      { t:"立刻卖出", why:"方向反了——锤子线是<strong>底部反转</strong>（偏多）信号，不是做空信号。" }
+    ]
+  });
+
+  // 自测：认出顶部反转（流星）
+  PA.widgets.quizCandleGrid(document.getElementById("w-q3"), {
+    q:"① 哪一根是“冲高被打回”的<strong>顶部反转</strong>信号（长上影、实体在下方）？",
+    candles:[
+      { ohlc:[52,66,50,53], cap:"流星", ok:true, why:"长上影 + 小实体在下方——价格冲高被卖方压回，出现在顶部就是反转信号。" },
+      { ohlc:[52,54,40,53], cap:"锤子", why:"这是长<strong>下</strong>影（底部反转），方向正好相反，别弄混。" },
+      { ohlc:[50,60,42,50], cap:"十字星", why:"上下影都有、实体极小，是多空僵持的<strong>中性</strong>信号，不是顶部反转。" },
+      { ohlc:[40,58,38,56], cap:"大阳线", why:"这是强<strong>多头</strong>信号（涨），不是反转。" }
+    ]
+  });
+
+  PA.widgets.quizChoice(document.getElementById("w-q4"), {
+    q:"② 一根<strong>内包线</strong>（整根躲在前一根范围里）告诉你什么？",
+    options:[
+      { t:"方向已经确定，马上跟着做", why:"恰恰相反——内包线是方向<strong>不明</strong>、市场在犹豫，此时动手最容易被两边打脸。" },
+      { t:"波动在收缩、市场在犹豫，方向要等突破才知道", ok:true, why:"对！内包线是<strong>收缩蓄力</strong>，它本身不指方向——往哪突破，才决定方向。" },
+      { t:"一定会下跌", why:"内包线不指方向，涨跌都可能，不能凭它断定方向。" }
+    ]
+  });
+
+  PA.widgets.fillBlank(document.getElementById("w-fill"), {
+    prompt:"③ 填空",
+    parts:[
+      "趋势棒的特点是实体", { a:["大","长"] }, "、影线", { a:["短","小"] }, "。",
+      "　看到一个漂亮的信号，别急着动手——要等下一根 K 线", { a:["突破"] }, "了信号棒的极点，信号才算数（那根叫入场棒）。"
+    ],
+    okText:"✓ 全对！记住这两点：信号看形状（实体大、尾短），出手看确认（下一根突破）。",
+    revealText:"答案：趋势棒实体<strong>大</strong>、影线<strong>短</strong>；信号要等下一根 K 线<strong>突破</strong>极点才算数。"
+  });
+
+  PA.initLesson({
+    n:2,
+    sections:[
+      {id:"s1", label:"什么是信号"}, {id:"s2", label:"信号图鉴"}, {id:"s3", label:"强弱信号"},
+      {id:"s4", label:"要确认"}, {id:"s5", label:"随堂自测"}
+    ]
+  });
+})();
+</script>
+</body>
+</html>

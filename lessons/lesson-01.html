@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第一课：读懂一根 K 线 · 价格行为交易入门课</title>
+<meta name="description" content="完全新手向的价格行为交易入门第一课：可拖调的 K 线、点选判断、填空自测。">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">第一课 · 完全新手向</p>
+    <h1>一根 K 线，到底在说什么？</h1>
+    <p class="lede">交易图上密密麻麻的小柱子，每一根都是一段时间里买卖双方的一次较量记录。读懂<strong>一根</strong>，才谈得上读懂一张图。这一课不需要任何基础——动手拖一拖、点一点，你就会了。</p>
+    <div id="heroCandles"></div>
+  </header>
+
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 什么是 K 线</div>
+    <h2>一根 K 线 = 一段时间的“价格故事”</h2>
+    <p class="muted">你在图上看到的一根柱子，代表<strong>一个固定时间段</strong>里价格的完整轨迹。这个时间段可长可短，由你选的“周期”决定：</p>
+    <ul class="clean muted">
+      <li><strong>日线</strong>：一根 = 一天。 &nbsp;<strong>1 小时线</strong>：一根 = 1 小时。 &nbsp;<strong>5 分钟线</strong>：一根 = 5 分钟。</li>
+      <li>无论多长，每根 K 线都只记录 <span class="hl">4 个关键价格</span>——这就是下一站要拖着玩的东西。</li>
+    </ul>
+    <div class="callout">
+      <div class="t">先记住一句话</div>
+      K 线不预测未来，它只<strong>忠实记录已经发生的事</strong>：这段时间里，价格从哪开始、冲到多高、砸到多低、最后停在哪。
+    </div>
+  </section>
+
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 四个价格：开 · 高 · 低 · 收</div>
+    <h2>亲手捏一根 K 线</h2>
+    <p class="muted">拖动下面四个滑块，看 K 线怎么变。<strong>开盘价</strong>是这段时间第一笔成交，<strong>收盘价</strong>是最后一笔，<strong>最高/最低</strong>是中途摸到的极值。</p>
+    <div id="w-lab"></div>
+    <p class="muted" style="margin-top:14px;font-size:14px">试试把<strong>收盘</strong>拖到比<strong>开盘</strong>高 → 这段时间价格是涨的；再拖到比开盘低 → 是跌的。最高、最低只决定“影线”有多长。</p>
+  </section>
+
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 实体与影线</div>
+    <h2>粗的叫“实体”，细的叫“影线”</h2>
+    <p class="muted">同一根 K 线拆成两部分。点下面的按钮，图上会高亮对应部位——每个部位都在讲一件事。</p>
+    <div id="w-parts"></div>
+    <div class="callout">
+      <div class="t">影线是“被拒绝的价格”</div>
+      长长的上影线 = 价格冲上去了，但被<strong>卖方打了回来</strong>；长长的下影线 = 价格砸下去了，但被<strong>买方接了回来</strong>。影线越长，那个方向被拒绝得越狠——这是价格行为里最有用的直觉之一。
+    </div>
+  </section>
+
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 涨、跌，和颜色的真相</div>
+    <h2>颜色是“设置”，涨跌看收盘 vs 开盘</h2>
+    <p class="muted">很多新手以为“红=涨”或“绿=涨”是铁律，<strong>其实不是</strong>。颜色只是显示约定，不同市场不一样，还能自己改：</p>
+    <ul class="clean muted">
+      <li><strong>A 股 / 国内期货</strong>：习惯 <span style="color:var(--hue-red);font-weight:750">红涨</span>、<span style="color:var(--hue-green);font-weight:750">绿跌</span>。</li>
+      <li><strong>欧美股市 / 虚拟货币</strong>：习惯 <span style="color:var(--hue-green);font-weight:750">绿涨</span>、<span style="color:var(--hue-red);font-weight:750">红跌</span>（跟上面正好相反）。</li>
+    </ul>
+    <p class="muted">用页面右上角的 <strong>“涨用 绿/红”</strong> 开关翻一下，看下面这两根 K 线颜色怎么互换——但它们<strong>是涨是跌，一个字都没变</strong>。</p>
+    <div class="card pad">
+      <div class="lab" style="grid-template-columns:1fr 1fr">
+        <div class="chartbox" style="text-align:center">
+          <svg id="upCandle" viewBox="0 0 140 300" style="max-width:140px;margin:0 auto"></svg>
+          <div class="chip" style="margin-top:6px">收盘 <b>高于</b> 开盘 → <b>涨</b></div>
+        </div>
+        <div class="chartbox" style="text-align:center">
+          <svg id="dnCandle" viewBox="0 0 140 300" style="max-width:140px;margin:0 auto"></svg>
+          <div class="chip" style="margin-top:6px">收盘 <b>低于</b> 开盘 → <b>跌</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="t">唯一要记的判断法</div>
+      不管什么颜色：<strong>收盘价 > 开盘价 → 这段时间涨</strong>；<strong>收盘价 &lt; 开盘价 → 跌</strong>。颜色能骗你，开盘和收盘不会。
+    </div>
+  </section>
+
+  <section id="s5" class="reveal">
+    <div class="kicker"><span class="num">5</span> 随堂自测</div>
+    <h2>点一点、填一填，检查你会了没</h2>
+    <div id="w-q1"></div>
+    <div id="w-q2" style="margin-top:16px"></div>
+
+    <div class="card pad" style="margin-top:16px">
+      <p class="qtext" style="margin-top:0">③ 现在颜色约定是 <b id="q3conv"></b>。有一根 K 线<strong>收盘比开盘高</strong>，它现在显示成什么颜色？</p>
+      <div class="optlist" id="quiz3">
+        <button data-c="green">绿色</button>
+        <button data-c="red">红色</button>
+        <button data-c="none">看不出来 / 跟颜色无关</button>
+      </div>
+      <div class="fb" id="fb3"></div>
+      <div class="quiz-foot"><button class="btn ghost mini" id="q3reset" type="button" style="display:none">重做</button></div>
+    </div>
+
+    <div id="w-fill" style="margin-top:16px"></div>
+  </section>
+
+  <footer>
+    <h2 style="color:var(--ink)">这一课你已经拿下：</h2>
+    <ul class="clean muted">
+      <li>一根 K 线 = 一段时间的价格故事，由 <strong>开 / 高 / 低 / 收</strong> 四个价格决定；</li>
+      <li>粗的是<strong>实体</strong>、细的是<strong>影线</strong>，长影线 = 某个方向被<strong>拒绝</strong>；</li>
+      <li>涨跌看 <strong>收盘 vs 开盘</strong>，<strong>颜色只是可切换的显示设置</strong>。</li>
+    </ul>
+    <div class="next">
+      <a class="btn" href="../index.html">← 返回课程首页</a>
+      <span class="chip" style="color:var(--ink)">下一课 · 第二课：K 线信号——单根 K 线的语言</span>
+    </div>
+    <p class="disclaim">本课件仅用于交易知识的入门学习，不构成任何投资建议。真实交易有风险，任何方法都需在模拟盘充分练习并验证后再考虑投入极小资金。颜色、示例价格均为教学演示，非真实行情。</p>
+  </footer>
+</div>
+
+<script src="../assets/vendor/klinecharts.min.js"></script>
+<script src="../assets/js/candles.js"></script>
+<script src="../assets/js/shell.js"></script>
+<script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  // 头图沙盘（自动登记重绘）
+  PA.mountPlayground(document.getElementById("heroCandles"), { ma:[7,30] });
+
+  // 组件
+  PA.widgets.candleLab(document.getElementById("w-lab"), {});
+  PA.widgets.partHighlighter(document.getElementById("w-parts"), {});
+
+  PA.widgets.quizCandleGrid(document.getElementById("w-q1"), {
+    q:"① 哪一根 K 线代表<strong>买方（多方）这段时间大获全胜</strong>？",
+    candles:[
+      { ohlc:[30,74,26,72], cap:"大阳线", ok:true, why:"实体很长、几乎没影线，从头涨到尾——买方一路碾压，这就是多方大胜。" },
+      { ohlc:[50,72,28,50], cap:"十字星", why:"开盘≈收盘，多空僵持、谁也没赢，不是大胜。" },
+      { ohlc:[60,64,24,62], cap:"下影锤子", why:"先被砸下去、又被买方拉回来——是反转信号，不是“一路碾压”。" },
+      { ohlc:[72,76,26,30], cap:"大阴线", why:"这是<strong>卖方</strong>大胜（跌），方向反了。" }
+    ]
+  });
+
+  PA.widgets.quizChoice(document.getElementById("w-q2"), {
+    q:"② 一根 K 线拖着<strong>长长的下影线</strong>（下面一根细尾巴），最合理的解读是：",
+    options:[
+      { t:"卖方把价格一路砸到底，完全占上风", why:"反了——如果卖方全程占上风，收盘会贴着最低点，不会留下长长的下影。" },
+      { t:"价格一度被砸下去，但买方又把它接了回来", ok:true, why:"长下影 = 价格一度被砸很低，但<strong>买方把它接了回来</strong>，收在离低点很远处，往往是下方有承接、卖压衰竭。" },
+      { t:"这段时间没有任何成交", why:"有成交才画得出 K 线，这个说法说不通。" }
+    ]
+  });
+
+  PA.widgets.fillBlank(document.getElementById("w-fill"), {
+    prompt:"④ 填空（填中文词即可）",
+    parts:[
+      "K 线中粗的部分叫", { a:["实体","柱体","阳线实体"] }, "，细线叫", { a:["影线","上下影线","引线","蜡烛芯"] }, "。",
+      "　决定一根 K 线是涨是跌的，是", { a:["收盘","收"] }, "价相对", { a:["开盘","开"] }, "价的位置。"
+    ],
+    okText:"✓ 全对！这四个词就是这一课的地基：实体、影线、收盘、开盘。",
+    revealText:"答案已填入：粗的是<strong>实体</strong>，细的是<strong>影线</strong>；涨跌由<strong>收盘</strong>价相对<strong>开盘</strong>价决定。"
+  });
+
+  // S4：涨/跌两根示例（登记重绘，随颜色约定翻转）
+  function drawS4(){
+    PA.drawCandle(document.getElementById("upCandle"), 35,78,28,66, {lo:15,hi:85,padY:22,bw:52});
+    PA.drawCandle(document.getElementById("dnCandle"), 66,74,22,35, {lo:15,hi:85,padY:22,bw:52});
+  }
+  drawS4(); PA.registerRedraw(drawS4);
+
+  // Q3：与当前颜色约定相关（任选反复点 + 重做）
+  function refreshQ3(){ document.getElementById("q3conv").textContent = "涨用"+(PA.convention==="green"?"绿":"红"); }
+  var q3btns=document.querySelectorAll("#quiz3 button"), q3fb=document.getElementById("fb3"), q3reset=document.getElementById("q3reset");
+  function q3clear(){ Array.prototype.forEach.call(q3btns, function(b){ b.classList.remove("correct","wrong"); }); }
+  Array.prototype.forEach.call(q3btns, function(btn){
+    btn.addEventListener("click", function(){
+      q3clear();
+      var color=PA.convention==="green"?"绿":"红", want=PA.convention, ok=btn.dataset.c===want;
+      btn.classList.add(ok?"correct":"wrong");
+      q3fb.className="fb show "+(ok?"ok":"no");
+      if(ok) q3fb.innerHTML="✓ 对！现在约定<strong>涨用"+color+"</strong>，这根 K 线是涨的，所以显示成<strong>"+color+"色</strong>。去右上角把开关一翻，同一根涨的 K 线颜色就变了——<strong>但它依然是涨的</strong>。颜色是设置，涨跌看收盘对开盘。";
+      else if(btn.dataset.c==="none") q3fb.innerHTML="✗ 颜色是能看出来的——它由“当前约定 + 这根是涨是跌”共同决定。现在约定<strong>涨用"+color+"</strong>，这根是涨的，所以是<strong>"+color+"色</strong>。";
+      else q3fb.innerHTML="✗ 不对。现在的约定是<strong>涨用"+color+"</strong>，而这根 K 线是涨的，应该显示成<strong>"+color+"色</strong>。换一个再看看。";
+      q3reset.style.display="";
+    });
+  });
+  q3reset.addEventListener("click", function(){ q3clear(); q3fb.className="fb"; q3fb.innerHTML=""; q3reset.style.display="none"; });
+  refreshQ3(); PA.registerRedraw(refreshQ3);
+
+  // 外壳（顶栏 / 进度 / 章节高亮 / 颜色开关 / 出现动画）
+  PA.initLesson({
+    n:1,
+    sections:[
+      {id:"s1", label:"什么是K线"}, {id:"s2", label:"四个价格"}, {id:"s3", label:"实体与影线"},
+      {id:"s4", label:"涨跌与颜色"}, {id:"s5", label:"随堂自测"}
+    ]
+  });
+})();
+</script>
+</body>
+</html>
