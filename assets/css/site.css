@@ -202,7 +202,7 @@ footer{padding:48px 0 70px;border-top:1px solid var(--line-soft);color:var(--ink
 .follow-label{font-size:13.5px;font-weight:750;color:var(--ink-soft)}
 .follow a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;color:var(--accent-ink);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:6px 13px;transition:border-color .15s ease,color .15s ease}
 .follow a:hover{border-color:var(--accent);color:var(--accent)}
-.follow a svg{flex:0 0 auto}
+.follow a svg{width:15px;height:15px;flex:0 0 auto}
 
 /* 淡入动效已按需移除：内容直接呈现，清爽无卡顿 */
 .reveal,.reveal.in{opacity:1;transform:none}
