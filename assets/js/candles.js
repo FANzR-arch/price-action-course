@@ -65,6 +65,10 @@
       frag += strokeRect(cx-bw/2-3, bodyTop-3, bw+6, bh+6, cssv("--accent"));
       frag += labelBubble(cx+bw/2+9, (bodyTop+bodyBot)/2, "实体");
     }
+    svg.setAttribute("role","img");
+    if(!svg.getAttribute("aria-label")){
+      svg.setAttribute("aria-label", (up?"阳线（收盘高于开盘）":"阴线（收盘低于开盘）")+" K 线示意图");
+    }
     svg.innerHTML = frag;
   };
 
@@ -126,6 +130,7 @@
       });
     }
     var chart = window.klinecharts.init(el, { locale: "zh-CN" });
+    try{ el.setAttribute("role","img"); if(!el.getAttribute("aria-label")) el.setAttribute("aria-label", opts.ariaLabel || "K 线走势图（交互式教学图表）"); }catch(e){}
     chart.applyNewData(toData(bars));
     chart.createIndicator({ name:"MA", calcParams: periods }, false, { id:"candle_pane" });
 

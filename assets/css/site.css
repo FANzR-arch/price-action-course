@@ -51,6 +51,12 @@ body{
 a{color:inherit}
 .wrap{max-width:920px;margin:0 auto;padding:0 20px}
 
+/* ---- 无障碍：跳到主内容 / 屏幕阅读器专用 ---- */
+.skip-link{position:absolute;left:12px;top:-52px;z-index:100;background:var(--accent);color:#fff;font-weight:750;font-size:14px;padding:9px 16px;border-radius:10px;text-decoration:none;transition:top .18s ease}
+.skip-link:focus{top:12px;outline:2px solid var(--accent-ink);outline-offset:2px}
+[tabindex="-1"]:focus{outline:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
 /* ---- top bar / progress ---- */
 .topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft)}
 .topbar .row{max-width:920px;margin:0 auto;padding:9px 20px;display:flex;align-items:center;gap:14px}

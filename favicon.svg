@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="价格行为 K 线图标">
+  <rect width="32" height="32" rx="7" fill="#12161d"/>
+  <!-- 上下影线 -->
+  <line x1="12" y1="5" x2="12" y2="27" stroke="#25B98B" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="22" y1="7" x2="22" y2="25" stroke="#E5A93A" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- 实体 -->
+  <rect x="8.4" y="14" width="7.2" height="10" rx="1.6" fill="#25B98B"/>
+  <rect x="18.4" y="10" width="7.2" height="9" rx="1.6" fill="#E5A93A"/>
+</svg>

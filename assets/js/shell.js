@@ -31,7 +31,8 @@
         '</div>' +
       '</div>' +
       '<div class="progline" id="progline"></div>';
-    document.body.insertBefore(bar, document.body.firstChild);
+    var _skip = document.querySelector(".skip-link");
+    document.body.insertBefore(bar, _skip ? _skip.nextSibling : document.body.firstChild);
 
     // ---- 颜色开关 → 全站重绘 ----
     if(PA.wireToggle) PA.wireToggle("#convToggle", PA.redrawAll);
