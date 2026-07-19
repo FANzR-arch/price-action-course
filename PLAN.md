@@ -1,6 +1,13 @@
 # 价格行为入门课 · 开发规划（PLAN.md）
 
-一套纯静态、可交互的价格行为（Price Action）课程。**内容以 `PA_Agent/prompt_engineering/` 为权威底稿，重写成新手大白话；不引入前端框架，保持拖进 Netlify 即上线。**
+一套纯静态、可交互的价格行为（Price Action）课程。**内容以 `PA_Agent/prompt_engineering/` 为权威底稿，重写成新手大白话；不引入前端框架，保持零构建、任意静态托管即上线。**
+
+## 站点现状（截至最近一次更新）
+
+- **已上线：** https://price-action-course.vercel.app （GitHub `main` push 自动部署）。
+- **进度：** 阶段一 + 阶段二共 **9 课已上线**；10–24 课待建（见下表）。
+- **站点级已完成：** favicon、社交分享卡片（OG/Twitter + 封面图）、图表无障碍（role/aria）、skip-link、扁平清爽视觉、全站文案精修。
+- **待办（非课程内容）：** 自定义 404 页 ✅、深色模式手动切换钮（可选）、`rrCalculator` 组件（Phase F 需要）。
 
 ## 架构
 

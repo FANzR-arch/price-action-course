@@ -50,17 +50,7 @@
     }
     window.addEventListener("scroll", onScroll, {passive:true});
 
-    // ---- 出现动画（带兜底：内容绝不会卡在隐藏态）----
-    function _revealAll(){ Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function(el){ el.classList.add("in"); }); }
-    if("IntersectionObserver" in window){
-      var io = new IntersectionObserver(function(es){
-        es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
-      }, {threshold:.05});
-      Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function(el){ io.observe(el); });
-      setTimeout(_revealAll, 1400);   // 万一 IO 因主线程繁忙未触发，强制显示
-    } else {
-      _revealAll();
-    }
+    // （淡入动效已按需移除：.reveal 由 CSS 直接呈现，无需 JS 触发）
 
     onScroll();
   };
