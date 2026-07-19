@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十课：交易区间——高抛低吸 · 价格行为交易入门课</title>
+<meta name="description" content="价格行为第十课：交易区间怎么做。高抛低吸，在支撑阻力边界做反转、中间不动手；看图认边界、动手画出阻力线、随堂自测。">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://price-action-course.vercel.app/lessons/lesson-10.html">
+<meta name="theme-color" content="#B0761A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="价格行为交易 · 入门课">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="第十课：交易区间——高抛低吸 · 价格行为交易入门课">
+<meta property="og:description" content="价格行为第十课：交易区间怎么做。高抛低吸，在支撑阻力边界做反转、中间不动手；看图认边界、动手画出阻力线、随堂自测。">
+<meta property="og:url" content="https://price-action-course.vercel.app/lessons/lesson-10.html">
+<meta property="og:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="价格行为交易 · 入门课">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第十课：交易区间——高抛低吸 · 价格行为交易入门课">
+<meta name="twitter:description" content="价格行为第十课：交易区间怎么做。高抛低吸，在支撑阻力边界做反转、中间不动手。">
+<meta name="twitter:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+
+<div class="wrap" id="main" tabindex="-1">
+  <header class="hero">
+    <p class="eyebrow">第十课 · 阶段三 · 横盘怎么做</p>
+    <h1>交易区间：<br>高抛低吸</h1>
+    <p class="lede">大部分时间，价格并不在明显趋势里，而是<strong>横着来回</strong>——这就是交易区间。区间里最稳的打法只有一句：<strong>高抛低吸</strong>，在边界做反转，中间不动手。</p>
+    <div id="heroCandles"></div>
+  </header>
+
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 什么是交易区间</div>
+    <h2>价格横着来回的那一段</h2>
+    <p class="muted">交易区间＝价格被夹在<strong>支撑</strong>和<strong>阻力</strong>之间来回震荡，没有明显方向。它是行情里很常见的状态——大部分时间，市场都在区间里磨。</p>
+    <ul class="clean muted">
+      <li>上边界＝<span class="hl">阻力</span>：价格几次冲到这附近，就被压了回来。</li>
+      <li>下边界＝<span class="hl">支撑</span>：价格几次砸到这附近，就被接了起来。</li>
+      <li>中间＝<strong>无人区</strong>：方向不明，谁进去都容易被来回打止损。</li>
+    </ul>
+    <div class="callout">
+      <div class="t">区间的本质：两边都有人守</div>
+      到了上沿，卖方就出手把价格压回去；到了下沿，买方就进场把价格托起来。所以<strong>边界＝反转的机会</strong>，<strong>中部＝没有优势的混沌区</strong>。
+    </div>
+  </section>
+
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 看图：边界在哪、怎么做</div>
+    <h2>点上面切换，看懂区间打法</h2>
+    <p class="muted">同一段区间行情，分三步看：先认出边界，再看高抛低吸的进出点，最后看清哪里是不该碰的中部。</p>
+    <div id="w-chart"></div>
+  </section>
+
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 动手：找出边界</div>
+    <h2>画出这个区间的阻力线</h2>
+    <p class="muted">在图上点一下，画出你认为的<strong>阻力</strong>——就是价格几次冲高、都被压回来的那条上沿。画完看看你找得准不准。</p>
+    <div id="w-draw"></div>
+  </section>
+
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 随堂自测</div>
+    <h2>在区间里，你该怎么做</h2>
+    <div id="w-q1"></div>
+    <div id="w-q2" style="margin-top:16px"></div>
+    <div id="w-fill" style="margin-top:16px"></div>
+  </section>
+
+  <footer>
+    <h2 style="color:var(--ink)">这一课你已经拿下：</h2>
+    <ul class="clean muted">
+      <li>交易区间＝价格在<strong>支撑与阻力之间横着来回</strong>，没有明显方向；</li>
+      <li>核心打法是<strong>高抛低吸</strong>：靠近<strong>阻力</strong>找做空、靠近<strong>支撑</strong>找做多，做的是<strong>回到区间内</strong>的反转；</li>
+      <li><strong>越靠边越有优势，越靠中间越危险</strong>；中部追突破，往往两边挨打、来回止损。</li>
+    </ul>
+    <div class="next">
+      <a class="btn" href="../lessons/lesson-09.html">← 上一课</a>
+      <a class="btn" href="../index.html">课程首页</a>
+      <span class="chip" style="color:var(--ink)">阶段三开始 · 下一课「真突破 vs 假突破」即将推出</span>
+    </div>
+    <p class="disclaim">本课件仅用于交易知识的入门学习，不构成任何投资建议。真实交易有风险，任何方法都需在模拟盘充分练习并验证后再考虑投入极小资金。颜色、示例价格均为教学演示，非真实行情。</p>
+  </footer>
+</div>
+
+<script src="../assets/vendor/klinecharts.min.js"></script>
+<script src="../assets/js/candles.js"></script>
+<script src="../assets/js/shell.js"></script>
+<script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+  PA.mountPlayground(document.getElementById("heroCandles"), { ma:[7,30] });
+
+  var acc = PA.cssv("--accent"), soft = PA.cssv("--ink-soft");
+  function swingLow(bs, a, b){ var idx=a, v=bs[a][2]; for(var i=a;i<b;i++){ if(bs[i][2]<v){ v=bs[i][2]; idx=i; } } return [idx, v]; }
+  function swingHigh(bs, a, b){ var idx=a, v=bs[a][1]; for(var i=a;i<b;i++){ if(bs[i][1]>v){ v=bs[i][1]; idx=i; } } return [idx, v]; }
+  function nth(arr, k, desc){ var s=arr.slice().sort(function(a,b){ return desc?b-a:a-b; }); return s[Math.min(k, s.length-1)]; }
+
+  // 一段横盘区间行情（rise:0 → 无趋势，来回震荡）
+  var range = PA.genSeries(46, 1010, {start:44, vol:1.0, rise:0, amp:2.4});
+  var n = range.length;
+  var res = nth(range.map(function(b){ return b[1]; }), 2, true);   // 阻力（第 2 高，稳一点）
+  var sup = nth(range.map(function(b){ return b[2]; }), 2, false);  // 支撑（第 2 低）
+  var hiTouch = swingHigh(range, 1, n-1);   // 冲到阻力的那根
+  var loTouch = swingLow(range, 1, n-1);    // 砸到支撑的那根
+  var midLo = sup + (res-sup)*0.32, midHi = res - (res-sup)*0.32;
+
+  PA.widgets.annotatedChart(document.getElementById("w-chart"), {
+    scenes:[
+      { name:"① 区间全貌", bars:range,
+        annotations:[ {type:"hline", value:res, label:"阻力", color:acc}, {type:"hline", value:sup, label:"支撑", color:acc} ],
+        note:'<span class="lead">先认出上下两条边界。</span> 价格几次冲到<strong>阻力</strong>就被压回、几次跌到<strong>支撑</strong>就被接住，中间横着来回——这就是一个交易区间。' },
+      { name:"② 高抛低吸", bars:range,
+        annotations:[ {type:"hline", value:res, label:"阻力", color:acc}, {type:"hline", value:sup, label:"支撑", color:acc},
+                      {type:"label", i:hiTouch[0], value:hiTouch[1], text:"高抛", color:acc}, {type:"label", i:loTouch[0], value:loTouch[1], text:"低吸", color:acc} ],
+        note:'<span class="lead">在边界做反转。</span> 靠近<strong>阻力</strong>时找做空（高抛），靠近<strong>支撑</strong>时找做多（低吸），赚的是价格<strong>弹回区间内</strong>的那一段。越贴近边界，优势越大。' },
+      { name:"③ 中部禁区", bars:range,
+        annotations:[ {type:"hline", value:res, label:"阻力", color:acc}, {type:"hline", value:sup, label:"支撑", color:acc},
+                      {type:"zone", from:midLo, to:midHi, label:"中部 · 不动手", color:soft} ],
+        note:'<span class="lead">中间这块别碰。</span> 区间中部方向不明，往上往下都没优势，很容易被两边来回打。<strong>没到边界，就空仓等</strong>。' }
+    ]
+  });
+
+  // 动手：画出阻力线
+  PA.widgets.drawOnChart(document.getElementById("w-draw"), {
+    bars: range,
+    prompt: "在图上点一下，画出你认为的“阻力”上沿",
+    targets: [ {low: res-2.2, high: res+2.2, label:"阻力区", tip:" 价格几次冲到这附近都被压回来——这就是区间的上沿，做空（高抛）就找这里。"} ]
+  });
+
+  // 自测
+  PA.widgets.quizChoice(document.getElementById("w-q1"), {
+    q:"① 价格正在一个<strong>交易区间</strong>里，现在刚好涨到<strong>阻力附近</strong>。较有优势的做法是？",
+    options:[
+      { t:"在阻力附近找做空（高抛）", ok:true, why:"对！区间里到了上沿，卖方大概率出手把价格压回去，这里找做空、赌它弹回区间内，是有优势的高抛。" },
+      { t:"追着往上买，赌它突破", why:"这是区间里常见的亏法——区间里大多数突破会失败，在阻力追多容易被打回来套住。" },
+      { t:"不管在哪，先重仓做多", why:"位置决定优势。到了阻力还重仓做多＝在最不利的位置进场。" }
+    ]
+  });
+  PA.widgets.quizChoice(document.getElementById("w-q2"), {
+    q:"② 下面哪种说法，符合区间里的“<strong>高抛低吸</strong>”？",
+    options:[
+      { t:"靠近支撑找做多，靠近阻力找做空", ok:true, why:"没错——低吸（支撑附近做多）、高抛（阻力附近做空），做的都是回到区间内的反转。" },
+      { t:"在区间中部同时挂多和空", why:"中部没有优势，方向不明，两边都容易被打。区间中部应当空仓等待。" },
+      { t:"靠近支撑做空、靠近阻力做多", why:"正好反了。这样是在边界<strong>顺着</strong>刚被拒绝的方向做，等于逆着高抛低吸。" }
+    ]
+  });
+  PA.widgets.fillBlank(document.getElementById("w-fill"), {
+    prompt:"③ 填空",
+    parts:[
+      "区间的上边界叫", { a:["阻力"] }, "，下边界叫", { a:["支撑"] }, "。",
+      "　打法是高抛低吸：靠近阻力找", { a:["做空","空"] }, "，靠近支撑找", { a:["做多","多"] }, "；",
+      "区间", { a:["中部","中间"] }, "没有优势，不动手。"
+    ],
+    okText:"✓ 全对！边界做反转、中部不动手——这就是交易区间的核心。",
+    revealText:"答案：上沿是<strong>阻力</strong>、下沿是<strong>支撑</strong>；靠近阻力<strong>做空</strong>、靠近支撑<strong>做多</strong>；<strong>中部</strong>不动手。"
+  });
+
+  PA.initLesson({
+    n:10,
+    sections:[ {id:"s1", label:"什么是区间"}, {id:"s2", label:"看图"}, {id:"s3", label:"动手画边界"}, {id:"s4", label:"随堂自测"} ]
+  });
+})();
+</script>
+</body>
+</html>
