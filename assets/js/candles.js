@@ -14,6 +14,9 @@
   // 颜色约定："green" = 涨用绿（欧美/币圈默认）；"red" = 涨用红（A股/国内期货）
   PA.convention = "green";
 
+  // 今天 0 点的时间戳（图表把最后一根钉在“今天”）
+  PA._todayTs = function(){ var d=new Date(); d.setHours(0,0,0,0); return d.getTime(); };
+
   function cssv(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
   PA.cssv = cssv;
   PA.upColor   = function(){ return PA.convention==="green" ? cssv("--hue-green") : cssv("--hue-red"); };
@@ -121,18 +124,31 @@
     opts = opts||{};
     if(!window.klinecharts){ el.innerHTML='<div style="padding:24px;color:var(--ink-soft);font-family:var(--sans)">图表库未加载（assets/vendor/klinecharts.min.js）</div>'; return null; }
     var periods = opts.ma || [7, 30];
-    var base = opts.baseTs || 1704067200000, day = 86400000; // 2024-01-01 起，日线
+    var day = 86400000;
+    var endTs = opts.endTs || PA._todayTs();          // 最后一根 = 今天
+    function tsFor(m){                                 // 往前推 m 个交易日（跳过周末），末尾=今天
+      var out=[], ts=endTs;
+      while(out.length<m){ var wd=new Date(ts).getDay(); if(wd!==0&&wd!==6) out.push(ts); ts-=day; }
+      return out.reverse();
+    }
     function toData(list){
+      var m=list.length, tsArr=tsFor(m);
       return list.map(function(b,i){
         var o=b[0],h=b[1],l=b[2],c=b[3];
         var vol = Math.round((Math.abs(c-o)+(h-l))*1200 + 4000 + ((i*37)%11)*260);
-        return { timestamp: base + i*day, open:o, high:h, low:l, close:c, volume:vol };
+        return { timestamp: tsArr[i], open:o, high:h, low:l, close:c, volume:vol };
       });
     }
     var chart = window.klinecharts.init(el, { locale: "zh-CN" });
     try{ el.setAttribute("role","img"); if(!el.getAttribute("aria-label")) el.setAttribute("aria-label", opts.ariaLabel || "K 线走势图（交互式教学图表）"); }catch(e){}
     chart.applyNewData(toData(bars));
     chart.createIndicator({ name:"MA", calcParams: periods }, false, { id:"candle_pane" });
+    // 永不留白：最后一根（今天）钉在右边，且左右都禁止拖出数据范围
+    try{
+      chart.setOffsetRightDistance(0);
+      if(chart.setMaxOffsetRightDistance) chart.setMaxOffsetRightDistance(0);  // 右侧不能拖出空白
+      if(chart.setMaxOffsetLeftDistance)  chart.setMaxOffsetLeftDistance(0);   // 左侧不能拖出空白
+    }catch(e){}
 
     function styleObj(){
       var maColors = [cssv("--accent"), cssv("--ink-soft"), cssv("--hue-green")];
@@ -177,10 +193,9 @@
         '<button class="btn ghost mini" type="button" data-act="shuffle">🎲 换一批</button>' +
         '<span class="mini-sld"><label>波动</label><input type="range" data-p="vol" min="4" max="22" value="9" aria-label="波动"></span>' +
         '<span class="mini-sld"><label>趋势</label><input type="range" data-p="rise" min="-16" max="16" value="9" aria-label="趋势"></span>' +
-        '<span class="mini-sld"><label>根数</label><input type="range" data-p="bars" min="40" max="120" value="80" aria-label="根数"></span>' +
-        '<span class="ctrl-hint">拖动滑块或点「换一批」→ 随机生成新行情</span>' +
+        '<span class="ctrl-hint">近半年日线 · 拖动滑块或点「换一批」→ 随机生成新行情</span>' +
       '</div>';
-    var st = { vol:0.9, rise:9, bars:80 };
+    var st = { vol:0.9, rise:9, bars:126 };   // 约半年交易日，固定填满
     function gen(){ return PA.genSeries(st.bars, null, { start:42, vol:st.vol, rise:st.rise, amp:6 }); }
     var m = PA.mountChart(host.querySelector(".klchart"), gen(), { ma: opts.ma||[7,30], tooltip: opts.tooltip });
     if(!m) return null;
