@@ -44,21 +44,10 @@
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{
-  margin:0;color:var(--ink);
-  background:
-    radial-gradient(1100px 560px at 84% -12%, color-mix(in srgb,var(--accent) 11%,transparent), transparent 60%),
-    radial-gradient(900px 500px at 6% 4%, color-mix(in srgb,var(--hue-green) 6%,transparent), transparent 55%),
-    var(--paper);
-  background-attachment:fixed;
+  margin:0;background:var(--paper);color:var(--ink);
   font-family:var(--sans);line-height:1.7;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
-/* 极细颗粒噪点：打破数字化的平，增加高级质感 */
-body::after{
-  content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.028;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-@media (prefers-reduced-motion:reduce){body::after{display:none}}
 a{color:inherit}
 .wrap{max-width:920px;margin:0 auto;padding:0 20px}
 
@@ -208,9 +197,8 @@ footer{padding:48px 0 70px;border-top:1px solid var(--line-soft);color:var(--ink
 .next{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:14px 0 0}
 .disclaim{font-size:12.5px;color:var(--ink-faint);margin-top:26px;line-height:1.6}
 
-.reveal{opacity:0;transform:translateY(14px)}
-.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s ease}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+/* 淡入动效已按需移除：内容直接呈现，清爽无卡顿 */
+.reveal,.reveal.in{opacity:1;transform:none}
 
 /* ============================================================
    首页专用组件：课程目录卡片
@@ -243,53 +231,30 @@ footer{padding:48px 0 70px;border-top:1px solid var(--line-soft);color:var(--ink
 .lcard{min-height:130px}
 
 /* ============================================================
-   UI 打磨层 · 视觉升级（冷静高级 + 金融质感）
+   清爽简洁：扁平化、去阴影、去卡片动效
    ============================================================ */
 
-/* —— 全局：按压触感反馈 —— */
-.btn,.qopt,.parts button,.scene-tab,.gal-thumb,.optlist button,.toggle button,.lcard.live{transition:transform .15s ease,box-shadow .18s ease,border-color .15s ease,background-color .15s ease,color .15s ease}
-.btn:active{transform:translateY(1px) scale(.985)}
-.parts button:active,.scene-tab:active,.gal-thumb:active,.optlist button:active,.qopt:active{transform:translateY(1px)}
-.btn:focus-visible,.parts button:focus-visible,.scene-tab:focus-visible,.optlist button:focus-visible,.qopt:focus-visible,.lcard:focus-visible,.steps a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+/* 焦点可见（无障碍，保留） */
+.btn:focus-visible,.parts button:focus-visible,.scene-tab:focus-visible,.optlist button:focus-visible,.qopt:focus-visible,.lcard:focus-visible,.steps a:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
-/* —— 顶栏导航精修 —— */
-.topbar{background:color-mix(in srgb,var(--paper) 82%,transparent)}
-.brand{transition:opacity .15s}
-.brand:hover{opacity:.72}
+/* 扁平化：移除卡片 / 按钮 / 徽章的阴影与渐变 */
+.card,.lcard,.chartframe,.btn,.btn:hover{box-shadow:none}
+.kicker .num,.lcard .lnum{background:var(--accent);box-shadow:none}
 
-/* —— 章节序号徽章：加内高光 + 立体感 —— */
-.kicker .num,.lcard .lnum{
-  background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 88%,#fff),var(--accent));
-  box-shadow:0 2px 6px -1px color-mix(in srgb,var(--accent) 45%,transparent),inset 0 1px 0 rgba(255,255,255,.35);
-}
+/* 按钮：仅保留轻微按压反馈 */
+.btn{transition:background-color .15s ease,border-color .15s ease,transform .1s ease}
+.btn:active{transform:translateY(1px)}
 
-/* —— Hero eyebrow：加一段金色前导短线 —— */
+/* Hero eyebrow：一段金色前导短线（简洁不喧宾夺主） */
 .homehero .eyebrow,.hero .eyebrow{display:inline-flex;align-items:center;gap:10px}
-.homehero .eyebrow::before,.hero .eyebrow::before{content:"";width:26px;height:2px;border-radius:2px;background:var(--accent);opacity:.9}
-.homehero h1{letter-spacing:-.02em}
-.homehero .lede{max-width:54ch}
+.homehero .eyebrow::before,.hero .eyebrow::before{content:"";width:24px;height:2px;border-radius:2px;background:var(--accent)}
+.homehero .lede{max-width:56ch}
 
-/* —— 阶段标题：更强的层级与呼吸 —— */
-.stage{margin-top:44px}
-.stage-head{padding-bottom:14px;border-bottom:1px solid var(--line-soft);margin-bottom:18px;position:relative}
-.stage-head::after{content:"";position:absolute;left:0;bottom:-1px;width:44px;height:2px;background:var(--accent);border-radius:2px}
-.stage-head h3{font-size:21px}
+/* 阶段标题：一条细分隔线，结构清晰 */
+.stage{margin-top:40px}
+.stage-head{padding-bottom:12px;border-bottom:1px solid var(--line-soft);margin-bottom:16px}
+.stage-head h3{font-size:20px}
 
-/* —— 课程卡片：质感升级（顶部渐入光条 + 悬停辉光 + 光泽） —— */
-.lcard{overflow:hidden;isolation:isolate}
-.lcard.live::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 40%,transparent));transform:scaleX(0);transform-origin:left;transition:transform .3s ease;z-index:1}
-.lcard.live:hover::before{transform:scaleX(1)}
-.lcard.live::after{content:"";position:absolute;inset:0;background:radial-gradient(420px 200px at var(--mx,80%) -20%,color-mix(in srgb,var(--accent) 12%,transparent),transparent 70%);opacity:0;transition:opacity .25s ease;pointer-events:none;z-index:0}
-.lcard.live:hover::after{opacity:1}
-.lcard>*{position:relative;z-index:1}
-.lcard.live:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 55%,var(--line));box-shadow:0 1px 2px rgba(20,24,33,.05),0 18px 40px -20px color-mix(in srgb,var(--accent) 55%,rgba(20,24,33,.4))}
-.lcard.live:active{transform:translateY(-1px)}
-.lcard .ltitle{transition:color .15s}
-.lcard.live:hover .ltitle{color:var(--accent-ink)}
-
-/* —— 标签 chip / pill 精修 —— */
-.tagrow .chip{transition:border-color .15s,transform .15s}
-.tagrow .chip:hover{border-color:var(--accent);transform:translateY(-1px)}
-
-/* —— 滚动淡入（首页目录用，错峰由 JS 设置 --d） —— */
-.reveal{transition-delay:var(--d,0s)}
+/* 课程卡片：扁平，悬停仅描边变化（无阴影 / 无位移 / 无淡入） */
+.lcard{transition:border-color .15s ease}
+.lcard.live:hover{transform:none;border-color:var(--accent)}

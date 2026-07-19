@@ -41,7 +41,7 @@
   <header class="homehero">
     <p class="eyebrow">交互式课程 · 完全新手向</p>
     <h1>看懂 K 线，<br>从会读“一根”开始。</h1>
-    <p class="lede">这是一套图文并茂、能动手玩的价格行为（Price Action）交易入门课。不堆术语、不放空话——每一课都能拖、能点、能填、能切换，边玩边懂。适合完全没接触过交易的人。</p>
+    <p class="lede">一套可交互的价格行为（Price Action）入门课，面向完全没接触过交易的人。每一课都能拖动、点选、填空，动手就懂。</p>
     <div id="heroCandles"></div>
     <div class="tagrow">
       <span class="chip">零基础起步</span>
@@ -52,15 +52,15 @@
 
   <section id="lessons">
     <div class="kicker"><span class="num">目</span> 课程目录</div>
-    <h2>六个阶段，24 课，走完整个价格行为体系</h2>
-    <p class="muted">从“看懂一根 K 线”一路到“反转结构与仓位管理”，覆盖 Al Brooks 式价格行为的完整知识，由浅入深。第一课已经可以开学，其余正陆续做成同样的交互形式。</p>
+    <h2>六个阶段，24 课，覆盖完整价格行为体系</h2>
+    <p class="muted">从「读懂一根 K 线」到「反转结构与仓位管理」，覆盖 Al Brooks 价格行为体系。前 9 课已上线，其余陆续更新。</p>
     <div id="catalog"></div>
   </section>
 
   <section id="how">
     <div class="kicker"><span class="num">法</span> 这门课怎么学</div>
     <h2>先把技能练出来，再谈钱</h2>
-    <p class="muted">新手最常见的结局是钱亏光了却什么都没学到。正确的顺序是：</p>
+    <p class="muted">很多新手亏光本金，却没学到方法。更稳的顺序是：</p>
     <ul class="clean muted">
       <li><strong>① 学概念</strong>——就是这套课，搞懂 K 线、趋势、支撑阻力、止损盈亏比；</li>
       <li><strong>② 练复盘</strong>——用历史行情回放，一根一根往后放，自己先判断再看结果（免费、零风险）；</li>
@@ -74,7 +74,7 @@
   </section>
 
   <footer>
-    <p>价格行为交易 · 入门课 &nbsp;·&nbsp; 一套可交互的静态课程</p>
+    <p>价格行为交易 · 入门课 &nbsp;·&nbsp; 一套可交互的入门课程</p>
     <p class="disclaim">本课程仅用于交易知识的入门学习，不构成任何投资建议，也不承诺任何收益。交易有风险，任何方法都需在模拟盘充分练习并验证后再考虑投入极小资金，盈亏后果自负。课程内的颜色、价格均为教学演示，非真实行情。</p>
   </footer>
 </div>
@@ -142,45 +142,13 @@
       : '<div class="lcard soon">'+inner+'</div>';
   }
   var html = CURRICULUM.map(function(S){
-    return '<div class="stage reveal"><div class="stage-head">' +
+    return '<div class="stage"><div class="stage-head">' +
       '<span class="stage-tag">'+esc(S.tag)+'</span>' +
       '<h3>'+esc(S.name)+'</h3>' +
       '<p class="goal">目标 · '+esc(S.goal)+'</p></div>' +
       '<div class="lessons">' + S.lessons.map(card).join("") + '</div></div>';
   }).join("");
   document.getElementById("catalog").innerHTML = html;
-
-  // 滚动淡入（错峰）——尊重 prefers-reduced-motion，且带兜底：内容绝不会卡在隐藏态
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches;
-  var reveals = document.querySelectorAll(".reveal");
-  function revealAll(){ Array.prototype.forEach.call(reveals, function(el){ el.classList.add("in"); }); }
-  if(reduce || !("IntersectionObserver" in window)){
-    revealAll();
-  } else {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){
-          var sibs = Array.prototype.slice.call(e.target.parentNode.children);
-          e.target.style.setProperty("--d", Math.min(sibs.indexOf(e.target),4)*0.06 + "s");
-          e.target.classList.add("in");
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold:.05 });
-    Array.prototype.forEach.call(reveals, function(el){ io.observe(el); });
-    // 兜底：万一 IO 因主线程繁忙未触发，1.4s 后强制显示，绝不留白
-    setTimeout(revealAll, 1400);
-  }
-
-  // 卡片光标跟随高光（radial ::after 的 --mx）
-  if(!reduce){
-    document.getElementById("catalog").addEventListener("pointermove", function(ev){
-      var card = ev.target.closest(".lcard.live");
-      if(!card) return;
-      var r = card.getBoundingClientRect();
-      card.style.setProperty("--mx", ((ev.clientX - r.left)/r.width*100).toFixed(1)+"%");
-    });
-  }
 })();
 </script>
 </body>
