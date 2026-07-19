@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>术语表 · 价格行为交易入门课</title>
+<meta name="description" content="价格行为交易核心术语速查：K线、结构、趋势、区间、风险，每个术语配图解，可搜索、可按分类筛选。">
+<link rel="stylesheet" href="./assets/css/site.css">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://price-action-course.vercel.app/glossary.html">
+<meta name="theme-color" content="#B0761A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="价格行为交易 · 入门课">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="术语表 · 价格行为交易入门课">
+<meta property="og:description" content="价格行为交易核心术语速查：K线、结构、趋势、区间、风险，每个术语配图解。">
+<meta property="og:url" content="https://price-action-course.vercel.app/glossary.html">
+<meta property="og:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="术语表 · 价格行为交易入门课">
+<meta name="twitter:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+
+<div class="topbar">
+  <div class="row">
+    <a class="brand" href="./index.html">价格行为 · <b>入门课</b></a>
+    <nav class="steps" style="flex:1">
+      <a href="./index.html#lessons">课程目录</a>
+      <a href="./index.html#how">怎么学</a>
+      <a href="./glossary.html" class="on">术语表</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap" id="main" tabindex="-1">
+  <header class="hero" style="padding:56px 0 24px">
+    <p class="eyebrow">速查手册</p>
+    <h1>术语表</h1>
+    <p class="lede">价格行为的核心词汇，一处查清。每个术语都配了一张小图解——不确定某个词，随时回来看。</p>
+    <div class="glo-search">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" id="gloq" placeholder="搜索术语，如「支撑」「回调」…" aria-label="搜索术语">
+    </div>
+  </header>
+
+  <div class="glo-layout">
+    <div class="glo-cats" id="glocats"></div>
+    <div>
+      <div class="glo-grid" id="glogrid"></div>
+      <div class="glo-empty" id="gloempty" style="display:none">没有匹配的术语，换个词试试。</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="follow">
+      <span class="follow-label">关注作者 · 课程持续更新</span>
+      <a href="https://x.com/Formulasearch" target="_blank" rel="noopener noreferrer" aria-label="在 X 上关注 @Formulasearch"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@Formulasearch</a>
+      <a href="https://rzcthink.top/" target="_blank" rel="noopener noreferrer" aria-label="访问个人网站 rzcthink.top"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>个人网站</a>
+    </div>
+    <p class="disclaim">本课程仅用于交易知识的入门学习，不构成任何投资建议。以图表为本 · 以理解为先 · 以纪律为终。</p>
+  </footer>
+</div>
+
+<script src="./assets/vendor/klinecharts.min.js"></script>
+<script src="./assets/js/candles.js"></script>
+<script src="./assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+  var acc = PA.cssv("--accent"), soft = PA.cssv("--ink-soft");
+  function nth(a,k,desc){ var s=a.slice().sort(function(x,y){ return desc?y-x:x-y; }); return s[Math.min(k,s.length-1)]; }
+  function swingLow(bs,a,b){ var idx=a,v=bs[a][2]; for(var i=a;i<b;i++){ if(bs[i][2]<v){v=bs[i][2];idx=i;} } return [idx,v]; }
+  function swingHigh(bs,a,b){ var idx=a,v=bs[a][1]; for(var i=a;i<b;i++){ if(bs[i][1]>v){v=bs[i][1];idx=i;} } return [idx,v]; }
+
+  var CATS = [
+    { key:"all",  name:"全部", icon:'<path d="M4 6h16M4 12h16M4 18h16"/>' },
+    { key:"k",    name:"K线",  icon:'<rect x="9" y="4" width="6" height="12" rx="1"/><path d="M12 2v2M12 16v6"/>' },
+    { key:"jg",   name:"结构",  icon:'<path d="M4 18l5-6 4 3 7-9"/><circle cx="9" cy="12" r="1.6"/><circle cx="13" cy="15" r="1.6"/>' },
+    { key:"qs",   name:"趋势",  icon:'<path d="M3 17l6-6 4 4 8-9"/><path d="M21 6v5h-5"/>' },
+    { key:"qj",   name:"区间",  icon:'<rect x="3" y="7" width="18" height="10" rx="1.5"/><path d="M3 9h18M3 15h18"/>' },
+    { key:"fx",   name:"风险",  icon:'<path d="M12 3l8 3v6c0 5-3.4 7.6-8 9-4.6-1.4-8-4-8-9V6z"/>' }
+  ];
+
+  // 单根K线术语用 candle 渲染；其余用 series + 标注
+  var TERMS = [
+    { cat:"k", name:"K线实体", desc:"开盘价与收盘价之间的矩形，反映这段时间价格的净涨跌。", candle:[38,70,30,62] },
+    { cat:"k", name:"上影线", desc:"实体上方的细线，价格一度冲高，但被卖方压了回来。", candle:[46,80,42,53] },
+    { cat:"k", name:"下影线", desc:"实体下方的细线，价格一度下探，但被买方接了回来。", candle:[54,60,20,49] },
+    { cat:"k", name:"十字星", desc:"开盘≈收盘，多空力量平衡，常见于转折或整理。", candle:[50,70,30,50.4] },
+
+    { cat:"jg", name:"更高高点 HH", desc:"价格创出高于前一个高点的新高，多头占优的信号。", g:[18,71,{start:38,vol:0.7,rise:16,amp:2}], a:"up" },
+    { cat:"jg", name:"更高低点 HL", desc:"回调没有跌破前低，形成更高的低点，趋势结构完好。", g:[18,72,{start:38,vol:0.7,rise:13,amp:3}], a:"up" },
+    { cat:"jg", name:"更低低点 LL", desc:"价格跌破前低、创出更低的低点，空头占优的信号。", g:[18,73,{start:52,vol:0.7,rise:-15,amp:2}], a:"down" },
+    { cat:"jg", name:"更低高点 LH", desc:"反弹没有过前高，形成更低的高点，下跌结构完好。", g:[18,74,{start:52,vol:0.7,rise:-12,amp:3}], a:"down" },
+
+    { cat:"qs", name:"上升趋势", desc:"高点与低点不断抬高，价格总体向上运行。", g:[22,75,{start:36,vol:0.7,rise:18,amp:3}], a:"trendUp" },
+    { cat:"qs", name:"下降趋势", desc:"高点与低点不断降低，价格总体向下运行。", g:[22,76,{start:54,vol:0.7,rise:-17,amp:3}], a:"trendDown" },
+    { cat:"qs", name:"回调", desc:"趋势中价格短暂反向运行，随后往往延续原趋势。", g:[24,77,{start:38,vol:0.7,rise:15,amp:6}], a:"pullback" },
+
+    { cat:"qj", name:"支撑", desc:"价格反复下探、被买方接住的下边界。", g:[22,81,{start:44,vol:0.9,rise:0,amp:2.4}], a:"support" },
+    { cat:"qj", name:"阻力", desc:"价格反复上冲、被卖方压回的上边界。", g:[22,82,{start:44,vol:0.9,rise:0,amp:2.4}], a:"resistance" },
+    { cat:"qj", name:"交易区间", desc:"价格在支撑与阻力之间横着来回，没有明显方向。", g:[26,83,{start:44,vol:1.0,rise:0,amp:2.4}], a:"box" },
+    { cat:"qj", name:"假突破", desc:"价格突破关键位后迅速回落，未能延续突破方向。", g:[24,84,{start:44,vol:1.0,rise:0,amp:2.6}], a:"resistance" },
+
+    { cat:"fx", name:"止损", desc:"预先设定的离场价位，一旦触及就认错离场，控制单笔亏损。", g:[20,85,{start:40,vol:0.7,rise:12,amp:2}], a:"stop" },
+    { cat:"fx", name:"盈亏比", desc:"潜在盈利与潜在亏损的比值，比值越高，单次交易越划算。", g:[20,86,{start:40,vol:0.7,rise:13,amp:2}], a:"rr" }
+  ];
+
+  function annos(bars, type){
+    if(!type) return [];
+    var highs=bars.map(function(b){return b[1];}), lows=bars.map(function(b){return b[2];});
+    var n=bars.length;
+    if(type==="resistance") return [{type:"hline", value:nth(highs,1,true), label:"阻力", color:acc}];
+    if(type==="support")    return [{type:"hline", value:nth(lows,1,false), label:"支撑", color:acc}];
+    if(type==="box")        return [{type:"hline", value:nth(highs,1,true), label:"阻力", color:acc},{type:"hline", value:nth(lows,1,false), label:"支撑", color:acc}];
+    if(type==="up"||type==="down"){
+      var h=swingHigh(bars,0,n), l=swingLow(bars,0,n);
+      return [{type:"label", i:h[0], value:h[1], text:type==="up"?"HH":"LH", color:acc},{type:"label", i:l[0], value:l[1], text:type==="up"?"HL":"LL", color:acc}];
+    }
+    if(type==="trendUp"){ var a1=swingLow(bars,0,Math.floor(n/2)), a2=swingLow(bars,Math.floor(n/2),n); return [{type:"line", points:[[a1[0],a1[1]],[a2[0],a2[1]]], color:acc}]; }
+    if(type==="trendDown"){ var b1=swingHigh(bars,0,Math.floor(n/2)), b2=swingHigh(bars,Math.floor(n/2),n); return [{type:"line", points:[[b1[0],b1[1]],[b2[0],b2[1]]], color:acc}]; }
+    if(type==="pullback"){ var m=Math.floor(n*0.55); return [{type:"line", points:[[1,bars[1][2]],[n-2,bars[n-2][1]]], dash:true, color:soft},{type:"label", i:m, value:bars[m][2], text:"回调", color:acc}]; }
+    if(type==="stop"){ var lo=nth(lows,0,false); return [{type:"hline", value:lo-0.5, label:"止损", color:acc}]; }
+    if(type==="rr"){ var lo2=nth(lows,0,false), hi2=nth(highs,0,true); return [{type:"hline", value:hi2, label:"止盈", color:acc},{type:"hline", value:lo2-0.5, label:"止损", color:soft}]; }
+    return [];
+  }
+
+  var grid = document.getElementById("glogrid"), empty = document.getElementById("gloempty");
+  var curCat = "all", curQ = "";
+
+  // 分类按钮
+  document.getElementById("glocats").innerHTML = CATS.map(function(c,i){
+    return '<button class="glo-cat'+(i===0?' on':'')+'" data-c="'+c.key+'" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+c.icon+'</svg>'+c.name+'</button>';
+  }).join("");
+
+  function catName(k){ for(var i=0;i<CATS.length;i++) if(CATS[i].key===k) return CATS[i].name; return ""; }
+
+  function render(){
+    var list = TERMS.filter(function(t){
+      var okCat = curCat==="all" || t.cat===curCat;
+      var okQ = !curQ || (t.name+t.desc).toLowerCase().indexOf(curQ)>-1;
+      return okCat && okQ;
+    });
+    grid.innerHTML = list.map(function(t,i){
+      return '<div class="term-card" data-i="'+TERMS.indexOf(t)+'">'+
+        '<span class="tc-cat">'+catName(t.cat)+'</span>'+
+        '<div class="tc-name">'+t.name+'</div>'+
+        '<div class="chartbox"><svg viewBox="0 0 260 150" role="img" aria-label="'+t.name+' 图解"></svg></div>'+
+        '<p class="tc-desc">'+t.desc+'</p>'+
+      '</div>';
+    }).join("");
+    empty.style.display = list.length ? "none" : "block";
+    draw();
+  }
+
+  function draw(){
+    Array.prototype.forEach.call(grid.querySelectorAll(".term-card"), function(card){
+      var t = TERMS[+card.dataset.i], svg = card.querySelector("svg");
+      if(t.candle){ PA.drawCandle(svg, t.candle[0],t.candle[1],t.candle[2],t.candle[3], {lo:15,hi:85,padY:16,bw:46}); }
+      else { var bars = PA.genSeries(t.g[0], t.g[1], t.g[2]); PA.drawChartSVG(svg, bars, {annotations:annos(bars,t.a), ticks:3, padR:34}); }
+    });
+  }
+
+  document.getElementById("glocats").addEventListener("click", function(e){
+    var b=e.target.closest(".glo-cat"); if(!b) return;
+    curCat=b.dataset.c;
+    Array.prototype.forEach.call(document.querySelectorAll(".glo-cat"), function(x){ x.classList.toggle("on", x===b); });
+    render();
+  });
+  document.getElementById("gloq").addEventListener("input", function(e){ curQ=(e.target.value||"").trim().toLowerCase(); render(); });
+
+  render();
+  PA.registerRedraw(draw);   // 颜色约定切换时重绘（虽本页无开关，保持一致）
+})();
+</script>
+</body>
+</html>
