@@ -193,10 +193,11 @@
         '<button class="btn ghost mini" type="button" data-act="shuffle">🎲 换一批</button>' +
         '<span class="mini-sld"><label>波动</label><input type="range" data-p="vol" min="4" max="22" value="9" aria-label="波动"></span>' +
         '<span class="mini-sld"><label>趋势</label><input type="range" data-p="rise" min="-16" max="16" value="9" aria-label="趋势"></span>' +
-        '<span class="ctrl-hint">近半年日线 · 拖动滑块或点「换一批」→ 随机生成新行情</span>' +
+        '<span class="ctrl-hint">日线 · 默认近半年，滚轮/双指缩放看更长区间 · 拖滑块或「换一批」换行情</span>' +
       '</div>';
-    var st = { vol:0.9, rise:9, bars:126 };   // 约半年交易日，固定填满
-    function gen(){ return PA.genSeries(st.bars, null, { start:42, vol:st.vol, rise:st.rise, amp:6 }); }
+    // 700 根（约 2.8 年交易日）：默认看近半年；即使缩到 klinecharts 最小格距(≈1.35px)也能填满最宽面板(≈852px 需≈634根)，故永不留白
+    var st = { vol:0.9, rise:9, bars:700 };
+    function gen(){ return PA.genSeries(st.bars, null, { start:42, vol:st.vol, rise:st.rise, amp:14 }); }
     var m = PA.mountChart(host.querySelector(".klchart"), gen(), { ma: opts.ma||[7,30], tooltip: opts.tooltip });
     if(!m) return null;
     Array.prototype.forEach.call(host.querySelectorAll("input[type=range]"), function(inp){
