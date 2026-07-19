@@ -265,3 +265,34 @@ footer{padding:48px 0 70px;border-top:1px solid var(--line-soft);color:var(--ink
 /* 课程卡片：扁平，悬停仅描边变化（无阴影 / 无位移 / 无淡入） */
 .lcard{transition:border-color .15s ease}
 .lcard.live:hover{transform:none;border-color:var(--accent)}
+
+/* ============================================================
+   借鉴参考图：更强的排版层级 + 收获盒
+   ============================================================ */
+/* 更大留白、更清晰的层级 */
+section{padding:48px 0}
+.hero h1{font-size:clamp(32px,6.2vw,52px)}
+.kicker{font-size:13.5px;gap:11px;margin-bottom:8px}
+.kicker .num{width:30px;height:30px;font-size:14px;border-radius:9px}
+.hero{padding:72px 0 40px}
+
+/* 本页收获 / 关键结论 —— 金色描边浅底收获盒（对勾列表） */
+.takeaway{background:color-mix(in srgb,var(--accent) 6%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 26%,var(--line));border-radius:14px;padding:20px 22px;margin:8px 0 18px}
+.takeaway .tk-head{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--accent-ink);font-size:15px;letter-spacing:.01em;margin-bottom:13px}
+.takeaway .tk-head svg{width:18px;height:18px;flex:0 0 auto}
+.takeaway ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.takeaway li{display:flex;gap:10px;font-size:14.5px;color:var(--ink-soft);line-height:1.65}
+.takeaway li::before{content:"";flex:0 0 auto;width:17px;height:17px;margin-top:2px;border-radius:50%;background:var(--accent);-webkit-mask:no-repeat center/11px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");mask:no-repeat center/11px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E")}
+.takeaway li strong{color:var(--ink);font-weight:750}
+
+/* 测验：A/B/C/D 字母选项 + 解析 */
+.optlist button{display:flex;align-items:center;gap:12px}
+.opt-key{flex:0 0 auto;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-family:var(--mono);font-weight:800;font-size:13px;color:var(--ink-soft);transition:border-color .15s ease,color .15s ease,background-color .15s ease}
+.opt-t{flex:1;min-width:0}
+.optlist button:hover .opt-key{border-color:var(--accent);color:var(--accent-ink)}
+.optlist button.correct .opt-key{background:var(--hue-green);border-color:var(--hue-green);color:#fff}
+.optlist button.wrong .opt-key{background:var(--hue-red);border-color:var(--hue-red);color:#fff}
+.fb .fb-tag{display:block;font-weight:800;margin-bottom:3px}
+.fb.ok .fb-tag{color:var(--hue-green)}
+.fb.no .fb-tag{color:var(--hue-red)}
+.fb .fb-body{color:var(--ink-soft)}

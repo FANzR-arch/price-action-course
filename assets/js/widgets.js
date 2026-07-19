@@ -224,7 +224,7 @@
     opts = opts||{};
     host.innerHTML =
       '<div class="card pad"><p class="qtext" style="margin-top:0">'+opts.q+'</p>'+
-        '<div class="optlist" data-el="opts">'+opts.options.map(function(o,i){ return '<button data-ok="'+(o.ok?1:0)+'" data-i="'+i+'">'+o.t+'</button>'; }).join("")+'</div>'+
+        '<div class="optlist" data-el="opts">'+opts.options.map(function(o,i){ return '<button data-ok="'+(o.ok?1:0)+'" data-i="'+i+'"><span class="opt-key">'+String.fromCharCode(65+i)+'</span><span class="opt-t">'+o.t+'</span></button>'; }).join("")+'</div>'+
         '<div class="fb" data-el="fb"></div>'+
         '<div class="quiz-foot"><button class="btn ghost mini" data-act="reset" type="button" style="display:none">重做</button></div></div>';
     var btns=host.querySelectorAll('[data-el="opts"] button'), fb=host.querySelector('[data-el="fb"]'), reset=host.querySelector('[data-act="reset"]');
@@ -235,7 +235,7 @@
         var ok=btn.dataset.ok==="1", why=(opts.options[+btn.dataset.i]||{}).why;
         btn.classList.add(ok?"correct":"wrong");
         fb.className="fb show "+(ok?"ok":"no");
-        fb.innerHTML=(ok?"✓ 对了！":"✗ 这个不对。")+" "+(why||opts.explain||"")+(ok?"":" 换一个选项再看看。");
+        fb.innerHTML='<span class="fb-tag">'+(ok?"✓ 答对了":"✗ 再想想")+'</span><span class="fb-body">'+(why||opts.explain||"")+(ok?"":"（换一个选项再看看）")+'</span>';
         reset.style.display="";
       });
     });
