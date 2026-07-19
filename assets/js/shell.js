@@ -37,16 +37,40 @@
     // ---- 颜色开关 → 全站重绘 ----
     if(PA.wireToggle) PA.wireToggle("#convToggle", PA.redrawAll);
 
-    // ---- 进度条 + 章节高亮 ----
+    // ---- 左侧栏（宽屏：课程小节列表 + 学习进度）----
+    var h1 = document.querySelector(".hero h1");
+    var titleText = h1 ? h1.textContent.trim() : ("第"+cn(cfg.n)+"课");
+    var pad2 = function(i){ return ("0"+(i+1)).slice(-2); };
+    var railSteps = sections.map(function(s,i){
+      return '<a class="lr-item'+(i===0?' on':'')+'" href="#'+s.id+'"><span class="lr-n">'+pad2(i)+'</span><span>'+s.label+'</span></a>';
+    }).join("");
+    var rail = document.createElement("aside");
+    rail.className = "lesson-rail";
+    rail.innerHTML =
+      '<a class="lr-back" href="../index.html">← 课程地图</a>' +
+      '<div class="lr-eyebrow">第'+cn(cfg.n)+'课</div>' +
+      '<div class="lr-title">'+titleText+'</div>' +
+      '<div class="lr-prog"><div class="lr-prog-bar"><span id="lr-fill"></span></div><div class="lr-prog-t" id="lr-ptext">第 1 / '+sections.length+' 节</div></div>' +
+      '<nav class="lr-list">'+railSteps+'</nav>';
+    document.body.appendChild(rail);
+    document.body.classList.add("has-rail");
+    var railLinks = Array.prototype.slice.call(rail.querySelectorAll(".lr-item"));
+    var lrFill = document.getElementById("lr-fill"), lrPtext = document.getElementById("lr-ptext");
+
+    // ---- 进度条 + 章节高亮（顶栏 + 左侧栏同步）----
     var links = Array.prototype.slice.call(bar.querySelectorAll("#pa-steps a"));
     var secs = links.map(function(a){ return document.querySelector(a.getAttribute("href")); });
     var progline = document.getElementById("progline");
+    var total = sections.length || 1;
     function onScroll(){
       var st = window.scrollY, dh = document.documentElement.scrollHeight - window.innerHeight;
       if(progline) progline.style.width = (dh>0 ? (st/dh*100) : 0) + "%";
       var idx = 0;
       for(var i=0;i<secs.length;i++){ if(secs[i] && secs[i].getBoundingClientRect().top<=140) idx=i; }
       links.forEach(function(a,i){ a.classList.toggle("on", i===idx); });
+      railLinks.forEach(function(a,i){ a.classList.toggle("on", i===idx); });
+      if(lrFill) lrFill.style.width = ((idx+1)/total*100) + "%";
+      if(lrPtext) lrPtext.textContent = "第 " + (idx+1) + " / " + total + " 节";
     }
     window.addEventListener("scroll", onScroll, {passive:true});
 
