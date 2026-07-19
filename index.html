@@ -142,13 +142,45 @@
       : '<div class="lcard soon">'+inner+'</div>';
   }
   var html = CURRICULUM.map(function(S){
-    return '<div class="stage"><div class="stage-head">' +
+    return '<div class="stage reveal"><div class="stage-head">' +
       '<span class="stage-tag">'+esc(S.tag)+'</span>' +
       '<h3>'+esc(S.name)+'</h3>' +
       '<p class="goal">目标 · '+esc(S.goal)+'</p></div>' +
       '<div class="lessons">' + S.lessons.map(card).join("") + '</div></div>';
   }).join("");
   document.getElementById("catalog").innerHTML = html;
+
+  // 滚动淡入（错峰）——尊重 prefers-reduced-motion，且带兜底：内容绝不会卡在隐藏态
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  var reveals = document.querySelectorAll(".reveal");
+  function revealAll(){ Array.prototype.forEach.call(reveals, function(el){ el.classList.add("in"); }); }
+  if(reduce || !("IntersectionObserver" in window)){
+    revealAll();
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var sibs = Array.prototype.slice.call(e.target.parentNode.children);
+          e.target.style.setProperty("--d", Math.min(sibs.indexOf(e.target),4)*0.06 + "s");
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold:.05 });
+    Array.prototype.forEach.call(reveals, function(el){ io.observe(el); });
+    // 兜底：万一 IO 因主线程繁忙未触发，1.4s 后强制显示，绝不留白
+    setTimeout(revealAll, 1400);
+  }
+
+  // 卡片光标跟随高光（radial ::after 的 --mx）
+  if(!reduce){
+    document.getElementById("catalog").addEventListener("pointermove", function(ev){
+      var card = ev.target.closest(".lcard.live");
+      if(!card) return;
+      var r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", ((ev.clientX - r.left)/r.width*100).toFixed(1)+"%");
+    });
+  }
 })();
 </script>
 </body>

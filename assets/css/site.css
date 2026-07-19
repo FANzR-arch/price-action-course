@@ -44,10 +44,21 @@
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{
-  margin:0;background:var(--paper);color:var(--ink);
+  margin:0;color:var(--ink);
+  background:
+    radial-gradient(1100px 560px at 84% -12%, color-mix(in srgb,var(--accent) 11%,transparent), transparent 60%),
+    radial-gradient(900px 500px at 6% 4%, color-mix(in srgb,var(--hue-green) 6%,transparent), transparent 55%),
+    var(--paper);
+  background-attachment:fixed;
   font-family:var(--sans);line-height:1.7;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
+/* 极细颗粒噪点：打破数字化的平，增加高级质感 */
+body::after{
+  content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.028;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (prefers-reduced-motion:reduce){body::after{display:none}}
 a{color:inherit}
 .wrap{max-width:920px;margin:0 auto;padding:0 20px}
 
@@ -230,3 +241,55 @@ footer{padding:48px 0 70px;border-top:1px solid var(--line-soft);color:var(--ink
 .stage-head .goal{font-size:13.5px;color:var(--ink-soft);margin:0}
 .lcard .ltitle{font-size:16.5px}
 .lcard{min-height:130px}
+
+/* ============================================================
+   UI 打磨层 · 视觉升级（冷静高级 + 金融质感）
+   ============================================================ */
+
+/* —— 全局：按压触感反馈 —— */
+.btn,.qopt,.parts button,.scene-tab,.gal-thumb,.optlist button,.toggle button,.lcard.live{transition:transform .15s ease,box-shadow .18s ease,border-color .15s ease,background-color .15s ease,color .15s ease}
+.btn:active{transform:translateY(1px) scale(.985)}
+.parts button:active,.scene-tab:active,.gal-thumb:active,.optlist button:active,.qopt:active{transform:translateY(1px)}
+.btn:focus-visible,.parts button:focus-visible,.scene-tab:focus-visible,.optlist button:focus-visible,.qopt:focus-visible,.lcard:focus-visible,.steps a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* —— 顶栏导航精修 —— */
+.topbar{background:color-mix(in srgb,var(--paper) 82%,transparent)}
+.brand{transition:opacity .15s}
+.brand:hover{opacity:.72}
+
+/* —— 章节序号徽章：加内高光 + 立体感 —— */
+.kicker .num,.lcard .lnum{
+  background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 88%,#fff),var(--accent));
+  box-shadow:0 2px 6px -1px color-mix(in srgb,var(--accent) 45%,transparent),inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+/* —— Hero eyebrow：加一段金色前导短线 —— */
+.homehero .eyebrow,.hero .eyebrow{display:inline-flex;align-items:center;gap:10px}
+.homehero .eyebrow::before,.hero .eyebrow::before{content:"";width:26px;height:2px;border-radius:2px;background:var(--accent);opacity:.9}
+.homehero h1{letter-spacing:-.02em}
+.homehero .lede{max-width:54ch}
+
+/* —— 阶段标题：更强的层级与呼吸 —— */
+.stage{margin-top:44px}
+.stage-head{padding-bottom:14px;border-bottom:1px solid var(--line-soft);margin-bottom:18px;position:relative}
+.stage-head::after{content:"";position:absolute;left:0;bottom:-1px;width:44px;height:2px;background:var(--accent);border-radius:2px}
+.stage-head h3{font-size:21px}
+
+/* —— 课程卡片：质感升级（顶部渐入光条 + 悬停辉光 + 光泽） —— */
+.lcard{overflow:hidden;isolation:isolate}
+.lcard.live::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 40%,transparent));transform:scaleX(0);transform-origin:left;transition:transform .3s ease;z-index:1}
+.lcard.live:hover::before{transform:scaleX(1)}
+.lcard.live::after{content:"";position:absolute;inset:0;background:radial-gradient(420px 200px at var(--mx,80%) -20%,color-mix(in srgb,var(--accent) 12%,transparent),transparent 70%);opacity:0;transition:opacity .25s ease;pointer-events:none;z-index:0}
+.lcard.live:hover::after{opacity:1}
+.lcard>*{position:relative;z-index:1}
+.lcard.live:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 55%,var(--line));box-shadow:0 1px 2px rgba(20,24,33,.05),0 18px 40px -20px color-mix(in srgb,var(--accent) 55%,rgba(20,24,33,.4))}
+.lcard.live:active{transform:translateY(-1px)}
+.lcard .ltitle{transition:color .15s}
+.lcard.live:hover .ltitle{color:var(--accent-ink)}
+
+/* —— 标签 chip / pill 精修 —— */
+.tagrow .chip{transition:border-color .15s,transform .15s}
+.tagrow .chip:hover{border-color:var(--accent);transform:translateY(-1px)}
+
+/* —— 滚动淡入（首页目录用，错峰由 JS 设置 --d） —— */
+.reveal{transition-delay:var(--d,0s)}
