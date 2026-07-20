@@ -140,8 +140,7 @@
       ? '<div class="lfoot"><span class="arrow">开始 →</span></div>'
       : '<div class="lfoot"><span class="pill wait">即将推出</span></div>';
     var inner =
-      '<span class="lnum">'+esc(L.n)+'</span>' +
-      '<div class="ltitle">'+esc(L.t)+'</div>' +
+      '<div class="lhead"><span class="lnum">'+esc(L.n)+'</span><div class="ltitle">'+esc(L.t)+'</div></div>' +
       '<p class="ldesc">'+esc(L.d)+'</p>' + foot;
     return L.live
       ? '<a class="lcard live" href="'+L.href+'">'+inner+'</a>'

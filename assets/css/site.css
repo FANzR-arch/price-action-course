@@ -391,3 +391,9 @@ section{padding:34px 0}
 .callout{padding:12px 16px;margin:14px 0}
 .takeaway{padding:16px 18px;margin:4px 0 14px}
 .stage{margin-top:32px}
+
+/* 课程卡：序号改纯数字（去黑底）+ 与标题同一行，省空间 */
+.lcard .lhead{display:flex;align-items:baseline;gap:9px}
+.lcard .lnum{background:none;color:var(--ink-faint);width:auto;height:auto;min-width:0;padding:0;display:inline;font-size:13px;box-shadow:none}
+.lcard.soon .lnum{background:none}
+.lcard{min-height:0;gap:8px}
