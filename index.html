@@ -137,7 +137,7 @@
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
   function card(L){
     var foot = L.live
-      ? '<div class="lfoot"><span class="pill go">可以开学</span><span class="arrow">开始 →</span></div>'
+      ? '<div class="lfoot"><span class="arrow">开始 →</span></div>'
       : '<div class="lfoot"><span class="pill wait">即将推出</span></div>';
     var inner =
       '<span class="lnum">'+esc(L.n)+'</span>' +

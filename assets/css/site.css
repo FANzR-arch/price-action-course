@@ -366,3 +366,28 @@ section{padding:48px 0}
 .optlist button:first-child{border-top:0}
 /* 图表容器已在卡片内 → 去掉自身边框，避免边框套边框 */
 .chartbox{border:0}
+
+/* ============================================================
+   主色改黑（金色仅作点缀）+ 紧凑规整间距
+   ============================================================ */
+/* 按钮：黑底白字（深色模式自动反相为浅底深字）*/
+.btn{background:var(--ink);color:var(--paper);box-shadow:none}
+.btn:hover{filter:none;opacity:.85}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn.ghost:hover{border-color:var(--ink-soft);opacity:1}
+/* 序号徽章：黑底白字 */
+.kicker .num,.lcard .lnum{background:var(--ink);color:var(--paper)}
+.lcard.soon .lnum{background:var(--ink-faint)}
+/* 去掉“可以开学”后：“开始 →”常显、右对齐 */
+.lcard .arrow{opacity:1;margin-left:auto}
+/* 紧凑规整：收紧大块留白 */
+section{padding:34px 0}
+.hero{padding:44px 0 28px}
+.homehero{padding:44px 0 14px}
+.pad{padding:18px}
+@media(min-width:680px){.pad{padding:20px}}
+.quiz-foot{margin-top:6px}
+.qtext{margin:16px 0 8px}
+.callout{padding:12px 16px;margin:14px 0}
+.takeaway{padding:16px 18px;margin:4px 0 14px}
+.stage{margin-top:32px}
