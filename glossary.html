@@ -105,7 +105,7 @@
     { cat:"qj", name:"支撑", desc:"价格反复下探、被买方接住的下边界。", g:[22,81,{start:44,vol:0.9,rise:0,amp:2.4}], a:"support" },
     { cat:"qj", name:"阻力", desc:"价格反复上冲、被卖方压回的上边界。", g:[22,82,{start:44,vol:0.9,rise:0,amp:2.4}], a:"resistance" },
     { cat:"qj", name:"交易区间", desc:"价格在支撑与阻力之间横着来回，没有明显方向。", g:[26,83,{start:44,vol:1.0,rise:0,amp:2.4}], a:"box" },
-    { cat:"qj", name:"假突破", desc:"价格突破关键位后迅速回落，未能延续突破方向。", g:[24,84,{start:44,vol:1.0,rise:0,amp:2.6}], a:"resistance" },
+    { cat:"qj", name:"假突破", desc:"价格突破关键位后迅速回落，未能延续突破方向。", bars:[[44,48,43,47],[47,49,45,48],[48,50,46,47],[47,49,44,46],[46,49,45,48],[48,50,46,47],[47,53,46,48],[48,49,44,45],[45,47,41,42],[42,44,39,40],[40,42,38,39]], a:"falseBreak" },
 
     { cat:"fx", name:"止损", desc:"预先设定的离场价位，一旦触及就认错离场，控制单笔亏损。", g:[20,85,{start:40,vol:0.7,rise:12,amp:2}], a:"stop" },
     { cat:"fx", name:"盈亏比", desc:"潜在盈利与潜在亏损的比值，比值越高，单次交易越划算。", g:[20,86,{start:40,vol:0.7,rise:13,amp:2}], a:"rr" }
@@ -125,6 +125,11 @@
     if(type==="trendUp"){ var a1=swingLow(bars,0,Math.floor(n/2)), a2=swingLow(bars,Math.floor(n/2),n); return [{type:"line", points:[[a1[0],a1[1]],[a2[0],a2[1]]], color:acc}]; }
     if(type==="trendDown"){ var b1=swingHigh(bars,0,Math.floor(n/2)), b2=swingHigh(bars,Math.floor(n/2),n); return [{type:"line", points:[[b1[0],b1[1]],[b2[0],b2[1]]], color:acc}]; }
     if(type==="pullback"){ var m=Math.floor(n*0.55); return [{type:"line", points:[[1,bars[1][2]],[n-2,bars[n-2][1]]], dash:true, color:soft},{type:"label", i:m, value:bars[m][2], text:"回调", color:acc}]; }
+    if(type==="falseBreak"){
+      var res=nth(highs,1,true);                 // 阻力＝第二高（把那根插针排除在外）
+      var pk=0, pv=-Infinity; for(var i=0;i<n;i++){ if(highs[i]>pv){ pv=highs[i]; pk=i; } }  // 插针那根
+      return [{type:"hline", value:res, label:"阻力", color:acc}, {type:"label", i:pk, value:bars[pk][1], text:"假突破", color:acc}];
+    }
     if(type==="stop"){ var lo=nth(lows,0,false); return [{type:"hline", value:lo-0.5, label:"止损", color:acc}]; }
     if(type==="rr"){ var lo2=nth(lows,0,false), hi2=nth(highs,0,true); return [{type:"hline", value:hi2, label:"止盈", color:acc},{type:"hline", value:lo2-0.5, label:"止损", color:soft}]; }
     return [];
@@ -162,7 +167,7 @@
     Array.prototype.forEach.call(grid.querySelectorAll(".term-card"), function(card){
       var t = TERMS[+card.dataset.i], svg = card.querySelector("svg");
       if(t.candle){ PA.drawCandle(svg, t.candle[0],t.candle[1],t.candle[2],t.candle[3], {lo:15,hi:85,padY:16,bw:46}); }
-      else { var bars = PA.genSeries(t.g[0], t.g[1], t.g[2]); PA.drawChartSVG(svg, bars, {annotations:annos(bars,t.a), ticks:3, padR:34}); }
+      else { var bars = t.bars || PA.genSeries(t.g[0], t.g[1], t.g[2]); PA.drawChartSVG(svg, bars, {annotations:annos(bars,t.a), ticks:3, padR:34}); }
     });
   }
 

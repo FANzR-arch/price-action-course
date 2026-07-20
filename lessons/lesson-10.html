@@ -111,8 +111,8 @@
   // 一段横盘区间行情（rise:0 → 无趋势，来回震荡）
   var range = PA.genSeries(46, 1010, {start:44, vol:1.0, rise:0, amp:2.4});
   var n = range.length;
-  var res = nth(range.map(function(b){ return b[1]; }), 2, true);   // 阻力（第 2 高，稳一点）
-  var sup = nth(range.map(function(b){ return b[2]; }), 2, false);  // 支撑（第 2 低）
+  var res = nth(range.map(function(b){ return b[1]; }), 2, true);   // 阻力（第 3 高，避开前两根插针更稳）
+  var sup = nth(range.map(function(b){ return b[2]; }), 2, false);  // 支撑（第 3 低，避开前两根插针更稳）
   var hiTouch = swingHigh(range, 1, n-1);   // 冲到阻力的那根
   var loTouch = swingLow(range, 1, n-1);    // 砸到支撑的那根
   var midLo = sup + (res-sup)*0.32, midHi = res - (res-sup)*0.32;

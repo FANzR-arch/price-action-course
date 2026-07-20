@@ -118,7 +118,7 @@
   var trend = PA.genSeries(44, 4401, {start:36, vol:0.8, rise:22, amp:2});
   var tn=trend.length, tl1=swingLow(trend, 1, Math.floor(tn*0.4)), tl2=swingLow(trend, Math.floor(tn*0.5), tn-1);
   // 通道
-  var chan = PA.genSeries(48, 4402, {start:38, vol:0.7, rise:13, amp:6});
+  var chan = PA.genSeries(48, 4418, {start:38, vol:0.7, rise:14, amp:3});
   var cn=chan.length, cu1=swingHigh(chan,1,Math.floor(cn*0.4)), cu2=swingHigh(chan,Math.floor(cn*0.55),cn-1),
       cl1=swingLow(chan,1,Math.floor(cn*0.4)), cl2=swingLow(chan,Math.floor(cn*0.55),cn-1);
   // 区间
