@@ -3,13 +3,13 @@
    设计令牌 + 通用组件（首页与各课页面共用）
    ============================================================ */
 :root{
-  --paper:#E9EBEE; --surface:#FCFCFD; --surface-2:#F2F3F5;
+  --paper:#FFFFFF; --surface:#FFFFFF; --surface-2:#F4F5F7;
   --ink:#141821; --ink-soft:#59616E; --ink-faint:#8A93A0;
   --line:#D5DAE1; --line-soft:#E4E8ED;
   --accent:#B0761A; --accent-soft:#EBD9B4; --accent-ink:#7A5210;
   --hue-red:#D63A34; --hue-green:#12876A;
   --shadow:0 1px 2px rgba(20,24,33,.05),0 8px 24px -12px rgba(20,24,33,.18);
-  --radius:14px;
+  --radius:0;
   --mono:ui-monospace,"SFMono-Regular","Cascadia Code",Consolas,"Liberation Mono",monospace;
   --sans:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Source Han Sans SC","Noto Sans CJK SC",system-ui,-apple-system,sans-serif;
 }
@@ -24,7 +24,7 @@
   }
 }
 :root[data-theme="light"]{
-  --paper:#E9EBEE; --surface:#FCFCFD; --surface-2:#F2F3F5;
+  --paper:#FFFFFF; --surface:#FFFFFF; --surface-2:#F4F5F7;
   --ink:#141821; --ink-soft:#59616E; --ink-faint:#8A93A0;
   --line:#D5DAE1; --line-soft:#E4E8ED;
   --accent:#B0761A; --accent-soft:#EBD9B4; --accent-ink:#7A5210;
@@ -339,3 +339,17 @@ section{padding:48px 0}
   body.has-rail .topbar .steps{display:none}
   .lesson-rail{display:block;position:fixed;top:84px;width:176px;z-index:40;left:calc(50vw - 660px)}
 }
+
+/* ============================================================
+   全站统一（用户指定）：方角卡片 + 纯白底 + 浅灰边框 + 胶囊按钮
+   ============================================================ */
+/* 卡片/容器/标签/输入/徽章 —— 一律直角 */
+.card,.lcard,.chartframe,.chartbox,.term-card,.takeaway,.verdict,.callout,.fb,
+.qopt,.optlist button,.blank input,.blank input[type=text],.glo-search input,
+.gal-thumb,.gal-tag,.glo-cat,.chip,.pill,.kicker .num,.lcard .lnum,
+.lr-item,.lr-prog-bar,.lr-prog-bar span{border-radius:0}
+/* 卡片边框统一浅灰 */
+.card,.lcard,.chartframe,.term-card,.takeaway,.callout{border:1px solid var(--line)}
+.chartbox{border:1px solid var(--line)}
+/* 按钮 —— 胶囊形状 */
+.btn,.btn.mini,.btn.ghost{border-radius:999px}
