@@ -12,7 +12,7 @@ price-action-course/
 ├── 404.html                自定义 404 页
 ├── favicon.svg             站点图标（K 线）
 ├── lessons/
-│   └── lesson-01.html … lesson-09.html   已上线的 9 课
+│   └── lesson-01.html … lesson-11.html   已上线的 11 课
 ├── assets/
 │   ├── css/site.css        全站共享样式（设计令牌 + 组件，扁平清爽）
 │   ├── js/
@@ -48,7 +48,7 @@ price-action-course/
 5. **反转**：主要趋势反转 MTR → 磁力位 → 二次入场
 6. **风控与执行**：止损止盈仓位 → 交易者方程/盈亏比 → 逐棒检查单/二元决策 → 交易计划与复盘
 
-目前**前 9 课已上线**（阶段一全部 + 阶段二全部），其余 15 课在 `index.html` 的 `CURRICULUM` 中登记、逐课上线（详见 `PLAN.md`）。
+目前**前 11 课已上线**（阶段一、二全部 + 阶段三前 2 课），其余 15 课在 `index.html` 的 `CURRICULUM` 中登记、逐课上线（详见 `PLAN.md`）。
 
 ## 本地预览
 

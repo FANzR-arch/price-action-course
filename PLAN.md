@@ -5,7 +5,7 @@
 ## 站点现状（截至最近一次更新）
 
 - **已上线：** https://price-action-course.vercel.app （GitHub `main` push 自动部署）。
-- **进度：** 阶段一 + 阶段二共 **9 课已上线**；10–24 课待建（见下表）。
+- **进度：** 阶段一、二 + 阶段三前 2 课共 **11 课已上线**；12–24 课待建（见下表）。
 - **站点级已完成：** favicon、社交分享卡片（OG/Twitter + 封面图）、图表无障碍（role/aria）、skip-link、扁平清爽视觉、全站文案精修。
 - **待办（非课程内容）：** 自定义 404 页 ✅、深色模式手动切换钮（可选）、`rrCalculator` 组件（Phase F 需要）。
 
@@ -54,8 +54,8 @@ assets/
 | 07 | 通道：窄 vs 宽 | 文件13-窄通道与宽通道策略 | annotatedChart | ✅ 完成 |
 | 08 | 均线与 Always In | 文件20-AlwaysIn与20GB | annotatedChart | ✅ 完成 |
 | 09 | 测量移动 | 文件23-MeasuredMove与结构目标 | annotatedChart | ✅ 完成 |
-| 10 | 交易区间：高抛低吸 | 震荡区间分析识别/交易策略 | annotatedChart | ⏳ |
-| 11 | 真突破 vs 假突破 | 极速上涨/下跌分析识别 | patternGallery | ⏳ |
+| 10 | 交易区间：高抛低吸 | 震荡区间分析识别/交易策略 | annotatedChart / drawOnChart | ✅ 完成 |
+| 11 | 突破：真突破还是假突破 | 极速上涨/下跌分析识别 | annotatedChart | ✅ 完成 |
 | 12 | 突破失败与突破测试 | 文件18-突破失败与突破测试 | patternGallery | ⏳ |
 | 13 | 铁丝网与无交易环境 | 文件21-铁丝网与无交易环境 | annotatedChart | ⏳ |
 | 14 | 楔形与三推 | 文件14-楔形形态分析交易 | patternGallery | ⏳ |
