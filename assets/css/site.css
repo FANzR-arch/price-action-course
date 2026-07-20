@@ -353,3 +353,16 @@ section{padding:48px 0}
 .chartbox{border:1px solid var(--line)}
 /* 按钮 —— 胶囊形状 */
 .btn,.btn.mini,.btn.ghost{border-radius:999px}
+
+/* ============================================================
+   合并相邻元素：去间距 + 折叠成单线 + 不嵌套边框
+   ============================================================ */
+/* 课程卡片：折叠成无缝网格（相邻边共用一条 1px 线）*/
+.lessons{gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.lessons .lcard{margin:-1px 0 0 -1px}
+/* 测验选项：合并为分隔线列表（去掉每项外框，避免边框套边框）*/
+.optlist{gap:0}
+.optlist button{border:0;border-top:1px solid var(--line)}
+.optlist button:first-child{border-top:0}
+/* 图表容器已在卡片内 → 去掉自身边框，避免边框套边框 */
+.chartbox{border:0}
