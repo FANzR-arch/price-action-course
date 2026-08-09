@@ -5,7 +5,7 @@
 ## 站点现状（截至最近一次更新）
 
 - **已上线：** https://price-action-course.vercel.app （GitHub `main` push 自动部署）。
-- **进度：** 阶段一~三完结 + 阶段四第 1 课，本地共 **14 课完成**；15–24 课待建（见下表）。
+- **进度：** 阶段一~三完结 + 阶段四前 2 课，本地共 **15 课完成**；16–24 课待建（见下表）。
 - **站点级已完成：** favicon、自定义 404 页、手动深浅色切换、社交分享卡片（OG/Twitter + 封面图）、图表无障碍（role/aria）、skip-link、参考资料与适用边界页面、全站文案事实与去 AI 味审查。
 - **待办（非课程内容）：** `rrCalculator` 组件（Phase F 需要）。
 
@@ -60,7 +60,7 @@ assets/
 | 12 | 突破失败与突破测试 | 文件18-突破失败与突破测试 | patternGallery / annotatedChart | ✅ 完成 |
 | 13 | 铁丝网与无交易环境 | 文件21-铁丝网与无交易环境 | annotatedChart | ✅ 完成 |
 | 14 | 楔形与三推 | 文件14-楔形形态分析交易 | patternGallery / annotatedChart | ✅ 完成 |
-| 15 | 三角形与收敛形态 | 文件27-三角形与收敛形态 | patternGallery | ⏳ |
+| 15 | 三角形与收敛形态 | 文件27-三角形与收敛形态 | patternGallery / annotatedChart | ✅ 完成 |
 | 16 | 双重顶/底与微型结构 | 文件28-双重顶底与微型结构 | patternGallery | ⏳ |
 | 17 | 最终旗形与趋势末端 | 文件24-最终旗形与趋势末端 | patternGallery | ⏳ |
 | 18 | 主要趋势反转 MTR | 文件25-主要趋势反转MTR | annotatedChart | ⏳ |

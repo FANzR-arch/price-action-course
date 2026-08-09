@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十五课：三角形与收敛形态 · 价格行为交易入门课</title>
+<meta name="description" content="把三角形当作逐渐收紧的交易区间：识别对称、上升、下降与扩张结构，等待突破和跟进，并用区间高度估算候选目标。">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://price-action-course.vercel.app/lessons/lesson-15.html">
+<meta name="theme-color" content="#B0761A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="价格行为交易 · 入门课">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="第十五课：三角形与收敛形态 · 价格行为交易入门课">
+<meta property="og:description" content="三角形是逐渐收紧的交易区间。先认边界，再等突破与跟进，不凭形状提前赌方向。">
+<meta property="og:url" content="https://price-action-course.vercel.app/lessons/lesson-15.html">
+<meta property="og:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="价格行为交易 · 入门课">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第十五课：三角形与收敛形态 · 价格行为交易入门课">
+<meta name="twitter:description" content="三角形是逐渐收紧的交易区间。先认边界，再等突破与跟进，不凭形状提前赌方向。">
+<meta name="twitter:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<script src="../assets/js/theme.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+
+<div class="wrap" id="main" tabindex="-1">
+  <header class="hero">
+    <p class="eyebrow">第十五课 · 阶段四 · 形态</p>
+    <h1>三角形：<br>空间越来越小，方向还没选。</h1>
+    <p class="lede">高点压低、低点抬高，价格被夹在两条逐渐靠拢的边界里。这个形状告诉你市场正在收紧，<strong>并没有提前告诉你会从哪边出去</strong>。</p>
+    <div id="heroCandles"></div>
+  </header>
+
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 收紧的交易区间</div>
+    <h2>先把它当区间，不要当箭头</h2>
+    <p class="muted">三角形是交易区间的一种。买方不断把低点抬高，卖方不断把高点压低，双方都能把价格推回去，却暂时没有一方能把行情带走。于是波动一段比一段窄，两条边界逐渐靠拢。</p>
+    <ul class="clean muted">
+      <li><span class="hl">要有来回测试</span>：只碰过一次的线没有多少说明力；需要看到价格在上下边界之间反复折返。</li>
+      <li><span class="hl">要有可描述的边界</span>：两条线可以同时倾斜，也可以一条近似水平、另一条倾斜。</li>
+      <li><span class="hl">收敛不等于平静</span>：越靠近末端，空间越小，但突破那一刻的波动可能突然放大。</li>
+    </ul>
+    <div class="callout">
+      <div class="t">Brooks 怎样定义它</div>
+      Brooks 把三角形归入交易区间，并用多次反转来识别：例如两个更高低点配一个更低高点，或两个更低高点配一个更高低点。原书也强调三角形至少包含一侧的三次推进。本站把这些压缩成一个新手检查法：<strong>先确认价格真的来回走过几次，再画边界</strong>，不要看到两条斜线就急着命名。
+    </div>
+  </section>
+
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 四种边界</div>
+    <h2>形状能提示压力，不能替你选方向</h2>
+    <p class="muted">点开对比四种常见结构。前三种都在收敛；扩张三角形恰好相反。</p>
+    <div id="w-gal"></div>
+    <p class="muted">上升三角形里，低点不断抬高，买方压力看起来更主动；下降三角形则相反。但“看起来偏强”不等于“必然向那边突破”。如果相反方向先出现强突破和连续跟进，形状的轻微偏向应当让位给已经发生的价格行为。</p>
+  </section>
+
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 突破模式</div>
+    <h2>在边界里面，答案仍然是“不知道”</h2>
+    <p class="muted">收敛到一定程度后，市场进入<strong>突破模式（Breakout Mode）</strong>：向上或向下的空间都在积累，但真正方向要等价格走出来。Brooks 的公开术语表把这种局面概括为上下方向大致各半，而且第一次突破也有相当概率反转。</p>
+    <div id="w-break"></div>
+    <div class="callout">
+      <div class="t">别把经验值当成固定赔率</div>
+      “接近 50/50”是 Brooks 体系里帮助理解突破模式的经验说法，不是任何品种、周期都恒定成立的统计结论。它真正想提醒你的是：<strong>三角形内部没有足够证据支持重仓押单边</strong>。新手更实用的做法是等收盘离开边界，再看下一两根有没有跟进。
+    </div>
+  </section>
+
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 突破后的目标</div>
+    <h2>量高度，投影一个候选区</h2>
+    <p class="muted">如果突破有力度并得到跟进，可以把三角形较宽处的高度，从突破区域向外投影，得到一个<strong>测量移动候选目标</strong>。这和第 9 课的方法相同。</p>
+    <div id="w-mm"></div>
+    <ul class="clean muted">
+      <li>目标是<strong>观察区</strong>，不是价格必须抵达的承诺；</li>
+      <li>突破越弱、回到三角形内部越深，这个投影越不值得信；</li>
+      <li>途中遇到前高、前低、整数位或更大周期边界，要重新评估，而不是盯着一条目标线不放。</li>
+    </ul>
+    <p class="muted">扩张三角形不适合照搬这个做法。它的边界在向外张开，风险距离也在变大。本站给新手的练习规则很简单：<strong>先观察，不在里面追涨杀跌</strong>。这是一条课程风控规则，不是说经验交易者永远不能交易这种结构。</p>
+  </section>
+
+  <section id="s5" class="reveal">
+    <div class="kicker"><span class="num">5</span> 随堂自测</div>
+    <h2>先等证据，再谈交易</h2>
+    <div id="w-q1"></div>
+    <div id="w-q2" style="margin-top:16px"></div>
+    <div id="w-fill" style="margin-top:16px"></div>
+  </section>
+
+  <footer>
+    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 本课要点</div>
+    <ul>
+      <li>三角形是逐渐收紧的交易区间，需要多次来回测试和两条可描述的边界；</li>
+      <li>对称、上升、下降三角形都不能单凭名字预判突破方向；</li>
+      <li>边界内部属于突破模式，新手先等收盘突破与后续跟进；</li>
+      <li>第一次突破可能失败，跌回结构内时不要把“已经突破”当作事实；</li>
+      <li>三角形高度可以投影候选目标，但目标必须随突破质量和途中阻力重新评估；</li>
+      <li>扩张三角形波动放大，本站的新手规则是先观察、不在结构内部追单。</li>
+    </ul></div>
+    <div class="next">
+      <a class="btn ghost" href="../lessons/lesson-14.html">← 上一课</a>
+      <a class="btn" href="../index.html">课程首页</a>
+      <span class="chip" style="color:var(--ink)">下一课「双重顶/底与微型结构」即将推出</span>
+    </div>
+    <div class="follow">
+      <a href="../references.html">参考资料与适用边界</a>
+      <span class="follow-label">关注作者 · 课程持续更新</span>
+      <a href="https://x.com/Formulasearch" target="_blank" rel="noopener noreferrer" aria-label="在 X 上关注 @Formulasearch"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@Formulasearch</a>
+      <a href="https://rzcthink.top/" target="_blank" rel="noopener noreferrer" aria-label="访问 Philthink（rzcthink.top）"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>Philthink</a>
+    </div>
+    <p class="disclaim">本课只用于交易知识学习，不构成投资建议。图表和价格均为教学演示，未计入滑点、手续费、流动性与真实执行差异；历史回放和模拟结果不能代表未来实盘表现。</p>
+  </footer>
+</div>
+
+<script src="../assets/vendor/klinecharts.min.js"></script>
+<script src="../assets/js/candles.js"></script>
+<script src="../assets/js/shell.js"></script>
+<script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+  PA.mountPlayground(document.getElementById("heroCandles"), { ma:[7,30] });
+
+  var acc = PA.cssv("--accent"), red = PA.cssv("--hue-red"), soft = PA.cssv("--ink-soft");
+
+  PA.widgets.patternGallery(document.getElementById("w-gal"), {
+    items:[
+      { name:"对称三角形", tag:"双边收敛",
+        bars:[[44,48,42,47],[47,47.4,40,40.8],[40.8,46.4,40.5,46],[46,46.2,41.7,42.1],[42.1,45.3,41.9,45],[45,45.2,42.8,43.1],[43.1,44.6,42.9,44.3],[44.3,44.5,43.5,43.8]],
+        desc:'高点逐步压低，低点逐步抬高，两边都在收敛。它最能说明“方向未定”：买卖双方都在逼近，却还没有一方完成突破。' },
+      { name:"上升三角形", tag:"水平阻力",
+        bars:[[42,49.8,41.5,48.8],[48.8,49.5,40.2,41],[41,49.9,40.8,49],[49,49.7,42.3,43],[43,50,42.8,49.2],[49.2,49.8,44.1,44.7],[44.7,49.9,44.4,49.1]],
+        desc:'上边界近似水平，低点一轮比一轮高。买方看起来更主动，但阻力仍在生效；只有价格真正站上去并获得跟进，向上突破才算有证据。' },
+      { name:"下降三角形", tag:"水平支撑",
+        bars:[[48,48.6,40.1,40.8],[40.8,49.2,40.2,48.4],[48.4,48.8,40,40.7],[40.7,47.1,40.1,46.5],[46.5,46.9,39.9,40.6],[40.6,45.4,40.1,44.9],[44.9,45.2,40,40.7]],
+        desc:'下边界近似水平，高点一轮比一轮低。卖方压力看起来更主动，但支撑还没有失守；反方向的强突破同样可能推翻这点轻微偏向。' },
+      { name:"扩张三角形", tag:"波动放大",
+        bars:[[44,47,42,46],[46,46.5,40,40.8],[40.8,49,40.4,48.3],[48.3,48.7,38.2,39],[39,51.2,38.7,50.4],[50.4,50.9,36.2,37.1],[37.1,53.5,36.7,52.6]],
+        desc:'高点更高、低点更低，两条边界向外张开。这里不是能量被压缩，而是波动和风险都在扩大。新手最容易在两端追单后被拉回，课程默认先观察。' }
+    ]
+  });
+
+  PA.widgets.annotatedChart(document.getElementById("w-break"), {
+    scenes:[
+      { name:"① 仍在内部：没有方向",
+        bars:[[44,48,42,47],[47,47.4,40,40.8],[40.8,46.4,40.5,46],[46,46.2,41.7,42.1],[42.1,45.3,41.9,45],[45,45.2,42.8,43.1],[43.1,44.6,42.9,44.3],[44.3,44.5,43.5,43.8]],
+        annotations:[
+          {type:"line", points:[[0,48],[7,44.5]], color:soft},
+          {type:"line", points:[[1,40],[7,43.5]], color:soft},
+          {type:"label", i:5, value:44, text:"继续等待", color:acc}
+        ],
+        note:'<span class="lead">价格还夹在两条边界之间。</span> 不管最后一根看起来偏多还是偏空，都没有离开结构。此时把上升或下跌当成既定方向，只是在猜。' },
+      { name:"② 突破并跟进：证据增加",
+        bars:[[44,48,42,47],[47,47.4,40,40.8],[40.8,46.4,40.5,46],[46,46.2,41.7,42.1],[42.1,45.3,41.9,45],[45,45.2,42.8,43.1],[43.1,44.6,42.9,44.3],[44.3,47.2,43.9,46.9],[46.9,49.8,46.6,49.5],[49.5,51.4,49.1,51.1]],
+        annotations:[
+          {type:"line", points:[[0,48],[6,44.6]], color:soft},
+          {type:"line", points:[[1,40],[6,42.9]], color:soft},
+          {type:"label", i:7, value:48, text:"收盘突破", color:acc},
+          {type:"label", i:8, value:50.6, text:"跟进", color:acc}
+        ],
+        note:'<span class="lead">突破棒收在边界外，下一根继续向同方向走。</span> 这仍不保证成功，但比单根刺穿更有说服力。突破越大、收盘越靠近极点、跟进越连贯，结构真正转换成趋势的可能性越高。' },
+      { name:"③ 第一次突破失败：回到结构",
+        bars:[[44,48,42,47],[47,47.4,40,40.8],[40.8,46.4,40.5,46],[46,46.2,41.7,42.1],[42.1,45.3,41.9,45],[45,45.2,42.8,43.1],[43.1,46.8,42.9,46.4],[46.4,47.1,43.4,43.8],[43.8,44.1,41.8,42.2],[42.2,42.5,39.8,40.2]],
+        annotations:[
+          {type:"line", points:[[0,48],[6,44.6]], color:soft},
+          {type:"line", points:[[1,40],[6,42.9]], color:soft},
+          {type:"label", i:6, value:47.8, text:"刺穿", color:acc},
+          {type:"label", i:7, value:42.6, text:"跌回内部", color:red}
+        ],
+        note:'<span class="lead">价格越过上边界，却没有跟进，很快又收回三角形。</span> 这时“向上突破”已经失去依据。后面可能继续横盘，也可能从另一边离开；先承认第一次尝试失败，比替原判断找理由更重要。' }
+    ]
+  });
+
+  PA.widgets.annotatedChart(document.getElementById("w-mm"), {
+    scenes:[
+      { name:"三角形高度 → 候选目标",
+        bars:[[42,49,39,48],[48,48.5,40.2,41],[41,47.2,40.8,46.5],[46.5,46.8,42,42.6],[42.6,45.7,42.3,45.3],[45.3,45.5,43.2,43.5],[43.5,47.6,43.3,47.3],[47.3,50.3,47,50],[50,52.4,49.7,52],[52,53.8,51.6,53.5]],
+        annotations:[
+          {type:"line", points:[[0,49],[5,45.5]], color:soft},
+          {type:"line", points:[[0,39],[5,43.2]], color:soft},
+          {type:"hline", value:55, label:"候选目标", color:acc},
+          {type:"label", i:0, value:44, text:"最大高度", color:soft},
+          {type:"label", i:6, value:48.4, text:"突破", color:acc}
+        ],
+        note:'<span class="lead">先量三角形较宽处，再从突破区域向上投影。</span> 图中目标画在上方，但它只是结构给出的估算。若突破后立刻跌回三角形，或途中遇到更明显阻力，目标就要降级甚至取消。' }
+    ]
+  });
+
+  PA.widgets.quizChoice(document.getElementById("w-q1"), {
+    q:"① 一个对称三角形已经收得很窄，但价格仍在两条边界内。此时最准确的说法是？",
+    options:[
+      {t:"方向仍未确认，先等收盘突破和跟进", ok:true, why:"三角形内部仍是交易区间。收得很窄只说明突破可能接近，并不说明方向已经确定。"},
+      {t:"低点在抬高，所以一定向上突破", why:"对称三角形同时也有高点压低。只挑一半证据，会把双向收敛误读成单边趋势。"},
+      {t:"波动变小，所以未来不会出现大行情", why:"收敛阶段波动变小，但离开边界时波动可能迅速放大。两件事并不矛盾。"}
+    ]
+  });
+  PA.widgets.quizChoice(document.getElementById("w-q2"), {
+    q:"② 价格短暂冲过三角形上边界，下一根却收回结构深处。应该怎样处理这条信息？",
+    options:[
+      {t:"把它视为突破缺少跟进，重新等待", ok:true, why:"回到结构内部说明第一次尝试没有建立持续控制。后面从哪边走仍要看新的证据。"},
+      {t:"突破已经发生，继续坚持向上判断", why:"刺穿边界不等于成功突破。没有跟进又跌回内部，正是需要撤回原判断的信号。"},
+      {t:"立刻反手做空，因为假突破必然反转", why:"突破失败可能引发反向行情，也可能只是继续横盘。“必然反转”把另一个不确定方向当成了确定答案。"}
+    ]
+  });
+  PA.widgets.fillBlank(document.getElementById("w-fill"), {
+    prompt:"③ 填空",
+    parts:[
+      "三角形本质上是逐渐收紧的", {a:["交易区间","区间"], w:100}, "。价格还在边界内时，方向尚未",
+      {a:["确认","确定"], w:82}, "；离开边界后还要观察是否出现", {a:["跟进","后续跟进"], w:92}, "。"
+    ],
+    okText:"✓ 全对。先认区间，再等确认，最后检查跟进。",
+    revealText:"答案：<strong>交易区间</strong> · 尚未<strong>确认</strong> · 观察<strong>跟进</strong>。"
+  });
+
+  PA.initLesson({
+    n:15,
+    sections:[
+      {id:"s1", label:"收紧区间"},
+      {id:"s2", label:"四种边界"},
+      {id:"s3", label:"突破模式"},
+      {id:"s4", label:"候选目标"},
+      {id:"s5", label:"随堂自测"}
+    ]
+  });
+})();
+</script>
+</body>
+</html>

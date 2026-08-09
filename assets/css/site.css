@@ -86,6 +86,15 @@ a{color:inherit}
 .toggle button.act{color:#fff}
 .toggle button.act.up-red{background:var(--hue-red)}
 .toggle button.act.up-green{background:var(--hue-green)}
+@media(max-width:679px){
+  .topbar .row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:7px 8px;padding:8px 12px}
+  .topbar .steps{grid-column:1/-1;grid-row:2;display:flex;flex-wrap:nowrap;gap:4px;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:none;padding-bottom:1px}
+  .topbar .steps::-webkit-scrollbar{display:none}
+  .topbar .steps a{padding:4px 8px}
+  .topbar .conv>span{display:none}
+  .topbar .conv{gap:0}
+  .topbar .theme-btn{margin-left:0}
+}
 
 /* ---- headings / prose ---- */
 .eyebrow{font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:800;margin:0 0 14px}
