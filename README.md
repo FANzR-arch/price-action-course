@@ -9,14 +9,17 @@
 ```
 price-action-course/
 ├── index.html              课程首页（CURRICULUM 数据驱动目录）
+├── glossary.html           术语表
+├── references.html         参考资料、课程简化原则与适用边界
 ├── 404.html                自定义 404 页
 ├── favicon.svg             站点图标（K 线）
 ├── lessons/
-│   └── lesson-01.html … lesson-11.html   已上线的 11 课
+│   └── lesson-01.html … lesson-14.html   当前完成的 14 课
 ├── assets/
 │   ├── css/site.css        全站共享样式（设计令牌 + 组件，扁平清爽）
 │   ├── js/
 │   │   ├── candles.js      K 线引擎：drawCandle / genSeries / mountChart / mountPlayground
+│   │   ├── theme.js        深浅色主题：系统偏好、手动切换与本地记忆
 │   │   ├── shell.js        课程外壳：顶栏 / 进度 / 章节高亮 / 颜色开关 / 上下课
 │   │   └── widgets.js      交互组件库（candleLab / quiz / patternGallery / annotatedChart …）
 │   ├── vendor/klinecharts.min.js   图表库（KLineChart v9，Apache-2.0）
@@ -34,12 +37,12 @@ price-action-course/
 
 - **无障碍**：跳到主内容 skip-link、图表 `role="img"` + `aria-label`、键盘焦点环、`prefers-reduced-motion`。
 - **分享卡片**：每页 Open Graph / Twitter meta + 品牌封面图，链接分享到社媒有预览卡。
-- **深浅色**：随系统自动切换（`prefers-color-scheme`）。
+- **深浅色**：首次随系统偏好，之后可手动切换并记住选择。
 - **视觉**：扁平清爽、无多余阴影与动效。
 
 ## 课程体系（六阶段 / 24 课）
 
-完整覆盖 Al Brooks 式价格行为，由浅入深：
+课程选取 Al Brooks 价格行为体系中的基础概念，并按新手学习顺序组织为 24 课：
 
 1. **看懂图（地基）**：读懂一根 K 线 → K 线信号 → 支撑阻力 → 市场三态
 2. **趋势**：趋势解剖 → H1H2/L1L2 计数 → 通道 → Always In/均线 → 测量移动
@@ -48,7 +51,7 @@ price-action-course/
 5. **反转**：主要趋势反转 MTR → 磁力位 → 二次入场
 6. **风控与执行**：止损止盈仓位 → 交易者方程/盈亏比 → 逐棒检查单/二元决策 → 交易计划与复盘
 
-目前**前 11 课已上线**（阶段一、二全部 + 阶段三前 2 课），其余 15 课在 `index.html` 的 `CURRICULUM` 中登记、逐课上线（详见 `PLAN.md`）。
+目前本地已完成**前 14 课**（阶段一至三全部 + 阶段四第 1 课），其余 10 课在 `index.html` 的 `CURRICULUM` 中登记、逐课更新（详见 `PLAN.md`）。线上内容以最近一次推送到 `main` 的版本为准；24 课也只是入门范围，不等于三本原著的完整替代。
 
 ## 本地预览
 
@@ -72,4 +75,4 @@ npx serve .
 
 ## 免责声明
 
-本课程仅用于交易知识的入门学习，不构成任何投资建议，也不承诺任何收益。交易有风险，任何方法都应在模拟盘充分练习并验证后，再考虑投入亏得起的极小资金，盈亏后果自负。课程内颜色、价格均为教学演示，非真实行情。
+本课程仅用于交易知识的入门学习，不构成任何投资建议，也不承诺任何收益。图表与价格均为教学演示，未计入滑点、手续费、流动性与真实执行差异；历史回放和模拟结果不能代表未来实盘表现。主要书籍、公开资料和课程简化原则见 `references.html`。

@@ -1,13 +1,13 @@
 # 价格行为入门课 · 开发规划（PLAN.md）
 
-一套纯静态、可交互的价格行为（Price Action）课程。**内容以 `PA_Agent/prompt_engineering/` 为权威底稿，重写成新手大白话；不引入前端框架，保持零构建、任意静态托管即上线。**
+一套纯静态、可交互的价格行为（Price Action）课程。`PA_Agent/prompt_engineering/` 用作产品侧内容草稿；术语和事实优先对照 Al Brooks 原著、Wiley 书目、CME 与 CFTC 等资料。课程会标出教学简化，不把内部提示词当作原始权威来源。
 
 ## 站点现状（截至最近一次更新）
 
 - **已上线：** https://price-action-course.vercel.app （GitHub `main` push 自动部署）。
-- **进度：** 阶段一、二 + 阶段三前 2 课共 **11 课已上线**；12–24 课待建（见下表）。
-- **站点级已完成：** favicon、社交分享卡片（OG/Twitter + 封面图）、图表无障碍（role/aria）、skip-link、扁平清爽视觉、全站文案精修。
-- **待办（非课程内容）：** 自定义 404 页 ✅、深色模式手动切换钮（可选）、`rrCalculator` 组件（Phase F 需要）。
+- **进度：** 阶段一~三完结 + 阶段四第 1 课，本地共 **14 课完成**；15–24 课待建（见下表）。
+- **站点级已完成：** favicon、自定义 404 页、手动深浅色切换、社交分享卡片（OG/Twitter + 封面图）、图表无障碍（role/aria）、skip-link、参考资料与适用边界页面、全站文案事实与去 AI 味审查。
+- **待办（非课程内容）：** `rrCalculator` 组件（Phase F 需要）。
 
 ## 架构
 
@@ -18,6 +18,7 @@ assets/
   css/site.css        设计令牌 + 组件样式
   js/
     candles.js        底层引擎：drawCandle / genSeries / mountChart / mountPlayground
+    theme.js          深浅色主题：系统偏好、手动切换、本地记忆
     shell.js          课程外壳：顶栏 / 进度 / 章节高亮 / 颜色开关 / 上下课 / 重绘登记
     widgets.js        交互组件库（见下）
   vendor/klinecharts.min.js   图表库（KLineChart v9，Apache-2.0）
@@ -48,7 +49,7 @@ assets/
 | 01 | 读懂一根 K 线 | （原创基础） | candleLab / partHighlighter / quiz / fillBlank | ✅ 完成 |
 | 02 | K 线信号：单根的语言 | 文件16-K线信号识别 | patternGallery / quizCandleGrid | ✅ 完成 |
 | 03 | 支撑与阻力 | 市场诊断框架（节选） | annotatedChart / drawOnChart | ✅ 完成 |
-| 04 | 市场三态：趋势·通道·区间 | 市场诊断框架 + 二元决策 | annotatedChart / playground | ✅ 完成 |
+| 04 | 市场环境：趋势·通道·区间 | 市场诊断框架 + 二元决策 | annotatedChart / playground | ✅ 完成 |
 | 05 | 趋势的解剖 | 上涨/下跌通道分析识别 | annotatedChart | ✅ 完成 |
 | 06 | H1/H2、L1/L2 计数 | 文件19-H1H2-L1L2计数 | annotatedChart | ✅ 完成 |
 | 07 | 通道：窄 vs 宽 | 文件13-窄通道与宽通道策略 | annotatedChart | ✅ 完成 |
@@ -56,9 +57,9 @@ assets/
 | 09 | 测量移动 | 文件23-MeasuredMove与结构目标 | annotatedChart | ✅ 完成 |
 | 10 | 交易区间：高抛低吸 | 震荡区间分析识别/交易策略 | annotatedChart / drawOnChart | ✅ 完成 |
 | 11 | 突破：真突破还是假突破 | 极速上涨/下跌分析识别 | annotatedChart | ✅ 完成 |
-| 12 | 突破失败与突破测试 | 文件18-突破失败与突破测试 | patternGallery | ⏳ |
-| 13 | 铁丝网与无交易环境 | 文件21-铁丝网与无交易环境 | annotatedChart | ⏳ |
-| 14 | 楔形与三推 | 文件14-楔形形态分析交易 | patternGallery | ⏳ |
+| 12 | 突破失败与突破测试 | 文件18-突破失败与突破测试 | patternGallery / annotatedChart | ✅ 完成 |
+| 13 | 铁丝网与无交易环境 | 文件21-铁丝网与无交易环境 | annotatedChart | ✅ 完成 |
+| 14 | 楔形与三推 | 文件14-楔形形态分析交易 | patternGallery / annotatedChart | ✅ 完成 |
 | 15 | 三角形与收敛形态 | 文件27-三角形与收敛形态 | patternGallery | ⏳ |
 | 16 | 双重顶/底与微型结构 | 文件28-双重顶底与微型结构 | patternGallery | ⏳ |
 | 17 | 最终旗形与趋势末端 | 文件24-最终旗形与趋势末端 | patternGallery | ⏳ |
@@ -76,10 +77,16 @@ assets/
 - **Phase B**：阶段一收尾（03/04），建 drawOnChart、annotatedChart。
 - **Phase C–E**：阶段二~五（趋势/区间/形态/反转）。
 - **Phase F**：阶段六风控，建 rrCalculator。
+- **Phase G（实战适配扩展，排在 24 课主线之后，暂不写具体内容）**：
+  1. 术语表加「圈内黑话」分类：币圈（插针、瀑布、爆仓、资金费率、FOMO…）+ 美股（熔断、PDT、盘前盘后、轧空…），黑话反向链接课程概念（如插针 → 第 11 课假突破）。
+  2. 「市场适配指南」页：同一套价格行为方法在币圈（7×24、杠杆清算、山寨流动性）与美股（开盘缺口、财报日、盘前盘后）的变形。
+  3. 「交易所/券商科普」页：只解释是什么、有哪些类型、评估维度（安全性/流动性/费率/监管），**不推荐任何具体平台**。
+  4. 课内「实战角标」callout：在相关课程里补市场实例（随后续课程进度逐课加，不单独排期）。
+  - 口径：全部内容保持「解释机制、不荐市场、不荐平台」，免责声明照旧。
 
 ## 原则
 
-- 内容以 prompt_engineering 为准，**新手大白话重写**，不照抄术语。
+- 内部 prompt_engineering 只作为产品草稿；定义与事实优先核对原著和公开资料，并在 `references.html` 说明来源与简化。
 - 不引框架；复用 KLineChart 的图表与 overlay 能力。
 - 每加一课：写 `lessons/lesson-NN.html` → 到 index.html 的 `CURRICULUM` 把该课 `live:true` + 填 `href`。
 - 免责声明每页保留；示例数据均为教学演示。

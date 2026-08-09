@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>第二课：K 线信号——单根 K 线的语言 · 价格行为交易入门课</title>
-<meta name="description" content="价格行为第二课：常见 K 线信号图鉴（趋势棒/十字星/锤子/流星/吞没/内包），点一个看一个；并学会"信号要被确认"这条保命规矩。">
+<meta name="description" content="认识常见 K 线形状，并区分信号棒、入场触发与反转确认。">
 <link rel="stylesheet" href="../assets/css/site.css">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://price-action-course.vercel.app/lessons/lesson-02.html">
@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="价格行为交易 · 入门课">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:title" content="第二课：K 线信号——单根 K 线的语言 · 价格行为交易入门课">
-<meta property="og:description" content="价格行为第二课：常见 K 线信号图鉴（趋势棒/十字星/锤子/流星/吞没/内包），点一个看一个；并学会&quot;信号要被确认&quot;这条保命规矩。">
+<meta property="og:description" content="认识常见 K 线形状，并区分信号棒、入场触发与反转确认。">
 <meta property="og:url" content="https://price-action-course.vercel.app/lessons/lesson-02.html">
 <meta property="og:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
 <meta property="og:image:width" content="1200">
@@ -21,7 +21,7 @@
 <meta property="og:image:alt" content="价格行为交易 · 入门课">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="第二课：K 线信号——单根 K 线的语言 · 价格行为交易入门课">
-<meta name="twitter:description" content="价格行为第二课：常见 K 线信号图鉴（趋势棒/十字星/锤子/流星/吞没/内包），点一个看一个；并学会&quot;信号要被确认&quot;这条保命规矩。">
+<meta name="twitter:description" content="认识常见 K 线形状，并区分信号棒、入场触发与反转确认。">
 <meta name="twitter:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
 <script src="../assets/js/theme.js"></script>
 </head>
@@ -32,23 +32,23 @@
   <header class="hero">
     <p class="eyebrow">第二课 · 从一根到一个“信号”</p>
     <h1>K 线信号：<br>单根 K 线的语言</h1>
-    <p class="lede">上一课你学会了读懂一根 K 线。这一课再进一步：某些特定形状的 K 线，会提示买方或卖方可能要占上风——这就是<strong>信号</strong>。点一个看一个，把最常见的几种记进脑子里。</p>
+    <p class="lede">这一课认识几种常见 K 线形状。形状只描述本时段的价格结构；放到趋势、位置和前后 K 线中，它才可能成为一根<strong>候选信号棒</strong>。</p>
     <div id="heroCandles"></div>
   </header>
 
   <section id="s1" class="reveal">
     <div class="kicker"><span class="num">1</span> 什么是“信号”</div>
     <h2>不是每根 K 线都值得动手</h2>
-    <p class="muted">大多数 K 线只是噪音。价格行为真正关心的，是少数几种“形状特别”的 K 线——它们提示某一方可能要发力。这种 K 线叫 <span class="hl">信号棒（Signal Bar）</span>。</p>
-    <p class="muted">一根好的信号棒，通常长这样：</p>
+    <p class="muted"><span class="hl">信号棒（Signal Bar）</span>不是一种固定蜡烛形状，而是交易者在特定背景下用来规划入场的 K 线。同一种形状，换一个位置可能没有交易意义。</p>
+    <p class="muted">评估候选信号棒时，可以先观察：</p>
     <ul class="clean muted">
-      <li><strong>收盘接近极点</strong>——做多信号收在最高点附近，做空信号收在最低点附近（说明这一方赢到了最后）；</li>
+      <li><strong>收盘接近极点</strong>——做多候选通常收在最高点附近，做空候选通常收在最低点附近；</li>
       <li><strong>实体够大、尾巴够短</strong>——态度坚决，不是犹豫；</li>
-      <li>但也<strong>别太长</strong>——超长实体反而可能是冲过头了，不安全。</li>
+      <li>实体若远大于近期平均波动，还要评估追价后的止损距离和回报空间。</li>
     </ul>
     <div class="callout">
-      <div class="t">这一课先建立一个直觉</div>
-      信号 = “某一方可能要赢”的提示。但<strong>提示不等于成交</strong>——下一站先认全这些形状，再学最关键的一条规矩（第 4 站）。
+      <div class="t">信号棒是计划的一部分</div>
+      一根 K 线可以提供入场依据，但不能单独证明下一步方向。先看背景和位置，再决定是否使用它的高点或低点作为触发价。
     </div>
   </section>
 
@@ -62,20 +62,20 @@
   <section id="s3" class="reveal">
     <div class="kicker"><span class="num">3</span> 同样是信号，有强有弱</div>
     <h2>强信号 vs 弱信号</h2>
-    <p class="muted">形状对了还不够，还要看“质量”。<strong>强信号</strong>：实体大、收盘贴着极点、尾巴短。<strong>弱信号</strong>：收盘收在中间、上下长尾（多空还在犹豫）、或实体长到离谱（可能冲过头）。</p>
+    <p class="muted">形状对了还不够，还要看位置和背景。在同样背景下，实体较清晰、收盘靠近目标方向极点、逆向影线较短的 K 线，通常更适合作为候选信号棒。收盘居中或双向影线较长，说明该时段方向信息较少；异常大的实体还要考虑追价风险。</p>
     <div id="w-q1"></div>
   </section>
 
   <section id="s4" class="reveal">
-    <div class="kicker"><span class="num">4</span> 最关键的一条规矩</div>
-    <h2>信号，要等“确认”才算数</h2>
-    <p class="muted">新手常在这里亏钱，务必记牢：</p>
+    <div class="kicker"><span class="num">4</span> 区分触发与确认</div>
+    <h2>突破信号棒极点，是入场触发</h2>
+    <p class="muted">这里需要区分两个概念：</p>
     <div class="callout">
       <div class="t">信号棒 → 入场棒</div>
-      看到一根漂亮的信号棒，<strong>不要马上动手</strong>。要等<strong>下一根 K 线突破它的极点</strong>，信号才算真正生效——那根突破的 K 线叫 <span class="hl">入场棒（Entry Bar）</span>。<br>
-      举例：看到一根锤子线（底部反转），要等下一根 K 线<strong>涨过锤子线的最高点</strong>，才算确认反转、才考虑做多。没突破，信号就可能作废。
+      在 Brooks 常见的止损单入场方式里，做多计划可把触发价设在信号棒高点上方，做空计划则设在低点下方；触发订单的 K 线称为 <span class="hl">入场棒（Entry Bar）</span>。<br>
+      例如，若一根锤子线处在合适的做多背景中，可以等价格越过它的最高点再触发计划。这个动作只表示入场条件满足，<strong>不等于反转已经确认，也不保证交易成功</strong>。
     </div>
-    <p class="muted">为什么？因为漂亮的信号也会失败。多等一根 K 线的“确认”，就能过滤掉一大批陷阱——这一根的耐心，往往就是赚和亏的区别。</p>
+    <p class="muted">若价格没有触及预设触发价，计划就没有启动。即使触发，仍要按原先的止损、仓位和退出规则管理风险。</p>
     <div id="w-q2"></div>
   </section>
 
@@ -88,11 +88,11 @@
   </section>
 
   <footer>
-    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 这一课你已经拿下</div>
+    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 本课要点</div>
     <ul>
       <li>常见信号：<strong>趋势棒 / 十字星 / 锤子 / 流星 / 吞没 / 内包线</strong>，各自在说什么；</li>
       <li>信号有<strong>强弱</strong>：实体大、收盘贴极点、尾短 = 强；</li>
-      <li>最重要——<strong>信号要等下一根 K 线突破极点（入场棒）确认</strong>，别看到就冲。</li>
+      <li>突破信号棒极点可以作为<strong>入场触发</strong>，但不是反转确认，更不是盈利保证。</li>
     </ul></div>
     <div class="next">
       <a class="btn ghost" href="../lessons/lesson-01.html">← 上一课</a>
@@ -100,11 +100,12 @@
       <a class="btn" href="../lessons/lesson-03.html">下一课 →</a>
     </div>
     <div class="follow">
+      <a href="../references.html">参考资料与适用边界</a>
       <span class="follow-label">关注作者 · 课程持续更新</span>
       <a href="https://x.com/Formulasearch" target="_blank" rel="noopener noreferrer" aria-label="在 X 上关注 @Formulasearch"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@Formulasearch</a>
       <a href="https://rzcthink.top/" target="_blank" rel="noopener noreferrer" aria-label="访问 Philthink（rzcthink.top）"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>Philthink</a>
     </div>
-    <p class="disclaim">本课件仅用于交易知识的入门学习，不构成任何投资建议。真实交易有风险，任何方法都需在模拟盘充分练习并验证后再考虑投入极小资金。颜色、示例价格均为教学演示，非真实行情。</p>
+    <p class="disclaim">本课只用于交易知识学习，不构成投资建议。图表和价格均为教学演示，未计入滑点、手续费、流动性与真实执行差异；历史回放和模拟结果不能代表未来实盘表现。</p>
   </footer>
 </div>
 
@@ -122,40 +123,40 @@
   PA.widgets.patternGallery(document.getElementById("w-gallery"), {
     items:[
       { name:"多头趋势棒", tag:"强 · 多方", bars:[[42,44,40,41],[41,44,40,43],[43,56,42,55]],
-        desc:"大阳线：实体长、几乎没影线——这段时间买方<strong>一边倒地赢</strong>。收盘越贴近最高点，信号越强；连续几根趋势棒，就是强趋势。" },
+        desc:"长阳线：实体较长、影线较短，收盘靠近最高价。它说明本时段收盘明显高于开盘；是否构成做多信号，还要看趋势和位置。" },
       { name:"空头趋势棒", tag:"强 · 空方", bars:[[55,60,54,58],[58,59,55,57],[57,58,44,45]],
-        desc:"大阴线：实体长、影线短——卖方一边倒地赢。出现在关键位置（如前高、阻力）时，是很强的做空信号。" },
+        desc:"长阴线：实体较长、影线较短，收盘靠近最低价。它说明本时段收盘明显低于开盘；出现在阻力附近也不自动构成做空机会。" },
       { name:"十字星", tag:"中性 · 犹豫", bars:[[48,52,46,51],[51,53,48,49],[49,54,45,49]],
-        desc:"实体极小，开盘≈收盘——多空<strong>僵持，谁也没赢</strong>。单独出现是中性信号，常是趋势停顿、变盘前的犹豫。" },
+        desc:"实体很小，开盘与收盘接近。它提供的单根方向信息较少，可能出现在趋势停顿、区间波动或转折附近。" },
       { name:"锤子线", tag:"反转 · 底部", bars:[[54,55,50,51],[51,52,47,48],[47,49,40,48]],
-        desc:"长下影 + 实体在上方——价格一度被砸得很低，但<strong>买方把它接了回来</strong>。出现在下跌末端时，是经典的底部反转信号。" },
+        desc:"长下影、实体位于上方。若它出现在下跌后的支撑区域，可以成为候选做多信号；单独出现时不能确认底部。" },
       { name:"流星（上影）", tag:"反转 · 顶部", bars:[[46,48,44,47],[47,52,46,51],[51,61,50,52]],
-        desc:"长上影 + 实体在下方——价格冲高后<strong>被卖方压了回来</strong>。出现在上涨末端时，是经典的顶部反转信号。" },
+        desc:"长上影、实体位于下方。若它出现在上涨后的阻力区域，可以成为候选做空信号；单独出现时不能确认顶部。" },
       { name:"吞没", tag:"强反转", bars:[[54,55,51,52],[52,53,48,49],[48,55,47,54]],
         desc:"后一根的实体<strong>完全“吞掉”前一根</strong>。大阳吞阴 = 强底部反转；大阴吞阳 = 强顶部反转。双棒反转里最有力的一种。" },
-      { name:"内包线", tag:"收缩 · 蓄力", bars:[[42,45,40,44],[44,52,42,50],[46,49,44,47]],
-        desc:"后一根整个<strong>躲在前一根的范围里</strong>——波动在收缩、市场在犹豫、蓄力待发。往哪突破还不知道，要等被突破的那一刻（见第 4 站）。" }
+      { name:"内包线", tag:"波动范围收缩", bars:[[42,45,40,44],[44,52,42,50],[46,49,44,47]],
+        desc:"后一根的高低点位于前一根范围内，表示本时段波动范围收窄。它本身不提供确定方向，向任一侧突破也可能失败。" }
     ]
   });
 
   // 强弱信号：选最强做多信号棒
   PA.widgets.quizCandleGrid(document.getElementById("w-q1"), {
-    q:"下面哪一根是<strong>最强的做多信号棒</strong>？（实体大、收盘贴近最高点、尾巴短）",
+    q:"只比较 K 线形状，下面哪一根更符合<strong>做多候选信号棒</strong>的结构？",
     candles:[
-      { ohlc:[30,74,26,72], cap:"大阳线", ok:true, why:"实体长、收盘几乎贴着最高点、上下尾很短——买方从头赢到尾，这就是最强的做多信号棒。" },
-      { ohlc:[40,72,36,44], cap:"长上影阳", why:"虽然是阳线，但上影很长——价格冲高后被卖方压了回来，态度不够坚决，属于<strong>弱</strong>信号。" },
-      { ohlc:[50,72,28,50], cap:"十字星", why:"开盘≈收盘，多空僵持、谁也没赢——这是<strong>中性</strong>信号，不算做多信号棒。" },
-      { ohlc:[45,58,42,48], cap:"小实体", why:"实体太小，说明这一方赢得不干脆——信号偏<strong>弱</strong>。" }
+      { ohlc:[30,74,26,72], cap:"长阳线", ok:true, why:"实体长、收盘接近最高点、逆向影线较短。在相同背景下，它的做多方向信息较清晰。" },
+      { ohlc:[40,72,36,44], cap:"长上影阳", why:"虽然收盘高于开盘，但上影较长、收盘远离最高点。在只比较形状时，做多方向信息较少。" },
+      { ohlc:[50,72,28,50], cap:"十字星", why:"开盘与收盘接近，单根方向信息较少，不符合题目的做多结构。" },
+      { ohlc:[45,58,42,48], cap:"小实体", why:"实体较小，收盘只略高于开盘，做多方向信息较少。" }
     ]
   });
 
   // 确认规矩：看到锤子能马上买吗
   PA.widgets.quizChoice(document.getElementById("w-q2"), {
-    q:"你在下跌末端看到一根漂亮的<strong>锤子线</strong>，应该？",
+    q:"你在下跌后看到一根<strong>锤子线</strong>，下一步应怎样处理？",
     options:[
-      { t:"立刻买入，机会难得", why:"这正是新手最常亏钱的做法——信号还没被确认就冲进去。漂亮的信号也会失败。" },
-      { t:"等下一根 K 线涨过锤子线的最高点（入场棒）再考虑", ok:true, why:"信号要<strong>确认</strong>：等下一根 K 线突破信号棒的极点才算数。多等这一根，就能躲开一大批陷阱。" },
-      { t:"立刻卖出", why:"方向反了——锤子线是<strong>底部反转</strong>（偏多）信号，不是做空信号。" }
+      { t:"只看见形状就立刻买入", why:"还缺少趋势、位置、触发价和风险计划。形状本身不足以支持入场。" },
+      { t:"若背景和风险计划允许，等价格越过锤子线最高点再触发入场", ok:true, why:"越过信号棒高点可以作为止损买单的触发条件，但不代表反转已经确认。" },
+      { t:"只因为它叫锤子线就立刻卖出", why:"名称只描述形状。要先看位置、后续触发和风险计划。" }
     ]
   });
 
@@ -163,8 +164,8 @@
   PA.widgets.quizCandleGrid(document.getElementById("w-q3"), {
     q:"① 哪一根是“冲高被打回”的<strong>顶部反转</strong>信号（长上影、实体在下方）？",
     candles:[
-      { ohlc:[52,66,50,53], cap:"流星", ok:true, why:"长上影 + 小实体在下方——价格冲高被卖方压回，出现在顶部就是反转信号。" },
-      { ohlc:[52,54,40,53], cap:"锤子", why:"这是长<strong>下</strong>影（底部反转），方向正好相反，别弄混。" },
+      { ohlc:[52,66,50,53], cap:"长上影线", ok:true, why:"它符合长上影、实体位于下方的形状描述。出现在上涨后的阻力区时，可以成为候选做空信号，但不是反转确认。" },
+      { ohlc:[52,54,40,53], cap:"长下影线", why:"这是长<strong>下</strong>影、实体位于上方，形状方向与题目相反。" },
       { ohlc:[50,60,42,50], cap:"十字星", why:"上下影都有、实体极小，是多空僵持的<strong>中性</strong>信号，不是顶部反转。" },
       { ohlc:[40,58,38,56], cap:"大阳线", why:"这是强<strong>多头</strong>信号（涨），不是反转。" }
     ]
@@ -173,8 +174,8 @@
   PA.widgets.quizChoice(document.getElementById("w-q4"), {
     q:"② 一根<strong>内包线</strong>（整根躲在前一根范围里）告诉你什么？",
     options:[
-      { t:"方向已经确定，马上跟着做", why:"恰恰相反——内包线是方向<strong>不明</strong>、市场在犹豫，此时动手最容易被两边打脸。" },
-      { t:"波动在收缩、市场在犹豫，方向要等突破才知道", ok:true, why:"对！内包线是<strong>收缩蓄力</strong>，它本身不指方向——往哪突破，才决定方向。" },
+      { t:"方向已经确定，马上跟着做", why:"内包线只说明波动范围收窄，不能单独确定下一步方向。" },
+      { t:"本时段波动范围收窄，单凭内包线无法确定方向", ok:true, why:"内包线说明波动范围收窄。之后可能向任一侧突破，也可能出现假突破。" },
       { t:"一定会下跌", why:"内包线不指方向，涨跌都可能，不能凭它断定方向。" }
     ]
   });
@@ -183,10 +184,10 @@
     prompt:"③ 填空",
     parts:[
       "趋势棒的特点是实体", { a:["大","长"] }, "、影线", { a:["短","小"] }, "。",
-      "　看到一个漂亮的信号，别急着动手——要等下一根 K 线", { a:["突破"] }, "了信号棒的极点，信号才算数（那根叫入场棒）。"
+      "　采用止损单入场时，可以把信号棒极点被", { a:["突破"] }, "作为触发条件；这不是反转确认。"
     ],
-    okText:"✓ 全对！记住这两点：信号看形状（实体大、尾短），出手看确认（下一根突破）。",
-    revealText:"答案：趋势棒实体<strong>大</strong>、影线<strong>短</strong>；信号要等下一根 K 线<strong>突破</strong>极点才算数。"
+    okText:"答案正确：先描述形状，再结合背景决定是否使用极点突破作为入场触发。",
+    revealText:"答案：趋势棒实体较<strong>大</strong>、影线较<strong>短</strong>；采用止损单入场时，可把<strong>突破</strong>极点作为触发条件。"
   });
 
   PA.initLesson({

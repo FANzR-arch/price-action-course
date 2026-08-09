@@ -31,7 +31,7 @@
   <header class="hero">
     <p class="eyebrow">第九课 · 阶段二收尾 · 估目标</p>
     <h1>测量移动：<br>它大概能走到哪</h1>
-    <p class="lede">价格走完一段，常会再走<strong>差不多长的一段</strong>。用这个规律，你能估出一个合理的目标区——这就是<strong>测量移动（Measured Move）</strong>。它不保证一定到，但给了你一个有依据的“大概到哪”。</p>
+    <p class="lede"><strong>测量移动（Measured Move）</strong>把一段已知价格幅度投影到新的起点，用来标记潜在目标区域。它是几何参考，不代表价格会按等距路径运行。</p>
     <div id="heroCandles"></div>
   </header>
 
@@ -45,8 +45,8 @@
       <li>常常会再从 C 往上走<strong>约等于第一段的高度</strong>，目标 ≈ <strong>C + (B − A)</strong>。</li>
     </ul>
     <div class="callout">
-      <div class="t">概率，不是保证</div>
-      Brooks 的经验值：强趋势里到达测量目标的概率较高（约 70%+），区间突破后约 60%。<strong>它是“目标参考”，不是“一定到”</strong>——到了目标区附近，就该考虑止盈，而不是幻想它无限涨。
+      <div class="t">不要把情境概率当成通用胜率</div>
+      Brooks 在特定强突破和高概率案例中会使用约 60% 或更高的主观概率，但这不是所有测量移动的固定命中率。品种、周期、入场定义、目标算法和样本选择都会改变结果。本课只把投影位当作观察区。
     </div>
   </section>
 
@@ -72,10 +72,10 @@
   </section>
 
   <footer>
-    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 这一课你已经拿下</div>
+    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 本课要点</div>
     <ul>
       <li><strong>测量移动</strong>：目标 ≈ 回调低点 C + 第一段高度（B − A）；</li>
-      <li>它是<strong>概率性目标</strong>（强趋势约 70%+），不是保证；</li>
+      <li>它是<strong>潜在目标区域</strong>，没有跨市场通用的固定命中率；</li>
       <li>价格到<strong>目标区附近</strong>就该考虑止盈，别幻想无限涨。</li>
     </ul></div>
     <div class="next">
@@ -84,11 +84,12 @@
       <a class="btn" href="../lessons/lesson-10.html">下一课 →</a>
     </div>
     <div class="follow">
+      <a href="../references.html">参考资料与适用边界</a>
       <span class="follow-label">关注作者 · 课程持续更新</span>
       <a href="https://x.com/Formulasearch" target="_blank" rel="noopener noreferrer" aria-label="在 X 上关注 @Formulasearch"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@Formulasearch</a>
       <a href="https://rzcthink.top/" target="_blank" rel="noopener noreferrer" aria-label="访问 Philthink（rzcthink.top）"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>Philthink</a>
     </div>
-    <p class="disclaim">本课件仅用于交易知识的入门学习，不构成任何投资建议。真实交易有风险，任何方法都需在模拟盘充分练习并验证后再考虑投入极小资金。颜色、示例价格均为教学演示，非真实行情。</p>
+    <p class="disclaim">本课只用于交易知识学习，不构成投资建议。图表和价格均为教学演示，未计入滑点、手续费、流动性与真实执行差异；历史回放和模拟结果不能代表未来实盘表现。</p>
   </footer>
 </div>
 
@@ -119,7 +120,7 @@
       {type:"label", i:6, value:C-1.6, text:"C", color:acc},
       {type:"hline", value:target, label:"测量目标", color:acc}
     ],
-    note:'<span class="lead">第一段 A→B 涨了约 '+Math.round(B-A)+'。</span> 从回调低点 C 再投影相同高度，得到<strong>测量目标 ≈ '+target+'</strong>（C + (B−A)）。看第二段，是不是和第一段差不多长？'
+    note:'<span class="lead">第一段 A→B 的高度约为 '+Math.round(B-A)+'。</span> 从回调低点 C 投影相同高度，得到<strong>测量目标 ≈ '+target+'</strong>（C + (B−A)）。图中第二段接近该位置，这是用于演示算法的构造数据。'
   });
 
   // 你来估：第一段走完、正在回调，让用户画目标
@@ -139,7 +140,7 @@
   PA.widgets.quizChoice(document.getElementById("w-q1"), {
     q:"① 第一段从 40 涨到 52，回调到 46。测量移动的目标大约是？",
     options:[
-      { t:"约 58（46 + (52−40)）", ok:true, why:"对！第一段高度 = 52−40 = 12；从回调低点 46 再投影 12 → 目标 ≈ 58。" },
+      { t:"约 58（46 + (52−40)）", ok:true, why:"按这套投影算法，第一段高度为 12，从回调低点 46 向上投影后得到 58。" },
       { t:"约 52（回到前高就到顶）", why:"前高只是第一段的顶，测量移动是从回调低点再投影一段，通常会超过前高。" },
       { t:"约 40（回到起点）", why:"那是跌回起点，不是向上的测量目标。" }
     ]
@@ -150,7 +151,7 @@
       "测量移动的目标 ≈ 回调低点 C 加上第一段的", { a:["高度","长度","幅度"] }, "（B − A）；",
       "它是一个", { a:["概率","概率性","参考"] }, "目标，到了附近就该考虑止盈。"
     ],
-    okText:"✓ 全对！目标≈C+(B−A)，是概率性参考，别当成一定到。",
+    okText:"答案正确：目标≈C+(B−A)，它是观察位置，不是到达保证。",
     revealText:"答案：加上第一段的<strong>高度</strong>；它是<strong>概率</strong>性目标。"
   });
 

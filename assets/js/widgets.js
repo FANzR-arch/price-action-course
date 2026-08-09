@@ -11,6 +11,14 @@
   function chip(k,v){ return '<span class="chip">'+k+' '+v+'</span>'; }
   function rr(n){ return Math.round(n*10)/10; }
 
+  // 选项乱序：避免正确答案固定落在某一位（作者按“先写正确答案”的习惯排版，
+  // 不打乱的话学员只要一直选 A 就能全对）。个别需要固定顺序的题可传 shuffle:false。
+  function shuffled(arr){
+    var a = arr.slice();
+    for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t; }
+    return a;
+  }
+
   // 在一个 <svg> 里画一小段 K 线序列（形态图鉴 / 缩略图用）
   // 实体宽度封顶 + 影线细且封顶 + 整组居中，保证任何根数/尺寸下比例都精致。
   function miniSeries(svg, bars, opts){
@@ -95,7 +103,12 @@
         frag+='<line x1="'+rr(x(p1[0]))+'" y1="'+rr(y(p1[1]))+'" x2="'+rr(x(p2[0]))+'" y2="'+rr(y(p2[1]))+'" stroke="'+col+'" stroke-width="1.9" stroke-dasharray="'+(a.dash?'5 4':'0')+'" stroke-linecap="round"/>';
         if(a.label) frag+=annoChip(x(p2[0])-(a.label.length*13+10)-2, y(p2[1]), a.label, col);
       } else if(a.type==='label'){
-        frag+=annoChip(x(a.i), y(a.value), a.text, col);
+        // 钳制在绘图区内：靠右的标注会压住价格刻度，贴顶/贴底的会被画到坐标区外。
+        // 钳制后位置略有偏移，但优于溢出——作者不必再为每个标注手工试位置。
+        var lw=a.text.length*13+10;
+        var lx=Math.max(pL, Math.min(x(a.i), plotR-lw));
+        var ly=Math.max(pT+9, Math.min(y(a.value), H-pB-9));
+        frag+=annoChip(lx, ly, a.text, col);
       }
     });
     svg.innerHTML=frag;
@@ -222,9 +235,10 @@
   // opts: { q, options:[{t, ok, why?}], explain? }
   W.quizChoice = function(host, opts){
     opts = opts||{};
+    var options = (opts.shuffle===false) ? opts.options : shuffled(opts.options);
     host.innerHTML =
       '<div class="card pad"><p class="qtext" style="margin-top:0">'+opts.q+'</p>'+
-        '<div class="optlist" data-el="opts">'+opts.options.map(function(o,i){ return '<button data-ok="'+(o.ok?1:0)+'" data-i="'+i+'"><span class="opt-key">'+String.fromCharCode(65+i)+'</span><span class="opt-t">'+o.t+'</span></button>'; }).join("")+'</div>'+
+        '<div class="optlist" data-el="opts">'+options.map(function(o,i){ return '<button data-ok="'+(o.ok?1:0)+'" data-i="'+i+'"><span class="opt-key">'+String.fromCharCode(65+i)+'</span><span class="opt-t">'+o.t+'</span></button>'; }).join("")+'</div>'+
         '<div class="fb" data-el="fb"></div>'+
         '<div class="quiz-foot"><button class="btn ghost mini" data-act="reset" type="button" style="display:none">重做</button></div></div>';
     var btns=host.querySelectorAll('[data-el="opts"] button'), fb=host.querySelector('[data-el="fb"]'), reset=host.querySelector('[data-act="reset"]');
@@ -232,7 +246,7 @@
     Array.prototype.forEach.call(btns, function(btn){
       btn.addEventListener("click", function(){
         clearMarks();
-        var ok=btn.dataset.ok==="1", why=(opts.options[+btn.dataset.i]||{}).why;
+        var ok=btn.dataset.ok==="1", why=(options[+btn.dataset.i]||{}).why;
         btn.classList.add(ok?"correct":"wrong");
         fb.className="fb show "+(ok?"ok":"no");
         fb.innerHTML='<span class="fb-tag">'+(ok?"✓ 答对了":"✗ 再想想")+'</span><span class="fb-body">'+(why||opts.explain||"")+(ok?"":"（换一个选项再看看）")+'</span>';
@@ -246,19 +260,20 @@
   // opts: { q, candles:[{ohlc:[o,h,l,c], cap, ok, why?}], explain? }
   W.quizCandleGrid = function(host, opts){
     opts = opts||{};
+    var candles = (opts.shuffle===false) ? opts.candles : shuffled(opts.candles);
     host.innerHTML =
       '<div class="card pad"><p class="qtext" style="margin-top:0">'+opts.q+'</p><div class="qgrid" data-el="grid"></div>'+
         '<div class="fb" data-el="fb"></div>'+
         '<div class="quiz-foot"><button class="btn ghost mini" data-act="reset" type="button" style="display:none">重做</button></div></div>';
     var grid=host.querySelector('[data-el="grid"]'), fb=host.querySelector('[data-el="fb"]'), reset=host.querySelector('[data-act="reset"]');
-    grid.innerHTML = opts.candles.map(function(c,i){ return '<div class="qopt" data-i="'+i+'" data-ok="'+(c.ok?1:0)+'"><svg viewBox="0 0 90 150" style="height:120px"></svg><div class="cap">'+c.cap+'</div><span class="mark"></span></div>'; }).join("");
+    grid.innerHTML = candles.map(function(c,i){ return '<div class="qopt" data-i="'+i+'" data-ok="'+(c.ok?1:0)+'"><svg viewBox="0 0 90 150" style="height:120px"></svg><div class="cap">'+c.cap+'</div><span class="mark"></span></div>'; }).join("");
     var opsEls = grid.querySelectorAll(".qopt");
-    function drawThumbs(){ Array.prototype.forEach.call(opsEls, function(opt){ var c=opts.candles[+opt.dataset.i].ohlc; PA.drawCandle(opt.querySelector("svg"), c[0],c[1],c[2],c[3], {lo:15,hi:85,padY:16,bw:34}); }); }
+    function drawThumbs(){ Array.prototype.forEach.call(opsEls, function(opt){ var c=candles[+opt.dataset.i].ohlc; PA.drawCandle(opt.querySelector("svg"), c[0],c[1],c[2],c[3], {lo:15,hi:85,padY:16,bw:34}); }); }
     function clearMarks(){ Array.prototype.forEach.call(opsEls, function(o){ o.classList.remove("correct","wrong"); o.querySelector(".mark").textContent=""; }); }
     Array.prototype.forEach.call(opsEls, function(opt){
       opt.addEventListener("click", function(){
         clearMarks();
-        var ok=opt.dataset.ok==="1", why=(opts.candles[+opt.dataset.i]||{}).why;
+        var ok=opt.dataset.ok==="1", why=(candles[+opt.dataset.i]||{}).why;
         opt.classList.add(ok?"correct":"wrong");
         opt.querySelector(".mark").textContent = ok?"✓":"✕";
         fb.className="fb show "+(ok?"ok":"no");

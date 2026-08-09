@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>第八课：均线与 Always In · 价格行为交易入门课</title>
-<meta name="description" content="价格行为第八课：用 20 均线判断当前偏多还是偏空（Always In），以及“约20根不碰均线”的极强趋势 20GB。">
+<meta name="description" content="区分 Always In 方向偏向与 20 均线位置，并认识 20 Moving Average Gap Bars 的完整含义。">
 <link rel="stylesheet" href="../assets/css/site.css">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://price-action-course.vercel.app/lessons/lesson-08.html">
@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="价格行为交易 · 入门课">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:title" content="第八课：均线与 Always In · 价格行为交易入门课">
-<meta property="og:description" content="价格行为第八课：用 20 均线判断当前偏多还是偏空（Always In），以及“约20根不碰均线”的极强趋势 20GB。">
+<meta property="og:description" content="区分 Always In 方向偏向与 20 均线位置，并认识 20 Moving Average Gap Bars 的完整含义。">
 <meta property="og:url" content="https://price-action-course.vercel.app/lessons/lesson-08.html">
 <meta property="og:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
 <meta property="og:image:width" content="1200">
@@ -21,7 +21,7 @@
 <meta property="og:image:alt" content="价格行为交易 · 入门课">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="第八课：均线与 Always In · 价格行为交易入门课">
-<meta name="twitter:description" content="价格行为第八课：用 20 均线判断当前偏多还是偏空（Always In），以及“约20根不碰均线”的极强趋势 20GB。">
+<meta name="twitter:description" content="区分 Always In 方向偏向与 20 均线位置，并认识 20 Moving Average Gap Bars 的完整含义。">
 <meta name="twitter:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
 <script src="../assets/js/theme.js"></script>
 </head>
@@ -31,27 +31,27 @@
   <header class="hero">
     <p class="eyebrow">第八课 · 一条线帮你定方向</p>
     <h1>均线与 Always In：<br>现在到底偏多还是偏空</h1>
-    <p class="lede">价格行为里常用的一条辅助线，是 <strong>20 均线</strong>。它能帮你快速回答一个问题：“现在该偏多，还是偏空？”——这就是 <strong>Always In</strong> 的思路。</p>
+    <p class="lede"><strong>Always In</strong> 是一个方向偏向问题：如果此刻必须持有多单或空单，哪一边更合理？20 均线可以辅助判断，但价格位于均线上方或下方并不是定义本身。</p>
     <div id="heroCandles"></div>
   </header>
 
   <section id="s1" class="reveal">
     <div class="kicker"><span class="num">1</span> 20 均线 & Always In</div>
-    <h2>价格站在均线的哪一边</h2>
-    <p class="muted">图上那条<span style="color:var(--ink-soft);font-weight:750">灰色线</span>就是 20 均线（最近 20 根收盘价的移动平均）。它像趋势的“重心”：</p>
+    <h2>先读价格行为，再参考均线</h2>
+    <p class="muted">图上灰线是 20 根收盘价的指数移动平均线。判断 Always In 时，先看突破力度、跟进、摆动结构和反转是否成立，再把价格与均线的关系作为辅助证据：</p>
     <ul class="clean muted">
-      <li><span class="hl">Always In Long（偏多）</span>：价格大多数时间<strong>在均线上方</strong>，回踩均线就被买回、继续创新高。此时“默认做多方向”。</li>
-      <li><span class="hl">Always In Short（偏空）</span>：镜像过来——价格大多在均线下方，反弹到均线就被卖回。</li>
+      <li><span class="hl">Always In Long（偏多）</span>：若被迫二选一，当前结构更支持持有多单；价格常在均线上方，但不要求每根都在上方。</li>
+      <li><span class="hl">Always In Short（偏空）</span>：若被迫二选一，当前结构更支持持有空单；判断同样来自整体价格行为。</li>
     </ul>
     <div class="callout">
-      <div class="t">Always In 的铁律</div>
-      在明确的 Always In Long 里，去做<strong>第一个做空反转</strong>（逆势）是常见的亏损方式。顺着 Always In 的方向做，胜率高得多。
+      <div class="t">方向偏向不等于必须持仓</div>
+      “Always In”是分析标签，不要求交易者一直在场。第一个逆势反转往往证据较少，但顺势交易也会失败；没有合适的入场、止损和回报空间时，可以空仓。
     </div>
   </section>
 
   <section id="s2" class="reveal">
     <div class="kicker"><span class="num">2</span> 看图：均线怎么用</div>
-    <h2>健康趋势 vs 极强趋势（20GB）</h2>
+    <h2>趋势与 20 Moving Average Gap Bars</h2>
     <p class="muted">切换两个场景，看价格和 20 均线（灰线）的关系。</p>
     <div id="w-chart"></div>
   </section>
@@ -65,11 +65,11 @@
   </section>
 
   <footer>
-    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 这一课你已经拿下</div>
+    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 本课要点</div>
     <ul>
-      <li><strong>20 均线</strong>是趋势的重心；价格在它上方=偏多（Always In Long），下方=偏空；</li>
-      <li>顺着 Always In 方向做，<strong>逆势做第一个反转</strong>最容易亏；</li>
-      <li><strong>20GB</strong>：约 20 根 K 线不碰均线=极强趋势，别急着抄它的顶/底。</li>
+      <li><strong>Always In</strong>是被迫二选一时的方向偏向；20 均线只是辅助证据；</li>
+      <li>方向偏向不等于必须交易，顺势和逆势计划都要定义风险；</li>
+      <li><strong>20GB</strong>通常指约 20 根均线缺口棒后，价格首次回到均线附近形成的测试背景，不是保证盈利的形态。</li>
     </ul></div>
     <div class="next">
       <a class="btn ghost" href="../lessons/lesson-07.html">← 上一课</a>
@@ -77,11 +77,12 @@
       <a class="btn" href="../lessons/lesson-09.html">下一课 →</a>
     </div>
     <div class="follow">
+      <a href="../references.html">参考资料与适用边界</a>
       <span class="follow-label">关注作者 · 课程持续更新</span>
       <a href="https://x.com/Formulasearch" target="_blank" rel="noopener noreferrer" aria-label="在 X 上关注 @Formulasearch"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@Formulasearch</a>
       <a href="https://rzcthink.top/" target="_blank" rel="noopener noreferrer" aria-label="访问 Philthink（rzcthink.top）"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>Philthink</a>
     </div>
-    <p class="disclaim">本课件仅用于交易知识的入门学习，不构成任何投资建议。真实交易有风险，任何方法都需在模拟盘充分练习并验证后再考虑投入极小资金。颜色、示例价格均为教学演示，非真实行情。</p>
+    <p class="disclaim">本课只用于交易知识学习，不构成投资建议。图表和价格均为教学演示，未计入滑点、手续费、流动性与真实执行差异；历史回放和模拟结果不能代表未来实盘表现。</p>
   </footer>
 </div>
 
@@ -106,37 +107,37 @@
     scenes:[
       { name:"健康趋势（Always In Long）", bars:healthy, ema:20,
         annotations:[ {type:"label", i:34, value:he[34], text:"20 均线", color:PA.cssv("--ink-soft")} ],
-        note:'<span class="lead">价格大多在 20 均线（灰线）上方，回踩到均线附近就被买回、继续走高。</span> 这就是 Always In Long——默认做多方向；此时去逆势做空第一个反转，最容易被趋势碾压。' },
+        note:'<span class="lead">这个示例的突破、跟进和抬高的摆动结构支持 Always In Long。</span> 价格大多位于 20 均线上方，是辅助证据，不是单独定义。' },
       { name:"20GB（极强趋势）", bars:strong, ema:20,
         annotations:[ {type:"label", i:30, value:se[30], text:"20 均线", color:PA.cssv("--ink-soft")} ],
-        note:'<span class="lead">价格连续约 20 根 K 线都不回踩均线，把灰线远远甩在下面。</span> 这叫 20GB——趋势极强。做法：<strong>别急着抄顶</strong>；等价格第一次回到均线附近、出现信号，才是高胜率的顺势机会。' }
+        note:'<span class="lead">价格约 20 根 K 线的低点保持在均线上方，形成 moving average gap bars。</span> “20GB”关注的是长期缺口后首次回到均线附近的测试。它可能产生顺势反应，也可能成为更深回调或反转的开始。' }
     ]
   });
 
   PA.widgets.quizChoice(document.getElementById("w-q1"), {
-    q:"① 价格大多数时间在 20 均线<strong>上方</strong>，回踩均线就被买回。这说明？",
+    q:"① 价格大多在 20 均线<strong>上方</strong>，能否单凭这一点认定 Always In Long？",
     options:[
-      { t:"Always In Long（偏多），默认做多方向", ok:true, why:"对！价格站在均线上方、回踩被买回，就是偏多；顺势做多胜率更高。" },
-      { t:"马上要暴跌了", why:"恰恰相反，这是多头强势的表现，不是暴跌信号。" },
-      { t:"应该立刻逆势做空", why:"在明确偏多里做第一个做空反转，是最常见的亏损方式。" }
+      { t:"不能；还要看突破、跟进和摆动结构", ok:true, why:"均线位置可以支持判断，但 Always In 是整体价格行为给出的方向偏向。" },
+      { t:"能；在均线上方就是 Always In Long", why:"价格位置只是辅助信息，区间中的价格也会频繁穿越均线。" },
+      { t:"能；而且必须立刻做多", why:"方向偏向不等于入场指令，也不要求一直持仓。" }
     ]
   });
   PA.widgets.quizChoice(document.getElementById("w-q2"), {
-    q:"② 价格连续约 20 根不碰均线（20GB），接下来更聪明的做法是？",
+    q:"② Brooks 语境下的 20GB 更完整地指什么？",
     options:[
-      { t:"顺势别抄顶；等第一次回踩均线出信号再顺势做", ok:true, why:"对！20GB 是极强趋势，抄顶极危险；第一次回到均线附近才是高胜率的顺势机会。" },
-      { t:"趋势涨太多了，马上重仓做空", why:"仅凭“涨太多”逆势做空，最容易被极强趋势碾压。" },
-      { t:"这条均线没用了，忽略它", why:"恰恰这时均线更有用——它给出下一个顺势入场的参考。" }
+      { t:"约 20 根均线缺口棒之后，对均线的首次回归或测试背景", ok:true, why:"重点不只是“不碰均线”，还包括长期缺口后的首次回归。这个测试没有固定方向或成功保证。" },
+      { t:"只要连续上涨 20 根，就保证下一次回踩上涨", why:"20GB 是经验性背景，不是确定性信号。" },
+      { t:"一条独立于价格行为的自动交易规则", why:"仍要评估趋势、信号棒、风险和后续走势。" }
     ]
   });
   PA.widgets.fillBlank(document.getElementById("w-fill"), {
     prompt:"③ 填空",
     parts:[
-      "价格站在 20 均线", { a:["上方","上"] }, "、回踩被买回，叫 Always In Long（偏多）；",
-      "约 20 根 K 线不碰均线的极强趋势叫", { a:["20GB","20gb"] }, "，此时不要急着", { a:["抄顶","做空","猜顶"] }, "。"
+      "若被迫二选一时更支持持有多单，称为 Always In", { a:["Long","long","多","多头"] }, "；",
+      "约 20 根均线缺口棒后首次回到均线附近的测试背景，常简称", { a:["20GB","20gb"] }, "。"
     ],
-    okText:"✓ 全对！均线上方=偏多；20GB=极强趋势，别抄顶。",
-    revealText:"答案：均线<strong>上方</strong>=偏多；极强趋势=<strong>20GB</strong>，别急着<strong>抄顶</strong>。"
+    okText:"答案正确：Always In 是整体方向偏向，20GB 包含长期均线缺口后的首次回归。",
+    revealText:"答案：方向偏多称为 Always In <strong>Long</strong>；长期均线缺口后的首次回归背景称为 <strong>20GB</strong>。"
   });
 
   PA.initLesson({ n:8, sections:[ {id:"s1",label:"均线&AlwaysIn"},{id:"s2",label:"看图"},{id:"s3",label:"随堂自测"} ] });

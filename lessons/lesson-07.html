@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>第七课：通道——窄 vs 宽 · 价格行为交易入门课</title>
-<meta name="description" content="价格行为第七课：窄通道与宽通道怎么分（看回调深浅），以及各自该怎么做。">
+<meta name="description" content="从回调、K 线重叠和边界斜率观察窄通道与宽通道；百分比仅作课程练习参考。">
 <link rel="stylesheet" href="../assets/css/site.css">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://price-action-course.vercel.app/lessons/lesson-07.html">
@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="价格行为交易 · 入门课">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:title" content="第七课：通道——窄 vs 宽 · 价格行为交易入门课">
-<meta property="og:description" content="价格行为第七课：窄通道与宽通道怎么分（看回调深浅），以及各自该怎么做。">
+<meta property="og:description" content="从回调、K 线重叠和边界斜率观察窄通道与宽通道；百分比仅作课程练习参考。">
 <meta property="og:url" content="https://price-action-course.vercel.app/lessons/lesson-07.html">
 <meta property="og:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
 <meta property="og:image:width" content="1200">
@@ -21,7 +21,7 @@
 <meta property="og:image:alt" content="价格行为交易 · 入门课">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="第七课：通道——窄 vs 宽 · 价格行为交易入门课">
-<meta name="twitter:description" content="价格行为第七课：窄通道与宽通道怎么分（看回调深浅），以及各自该怎么做。">
+<meta name="twitter:description" content="从回调、K 线重叠和边界斜率观察窄通道与宽通道；百分比仅作课程练习参考。">
 <meta name="twitter:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
 <script src="../assets/js/theme.js"></script>
 </head>
@@ -30,21 +30,21 @@
 <div class="wrap" id="main" tabindex="-1">
   <header class="hero">
     <p class="eyebrow">第七课 · 趋势的“坡道”</p>
-    <h1>通道：<br>窄的和宽的，做法完全不同</h1>
-    <p class="lede">通道就是带着斜率的趋势——价格在两条大致平行的线之间往上（或往下）走。但通道有<strong>窄</strong>有<strong>宽</strong>，认错了，做法就全反了。这一课教你一眼分辨，并知道各自怎么做。</p>
+    <h1>通道：<br>观察窄与宽的差别</h1>
+    <p class="lede">通道是带斜率的趋势结构。窄通道通常回调较浅、重叠较少；宽通道回调较深、双向交易更多。两者之间没有固定分界线。</p>
     <div id="heroCandles"></div>
   </header>
 
   <section id="s1" class="reveal">
     <div class="kicker"><span class="num">1</span> 窄 vs 宽，看回调</div>
-    <h2>区别只有一个关键：回调有多深</h2>
+    <h2>回调深浅是线索，不是唯一标准</h2>
     <ul class="clean muted">
-      <li><span class="hl">窄通道（紧凑通道）</span>：回调很浅（不到 30%），坡很陡，K 线连贯、几乎不重叠。本质是<strong>很强的趋势</strong>。</li>
-      <li><span class="hl">宽通道</span>：回调很深（50%以上），坡缓，K 线上下重叠多、来回锯齿。本质更像一个<strong>倾斜的区间</strong>。</li>
+      <li><span class="hl">窄通道（紧凑通道）</span>：回调相对较浅，K 线较连贯、重叠较少，通常保留较强的单向特征。</li>
+      <li><span class="hl">宽通道</span>：回调相对较深，K 线重叠和双向摆动更多，常可视为带斜率的交易区间。</li>
     </ul>
     <div class="callout">
-      <div class="t">别用斜率/宽度当主要标准</div>
-      新手容易凭“看起来陡不陡、宽不宽”来判断。更靠谱的主判据是<strong>最近一波回调的深浅</strong>——浅=窄，深=宽。
+      <div class="t">本课百分比是练习刻度</div>
+      “回调小于 30%”和“大于 50%”只用于本页互动练习，帮助建立相对深浅的感觉，并非 Brooks 体系或市场通用的硬阈值。实际判断还要看重叠、连续性和边界测试。
     </div>
   </section>
 
@@ -63,11 +63,11 @@
   </section>
 
   <footer>
-    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 这一课你已经拿下</div>
+    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 本课要点</div>
     <ul>
-      <li><strong>窄通道</strong>=浅回调、强趋势 → <strong>只顺势</strong>，别指望便宜入场、更别逆势；</li>
-      <li><strong>宽通道</strong>=深回调、像倾斜区间 → 可在<strong>下轨附近顺势</strong>找机会、上轨附近别追；</li>
-      <li>分辨主看<strong>回调深浅</strong>，不是看坡陡不陡。</li>
+      <li><strong>窄通道</strong>通常回调浅、重叠少，逆势计划需要更强证据；</li>
+      <li><strong>宽通道</strong>通常回调深、双向摆动多，边界比中部更容易定义风险；</li>
+      <li>分辨时结合<strong>回调、重叠、连续性和边界测试</strong>，不要套固定百分比。</li>
     </ul></div>
     <div class="next">
       <a class="btn ghost" href="../lessons/lesson-06.html">← 上一课</a>
@@ -75,11 +75,12 @@
       <a class="btn" href="../lessons/lesson-08.html">下一课 →</a>
     </div>
     <div class="follow">
+      <a href="../references.html">参考资料与适用边界</a>
       <span class="follow-label">关注作者 · 课程持续更新</span>
       <a href="https://x.com/Formulasearch" target="_blank" rel="noopener noreferrer" aria-label="在 X 上关注 @Formulasearch"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@Formulasearch</a>
       <a href="https://rzcthink.top/" target="_blank" rel="noopener noreferrer" aria-label="访问 Philthink（rzcthink.top）"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>Philthink</a>
     </div>
-    <p class="disclaim">本课件仅用于交易知识的入门学习，不构成任何投资建议。真实交易有风险，任何方法都需在模拟盘充分练习并验证后再考虑投入极小资金。颜色、示例价格均为教学演示，非真实行情。</p>
+    <p class="disclaim">本课只用于交易知识学习，不构成投资建议。图表和价格均为教学演示，未计入滑点、手续费、流动性与真实执行差异；历史回放和模拟结果不能代表未来实盘表现。</p>
   </footer>
 </div>
 
@@ -104,36 +105,36 @@
   PA.widgets.annotatedChart(document.getElementById("w-chart"), {
     scenes:[
       { name:"窄通道（强趋势）", bars:tight, annotations:chanLines(tight),
-        note:'<span class="lead">窄通道：回调很浅、K 线连贯、坡陡。</span> 这是很强的趋势。<strong>✔ 做法：</strong>只顺势，别等便宜的深回调（往往等不到），更别去猜顶逆势。' },
+        note:'<span class="lead">窄通道示例：回调较浅、K 线较连贯、重叠较少。</span> 逆势交易面对较强的延续风险；顺势交易也仍需明确止损和退出。' },
       { name:"宽通道（像倾斜区间）", bars:broad, annotations:chanLines(broad),
-        note:'<span class="lead">宽通道：回调很深、上下重叠、来回锯齿。</span> 本质是倾斜的区间。<strong>✔ 做法：</strong>在<strong>下轨附近</strong>顺势找机会，<strong>上轨附近</strong>别追；<strong>✘ 亏法：</strong>把它当窄通道死追，或在上轨全力做空。' }
+        note:'<span class="lead">宽通道示例：回调较深、上下重叠、双向摆动较多。</span> 边界附近较容易定义失效位置，但通道可能突破，也可能继续扩大。' }
     ]
   });
 
   PA.widgets.quizChoice(document.getElementById("w-q1"), {
-    q:"① 区分窄通道和宽通道，最主要看什么？",
+    q:"① 区分窄通道和宽通道时，应综合观察什么？",
     options:[
-      { t:"最近一波回调的深浅", ok:true, why:"对！浅回调（<30%）=窄通道，深回调（>50%）=宽通道。这是主判据。" },
+      { t:"回调深浅、K 线重叠和走势连续性", ok:true, why:"这些特征需要合并观察。30% 和 50% 只是本课练习刻度，不是通用定义。" },
       { t:"通道线看起来陡不陡", why:"斜率只能当辅助描述，不能当主判据——容易看走眼。" },
       { t:"K 线是红的多还是绿的多", why:"和颜色无关。看的是回调结构，不是涨跌颜色。" }
     ]
   });
   PA.widgets.quizChoice(document.getElementById("w-q2"), {
-    q:"② 在一个<strong>窄通道（强趋势）</strong>里，最容易亏的做法是？",
+    q:"② 在一个<strong>窄通道</strong>里，哪种计划需要额外谨慎？",
     options:[
-      { t:"在上沿全力逆势做空（把它当区间）", ok:true, why:"对！窄通道是强趋势，逆势做空最容易被一路碾压。这是典型亏法。" },
-      { t:"顺着趋势方向、浅回调时进场", why:"这正是窄通道的正确做法，不是亏法。" },
-      { t:"趋势太强、看不懂就空仓", why:"看不懂就不做，是稳妥选择，不是亏法。" }
+      { t:"仅因到达上沿就重仓逆势做空", ok:true, why:"窄通道可能持续推进，边界触及不等于反转。逆势计划需要反转结构和清楚的风险上限。" },
+      { t:"等待顺势回调并定义失效点", why:"这是可评估的计划，但同样没有成功保证。" },
+      { t:"结构不清楚时暂不交易", why:"不交易也是风险管理选择。" }
     ]
   });
   PA.widgets.fillBlank(document.getElementById("w-fill"), {
     prompt:"③ 填空",
     parts:[
-      "回调浅、坡陡、少重叠的是", { a:["窄通道","窄","紧凑通道"] }, "，本质是强趋势，只做",
-      { a:["顺势","顺"] }, "；回调深、锯齿、像倾斜区间的是", { a:["宽通道","宽"] }, "。"
+      "回调较浅、少重叠的是", { a:["窄通道","窄","紧凑通道"] }, "；评估时还要观察走势",
+      { a:["连续性","连续"] }, "；回调较深、双向摆动较多的是", { a:["宽通道","宽"] }, "。"
     ],
-    okText:"✓ 全对！窄=强趋势只顺势；宽=倾斜区间做两边。",
-    revealText:"答案：<strong>窄通道</strong>（只做<strong>顺势</strong>）、<strong>宽通道</strong>。"
+    okText:"答案正确：用相对特征识别通道，不把练习阈值当成市场定律。",
+    revealText:"答案：<strong>窄通道</strong>、走势<strong>连续性</strong>、<strong>宽通道</strong>。"
   });
 
   PA.initLesson({ n:7, sections:[ {id:"s1",label:"窄vs宽"},{id:"s2",label:"看图"},{id:"s3",label:"随堂自测"} ] });

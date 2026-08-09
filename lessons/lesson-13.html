@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十三课：铁丝网与无交易环境 · 价格行为交易入门课</title>
+<meta name="description" content="识别铁丝网（Barbwire）这类紧凑重叠的低质量环境：为什么这里的信号不可用，止损为什么容易被扫，以及什么条件下才重新值得评估。">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://price-action-course.vercel.app/lessons/lesson-13.html">
+<meta name="theme-color" content="#B0761A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="价格行为交易 · 入门课">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="第十三课：铁丝网与无交易环境 · 价格行为交易入门课">
+<meta property="og:description" content="识别铁丝网（Barbwire）这类紧凑重叠的低质量环境：为什么这里的信号不可用，止损为什么容易被扫，以及什么条件下才重新值得评估。">
+<meta property="og:url" content="https://price-action-course.vercel.app/lessons/lesson-13.html">
+<meta property="og:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="价格行为交易 · 入门课">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第十三课：铁丝网与无交易环境 · 价格行为交易入门课">
+<meta name="twitter:description" content="识别铁丝网（Barbwire）这类紧凑重叠的低质量环境：为什么这里的信号不可用，止损为什么容易被扫，以及什么条件下才重新值得评估。">
+<meta name="twitter:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<script src="../assets/js/theme.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+
+<div class="wrap" id="main" tabindex="-1">
+  <header class="hero">
+    <p class="eyebrow">第十三课 · 阶段三 · 突破怎么看</p>
+    <h1>铁丝网：<br>这里不该有交易。</h1>
+    <p class="lede">前面几课都在教怎么找机会。这一课相反——教你认出<strong>没有机会的地方</strong>。价格挤成一团、反复穿来穿去时，图上依然会冒出各种「信号」，但它们大多是噪声。看懂这个环境，比多学一个形态更省钱。</p>
+    <div id="heroCandles"></div>
+  </header>
+
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 这是什么</div>
+    <h2>挤成一团、来回穿梭的横盘</h2>
+    <p class="muted">Brooks 用<strong>铁丝网（Barbwire）</strong>形容这样一段行情：几根 K 线高度重叠、挤在很窄的范围里，其中还夹着十字星或很小的实体。名字来自那种带刺的铁丝——看着能过去，真去碰就会被划伤。</p>
+    <p class="muted">判断时可以问自己三句话：</p>
+    <ul class="clean muted">
+      <li><strong>是不是紧凑的横向整理？</strong>——价格几乎没有净移动。</li>
+      <li><strong>是不是来回穿梭、均线走平纠缠？</strong>——价格反复越过均线，均线本身没有斜率。</li>
+      <li><strong>相邻几根的高低点是不是几乎重叠？</strong>——后一根几乎待在前一根的范围里。</li>
+    </ul>
+    <div class="callout">
+      <div class="t">定性描述是主，量化阈值是辅</div>
+      经典描述是定性的：<strong>三根以上大幅重叠，且至少有一根十字星或极小实体</strong>。有人会把它操作化，比如拿这段区间的宽度去比近期的平均波段高度，明显偏小（例如不到四分之一）就更倾向判定为铁丝网。这类数字是<strong>自定的筛选口径</strong>，不同品种、周期需要自己校准，不要当成通用标准。
+    </div>
+  </section>
+
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 对比看</div>
+    <h2>普通交易区间 vs 铁丝网</h2>
+    <p class="muted">两者都是横盘，差别在于<strong>还剩多少空间可用</strong>。切换看一下。</p>
+    <div id="w-cmp"></div>
+    <p class="muted">第 10 课讲过区间里「在边界做、中间不动手」。铁丝网的问题是：它<strong>本身就基本等于中间</strong>——边界之间的距离已经小到装不下一笔像样的交易。</p>
+  </section>
+
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 为什么信号不能用</div>
+    <h2>同样的形态，在这里不算数</h2>
+    <p class="muted">铁丝网里照样会出现内包棒、外包棒、十字星，也数得出 H1、H2。问题不在形态本身，而在于<strong>它们所处的环境提供不了后续空间</strong>。</p>
+    <ul class="clean muted">
+      <li><span class="hl">单根十字星或内包棒</span>：在这里几乎没有独立含义——周围全是同样大小的重叠棒。</li>
+      <li><span class="hl">外包棒</span>：在这里更像是<strong>把好几根压缩进一根</strong>，等于一根更大的震荡棒，两端都不适合追。</li>
+      <li><span class="hl">H1/H2、L1/L2 计数</span>：第 6 课强调过上下文比编号重要，这里正是上下文不成立的典型情况。</li>
+    </ul>
+    <div class="callout">
+      <div class="t">最容易亏钱的做法：在这里追普通突破</div>
+      在这段小范围的<strong>高点上方买入</strong>、<strong>低点下方卖出</strong>，是铁丝网里风险最高的操作。价格本来就在反复穿越这块区域，突破往往只多走几个跳动就回头。同一个道理也让止损很难放：<strong>边界外一两跳的止损几乎注定被扫</strong>，而放到结构外面又会让亏损大到不值得——两头都不合适，通常说明这笔交易根本不该做。
+    </div>
+  </section>
+
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 什么时候重新值得看</div>
+    <h2>要么离开中部，要么等它结束</h2>
+    <p class="muted">「不交易」是默认值，不是永久判决。下面两张图对比了常见的错误做法和一种合理的等待结果。</p>
+    <div id="w-exit"></div>
+    <p class="muted">值得重新评估的情况大致有三类，每一条都要能说出具体理由：</p>
+    <ul class="clean muted">
+      <li><strong>价格离开中部、回到清晰的区间边界</strong>——这时用的是第 10 课的区间读法，而不是铁丝网里的信号。</li>
+      <li><strong>铁丝网之后出现尖峰级突破并有跟随</strong>——连续强趋势棒冲出这块区域，环境本身已经改变。</li>
+      <li><strong>出现突破失败或失败的失败</strong>——第 12 课的结构，在边界附近才有意义。</li>
+    </ul>
+    <div class="callout">
+      <div class="t">说不出理由，就是不该做</div>
+      这些是<strong>例外</strong>，不是新的入场清单。例外的用法是：先默认不交易，再逐条检查有没有哪一条明确成立，并且说得出它成立在哪里。说不清楚就维持默认——在这种环境里，<strong>空仓等待本身就是一个完整的决定</strong>。
+    </div>
+  </section>
+
+  <section id="s5" class="reveal">
+    <div class="kicker"><span class="num">5</span> 随堂自测</div>
+    <h2>认出它，然后什么都不做</h2>
+    <div id="w-q1"></div>
+    <div id="w-q2" style="margin-top:16px"></div>
+    <div id="w-fill" style="margin-top:16px"></div>
+  </section>
+
+  <footer>
+    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 本课要点</div>
+    <ul>
+      <li>铁丝网 = 紧凑、高度重叠、夹着十字星或极小实体的横盘；定性描述是主，量化阈值需要自己校准；</li>
+      <li>它基本等同于「区间中部」——边界之间的空间已经装不下一笔有回报的交易；</li>
+      <li>内包棒、外包棒、十字星和 H1/H2 计数在这里都不成立，因为环境提供不了后续空间；</li>
+      <li>最危险的是在这里追普通突破；止损放近会被扫、放远不划算，两头不合适就说明不该做；</li>
+      <li>重新值得评估的情况：回到清晰边界、尖峰级突破带跟随、突破失败或失败的失败——每条都要说得出理由。</li>
+    </ul></div>
+    <div class="next">
+      <a class="btn ghost" href="../lessons/lesson-12.html">← 上一课</a>
+      <a class="btn ghost" href="../index.html">课程首页</a>
+      <a class="btn" href="../lessons/lesson-14.html">下一课 →</a>
+    </div>
+    <div class="follow">
+      <a href="../references.html">参考资料与适用边界</a>
+      <span class="follow-label">关注作者 · 课程持续更新</span>
+      <a href="https://x.com/Formulasearch" target="_blank" rel="noopener noreferrer" aria-label="在 X 上关注 @Formulasearch"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@Formulasearch</a>
+      <a href="https://rzcthink.top/" target="_blank" rel="noopener noreferrer" aria-label="访问 Philthink（rzcthink.top）"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>Philthink</a>
+    </div>
+    <p class="disclaim">本课只用于交易知识学习，不构成投资建议。图表和价格均为教学演示，未计入滑点、手续费、流动性与真实执行差异；历史回放和模拟结果不能代表未来实盘表现。</p>
+  </footer>
+</div>
+
+<script src="../assets/vendor/klinecharts.min.js"></script>
+<script src="../assets/js/candles.js"></script>
+<script src="../assets/js/shell.js"></script>
+<script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+  PA.mountPlayground(document.getElementById("heroCandles"), { ma:[7,30] });
+
+  var acc = PA.cssv("--accent"), red = PA.cssv("--hue-red"), soft = PA.cssv("--ink-soft");
+
+  // ---------- 普通交易区间：边界清晰，空间够 ----------
+  var normalTR = [
+    [46,51.6,45.4,50.8],[50.8,51.4,47.6,48.2],[48.2,49,44.6,45.2],
+    [45.2,48.4,44.8,48],[48,51.8,47.6,51.2],[51.2,51.7,48.4,48.8],
+    [48.8,49.2,44.9,45.4],[45.4,49,45.1,48.6],[48.6,51.5,48.2,50.9],
+    [50.9,51.3,47.8,48.4],[48.4,48.8,45,45.6]
+  ];
+
+  // ---------- 铁丝网：前 5 根给出大区间背景，后 10 根挤在中部 ----------
+  var wireHead = [
+    [46,50.8,45.6,50.2],[50.2,50.9,47.2,47.6],[47.6,48.2,44.8,45.4],
+    [45.4,48.6,45.1,48.2],[48.2,50.6,47.8,48.4],
+    [48.4,48.9,47.4,48.2],[48.2,48.7,47.6,47.8],[47.8,48.8,47.3,48.6],
+    [48.6,48.9,47.7,47.9],[47.9,48.6,47.5,48.5],[48.5,48.8,47.6,47.7],
+    [47.7,48.7,47.2,48.3],[48.3,48.6,47.5,47.6],[47.6,48.5,47.4,48.4],
+    [48.4,48.7,47.3,47.5]
+  ];
+  var wireZone = { type:"zone", from:47.2, to:48.9, label:"铁丝网", color:acc };
+
+  PA.widgets.annotatedChart(document.getElementById("w-cmp"), {
+    ema:20,
+    scenes:[
+      { name:"① 普通交易区间", bars:normalTR,
+        annotations:[
+          { type:"hline", value:51.8, label:"上沿", color:acc },
+          { type:"hline", value:44.6, label:"下沿", color:acc }
+        ],
+        note:'<span class="lead">上下沿清楚，来回的波段有实实在在的高度。</span> 价格在边界之间走完整程，中间留得下止损，也留得下目标——这是第 10 课讲的那种可用区间。' },
+
+      { name:"② 铁丝网", bars:wireHead,
+        annotations:[
+          { type:"hline", value:50.9, label:"上沿", color:soft },
+          { type:"hline", value:44.8, label:"下沿", color:soft },
+          wireZone
+        ],
+        note:'<span class="lead">后面十根挤成一条带子，正好卡在大区间的中部。</span> 实体极小、高低点几乎重叠、均线在里面走平。上下沿还在，但价格离两边都很远——这里既没有边界可用，也没有方向可跟。' }
+    ]
+  });
+
+  // ---------- 中部追突破 vs 等它结束 ----------
+  PA.widgets.annotatedChart(document.getElementById("w-exit"), {
+    ema:20,
+    scenes:[
+      { name:"① 在中部追突破", bars:wireHead.concat([
+          [47.5,49.4,47.4,49.2],[49.2,49.5,47.6,47.8],[47.8,48.4,47.2,47.4]
+        ]),
+        annotations:[ wireZone, { type:"label", i:15, value:50.2, text:"追突破", color:red } ],
+        note:'<span class="lead">价格探出铁丝网上沿一点点，看起来像突破。</span> 下一根就收了回来，之后重新钻回带子里。这类小幅越界在铁丝网里非常常见——止损放在带子外一两跳会被扫，放到结构外面又和这点空间不成比例。' },
+
+      { name:"② 等它自己结束", bars:wireHead.concat([
+          [47.5,51.2,47.4,51],[51,53.4,50.8,53],[53,55,52.7,54.6]
+        ]),
+        annotations:[ wireZone, { type:"label", i:15, value:52.4, text:"尖峰突破", color:acc } ],
+        note:'<span class="lead">连续强趋势棒一次性冲出带子和区间上沿，并且有跟随。</span> 这时环境已经变了，可以按突破那一课的方法重新评估——但入场依然要有自己的触发条件和失效位置，而不是因为「憋了很久」就进场。' }
+    ]
+  });
+
+  // ---------- 随堂自测 ----------
+  PA.widgets.quizChoice(document.getElementById("w-q1"), {
+    q:"① 图上连续十几根 K 线高度重叠、实体很小，夹着几根十字星，位置在当日区间中部。这时比较合适的默认处理是？",
+    options:[
+      { t:"判定为铁丝网，默认不交易，等环境改变", ok:true, why:"紧凑重叠 + 小实体 + 处于中部，正是铁丝网的典型样子。默认不交易并不是消极，而是承认这个环境提供不了足够的空间和信息。" },
+      { t:"数出 H1、H2，按回调计数入场", why:"第 6 课讲过上下文比编号更重要。铁丝网正是上下文不成立的情况——这里的计数没有可跟随的趋势作依托。" },
+      { t:"等一根内包棒出现就顺势突破入场", why:"内包棒在铁丝网里几乎没有独立含义，周围全是同样大小的重叠棒，它并不比别的棒提供更多信息。" }
+    ]
+  });
+  PA.widgets.quizChoice(document.getElementById("w-q2"), {
+    q:"② 在铁丝网里，为什么「把止损放在这段小范围外面一两跳」是个糟糕的方案？",
+    options:[
+      { t:"价格本来就在反复穿越这块区域，这种止损几乎注定被扫", ok:true, why:"铁丝网的定义就是价格来回穿梭。贴着边界的止损会被日常波动打掉；而放到结构外面，亏损又和这点空间不成比例——两头都不合适，通常说明这笔交易不该做。" },
+      { t:"止损设得越近越安全，这个方案其实很好", why:"止损距离近只是单笔亏损小，不等于安全。如果这个位置会被正常波动触及，结果是频繁的小额亏损累积。" },
+      { t:"因为铁丝网里不需要设止损", why:"任何交易都需要预先定好失效条件。这里的问题不是要不要止损，而是没有一个合适的位置可放。" }
+    ]
+  });
+  PA.widgets.fillBlank(document.getElementById("w-fill"), {
+    prompt:"③ 填空",
+    parts:[
+      "铁丝网指的是紧凑、高度", { a:["重叠"], w:80 }, "、夹着十字星或极小实体的横盘，位置通常在区间的",
+      { a:["中部","中间"], w:80 }, "。",
+      "　在这里风险最高的做法，是追一次普通的", { a:["突破"], w:80 }, "。"
+    ],
+    okText:"✓ 全对。认出这三个特征，剩下要做的事就是等。",
+    revealText:"答案：高度<strong>重叠</strong> · 位于区间<strong>中部</strong> · 最危险的是追普通<strong>突破</strong>。"
+  });
+
+  PA.initLesson({
+    n:13,
+    sections:[
+      {id:"s1", label:"这是什么"},
+      {id:"s2", label:"对比看"},
+      {id:"s3", label:"信号为何失效"},
+      {id:"s4", label:"何时再看"},
+      {id:"s5", label:"随堂自测"}
+    ]
+  });
+})();
+</script>
+</body>
+</html>

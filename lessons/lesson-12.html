@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十二课：突破失败与突破测试 · 价格行为交易入门课</title>
+<meta name="description" content="突破失败、突破测试与「失败的失败」怎么识别：看突破棒的质量、回踩到哪里、以及价格最后站在边界的哪一侧。">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://price-action-course.vercel.app/lessons/lesson-12.html">
+<meta name="theme-color" content="#B0761A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="价格行为交易 · 入门课">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="第十二课：突破失败与突破测试 · 价格行为交易入门课">
+<meta property="og:description" content="突破失败、突破测试与「失败的失败」怎么识别：看突破棒的质量、回踩到哪里、以及价格最后站在边界的哪一侧。">
+<meta property="og:url" content="https://price-action-course.vercel.app/lessons/lesson-12.html">
+<meta property="og:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="价格行为交易 · 入门课">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第十二课：突破失败与突破测试 · 价格行为交易入门课">
+<meta name="twitter:description" content="突破失败、突破测试与「失败的失败」怎么识别：看突破棒的质量、回踩到哪里、以及价格最后站在边界的哪一侧。">
+<meta name="twitter:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<script src="../assets/js/theme.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+
+<div class="wrap" id="main" tabindex="-1">
+  <header class="hero">
+    <p class="eyebrow">第十二课 · 阶段三 · 突破怎么看</p>
+    <h1>突破失败，<br>和失败的失败。</h1>
+    <p class="lede">上一课把突破分成真假两类。这一课往后看一步：突破<strong>失败</strong>之后，行情往往还没结束。价格可能回来测试边界，也可能让失败本身再失败一次——后者常被视为更值得关注的结构。</p>
+    <div id="heroCandles"></div>
+  </header>
+
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 越界只是开始</div>
+    <h2>突破之后的几根，信息量更大</h2>
+    <p class="muted">第 11 课说过，越过边界只是第一步。这一课把「之后」拆开：一次突破尝试，通常会落到下面三种结局之一。</p>
+    <ul class="clean muted">
+      <li><span class="hl">突破失败</span>：越界后没有跟进，价格<strong>回到原来的结构里</strong>。</li>
+      <li><span class="hl">突破测试</span>：价格回到<strong>被突破的边界附近</strong>，然后守住，朝突破方向继续。</li>
+      <li><span class="hl">失败的失败</span>：突破先失败了，但<strong>这次失败自己也没走成</strong>，价格重新回到最初的突破方向。</li>
+    </ul>
+    <div class="callout">
+      <div class="t">「区间里多数突破会失败」是经验法则</div>
+      Brooks 常用「约八成」来描述交易区间里突破尝试的失败倾向，也用类似说法描述趋势中的反转尝试。这类数字是<strong>方向性的经验判断</strong>，不是可直接套用的统计结论——具体比例取决于区间怎么定义、什么品种、什么周期和多大样本。本课把它当成「默认怀疑突破」的态度，而不是概率参数。
+    </div>
+  </section>
+
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 形态图鉴</div>
+    <h2>点开看：突破之后的五种样子</h2>
+    <p class="muted">左边点一个看一个。先看<strong>突破棒本身</strong>强不强，再看<strong>后面几根</strong>怎么收。</p>
+    <div id="w-gal"></div>
+  </section>
+
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 突破测试</div>
+    <h2>回踩到哪里，算不算守住</h2>
+    <p class="muted">突破之后价格常常回头，这叫<strong>突破测试</strong>。问题是：回到哪里算正常测试，回到哪里说明突破没成？</p>
+    <div id="w-test"></div>
+    <div class="callout">
+      <div class="t">测试位是一个区域，不是一条精确的线</div>
+      常被提到的测试位有几个：<strong>突破点本身</strong>、<strong>突破棒的低点</strong>（向上突破时）、<strong>突破棒前一棒的高点</strong>。它们通常挨得很近，实际形成一个小区域。把它当区域看，比纠结某个具体价位更实用——但价格短暂穿过区域也不能立刻判定失败，仍要看收盘和后续。
+    </div>
+  </section>
+
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 失败的失败</div>
+    <h2>为什么这个结构常被看重</h2>
+    <p class="muted">「失败的失败」听起来绕，但过程很直白：价格突破 → 突破失败、跌回区间 → 这次下跌也没走成，价格又涨回突破方向。</p>
+    <div id="w-ff"></div>
+    <p class="muted">它之所以受关注，是因为<strong>两拨人先后被证伪</strong>：追第一次突破的人在失败时离场，反手做失败突破的人在价格回头时又被套住。两边的离场动作可能推动原方向走得更远。</p>
+    <div class="callout">
+      <div class="t">看清结构，不等于可以进场</div>
+      「失败的失败」通常按<strong>突破回踩</strong>或<strong>二次入场</strong>来处理（第 6 课的 H2/L2 计数、第 20 课的二次入场会展开）。识别出结构只是第一步——入场仍然需要明确的触发条件、失效位置和回报空间，缺一样就是没有计划的交易。
+    </div>
+  </section>
+
+  <section id="s5" class="reveal">
+    <div class="kicker"><span class="num">5</span> 随堂自测</div>
+    <h2>分清失败、测试与失败的失败</h2>
+    <div id="w-q1"></div>
+    <div id="w-q2" style="margin-top:16px"></div>
+    <div id="w-fill" style="margin-top:16px"></div>
+  </section>
+
+  <footer>
+    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 本课要点</div>
+    <ul>
+      <li>突破失败 = 越界后没有跟进、价格回到原结构；「区间里多数突破会失败」是经验法则，不是固定比例；</li>
+      <li>突破测试的常见位置——突破点、突破棒低点、前一棒高点——挨得很近，应当作区域看；</li>
+      <li>「失败的失败」是失败突破自己又失败，价格重回原突破方向，通常按突破回踩或二次入场处理；</li>
+      <li>能叫出结构的名字不等于可以下单；触发条件、失效位置和回报空间仍要单独成立。</li>
+    </ul></div>
+    <div class="next">
+      <a class="btn ghost" href="../lessons/lesson-11.html">← 上一课</a>
+      <a class="btn ghost" href="../index.html">课程首页</a>
+      <a class="btn" href="../lessons/lesson-13.html">下一课 →</a>
+    </div>
+    <div class="follow">
+      <a href="../references.html">参考资料与适用边界</a>
+      <span class="follow-label">关注作者 · 课程持续更新</span>
+      <a href="https://x.com/Formulasearch" target="_blank" rel="noopener noreferrer" aria-label="在 X 上关注 @Formulasearch"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@Formulasearch</a>
+      <a href="https://rzcthink.top/" target="_blank" rel="noopener noreferrer" aria-label="访问 Philthink（rzcthink.top）"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>Philthink</a>
+    </div>
+    <p class="disclaim">本课只用于交易知识学习，不构成投资建议。图表和价格均为教学演示，未计入滑点、手续费、流动性与真实执行差异；历史回放和模拟结果不能代表未来实盘表现。</p>
+  </footer>
+</div>
+
+<script src="../assets/vendor/klinecharts.min.js"></script>
+<script src="../assets/js/candles.js"></script>
+<script src="../assets/js/shell.js"></script>
+<script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+  PA.mountPlayground(document.getElementById("heroCandles"), { ma:[7,30] });
+
+  var acc = PA.cssv("--accent"), red = PA.cssv("--hue-red");
+
+  // ---------- 形态图鉴：突破之后的五种样子 ----------
+  PA.widgets.patternGallery(document.getElementById("w-gal"), {
+    items:[
+      { name:"强突破棒", tag:"突破棒质量",
+        bars:[[46,47.2,45.4,46.6],[46.6,47.5,46,46.4],[46.4,47.8,45.8,47.2],[47.2,50.2,47,50],
+              [50,53.5,49.8,53.2],[53.2,55.8,52.9,55.4],[55.4,57.6,55,57.2]],
+        desc:'突破棒<strong>实体大、影线短、收盘接近最高点</strong>，后面两根继续同向、重叠很少。这类突破棒本身提供的延续信息较多，但仍然只是证据之一——强突破棒之后照样可能失败。' },
+
+      { name:"弱突破棒", tag:"突破棒质量",
+        bars:[[46,47.2,45.4,46.6],[46.6,47.5,46,46.4],[46.4,47.8,45.8,47.2],[47.2,49.6,47,49.2],
+              [49.2,52.4,49,49.6],[49.6,50.2,48.2,48.6],[48.6,49,47.4,47.8]],
+        desc:'价格用<strong>长上影线刺破</strong>了边界，但收盘又回到边界下方，接下来也没有跟进。收盘位置比盘中最高点更能说明问题：<strong>穿过去了，却没站住</strong>。' },
+
+      { name:"突破失败", tag:"结局",
+        bars:[[46,47.2,45.4,46.6],[46.6,47.5,46,47.2],[47.2,50.6,47,50.4],
+              [50.4,50.8,48.6,48.9],[48.9,49.2,47,47.3],[47.3,47.6,45.6,45.9]],
+        desc:'突破棒收在边界上方，看起来成了；但<strong>下一根就反向吞没</strong>，把价格带回区间，之后继续下行。这就是典型的突破失败：越界之后缺少跟进。注意，失败本身不是反手做空的指令，反向交易同样需要自己的信号。' },
+
+      { name:"突破测试", tag:"结局",
+        bars:[[46,47.2,45.4,46.6],[46.6,47.5,46,47.2],[47.2,50.8,47,50.6],[50.6,52,50.3,51.6],
+              [51.6,51.9,50.1,50.4],[50.4,50.7,49.9,50.2],[50.2,52.4,50,52.1]],
+        desc:'突破后先走了一段，然后<strong>回踩到突破点附近</strong>。测试棒实体很小、没有明显跌回区间，随后价格重新走高。回踩守住会让失效位置更清楚，但这是事后才能确认的——测试当时并不知道它会守住。' },
+
+      { name:"失败的失败", tag:"结局",
+        bars:[[46,47.2,45.4,46.6],[46.6,47.5,46,47.2],[47.2,50.6,47,50.4],[50.4,50.8,48.4,48.7],
+              [48.7,49,47.6,48.2],[48.2,50.4,48,50.2],[50.2,52.6,50,52.3],[52.3,54.4,52,54]],
+        desc:'先突破，然后<strong>跌回区间</strong>（突破失败），但下跌只走了两根就停住，价格<strong>重新涨回突破方向</strong>并继续走高。突破失败的那次尝试自己失败了，所以叫「失败的失败」。' }
+    ]
+  });
+
+  // ---------- 突破测试：回踩到哪里 ----------
+  var head = [
+    [46,49.3,45.2,48.6],[48.6,49.4,47.1,47.5],[47.5,48.9,46.4,48.5],
+    [48.5,49.2,47.6,47.9],[47.9,49.1,47.3,48.9],
+    [48.9,52.8,48.7,52.4],                        // 5 突破棒
+    [52.4,54.2,52,53.8],[53.8,54.4,52.4,52.8],[52.8,53,50.2,50.6]
+  ];
+  var hold = head.concat([[50.6,51.2,49.7,51],[51,53.2,50.8,52.9],[52.9,55,52.6,54.7]]);
+  var fail = head.concat([[50.6,50.9,48.6,48.9],[48.9,49.2,47.4,47.7],[47.7,48,46.4,46.7]]);
+  var zone = { type:"zone", from:48.6, to:49.4, label:"测试区", color:acc };
+
+  PA.widgets.annotatedChart(document.getElementById("w-test"), {
+    scenes:[
+      { name:"① 测试区在哪", bars:head,
+        annotations:[ zone, {type:"label", i:5, value:53.2, text:"突破棒", color:acc} ],
+        note:'<span class="lead">突破走了两根，现在价格正在回头。</span> 浅色带是几个常见测试位挤在一起形成的区域：突破点（区间上沿）、突破棒的低点、突破棒前一棒的高点。接下来两种结局，切到 ② 和 ③ 对比。' },
+
+      { name:"② 测试守住", bars:hold,
+        annotations:[ zone, {type:"label", i:9, value:48.8, text:"守住", color:acc} ],
+        note:'<span class="lead">回踩探进测试区上沿就被接住，收盘仍在区域上方。</span> 随后价格重新走高。这个测试给出了较清楚的失效参考位——如果后面再跌破这里，原来的判断就要重做。' },
+
+      { name:"③ 测试失败", bars:fail,
+        annotations:[ zone, {type:"label", i:9, value:47.8, text:"跌回区间", color:red} ],
+        note:'<span class="lead">同样的突破，回踩这次直接穿过测试区，收在区间里面。</span> 突破没有守住，之前的向上判断失效。价格回到区间，就该按区间的读法重新看（第 10 课），而不是继续等突破兑现。' }
+    ]
+  });
+
+  // ---------- 失败的失败 ----------
+  PA.widgets.annotatedChart(document.getElementById("w-ff"), {
+    bars:[
+      [46,49.3,45.2,48.6],[48.6,49.4,47.1,47.5],[47.5,48.9,46.4,48.5],
+      [48.5,49.2,47.6,47.9],[47.9,49.1,47.3,48.9],
+      [48.9,51.8,48.7,51.4],                        // 5 突破
+      [51.4,51.7,49,49.3],                          // 6 跌回区间
+      [49.3,49.6,47.8,48.1],                        // 7 突破失败在走
+      [48.1,49.8,47.9,49.6],                        // 8 又涨回来
+      [49.6,52,49.4,51.8],                          // 9 重回突破方向
+      [51.8,53.8,51.5,53.5],[53.5,55.4,53.2,55.1]
+    ],
+    annotations:[
+      { type:"hline", value:49.4, label:"区间上沿", color:acc },
+      { type:"label", i:5, value:52.6, text:"突破", color:acc },
+      { type:"label", i:7, value:47.2, text:"突破失败", color:red },
+      { type:"label", i:9, value:53.2, text:"失败的失败", color:acc }
+    ],
+    note:'<span class="lead">三步看：突破 → 跌回区间（失败）→ 重新涨过上沿（失败的失败）。</span> 判断的关键不是中间跌得多深，而是<strong>价格最后站在边界的哪一侧</strong>。这张图是教学示例；真实行情里第三步同样可能不出现。'
+  });
+
+  // ---------- 随堂自测 ----------
+  PA.widgets.quizChoice(document.getElementById("w-q1"), {
+    q:"① 价格向上突破区间上沿，下一根跌回区间，再往后几根又重新收在上沿之上。这段过程叫什么？",
+    options:[
+      { t:"失败的失败——突破失败本身也没走成", ok:true, why:"突破先失败，随后这次失败又被逆转，价格重回原突破方向。通常按突破回踩或二次入场框架处理，但仍要有自己的触发条件和失效位置。" },
+      { t:"普通的突破测试", why:"突破测试是价格回到边界附近就守住；这里价格已经明确跌回区间内部，然后才重新出来，属于失败之后的再逆转。" },
+      { t:"区间中部的震荡，没有名字", why:"这段变化发生在区间边界上，而不是中部，边界的两次争夺正是这个结构的重点。" }
+    ]
+  });
+  PA.widgets.quizChoice(document.getElementById("w-q2"), {
+    q:"② 在一个交易区间里，价格用一根<strong>长影线、小实体</strong>的 K 线刺破上沿，收盘又回到区间内。比较稳妥的默认处理是？",
+    options:[
+      { t:"先不追突破，等测试或更清楚的结构再评估", ok:true, why:"收盘没站在边界外，突破棒质量也不足。区间里的这类刺破经常失败，默认怀疑、等下一步结构，比立刻追价更符合这一课的思路。" },
+      { t:"立刻按突破方向追多", why:"收盘已经回到区间内，缺少站稳的证据；这正是弱突破棒的典型样子。" },
+      { t:"立刻反手做空，因为突破失败了", why:"刺破失败提高了对突破的怀疑，但反向交易需要自己的信号、失效位置和回报空间，不能只凭一根失败棒。" }
+    ]
+  });
+  PA.widgets.fillBlank(document.getElementById("w-fill"), {
+    prompt:"③ 填空",
+    parts:[
+      "突破之后没有跟进、价格回到原结构，叫", { a:["突破失败","失败突破"], w:110 }, "；",
+      "价格回到被突破的边界附近再守住，叫突破", { a:["测试","回测","回踩"], w:80 }, "；",
+      "失败的尝试自己又失败、价格重回原突破方向，叫", { a:["失败的失败"], w:110 }, "。"
+    ],
+    okText:"✓ 全对。三者的差别只在一件事上：价格最后停在边界的哪一侧。",
+    revealText:"答案：<strong>突破失败</strong> · 突破<strong>测试</strong> · <strong>失败的失败</strong>。三者都描述突破之后的走向，区别在于价格最终站在边界的哪一侧。"
+  });
+
+  PA.initLesson({
+    n:12,
+    sections:[
+      {id:"s1", label:"越界只是开始"},
+      {id:"s2", label:"形态图鉴"},
+      {id:"s3", label:"突破测试"},
+      {id:"s4", label:"失败的失败"},
+      {id:"s5", label:"随堂自测"}
+    ]
+  });
+})();
+</script>
+</body>
+</html>

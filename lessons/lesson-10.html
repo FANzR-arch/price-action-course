@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>第十课：交易区间——高抛低吸 · 价格行为交易入门课</title>
-<meta name="description" content="价格行为第十课：交易区间怎么做。高抛低吸，在支撑阻力边界做反转、中间不动手；看图认边界、动手画出阻力线、随堂自测。">
+<meta name="description" content="认识交易区间的候选边界、中部与失败突破，并理解边界反转不是固定规则。">
 <link rel="stylesheet" href="../assets/css/site.css">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://price-action-course.vercel.app/lessons/lesson-10.html">
@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="价格行为交易 · 入门课">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:title" content="第十课：交易区间——高抛低吸 · 价格行为交易入门课">
-<meta property="og:description" content="价格行为第十课：交易区间怎么做。高抛低吸，在支撑阻力边界做反转、中间不动手；看图认边界、动手画出阻力线、随堂自测。">
+<meta property="og:description" content="认识交易区间的候选边界、中部与失败突破，并理解边界反转不是固定规则。">
 <meta property="og:url" content="https://price-action-course.vercel.app/lessons/lesson-10.html">
 <meta property="og:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
 <meta property="og:image:width" content="1200">
@@ -21,7 +21,7 @@
 <meta property="og:image:alt" content="价格行为交易 · 入门课">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="第十课：交易区间——高抛低吸 · 价格行为交易入门课">
-<meta name="twitter:description" content="价格行为第十课：交易区间怎么做。高抛低吸，在支撑阻力边界做反转、中间不动手。">
+<meta name="twitter:description" content="认识交易区间的候选边界、中部与失败突破，并理解边界反转不是固定规则。">
 <meta name="twitter:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
 <script src="../assets/js/theme.js"></script>
 </head>
@@ -32,53 +32,53 @@
   <header class="hero">
     <p class="eyebrow">第十课 · 阶段三 · 横盘怎么做</p>
     <h1>交易区间：<br>高抛低吸</h1>
-    <p class="lede">大部分时间，价格并不在明显趋势里，而是<strong>横着来回</strong>——这就是交易区间。区间里最稳的打法只有一句：<strong>高抛低吸</strong>，在边界做反转，中间不动手。</p>
+    <p class="lede">交易区间里，价格在大致水平的上下区域之间往返。边界附近通常比中部更容易定义失效点，但边界会移动，也会被有效突破；“高抛低吸”不是自动成立的交易指令。</p>
     <div id="heroCandles"></div>
   </header>
 
   <section id="s1" class="reveal">
     <div class="kicker"><span class="num">1</span> 什么是交易区间</div>
     <h2>价格横着来回的那一段</h2>
-    <p class="muted">交易区间＝价格被夹在<strong>支撑</strong>和<strong>阻力</strong>之间来回震荡，没有明显方向。它是行情里很常见的状态——大部分时间，市场都在区间里磨。</p>
+    <p class="muted">交易区间是价格在大致水平的<strong>支撑</strong>和<strong>阻力</strong>之间反复往返、暂时没有清楚方向的市场环境。</p>
     <ul class="clean muted">
-      <li>上边界＝<span class="hl">阻力</span>：价格几次冲到这附近，就被压了回来。</li>
-      <li>下边界＝<span class="hl">支撑</span>：价格几次砸到这附近，就被接了起来。</li>
-      <li>中间＝<strong>无人区</strong>：方向不明，谁进去都容易被来回打止损。</li>
+      <li>上边界＝<span class="hl">阻力</span>：过去几次上行在附近停止或转向。</li>
+      <li>下边界＝<span class="hl">支撑</span>：过去几次下行在附近停止或转向。</li>
+      <li>中部：离两个边界都较远，通常不容易设置清楚的失效点。</li>
     </ul>
     <div class="callout">
-      <div class="t">区间的本质：两边都有人守</div>
-      到了上沿，卖方就出手把价格压回去；到了下沿，买方就进场把价格托起来。所以<strong>边界＝反转的机会</strong>，<strong>中部＝没有优势的混沌区</strong>。
+      <div class="t">边界来自过去的反应</div>
+      上下边界来自过去的反应。价格再次到达时，可能反转、短暂越界，也可能转入趋势。<strong>边界是候选观察区</strong>；中部通常较难设置紧凑而清楚的失效点。
     </div>
   </section>
 
   <section id="s2" class="reveal">
-    <div class="kicker"><span class="num">2</span> 看图：边界在哪、怎么做</div>
-    <h2>点上面切换，看懂区间打法</h2>
-    <p class="muted">同一段区间行情，分三步看：先认出边界，再看高抛低吸的进出点，最后看清哪里是不该碰的中部。</p>
+    <div class="kicker"><span class="num">2</span> 看图：边界与中部</div>
+    <h2>用三个视角观察同一段区间</h2>
+    <p class="muted">先标出候选边界，再观察边界附近的反应，最后比较中部的风险定义为什么更困难。</p>
     <div id="w-chart"></div>
   </section>
 
   <section id="s3" class="reveal">
     <div class="kicker"><span class="num">3</span> 动手：找出边界</div>
     <h2>画出这个区间的阻力线</h2>
-    <p class="muted">在图上点一下，画出你认为的<strong>阻力</strong>——就是价格几次冲高、都被压回来的那条上沿。画完看看你找得准不准。</p>
+    <p class="muted">在图上点一下，画出价格多次停止上行或转向的<strong>阻力区域</strong>，再与预设区域比较。</p>
     <div id="w-draw"></div>
   </section>
 
   <section id="s4" class="reveal">
     <div class="kicker"><span class="num">4</span> 随堂自测</div>
-    <h2>在区间里，你该怎么做</h2>
+    <h2>检查位置与失效条件</h2>
     <div id="w-q1"></div>
     <div id="w-q2" style="margin-top:16px"></div>
     <div id="w-fill" style="margin-top:16px"></div>
   </section>
 
   <footer>
-    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 这一课你已经拿下</div>
+    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 本课要点</div>
     <ul>
       <li>交易区间＝价格在<strong>支撑与阻力之间横着来回</strong>，没有明显方向；</li>
-      <li>核心打法是<strong>高抛低吸</strong>：靠近<strong>阻力</strong>找做空、靠近<strong>支撑</strong>找做多，做的是<strong>回到区间内</strong>的反转；</li>
-      <li><strong>越靠边越有优势，越靠中间越危险</strong>；中部追突破，往往两边挨打、来回止损。</li>
+      <li>边界附近可以观察失败突破或反转信号；如果形成有效突破，应放弃原区间假设；</li>
+      <li>中部通常较难定义紧凑的失效点，减少交易是合理选择。</li>
     </ul></div>
     <div class="next">
       <a class="btn ghost" href="../lessons/lesson-09.html">← 上一课</a>
@@ -86,11 +86,12 @@
       <a class="btn" href="../lessons/lesson-11.html">下一课 →</a>
     </div>
     <div class="follow">
+      <a href="../references.html">参考资料与适用边界</a>
       <span class="follow-label">关注作者 · 课程持续更新</span>
       <a href="https://x.com/Formulasearch" target="_blank" rel="noopener noreferrer" aria-label="在 X 上关注 @Formulasearch"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@Formulasearch</a>
       <a href="https://rzcthink.top/" target="_blank" rel="noopener noreferrer" aria-label="访问 Philthink（rzcthink.top）"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>Philthink</a>
     </div>
-    <p class="disclaim">本课件仅用于交易知识的入门学习，不构成任何投资建议。真实交易有风险，任何方法都需在模拟盘充分练习并验证后再考虑投入极小资金。颜色、示例价格均为教学演示，非真实行情。</p>
+    <p class="disclaim">本课只用于交易知识学习，不构成投资建议。图表和价格均为教学演示，未计入滑点、手续费、流动性与真实执行差异；历史回放和模拟结果不能代表未来实盘表现。</p>
   </footer>
 </div>
 
@@ -121,15 +122,15 @@
     scenes:[
       { name:"① 区间全貌", bars:range,
         annotations:[ {type:"hline", value:res, label:"阻力", color:acc}, {type:"hline", value:sup, label:"支撑", color:acc} ],
-        note:'<span class="lead">先认出上下两条边界。</span> 价格几次冲到<strong>阻力</strong>就被压回、几次跌到<strong>支撑</strong>就被接住，中间横着来回——这就是一个交易区间。' },
+        note:'<span class="lead">先标出上下两个候选边界。</span> 图中价格在这些区域附近多次停止或转向，并在其间往返。' },
       { name:"② 高抛低吸", bars:range,
         annotations:[ {type:"hline", value:res, label:"阻力", color:acc}, {type:"hline", value:sup, label:"支撑", color:acc},
                       {type:"label", i:hiTouch[0], value:hiTouch[1], text:"高抛", color:acc}, {type:"label", i:loTouch[0], value:loTouch[1], text:"低吸", color:acc} ],
-        note:'<span class="lead">在边界做反转。</span> 靠近<strong>阻力</strong>时找做空（高抛），靠近<strong>支撑</strong>时找做多（低吸），赚的是价格<strong>弹回区间内</strong>的那一段。越贴近边界，优势越大。' },
-      { name:"③ 中部禁区", bars:range,
+        note:'<span class="lead">在边界观察反转证据。</span> 靠近阻力时评估失败突破或做空信号，靠近支撑时评估镜像结构。边界可能失效，因此要先定义止损。' },
+      { name:"③ 区间中部", bars:range,
         annotations:[ {type:"hline", value:res, label:"阻力", color:acc}, {type:"hline", value:sup, label:"支撑", color:acc},
                       {type:"zone", from:midLo, to:midHi, label:"中部 · 不动手", color:soft} ],
-        note:'<span class="lead">中间这块别碰。</span> 区间中部方向不明，往上往下都没优势，很容易被两边来回打。<strong>没到边界，就空仓等</strong>。' }
+        note:'<span class="lead">区间中部的方向信息通常较少。</span> 距离上下边界都较远时，潜在目标和失效位置较难形成合适比例，可以选择等待。' }
     ]
   });
 
@@ -137,22 +138,22 @@
   PA.widgets.drawOnChart(document.getElementById("w-draw"), {
     bars: range,
     prompt: "在图上点一下，画出你认为的“阻力”上沿",
-    targets: [ {low: res-2.2, high: res+2.2, label:"阻力区", tip:" 价格几次冲到这附近都被压回来——这就是区间的上沿，做空（高抛）就找这里。"} ]
+    targets: [ {low: res-2.2, high: res+2.2, label:"阻力区", tip:" 价格多次在这里停止上行或转向，可把附近标为候选阻力区。"} ]
   });
 
   // 自测
   PA.widgets.quizChoice(document.getElementById("w-q1"), {
     q:"① 价格正在一个<strong>交易区间</strong>里，现在刚好涨到<strong>阻力附近</strong>。较有优势的做法是？",
     options:[
-      { t:"在阻力附近找做空（高抛）", ok:true, why:"对！区间里到了上沿，卖方大概率出手把价格压回去，这里找做空、赌它弹回区间内，是有优势的高抛。" },
-      { t:"追着往上买，赌它突破", why:"这是区间里常见的亏法——区间里大多数突破会失败，在阻力追多容易被打回来套住。" },
-      { t:"不管在哪，先重仓做多", why:"位置决定优势。到了阻力还重仓做多＝在最不利的位置进场。" }
+      { t:"在阻力附近等待失败突破或做空信号", ok:true, why:"边界提供候选位置；等价格重新回到区间或出现做空信号，比仅凭触碰边界更有依据。" },
+      { t:"只因触及阻力就追着往上买", why:"此时失效点和目标空间未必合适；若要做突破，需要另外评估突破力度和跟进。" },
+      { t:"不设失效条件就重仓做多", why:"无论处于什么位置，缺少风险上限的计划都无法控制单笔损失。" }
     ]
   });
   PA.widgets.quizChoice(document.getElementById("w-q2"), {
     q:"② 下面哪种说法，符合区间里的“<strong>高抛低吸</strong>”？",
     options:[
-      { t:"靠近支撑找做多，靠近阻力找做空", ok:true, why:"没错——低吸（支撑附近做多）、高抛（阻力附近做空），做的都是回到区间内的反转。" },
+      { t:"靠近边界观察反转或失败突破，中部减少交易", ok:true, why:"边界较容易定义假设何时失效；若价格有效突破，就需要放弃原区间反转计划。" },
       { t:"在区间中部同时挂多和空", why:"中部没有优势，方向不明，两边都容易被打。区间中部应当空仓等待。" },
       { t:"靠近支撑做空、靠近阻力做多", why:"正好反了。这样是在边界<strong>顺着</strong>刚被拒绝的方向做，等于逆着高抛低吸。" }
     ]
@@ -164,7 +165,7 @@
       "　打法是高抛低吸：靠近阻力找", { a:["做空","空"] }, "，靠近支撑找", { a:["做多","多"] }, "；",
       "区间", { a:["中部","中间"] }, "没有优势，不动手。"
     ],
-    okText:"✓ 全对！边界做反转、中部不动手——这就是交易区间的核心。",
+    okText:"答案正确：把边界当作观察区，并为有效突破预先定义失效条件。",
     revealText:"答案：上沿是<strong>阻力</strong>、下沿是<strong>支撑</strong>；靠近阻力<strong>做空</strong>、靠近支撑<strong>做多</strong>；<strong>中部</strong>不动手。"
   });
 
