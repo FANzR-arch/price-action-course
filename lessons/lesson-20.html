@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第二十课：二次入场机会 · 价格行为交易入门课</title>
+<meta name="description" content="第一次尝试常常失败，第二次尝试多了一层确认。学习回调、区间边界、突破回踩和反转里的二次入场，以及它更晚、价格更差的代价。">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://price-action-course.vercel.app/lessons/lesson-20.html">
+<meta name="theme-color" content="#B0761A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="价格行为交易 · 入门课">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="第二十课：二次入场机会 · 价格行为交易入门课">
+<meta property="og:description" content="市场试两次都没做成，往往会转去试相反的方向。第二次入场多了确认，也多了代价。">
+<meta property="og:url" content="https://price-action-course.vercel.app/lessons/lesson-20.html">
+<meta property="og:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="价格行为交易 · 入门课">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第二十课：二次入场机会 · 价格行为交易入门课">
+<meta name="twitter:description" content="市场试两次都没做成，往往会转去试相反的方向。第二次入场多了确认，也多了代价。">
+<meta name="twitter:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<script src="../assets/js/theme.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+
+<div class="wrap" id="main" tabindex="-1">
+  <header class="hero">
+    <p class="eyebrow">第二十课 · 阶段五 · 反转</p>
+    <h1>二次入场：<br>让市场先试一次。</h1>
+    <p class="lede">第一次反转尝试、第一次触碰边界、第一次回调买点，常常失败。等到第二次，市场已经告诉你一些事：一方试过一次没成功，另一方又来了。<strong>第二次入场用更晚的位置，换来多一层确认</strong>。它不是免费的。</p>
+    <div id="heroCandles"></div>
+  </header>
+
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 为什么等第二次</div>
+    <h2>市场试两次都没做成，往往会去试相反方向</h2>
+    <p class="muted">Brooks 反复强调一个朴素的观察：市场尝试做一件事两次都失败，接下来通常会尝试相反的事。把它用到入场上：</p>
+    <ul class="clean muted">
+      <li><span class="hl">第一次尝试</span>：可能只是一部分交易者的试探，对手方还很强，失败率高；</li>
+      <li><span class="hl">第一次失败</span>：把仓位和止损亮在明处的一方被清理，对手方用掉了一次力量；</li>
+      <li><span class="hl">第二次尝试</span>：同一方向再来一次，如果这次有更好的信号棒和跟进，证据比第一次多；</li>
+      <li><span class="hl">第二次也失败</span>：这本身就是信息，市场很可能转去试相反方向。</li>
+    </ul>
+    <div class="callout">
+      <div class="t">和前几课的关系</div>
+      第 6 课的 H2 / L2，就是趋势回调里的二次入场；第 16 课的双重顶底，是在同一价位附近测试两次；第 18 课的 MTR，在旧极点测试失败后，也常要等第二次反向信号。名字不同，背后是同一个想法。
+    </div>
+  </section>
+
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 四种常见场景</div>
+    <h2>回调、边界、回踩、反转，都可能出现第二次</h2>
+    <p class="muted">点开比较。前三种顺着已有方向或结构，第四种是逆着原趋势，要求最高。</p>
+    <div id="w-gal"></div>
+  </section>
+
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 两种结局</div>
+    <h2>第二次成功，或者第二次也失败</h2>
+    <p class="muted">同一段多头回调，切换三个场景。注意第三个：第二次也失败时，市场给出了相反方向的信号。</p>
+    <div id="w-two"></div>
+  </section>
+
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 代价与边界</div>
+    <h2>第二次入场更晚，止损往往更宽，要重新算一遍</h2>
+    <p class="muted">第二次信号出现时，价格通常已经离开了最低点，入场更晚、离失效位更远。确认多了，风险也可能变大。用下面的计算器试试这笔多头二次入场：</p>
+    <div id="w-rr"></div>
+    <ul class="clean muted">
+      <li>默认目标放在 50.5，盈亏比不到 1:1。把目标拖到前高 48.8 这个磁力位（第 19 课），数字会更难看；</li>
+      <li>胜率只是估计。按本站默认的 55% 算，期望值接近零，样本少时这点优势很容易被误差吞掉；</li>
+      <li>不要为了让数字好看而把止损拉近：止损应该放在结构失效的位置。</li>
+    </ul>
+    <div class="callout">
+      <div class="t">这些情况下，第二次也不做</div>
+      铁丝网和区间中部（第 13 课）里，第一次、第二次都没意义；信号棒过大、止损太远时，宁可放弃；强趋势里的逆势第二次，往往还不够，常要等到第三推（楔形，第 14 课）或完整的 MTR。<strong>二次入场只提高证据的质量，不能把坏位置变成好位置</strong>。
+    </div>
+    <p class="muted">反过来，第一次信号特别强时（大实体、收在极端、伴随明显跟进），等第二次可能会完全错过。新手阶段，本站的练习规则仍是：<strong>逆势只做第二次，顺势可以做第一次，但两种都要先算盈亏比</strong>。这是课程练习标准，不是保证盈利的规则。</p>
+  </section>
+
+  <section id="s5" class="reveal">
+    <div class="kicker"><span class="num">5</span> 随堂自测</div>
+    <h2>数尝试，也要算代价</h2>
+    <div id="w-q1"></div>
+    <div id="w-q2" style="margin-top:16px"></div>
+    <div id="w-fill" style="margin-top:16px"></div>
+  </section>
+
+  <footer>
+    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 本课要点</div>
+    <ul>
+      <li>第一次尝试常常失败；第二次同向尝试，如果信号和跟进更好，证据比第一次多；</li>
+      <li>市场试两次都没做成，通常会转去试相反方向；</li>
+      <li>H2 / L2、区间边界二次测试、突破回踩、反转的第二次尝试，都是二次入场；</li>
+      <li>二次入场更晚、止损往往更宽，必须重新计算盈亏比和期望值；</li>
+      <li>铁丝网、区间中部、过大的信号棒里，第二次也不做；</li>
+      <li>新手练习规则：逆势只做第二次，顺势可以做第一次，都要先算账。</li>
+    </ul></div>
+    <div class="next">
+      <a class="btn ghost" href="../lessons/lesson-19.html">← 上一课</a>
+      <a class="btn" href="../index.html">课程首页</a>
+      <span class="chip" style="color:var(--ink)">下一课「止损、止盈与仓位管理」即将推出</span>
+    </div>
+    <div class="follow">
+      <a href="../references.html">参考资料与适用边界</a>
+      <span class="follow-label">关注作者 · 课程持续更新</span>
+      <a href="https://x.com/Formulasearch" target="_blank" rel="noopener noreferrer" aria-label="在 X 上关注 @Formulasearch"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@Formulasearch</a>
+      <a href="https://rzcthink.top/" target="_blank" rel="noopener noreferrer" aria-label="访问 Philthink（rzcthink.top）"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>Philthink</a>
+      <a class="okx" href="https://www.mitxcqvwnhj.com/join/78417231" target="_blank" rel="sponsored noopener noreferrer" aria-label="通过作者邀请链接注册 OKX，邀请码 78417231"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><rect x="1.5" y="1.5" width="7" height="7"/><rect x="15.5" y="1.5" width="7" height="7"/><rect x="8.5" y="8.5" width="7" height="7"/><rect x="1.5" y="15.5" width="7" height="7"/><rect x="15.5" y="15.5" width="7" height="7"/></svg>OKX · 邀请码 78417231</a>
+    </div>
+    <p class="disclaim">本课只用于交易知识学习，不构成投资建议。图表和价格均为教学演示，未计入滑点、手续费、流动性与真实执行差异；历史回放和模拟结果不能代表未来实盘表现。</p>
+  </footer>
+</div>
+
+<script src="../assets/vendor/klinecharts.min.js"></script>
+<script src="../assets/js/candles.js"></script>
+<script src="../assets/js/shell.js"></script>
+<script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+  PA.mountPlayground(document.getElementById("heroCandles"), { ma:[7,30] });
+
+  var acc = PA.cssv("--accent"), red = PA.cssv("--hue-red"), soft = PA.cssv("--ink-soft");
+
+  PA.widgets.patternGallery(document.getElementById("w-gal"), {
+    items:[
+      { name:"趋势回调的第二次", tag:"顺势 · H2",
+        bars:[[40,42.6,39.8,42.3],[42.3,44.8,42,44.5],[44.5,47,44.2,46.7],[46.7,47,45.2,45.5],[45.5,46.2,44.3,44.6],[44.6,46.4,44.4,46.1],[46.1,46.3,44,44.3],[44.3,44.6,43.6,44.4],[44.4,47.2,44.2,46.9],[46.9,49,46.6,48.7],[48.7,50.6,48.4,50.3]],
+        annotations:[ {type:"label", i:5, value:47, text:"第一次", color:soft}, {type:"label", i:8, value:48, text:"第二次", color:acc} ],
+        desc:'上涨中的回调分成两腿。第一次向上尝试（H1）很快失败，回调又走出第二腿；第二次向上尝试（H2）收在高位并得到跟进。这是最常见、也最适合新手练习的二次入场。' },
+      { name:"区间下沿的第二次", tag:"区间 · 边界",
+        bars:[[50,50.4,48,48.3],[48.3,48.6,46.2,46.5],[46.5,46.8,44.2,44.6],[44.6,46.2,44.1,45.9],[45.9,47,45.6,46.7],[46.7,46.9,45.2,45.4],[45.4,45.6,44,44.3],[44.3,45.8,44.2,45.6],[45.6,47.4,45.4,47.1],[47.1,48.8,46.9,48.5]],
+        annotations:[ {type:"hline", value:44.1, label:"区间下沿", color:soft}, {type:"label", i:3, value:43, text:"第一次测试", color:soft}, {type:"label", i:7, value:43, text:"第二次", color:acc} ],
+        desc:'价格第一次碰到区间下沿后反弹，又回来测试第二次，这次出现了收在高位的多头信号棒。两次测试都没能跌破，说明下沿附近的买盘真实存在。' },
+      { name:"突破回踩", tag:"突破 · 回测",
+        bars:[[46,47,45.6,46.8],[46.8,48,46.5,47.7],[47.7,48.1,46.9,47.2],[47.2,48.2,47,48],[48,50.2,47.9,50],[50,51,49.6,50.7],[50.7,50.9,49.3,49.5],[49.5,49.7,48.4,48.7],[48.7,50.2,48.5,50],[50,51.8,49.9,51.5],[51.5,52.9,51.3,52.6]],
+        annotations:[ {type:"hline", value:48.2, label:"突破点", color:soft}, {type:"label", i:4, value:51, text:"突破", color:soft}, {type:"label", i:8, value:47.6, text:"回踩后入场", color:acc} ],
+        desc:'突破本身是第一次机会；错过的人等价格回到突破点附近，看到守住后的多头信号再入场。回踩没有跌回区间，等于突破通过了一次测试（第 12 课）。' },
+      { name:"反转的第二次尝试", tag:"逆势 · 要求最高",
+        bars:[[56,56.3,53.5,53.8],[53.8,54,51,51.3],[51.3,51.6,48.6,48.9],[48.9,49.2,46.5,46.8],[46.8,48.6,46.4,48.3],[48.3,48.5,46,46.2],[46.2,46.5,45.4,45.7],[45.7,47.4,45.5,47.1],[47.1,49.2,46.9,48.9],[48.9,50.8,48.6,50.5],[50.5,51,49.8,50.7]],
+        annotations:[ {type:"label", i:4, value:49.5, text:"第一次", color:soft}, {type:"label", i:7, value:44.5, text:"第二次", color:acc} ],
+        desc:'下跌中的第一次向上反转很快失败，空头再压出一个新低，却没能延续；第二次向上尝试得到跟进。逆势的第二次仍然只是反转尝试，最好能和趋势线突破、旧极点测试失败（第 18 课）一起出现。' }
+    ]
+  });
+
+  var pre = [[40,42.4,39.8,42.1],[42.1,44.6,41.9,44.3],[44.3,46.9,44,46.6],[46.6,48.8,46.3,48.5],[48.5,48.7,46.9,47.2],[47.2,47.5,45.8,46.1],[46.1,47.7,45.9,47.4],[47.4,47.6,45.4,45.7],[45.7,46,44.9,45.2]];
+  var second = [45.2,47.8,45,47.6];
+  PA.widgets.annotatedChart(document.getElementById("w-two"), {
+    scenes:[
+      { name:"① 第一次尝试失败",
+        bars:pre,
+        annotations:[ {type:"label", i:6, value:48.5, text:"第一次", color:soft}, {type:"label", i:7, value:44.5, text:"失败", color:red} ],
+        note:'<span class="lead">回调中第一次向上尝试，越过前一根高点后马上被卖回。</span> 在这里买入的多头被套，回调继续。这很常见，不说明趋势结束。' },
+      { name:"② 第二次成功",
+        bars:pre.concat([second,[47.6,49.4,47.4,49.1],[49.1,50.8,48.9,50.5],[50.5,52,50.2,51.7]]),
+        annotations:[ {type:"label", i:6, value:48.5, text:"第一次", color:soft}, {type:"label", i:9, value:44, text:"第二次", color:acc}, {type:"label", i:11, value:52, text:"跟进", color:acc} ],
+        note:'<span class="lead">第二次向上尝试收在高位，后面连续走高。</span> 空头在回调里已经试过两次没把价格压下去，多头恢复控制。入场比第一次晚，但证据更完整。' },
+      { name:"③ 第二次也失败",
+        bars:pre.concat([[45.2,46.8,45,46.5],[46.5,46.6,44.3,44.5],[44.5,44.7,42.8,43.1],[43.1,43.4,41.6,42]]),
+        annotations:[ {type:"label", i:6, value:48.5, text:"第一次", color:soft}, {type:"label", i:9, value:47.5, text:"第二次", color:soft}, {type:"label", i:10, value:43.5, text:"再失败", color:red}, {type:"label", i:12, value:41, text:"转向", color:red} ],
+        note:'<span class="lead">第二次向上尝试很弱，随即跌破回调低点。</span> 多头两次都没做成，市场转去试相反方向。这时继续“抄第三次”不是坚持，而是忽视证据。' }
+    ]
+  });
+
+  PA.widgets.rrCalculator(document.getElementById("w-rr"), {
+    bars:pre.concat([second]),
+    annotations:[ {type:"label", i:9, value:44, text:"第二次信号棒", color:soft} ],
+    side:"long", entry:47.9, stop:44.8, target:50.5,
+    account:10000, riskPct:1, winRate:55
+  });
+
+  PA.widgets.quizChoice(document.getElementById("w-q1"), {
+    q:"① 强空头趋势里出现第一根向上的反转棒，趋势线完好。按本站的新手练习规则，应该怎么做？",
+    options:[
+      {t:"不做，等第二次尝试，最好还有趋势线突破等更多证据", ok:true, why:"逆势的第一次尝试失败率高。等第二次，并结合第 18 课的 MTR 条件，证据才更充分。"},
+      {t:"立刻做多，反转棒越早抓越赚", why:"强趋势里的第一个逆势信号多半只换来回调，抢早入场常常是在给顺势一方送单。"},
+      {t:"等第二次，只要出现就一定做", why:"第二次只是提高证据质量。位置、信号棒和盈亏比不合格，第二次也要放弃。"}
+    ]
+  });
+  PA.widgets.quizChoice(document.getElementById("w-q2"), {
+    q:"② 多头回调中，第一次和第二次向上尝试都失败，价格跌破了回调低点。这说明什么？",
+    options:[
+      {t:"多头两次都没做成，市场可能转去试向下", ok:true, why:"两次失败本身就是信息。此时更该检查空头结构是否在形成，而不是继续找第三次买点。"},
+      {t:"该准备第三次买入了，事不过三", why:"“第三次”没有额外依据。两次失败后继续逆着新证据加码，是新手亏损的常见方式。"},
+      {t:"说明二次入场这个方法没用", why:"二次入场提高的是概率，不是保证。第二次失败给出了清晰的认错位置，正是这个方法的价值之一。"}
+    ]
+  });
+  PA.widgets.fillBlank(document.getElementById("w-fill"), {
+    prompt:"③ 填空",
+    parts:[
+      "市场尝试做一件事", {a:["两次","2次","二次"], w:70}, "都失败，接下来通常会尝试", {a:["相反","相反方向","反方向"], w:86},
+      "的事。第二次入场多了确认，但入场更晚，必须重新计算", {a:["盈亏比","风险回报比","期望值"], w:86}, "。"
+    ],
+    okText:"✓ 全对。数尝试次数，也要算入场的代价。",
+    revealText:"答案：<strong>两次</strong> · <strong>相反</strong> · <strong>盈亏比</strong>。"
+  });
+
+  PA.initLesson({
+    n:20,
+    sections:[
+      {id:"s1", label:"为什么等"},
+      {id:"s2", label:"四种场景"},
+      {id:"s3", label:"两种结局"},
+      {id:"s4", label:"代价与边界"},
+      {id:"s5", label:"随堂自测"}
+    ]
+  });
+})();
+</script>
+</body>
+</html>

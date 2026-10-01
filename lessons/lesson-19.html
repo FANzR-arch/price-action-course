@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十九课：信号失败后的磁力位 · 价格行为交易入门课</title>
+<meta name="description" content="信号失败会留下被套的一方。失败信号的入场价、止损聚集区、突破点和测量目标，常成为价格回去测试的磁力位。">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://price-action-course.vercel.app/lessons/lesson-19.html">
+<meta name="theme-color" content="#B0761A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="价格行为交易 · 入门课">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="第十九课：信号失败后的磁力位 · 价格行为交易入门课">
+<meta property="og:description" content="信号失败后，被套的一方想在哪里离场，价格就常常回到哪里。">
+<meta property="og:url" content="https://price-action-course.vercel.app/lessons/lesson-19.html">
+<meta property="og:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="价格行为交易 · 入门课">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第十九课：信号失败后的磁力位 · 价格行为交易入门课">
+<meta name="twitter:description" content="信号失败后，被套的一方想在哪里离场，价格就常常回到哪里。">
+<meta name="twitter:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<script src="../assets/js/theme.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+
+<div class="wrap" id="main" tabindex="-1">
+  <header class="hero">
+    <p class="eyebrow">第十九课 · 阶段五 · 反转</p>
+    <h1>磁力位：<br>失败的信号，会留下回去的理由。</h1>
+    <p class="lede">一个信号失败，说明照着它入场的人被套住了。他们的入场价和止损价都还在图上：价格回到入场价，他们想保本离场；价格打到止损，他们被迫平仓。<strong>这些价位常常把价格“吸”回去测试</strong>，Brooks 把它们叫作磁力位（Magnet）。</p>
+    <div id="heroCandles"></div>
+  </header>
+
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 什么是磁力位</div>
+    <h2>磁力位是“值得被测试的价位”，不是“必到的价位”</h2>
+    <p class="muted">磁力位指价格倾向于回去测试的位置。到了那里，常见的是停顿、反应或双向成交，而不是一定反转。常见的磁力位有：</p>
+    <ul class="clean muted">
+      <li><span class="hl">失败信号的入场价</span>：被套的一方在这里能保本离场，价格回到这里时卖压（或买压）会集中出现；</li>
+      <li><span class="hl">止损聚集区</span>：明显的波段高低点外侧通常堆着大量止损单，价格常被吸过去“扫一下”；</li>
+      <li><span class="hl">突破点和旧高旧低</span>：突破后的回测常回到原来的边界（第 12 课）；</li>
+      <li><span class="hl">测量移动目标</span>：等距投影出来的目标区（第 9 课），以及通道对边、均线等。</li>
+    </ul>
+    <div class="callout">
+      <div class="t">为什么会被吸过去</div>
+      价格去哪里，取决于哪里有成交意愿。被套的交易者、等着止损的订单、盯着同一个目标的人，都会在这些价位附近集中下单。<strong>订单越集中，价格越容易在那里出现反应</strong>。这是一种倾向，具体强弱还要看趋势和位置。
+    </div>
+  </section>
+
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 一次失败的全过程</div>
+    <h2>入场、被套、回到入场价</h2>
+    <p class="muted">下面是区间下沿的一次多头信号。按顺序切换，看被套的多头怎样在后面成为卖压。</p>
+    <div id="w-fail"></div>
+    <ul class="clean muted">
+      <li><strong>失败的标志</strong>：入场后价格跌破信号棒低点，原先的多头止损被打掉，他们的判断已被市场否定；</li>
+      <li><strong>没走的人</strong>：没有设止损、或止损更宽的多头还在场内，价格一回到入场价，很多人会选择保本离场；</li>
+      <li><strong>空头也知道</strong>：空头预期那里有卖压，会在入场价附近再次卖出，于是反弹常在这里停住。</li>
+    </ul>
+  </section>
+
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 其他磁力位</div>
+    <h2>突破点、测量目标、止损聚集区</h2>
+    <p class="muted">切换三个场景。每个磁力位都附带一个问题：<strong>价格到了以后，谁会在这里下单？</strong></p>
+    <div id="w-types"></div>
+  </section>
+
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 怎么用</div>
+    <h2>用来定目标、拒绝追价、提前想好失效</h2>
+    <ul class="clean muted">
+      <li><span class="hl">当作目标</span>：顺势单的第一目标，常放在下一个磁力位之前一点，而不是指望价格穿过它；</li>
+      <li><span class="hl">当作不追的理由</span>：价格已经贴近磁力位时，剩下的空间小，盈亏比变差，这时追进去不划算；</li>
+      <li><span class="hl">当作失效参考</span>：你的入场价本身也会变成磁力位。价格回到你的入场价并停住，说明市场不太认同这次入场。</li>
+    </ul>
+    <p class="muted">试一试：图中的空头信号已经失败，价格涨过了信号棒高点。现在价格开始回落，<strong>它最可能先在哪个价位附近停顿？</strong>在图上点一下画出你的答案。</p>
+    <div id="w-draw"></div>
+    <div class="callout">
+      <div class="t">本站给新手的练习规则</div>
+      每次记录交易时，顺手写下离入场价最近的两个磁力位：一个在目标方向，一个在止损方向。目标方向的磁力位太近，就放弃这笔；止损方向的磁力位，提醒你价格可能先去那里“扫一下”。
+    </div>
+  </section>
+
+  <section id="s5" class="reveal">
+    <div class="kicker"><span class="num">5</span> 随堂自测</div>
+    <h2>先问：谁被套了？</h2>
+    <div id="w-q1"></div>
+    <div id="w-q2" style="margin-top:16px"></div>
+    <div id="w-fill" style="margin-top:16px"></div>
+  </section>
+
+  <footer>
+    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 本课要点</div>
+    <ul>
+      <li>磁力位是价格倾向于回去测试的价位，到达后常见停顿或反应，不保证反转；</li>
+      <li>信号失败会留下被套的一方，失败信号的入场价是最常见的磁力位之一；</li>
+      <li>明显高低点外侧的止损聚集区、突破点、测量目标也常起磁力作用；</li>
+      <li>判断磁力位时先问：价格到了以后，谁会在这里下单；</li>
+      <li>磁力位可以当目标、当拒绝追价的理由，也能帮助提前想好失效条件。</li>
+    </ul></div>
+    <div class="next">
+      <a class="btn ghost" href="../lessons/lesson-18.html">← 上一课</a>
+      <a class="btn" href="../lessons/lesson-20.html">下一课：二次入场机会 →</a>
+    </div>
+    <div class="follow">
+      <a href="../references.html">参考资料与适用边界</a>
+      <span class="follow-label">关注作者 · 课程持续更新</span>
+      <a href="https://x.com/Formulasearch" target="_blank" rel="noopener noreferrer" aria-label="在 X 上关注 @Formulasearch"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@Formulasearch</a>
+      <a href="https://rzcthink.top/" target="_blank" rel="noopener noreferrer" aria-label="访问 Philthink（rzcthink.top）"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>Philthink</a>
+      <a class="okx" href="https://www.mitxcqvwnhj.com/join/78417231" target="_blank" rel="sponsored noopener noreferrer" aria-label="通过作者邀请链接注册 OKX，邀请码 78417231"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><rect x="1.5" y="1.5" width="7" height="7"/><rect x="15.5" y="1.5" width="7" height="7"/><rect x="8.5" y="8.5" width="7" height="7"/><rect x="1.5" y="15.5" width="7" height="7"/><rect x="15.5" y="15.5" width="7" height="7"/></svg>OKX · 邀请码 78417231</a>
+    </div>
+    <p class="disclaim">本课只用于交易知识学习，不构成投资建议。图表和价格均为教学演示，未计入滑点、手续费、流动性与真实执行差异；历史回放和模拟结果不能代表未来实盘表现。</p>
+  </footer>
+</div>
+
+<script src="../assets/vendor/klinecharts.min.js"></script>
+<script src="../assets/js/candles.js"></script>
+<script src="../assets/js/shell.js"></script>
+<script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+  PA.mountPlayground(document.getElementById("heroCandles"), { ma:[7,30] });
+
+  var acc = PA.cssv("--accent"), red = PA.cssv("--hue-red"), soft = PA.cssv("--ink-soft");
+
+  // 区间下沿的多头信号：触发 → 失败 → 回到入场价
+  var fail = [
+    [48,49,47.2,47.6],[47.6,48,46,46.3],[46.3,46.8,45,45.4],[45.4,46.6,44.8,46.4],[46.4,47.6,46.2,47.3],
+    [47.3,47.5,45.9,46.1],[46.1,46.3,44.2,44.4],[44.4,44.6,43.4,43.8],[43.8,45.2,43.6,45],[45,46.4,44.8,46.2],
+    [46.2,46.8,45.6,45.8],[45.8,46,44.6,44.9],[44.9,45.1,43.8,44.1]
+  ];
+  PA.widgets.annotatedChart(document.getElementById("w-fail"), {
+    scenes:[
+      { name:"① 信号触发",
+        bars:fail.slice(0,5),
+        annotations:[ {type:"hline", value:46.6, label:"入场价", color:acc}, {type:"hline", value:44.8, label:"止损", color:soft},
+                      {type:"label", i:3, value:44, text:"信号棒", color:acc}, {type:"label", i:4, value:48, text:"突破高点买入", color:acc} ],
+        note:'<span class="lead">一根多头信号棒收在区间下沿附近，下一根向上越过它的高点 46.6，多头入场。</span> 止损放在信号棒低点 44.8 下方。到这里为止，一切看起来都按计划进行。' },
+      { name:"② 信号失败",
+        bars:fail.slice(0,8),
+        annotations:[ {type:"hline", value:46.6, label:"入场价", color:acc}, {type:"hline", value:44.8, label:"止损", color:soft},
+                      {type:"label", i:6, value:43, text:"跌破信号棒低点", color:red} ],
+        note:'<span class="lead">入场后没有跟进，价格反而跌破信号棒低点。</span> 设了止损的多头被迫离场；没设止损的多头被套在 46.6 上方。<strong>这次信号失败了，市场站在了空头一边</strong>。' },
+      { name:"③ 回到入场价",
+        bars:fail,
+        annotations:[ {type:"hline", value:46.6, label:"失败信号入场价", color:acc}, {type:"label", i:10, value:47.5, text:"在磁力位停住", color:red} ],
+        note:'<span class="lead">价格反弹回 46.6 附近就停住并回落。</span> 被套多头在这里保本离场，空头也在这里再次卖出。失败信号的入场价成了反弹的磁力位，也成了后面的阻力。' }
+    ]
+  });
+
+  PA.widgets.annotatedChart(document.getElementById("w-types"), {
+    scenes:[
+      { name:"突破点回测",
+        bars:[[44,46,43.6,45.6],[45.6,47.2,45.2,46.8],[46.8,48,46.2,47.4],[47.4,50,47.1,49.6],[49.6,49.8,47.6,48],[48,48.6,46.8,47.2],[47.2,49,47,48.8],[48.8,51.6,48.6,51.3],[51.3,53,51,52.6],[52.6,52.8,50.6,50.9],[50.9,51.2,49.9,50.8],[50.8,52.6,50.6,52.3],[52.3,54,52,53.7]],
+        annotations:[ {type:"hline", value:50, label:"旧高 / 突破点", color:acc}, {type:"label", i:7, value:52, text:"突破", color:acc}, {type:"label", i:10, value:49, text:"回测", color:acc} ],
+        note:'<span class="lead">价格突破 50 的旧高后回落，刚好回到 50 附近又被买起。</span> 错过突破的多头在等回测买入，突破前在 50 做空的人也想在这里平仓。两种订单都指向同一个价位。' },
+      { name:"测量移动目标",
+        bars:[[42.5,43,42,42.8],[42.8,44.8,42.6,44.5],[44.5,46.4,44.2,46.1],[46.1,47.6,45.8,47.3],[47.3,49,47,48.7],[48.7,50,48.4,49.6],[49.6,49.8,48,48.3],[48.3,48.6,46.8,47],[47,47.4,46,47.2],[47.2,49,47,48.8],[48.8,50.8,48.6,50.5],[50.5,52.4,50.3,52.1],[52.1,53.9,51.9,53.6],[53.6,54.1,52.6,52.9],[52.9,53.4,52,52.4]],
+        annotations:[ {type:"hline", value:54, label:"测量目标 = C + (B − A)", color:acc}, {type:"label", i:0, value:41, text:"A", color:soft}, {type:"label", i:5, value:51, text:"B", color:soft}, {type:"label", i:8, value:45, text:"C", color:soft}, {type:"label", i:13, value:55, text:"到达后停顿", color:red} ],
+        note:'<span class="lead">第一段从 A 42 涨到 B 50，回调到 C 46，等距投影得到 54。</span> 很多人会把止盈挂在这里，价格接近 54 时卖单增加，常出现停顿或回调。目标被触及，不代表趋势结束，只说明这一段的“预期”兑现了。' },
+      { name:"止损聚集区",
+        bars:[[48,48.6,46.6,46.9],[46.9,47.2,44.6,44.9],[44.9,46,44,45.8],[45.8,47.6,45.5,47.3],[47.3,47.8,46,46.2],[46.2,46.5,44.4,44.6],[44.6,45.4,44.05,45.2],[45.2,46.6,45,46.3],[46.3,46.5,44.6,44.8],[44.8,45,43.4,44.6],[44.6,46.4,44.4,46.1],[46.1,47.8,45.9,47.5],[47.5,48.4,47.2,48.1]],
+        annotations:[ {type:"zone", from:43.4, to:44, label:"止损聚集区", color:red}, {type:"hline", value:44, label:"明显低点", color:soft}, {type:"label", i:9, value:42.8, text:"扫止损", color:red}, {type:"label", i:11, value:48.6, text:"收回", color:acc} ],
+        note:'<span class="lead">44 附近被测试了两次，多头的止损自然放在它下方。</span> 价格刺穿 44、打掉这些止损后立刻收回。止损聚集区像磁铁一样把价格吸过去，触发完订单后，原方向反而可能更干净。' }
+    ]
+  });
+
+  PA.widgets.drawOnChart(document.getElementById("w-draw"), {
+    bars:[[45,46.2,44.8,46],[46,47.4,45.8,47.2],[47.2,48.4,47,48.1],[48.1,48.6,46.9,47.1],[47.1,47.2,46.4,46.6],[46.6,47.9,46.5,47.7],[47.7,49.2,47.5,49],[49,49.8,48.6,49.5],[49.5,49.6,48.2,48.4]],
+    annotations:[ {type:"label", i:3, value:49.5, text:"空头信号棒", color:soft}, {type:"label", i:4, value:45.8, text:"跌破低点卖出", color:soft}, {type:"label", i:6, value:50.2, text:"空头止损被扫", color:soft} ],
+    targets:[{ low:46.6, high:47.2, label:"失败空单的入场价", tip:' 空头在信号棒低点 46.9 下方卖出，信号失败后被套。价格回到 46.9 附近，他们能保本离场，多头也会在这里接回。' }],
+    prompt:"在图上点一下：价格回落时，最可能先在哪里停顿？"
+  });
+
+  PA.widgets.quizChoice(document.getElementById("w-q1"), {
+    q:"① 多头信号触发后，价格跌破信号棒低点，又反弹回最初的买入价附近。这里最可能发生什么？",
+    options:[
+      {t:"被套多头保本离场，空头再次卖出，价格容易停顿", ok:true, why:"失败信号的入场价是典型磁力位。价格被吸回来测试，但这里也集中了卖单，常出现停顿或回落。"},
+      {t:"回到买入价说明信号成功了，可以加仓", why:"信号已经在跌破信号棒低点时失败。回到入场价只是测试，并不能把失败改写成成功。"},
+      {t:"磁力位一定会被突破，因为价格被“吸”过去了", why:"“吸过去”说的是价格倾向于来测试，不说明会穿过去。到达后停顿和反向都很常见。"}
+    ]
+  });
+  PA.widgets.quizChoice(document.getElementById("w-q2"), {
+    q:"② 你计划顺势做多，目标是前高 52。现在价格已经涨到 51.6，止损需要放在 50 下方。最合理的做法是？",
+    options:[
+      {t:"放弃这笔：离磁力位太近，回报小于风险", ok:true, why:"到前高只剩 0.4，而止损距离超过 1.6，盈亏比远小于 1。磁力位在这里是拒绝追价的理由。"},
+      {t:"照样买入，前高一定会被突破", why:"前高可能被突破，也可能先停顿。把计划建立在“一定”上，会让你忽略极差的盈亏比。"},
+      {t:"把止损收紧到 51.4，让盈亏比好看一些", why:"止损应放在结构失效的位置。为了凑盈亏比随意收紧，只会让正常波动把你扫出去。"}
+    ]
+  });
+  PA.widgets.fillBlank(document.getElementById("w-fill"), {
+    prompt:"③ 填空",
+    parts:[
+      "信号失败后，照着它入场的一方被", {a:["套","套住","困住"], w:70}, "。价格回到他们的", {a:["入场价","入场位","成本"], w:86},
+      "时，他们常会保本离场，所以这里成为", {a:["磁力位","磁力"], w:86}, "。"
+    ],
+    okText:"✓ 全对。先找被套的人，再找他们会在哪里下单。",
+    revealText:"答案：<strong>套</strong> · <strong>入场价</strong> · <strong>磁力位</strong>。"
+  });
+
+  PA.initLesson({
+    n:19,
+    sections:[
+      {id:"s1", label:"什么是磁力位"},
+      {id:"s2", label:"失败全过程"},
+      {id:"s3", label:"其他磁力位"},
+      {id:"s4", label:"怎么用"},
+      {id:"s5", label:"随堂自测"}
+    ]
+  });
+})();
+</script>
+</body>
+</html>
