@@ -35,8 +35,11 @@
 
   function toggle(){
     var next = current() === "dark" ? "light" : "dark";
-    apply(next); save(next); syncButtons();
+    apply(next); save(next); syncButtons(); repaint();
   }
+
+  // 图表颜色取自 CSS 变量：换主题后通知已画好的图表重新上色
+  function repaint(){ setTimeout(function(){ var P=window.PA; if(P && P.redrawAll) P.redrawAll(); }, 0); }
 
   // 事件委托：无论按钮何时注入（含 shell.js 动态生成的顶栏）都能生效
   document.addEventListener("click", function(e){
@@ -48,7 +51,7 @@
   // 用户未手动选择时，跟随系统主题变化
   if(window.matchMedia){
     var mq = window.matchMedia("(prefers-color-scheme:dark)");
-    var onSys = function(){ if(!stored()){ apply(systemDark() ? "dark" : "light"); syncButtons(); } };
+    var onSys = function(){ if(!stored()){ apply(systemDark() ? "dark" : "light"); syncButtons(); repaint(); } };
     if(mq.addEventListener) mq.addEventListener("change", onSys);
     else if(mq.addListener) mq.addListener(onSys);
   }

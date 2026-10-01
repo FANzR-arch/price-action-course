@@ -211,6 +211,19 @@ input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .draw-foot{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}
 .draw-hint{font-size:13.5px;color:var(--ink-soft);font-weight:600}
 .draw-foot .btn{margin-left:auto}
+
+/* 教学图（KLineChart）与盈亏比计算器 */
+.tchart{width:100%;position:relative}
+.rr-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.rr-side button{font-size:13px;padding:5px 14px}
+.rr-side button.rr-on{background:var(--ink);color:var(--surface)}
+.rr-grid{display:grid;gap:16px;margin-top:14px}
+@media(min-width:700px){.rr-grid{grid-template-columns:1.4fr 1fr;align-items:start}}
+.rr-prices{display:grid;gap:12px}
+.rr-acct{display:grid;gap:10px}
+.rr-num{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;font-size:14px;font-weight:750}
+.rr-num input{width:100%;min-width:0;font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.rr-num em{font-style:normal;color:var(--ink-soft);font-weight:600;font-size:13px}
 .callout{border:1px solid var(--line);background:var(--surface);padding:14px 18px;border-radius:0;margin:18px 0}
 .callout .t{font-weight:800;margin-bottom:3px;color:var(--accent-ink)}
 
@@ -336,8 +349,10 @@ section{padding:48px 0}
 .term-card .tc-name{font-size:15.5px;font-weight:800;letter-spacing:-.01em}
 .term-card .tc-cat{font-size:11px;font-weight:800;color:var(--accent);letter-spacing:.06em}
 .term-card .tc-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.6;margin:0;flex:1}
+.term-card .tc-link{font-size:12.5px;font-weight:750;color:var(--accent-ink);text-decoration:none;margin-top:2px}
+.term-card .tc-link:hover{color:var(--accent);text-decoration:underline}
 .term-card .chartbox{margin-top:4px;padding:6px}
-.term-card .chartbox svg{height:84px}
+.term-card .chartbox svg{height:104px}
 .glo-empty{color:var(--ink-faint);font-size:14px;padding:24px 2px}
 
 /* 课程页左侧栏（宽屏：小节列表 + 学习进度）*/

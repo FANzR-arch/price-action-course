@@ -88,27 +88,36 @@
       bars.forEach(function(b,i){ e=(e==null)?b[3]:b[3]*kk+e*(1-kk); epts.push(rr(x(i))+','+rr(y(e))); });
       if(epts.length>1) frag+='<polyline points="'+epts.join(' ')+'" fill="none" stroke="'+PA.cssv('--ink-soft')+'" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>';
     }
+    // 已占用的矩形（K 线 + 已画的标注），label 落点据此避让
+    var boxes=bars.map(function(b,i){ return {x:x(i)-bw/2-1, y:y(b[1])-1, w:bw+2, h:y(b[2])-y(b[1])+2}; });
+    function hits(r){ return boxes.some(function(b){ return r.x<b.x+b.w && b.x<r.x+r.w && r.y<b.y+b.h && b.y<r.y+r.h; }); }
+    function chipAt(cx,cy,txt,col){ boxes.push({x:cx, y:cy-9, w:txt.length*13+10, h:18}); return annoChip(cx,cy,txt,col); }
     (opts.annotations||[]).forEach(function(a){
       var col=a.color||PA.cssv('--accent');
       if(a.type==='zone'){
         var yt=y(Math.max(a.from,a.to)), yb=y(Math.min(a.from,a.to));
         frag+='<rect x="'+pL+'" y="'+rr(yt)+'" width="'+rr(plotR-pL)+'" height="'+rr(Math.max(2,yb-yt))+'" fill="'+col+'" opacity="0.14"/>';
-        if(a.label) frag+=annoChip(pL+5, (yt+yb)/2, a.label, col);
+        if(a.label) frag+=chipAt(pL+5, (yt+yb)/2, a.label, col);
       } else if(a.type==='hline'){
         var yy=y(a.value);
         frag+='<line x1="'+pL+'" y1="'+rr(yy)+'" x2="'+rr(plotR)+'" y2="'+rr(yy)+'" stroke="'+col+'" stroke-width="1.6" stroke-dasharray="'+(a.dash===false?'0':'5 4')+'"/>';
-        if(a.label) frag+=annoChip(pL+5, yy, a.label, col);
+        if(a.label) frag+=chipAt(pL+5, yy, a.label, col);
       } else if(a.type==='line'){
         var p1=a.points[0], p2=a.points[1];
         frag+='<line x1="'+rr(x(p1[0]))+'" y1="'+rr(y(p1[1]))+'" x2="'+rr(x(p2[0]))+'" y2="'+rr(y(p2[1]))+'" stroke="'+col+'" stroke-width="1.9" stroke-dasharray="'+(a.dash?'5 4':'0')+'" stroke-linecap="round"/>';
-        if(a.label) frag+=annoChip(x(p2[0])-(a.label.length*13+10)-2, y(p2[1]), a.label, col);
+        if(a.label) frag+=chipAt(x(p2[0])-(a.label.length*13+10)-2, y(p2[1]), a.label, col);
       } else if(a.type==='label'){
         // 钳制在绘图区内：靠右的标注会压住价格刻度，贴顶/贴底的会被画到坐标区外。
-        // 钳制后位置略有偏移，但优于溢出——作者不必再为每个标注手工试位置。
+        // 再上下微调避开 K 线和其他标注（就近找空位，找不到就保留原位）。
         var lw=a.text.length*13+10;
         var lx=Math.max(pL, Math.min(x(a.i), plotR-lw));
-        var ly=Math.max(pT+9, Math.min(y(a.value), H-pB-9));
-        frag+=annoChip(lx, ly, a.text, col);
+        var yMin=pT+9, yMax=H-pB-9;
+        var ly0=Math.max(yMin, Math.min(y(a.value), yMax)), ly=ly0;
+        for(var d=0; d<=90; d+=3){
+          var cand=[ly0-d, ly0+d].filter(function(v){ return v>=yMin && v<=yMax && !hits({x:lx, y:v-9, w:lw, h:18}); });
+          if(cand.length){ ly=cand[0]; break; }
+        }
+        frag+=chipAt(lx, ly, a.text, col);
       }
     });
     svg.innerHTML=frag;
@@ -117,49 +126,72 @@
 
   // ---------- 带标注的教学图表（可多场景切换）----------
   // opts: { scenes:[{name, bars, annotations, note}] }  或单场景 { bars, annotations, note }
+  // 教学图用 KLineChart（真实盘面外观 + 拟真细化数据）；图表库缺失时退回自绘 SVG。
+  // opts.dense：false = 不细化；数字 = 固定倍数；省略 = 自动（用到 20 EMA 的图不细化）。
   W.annotatedChart = function(host, opts){
     opts = opts||{};
-    var scenes = opts.scenes || [{ name:opts.name||'', bars:opts.bars, annotations:opts.annotations, note:opts.note }];
+    var scenes = opts.scenes || [{ name:opts.name||'', bars:opts.bars, annotations:opts.annotations, note:opts.note, ema:opts.ema }];
     var multi = scenes.length>1;
     host.innerHTML =
       '<div class="card pad">'+
         (multi ? '<div class="scene-tabs" data-el="tabs">'+scenes.map(function(s,i){ return '<button class="scene-tab'+(i===0?' on':'')+'" data-i="'+i+'" type="button">'+s.name+'</button>'; }).join('')+'</div>' : '')+
-        '<div class="chartbox"><svg data-el="svg" viewBox="0 0 640 300"></svg></div>'+
+        '<div class="chartbox"><div data-el="tc"></div></div>'+
         '<div class="scene-note" data-el="note"></div>'+
       '</div>';
-    var cur=0, svg=host.querySelector('[data-el="svg"]'), noteEl=host.querySelector('[data-el="note"]');
+    var cur=0, noteEl=host.querySelector('[data-el="note"]');
+    var k=PA.denseK(scenes, opts.dense), keep=PA.keepBars(scenes);
+    var tc=PA.teachChart && PA.teachChart(host.querySelector('[data-el="tc"]'), { height:opts.height||330 });
+    var svg=null;
+    if(!tc){ host.querySelector('[data-el="tc"]').outerHTML='<svg data-el="svg" viewBox="0 0 640 300"></svg>'; svg=host.querySelector('[data-el="svg"]'); }
     function show(i){ cur=i; var s=scenes[i];
-      drawChartSVG(svg, s.bars, {annotations:s.annotations, ticks:opts.ticks, ema:(s.ema!=null?s.ema:opts.ema)});
+      var ema=(s.ema!=null?s.ema:opts.ema);
+      if(tc) tc.show({ bars:s.bars, annotations:s.annotations, ema:ema }, k, keep);
+      else drawChartSVG(svg, s.bars, {annotations:s.annotations, ticks:opts.ticks, ema:ema});
       noteEl.innerHTML = s.note||'';
       Array.prototype.forEach.call(host.querySelectorAll('.scene-tab'), function(b){ b.classList.toggle('on', +b.dataset.i===i); });
     }
     Array.prototype.forEach.call(host.querySelectorAll('.scene-tab'), function(b){ b.addEventListener('click', function(){ show(+b.dataset.i); }); });
-    show(0); PA.registerRedraw(function(){ show(cur); });
+    show(0);
+    if(!tc) PA.registerRedraw(function(){ show(cur); });
     return { redraw:function(){ show(cur); } };
   };
 
   // ---------- 在图上自己画一条水平线，对照目标区给反馈 ----------
-  // opts: { bars, targets:[{low, high, label, tip}], prompt, unit? }
+  // opts: { bars, targets:[{low, high, label, tip}], prompt, annotations?（常驻标注）, dense? }
   W.drawOnChart = function(host, opts){
     opts = opts||{};
     var bars = opts.bars, targets = opts.targets||[];
     host.innerHTML =
       '<div class="card pad">'+
-        '<div class="chartbox"><svg data-el="svg" viewBox="0 0 640 300" style="cursor:crosshair"></svg></div>'+
+        '<div class="chartbox" style="cursor:crosshair"><div data-el="tc"></div></div>'+
         '<div class="draw-foot"><span class="draw-hint">'+(opts.prompt||'在图上点一下，画出你认为的价位线')+'</span>'+
           '<button class="btn ghost mini" data-act="clear" type="button" style="display:none">清除重画</button></div>'+
         '<div class="fb" data-el="fb"></div>'+
       '</div>';
-    var svg=host.querySelector('[data-el="svg"]'), fb=host.querySelector('[data-el="fb"]'), clearBtn=host.querySelector('[data-act="clear"]');
+    var fb=host.querySelector('[data-el="fb"]'), clearBtn=host.querySelector('[data-act="clear"]');
+    var fixed=opts.annotations||[];
+    var k=PA.denseK([{bars:bars}], opts.dense), keep=PA.keepBars([{annotations:fixed}]);
+    var tc=PA.teachChart && PA.teachChart(host.querySelector('[data-el="tc"]'), { height:opts.height||320, volume:false, tooltip:false });
+    var svg=null;
+    if(!tc){ host.querySelector('[data-el="tc"]').outerHTML='<svg data-el="svg" viewBox="0 0 640 300"></svg>'; svg=host.querySelector('[data-el="svg"]'); }
     var userVal=null, revealed=false;
-    function base(){ return { annotations: (revealed? targets.map(function(t){ return {type:'zone', from:t.low, to:t.high, label:t.label, color:PA.cssv('--accent')}; }) : []).concat(userVal!=null? [{type:'hline', value:userVal, color:PA.cssv('--ink'), dash:false}] : []) }; }
-    function render(){ drawChartSVG(svg, bars, base()); }
-    render(); PA.registerRedraw(render);
-    svg.addEventListener('click', function(ev){
-      var sc=svg.__scale; if(!sc) return;
-      var rect=svg.getBoundingClientRect();
-      var vbY=(ev.clientY-rect.top)/rect.height*sc.H;
-      var price=sc.hi-(vbY-sc.pT)/(sc.H-sc.pT-sc.pB)*(sc.hi-sc.lo);
+    function base(){ return { annotations: fixed.concat(revealed? targets.map(function(t){ return {type:'zone', from:t.low, to:t.high, label:t.label, color:PA.cssv('--accent')}; }) : []).concat(userVal!=null? [{type:'hline', value:userVal, label:'你画的线', color:PA.cssv('--ink'), dash:false}] : []) }; }
+    var shown=false;
+    function render(){
+      if(tc){ if(!shown){ tc.show({ bars:bars, annotations:base().annotations }, k, keep); shown=true; } else tc.setAnnotations(base().annotations); }
+      else drawChartSVG(svg, bars, base());
+    }
+    render();
+    if(!tc) PA.registerRedraw(render);
+    (tc? tc.el : svg).addEventListener('click', function(ev){
+      var price;
+      if(tc){ price=tc.priceAt(ev.clientX, ev.clientY); if(price==null) return; }
+      else {
+        var sc=svg.__scale; if(!sc) return;
+        var rect=svg.getBoundingClientRect();
+        var vbY=(ev.clientY-rect.top)/rect.height*sc.H;
+        price=sc.hi-(vbY-sc.pT)/(sc.H-sc.pT-sc.pB)*(sc.hi-sc.lo);
+      }
       userVal=Math.round(price*10)/10; revealed=true; render();
       var hit=null; targets.forEach(function(t){ if(userVal>=t.low && userVal<=t.high) hit=t; });
       fb.className='fb show '+(hit?'ok':'no');
@@ -172,6 +204,94 @@
     });
     clearBtn.addEventListener('click', function(){ userVal=null; revealed=false; render(); fb.className='fb'; fb.innerHTML=''; clearBtn.style.display='none'; });
     return { redraw: render };
+  };
+
+  // ---------- 盈亏比 / 仓位 / 期望值计算器 ----------
+  // opts: { bars, side:'long'|'short', entry, stop, target, account, riskPct, winRate, annotations?, dense? }
+  // 价格单位与图上一致；“仓位”按 单笔风险金额 ÷ 每单位止损距离 计算，未计手续费与滑点。
+  W.rrCalculator = function(host, opts){
+    opts = opts||{};
+    var bars=opts.bars, lo=Infinity, hi=-Infinity;
+    bars.forEach(function(b){ lo=Math.min(lo,b[2]); hi=Math.max(hi,b[1]); });
+    var pad=(hi-lo)*0.35; lo=Math.floor((lo-pad)*10)/10; hi=Math.ceil((hi+pad)*10)/10;
+    var S={ side:opts.side||'long', entry:opts.entry, stop:opts.stop, target:opts.target,
+            account:opts.account||10000, riskPct:opts.riskPct!=null?opts.riskPct:1, winRate:opts.winRate!=null?opts.winRate:50 };
+    function sld(k,label){ return '<div class="sld"><label for="rr-'+k+'">'+label+'</label><input id="rr-'+k+'" type="range" data-k="'+k+'" min="'+lo+'" max="'+hi+'" step="0.1" value="'+S[k]+'"><span class="v" data-v="'+k+'"></span></div>'; }
+    function num(k,label,unit,min,max,step){ return '<label class="rr-num"><span>'+label+'</span><input type="number" data-n="'+k+'" min="'+min+'" max="'+max+'" step="'+step+'" value="'+S[k]+'"><em>'+unit+'</em></label>'; }
+    host.innerHTML =
+      '<div class="card pad">'+
+        '<div class="rr-top"><div class="toggle rr-side" data-el="side"><button type="button" data-s="long">做多</button><button type="button" data-s="short">做空</button></div>'+
+          '<span class="draw-hint">拖动三条价位线的滑块，或改下面的账户参数</span></div>'+
+        '<div class="chartbox"><div data-el="tc"></div></div>'+
+        '<div class="rr-grid">'+
+          '<div class="rr-prices">'+sld('entry','入场')+sld('stop','止损')+sld('target','目标')+'</div>'+
+          '<div class="rr-acct">'+num('account','账户资金','元',100,10000000,100)+num('riskPct','单笔风险','%',0.1,10,0.1)+num('winRate','估计胜率','%',1,99,1)+'</div>'+
+        '</div>'+
+        '<div class="readout" data-el="read" style="margin-top:14px"></div>'+
+        '<div class="verdict" data-el="verdict"></div>'+
+      '</div>';
+    var fixed=opts.annotations||[];
+    var tc=PA.teachChart && PA.teachChart(host.querySelector('[data-el="tc"]'), { height:opts.height||300, volume:false, tooltip:false });
+    var k=PA.denseK([{bars:bars}], opts.dense), keep=PA.keepBars([{annotations:fixed}]), shown=false;
+    function f2(n){ return (Math.round(n*100)/100).toFixed(2); }
+    function money(n){ return (n<0?'-':'')+Math.abs(Math.round(n)).toLocaleString('zh-CN'); }
+    function annos(){
+      var up=PA.cssv('--hue-green'), dn=PA.cssv('--hue-red');
+      return fixed.concat([
+        {type:'zone', from:S.entry, to:S.stop, color:dn},
+        {type:'zone', from:S.entry, to:S.target, color:up},
+        {type:'hline', value:S.target, label:'目标', color:up, dash:false},
+        {type:'hline', value:S.entry, label:'入场', color:PA.cssv('--ink'), dash:false},
+        {type:'hline', value:S.stop, label:'止损', color:dn, dash:false}
+      ]);
+    }
+    function calc(){
+      var long=S.side==='long', risk=long? S.entry-S.stop : S.stop-S.entry, reward=long? S.target-S.entry : S.entry-S.target;
+      var read=host.querySelector('[data-el="read"]'), verdict=host.querySelector('[data-el="verdict"]');
+      ['entry','stop','target'].forEach(function(key){ host.querySelector('[data-v="'+key+'"]').textContent=f2(S[key]); });
+      if(tc){ if(!shown){ tc.show({bars:bars, annotations:annos()}, k, keep); shown=true; } else tc.setAnnotations(annos()); }
+      if(!(risk>0) || !(reward>0)){
+        read.innerHTML='';
+        verdict.innerHTML='<span class="tag" style="color:var(--hue-red)">价位顺序不对</span> · '+(long?'做多需要 <strong>止损 &lt; 入场 &lt; 目标</strong>。':'做空需要 <strong>目标 &lt; 入场 &lt; 止损</strong>。')+'先把三条线摆对，计算才有意义。';
+        return;
+      }
+      var rr=reward/risk, W=S.winRate/100, riskAmt=S.account*S.riskPct/100, size=riskAmt/risk;
+      var evR=W*rr-(1-W), be=1/(1+rr);
+      read.innerHTML=
+        '<span class="chip">每单位风险 <b>'+f2(risk)+'</b></span>'+
+        '<span class="chip">每单位回报 <b>'+f2(reward)+'</b></span>'+
+        '<span class="chip">盈亏比 <b>1 : '+f2(rr)+'</b></span>'+
+        '<span class="chip">单笔最多亏 <b>'+money(riskAmt)+' 元</b></span>'+
+        '<span class="chip">仓位 <b>'+(Math.floor(size*100)/100)+' 单位</b></span>'+
+        '<span class="chip">保本胜率 <b>'+Math.round(be*1000)/10+'%</b></span>';
+      var good=evR>0;
+      verdict.innerHTML='<span class="tag" style="color:'+(good?'var(--hue-green)':'var(--hue-red)')+'">期望值 '+(evR>=0?'+':'')+f2(evR)+'R / 笔</span> · '+
+        '按 '+S.winRate+'% 胜率估算，平均每笔约 <strong>'+(evR>=0?'+':'')+money(evR*riskAmt)+' 元</strong>（1R = '+money(riskAmt)+' 元）。'+
+        (good? '数字为正只说明“假设成立时”值得做；胜率是估计值，样本不够时偏差很大。' : '胜率低于保本线 '+Math.round(be*1000)/10+'%，即使单笔盈亏比看着不错，长期也会亏。')+
+        ' 未计手续费、滑点与跳空。';
+    }
+    Array.prototype.forEach.call(host.querySelectorAll('input[type=range]'), function(inp){
+      inp.addEventListener('input', function(){ S[inp.dataset.k]=+inp.value; calc(); });
+    });
+    Array.prototype.forEach.call(host.querySelectorAll('input[type=number]'), function(inp){
+      inp.addEventListener('input', function(){ var v=+inp.value; if(isFinite(v) && v>0){ S[inp.dataset.n]=Math.min(+inp.max, Math.max(+inp.min, v)); calc(); } });
+    });
+    var sideBtns=host.querySelectorAll('[data-el="side"] button');
+    function syncSide(){ Array.prototype.forEach.call(sideBtns, function(b){ b.classList.toggle('act', b.dataset.s===S.side); b.classList.toggle('rr-on', b.dataset.s===S.side); }); }
+    Array.prototype.forEach.call(sideBtns, function(b){
+      b.addEventListener('click', function(){
+        if(b.dataset.s===S.side) return;
+        S.side=b.dataset.s;
+        // 换方向：止损和目标对调到入场的另一侧，保持原来的距离
+        var dS=Math.abs(S.entry-S.stop), dT=Math.abs(S.target-S.entry), long=S.side==='long';
+        S.stop=Math.round((long? S.entry-dS : S.entry+dS)*10)/10; S.target=Math.round((long? S.entry+dT : S.entry-dT)*10)/10;
+        host.querySelector('[data-k="stop"]').value=S.stop; host.querySelector('[data-k="target"]').value=S.target;
+        syncSide(); calc();
+      });
+    });
+    syncSide(); calc();
+    if(!tc) PA.registerRedraw(calc);
+    return { redraw:calc };
   };
 
   // ---------- 捏一根 K 线 ----------
@@ -328,22 +448,27 @@
       '<div class="card pad"><div class="gallery">'+
         '<div class="gal-list" data-el="list">'+items.map(function(it,i){ return '<button class="gal-thumb'+(i===0?' on':'')+'" data-i="'+i+'" type="button"><svg viewBox="0 0 120 96"></svg><span>'+it.name+'</span></button>'; }).join("")+'</div>'+
         '<div class="gal-view">'+
-          '<div class="chartbox"><svg data-el="big" viewBox="0 0 360 250"></svg></div>'+
+          '<div class="chartbox"><div data-el="tc"></div></div>'+
           '<div class="gal-info"><div class="gal-name" data-el="name"></div><span class="gal-tag" data-el="tag"></span><p class="gal-desc" data-el="desc"></p></div>'+
         '</div>'+
       '</div></div>';
     var cur=0;
+    // 缩略图保留示意性的“教学 K 线”；大图用真实盘面外观 + 拟真细化数据
+    var k=PA.denseK(items, opts.dense), keep=PA.keepBars(items);
+    var tc=PA.teachChart && PA.teachChart(host.querySelector('[data-el="tc"]'), { height:opts.height||270, volume:false });
+    var big=null;
+    if(!tc){ host.querySelector('[data-el="tc"]').outerHTML='<svg data-el="big" viewBox="0 0 360 250"></svg>'; big=host.querySelector('[data-el="big"]'); }
     function drawThumbs(){ Array.prototype.forEach.call(host.querySelectorAll(".gal-thumb"), function(b){ miniSeries(b.querySelector("svg"), items[+b.dataset.i].bars, {padY:10, maxBw:13}); }); }
     function show(i){ cur=i; var it=items[i];
-      miniSeries(host.querySelector('[data-el="big"]'), it.bars, {padY:24, maxBw:30});
+      if(tc) tc.show({ bars:it.bars, annotations:it.annotations }, k, keep); else miniSeries(big, it.bars, {padY:24, maxBw:30});
       host.querySelector('[data-el="name"]').textContent=it.name;
       var tagEl=host.querySelector('[data-el="tag"]'); tagEl.textContent=it.tag||""; tagEl.style.display=it.tag?"inline-block":"none";
       host.querySelector('[data-el="desc"]').innerHTML=it.desc||"";
       Array.prototype.forEach.call(host.querySelectorAll(".gal-thumb"), function(b){ b.classList.toggle("on", +b.dataset.i===i); });
     }
     Array.prototype.forEach.call(host.querySelectorAll(".gal-thumb"), function(b){ b.addEventListener("click", function(){ show(+b.dataset.i); }); });
-    function redraw(){ drawThumbs(); show(cur); }
-    redraw(); PA.registerRedraw(redraw);
+    function redraw(){ drawThumbs(); if(!tc) show(cur); }
+    drawThumbs(); show(0); PA.registerRedraw(redraw);
     return { redraw: redraw };
   };
 })();

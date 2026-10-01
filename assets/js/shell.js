@@ -7,7 +7,14 @@
   "use strict";
   var PA = window.PA = window.PA || {};
 
-  function cn(n){ var m=["零","一","二","三","四","五","六","七","八","九","十"]; return (n>=0&&n<=10)?m[n]:String(n); }
+  // 课号转中文：0–99（11→十一，20→二十，24→二十四）
+  function cn(n){
+    var m=["零","一","二","三","四","五","六","七","八","九","十"];
+    if(!(n>=0&&n<=99)) return String(n);
+    if(n<=10) return m[n];
+    var t=Math.floor(n/10), u=n%10;
+    return (t>1?m[t]:"")+"十"+(u?m[u]:"");
+  }
 
   PA.initLesson = function(cfg){
     cfg = cfg || {};
