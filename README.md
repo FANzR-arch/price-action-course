@@ -14,14 +14,14 @@ price-action-course/
 ├── 404.html                自定义 404 页
 ├── favicon.svg             站点图标（K 线）
 ├── lessons/
-│   └── lesson-01.html … lesson-15.html   当前完成的 15 课
+│   └── lesson-01.html … lesson-20.html   当前完成的 20 课
 ├── assets/
 │   ├── css/site.css        全站共享样式（设计令牌 + 组件，扁平清爽）
 │   ├── js/
-│   │   ├── candles.js      K 线引擎：drawCandle / genSeries / mountChart / mountPlayground
+│   │   ├── candles.js      K 线引擎：drawCandle / genSeries / mountChart / mountPlayground / teachChart / densify
 │   │   ├── theme.js        深浅色主题：系统偏好、手动切换与本地记忆
 │   │   ├── shell.js        课程外壳：顶栏 / 进度 / 章节高亮 / 颜色开关 / 上下课
-│   │   └── widgets.js      交互组件库（candleLab / quiz / patternGallery / annotatedChart …）
+│   │   └── widgets.js      交互组件库（candleLab / quiz / patternGallery / annotatedChart / rrCalculator …）
 │   ├── vendor/klinecharts.min.js   图表库（KLineChart v9，Apache-2.0）
 │   └── og-cover.jpg        社交分享封面（1200×630）
 ├── .nojekyll               GitHub Pages 用（避免忽略某些文件）
@@ -31,7 +31,7 @@ price-action-course/
 
 - **改样式** → 只动 `assets/css/site.css`，全站生效。
 - **改 K 线画法 / 颜色约定 / 图表** → 只动 `assets/js/candles.js`（`window.PA`）。
-- **加新课** → 在 `lessons/` 下复制现有课改内容，再到 `index.html` 的 `CURRICULUM` 数组里把对应课程的 `live:true` 打开、填上 `href`。
+- **加新课** → 在 `lessons/` 下复制现有课改内容，再到 `index.html` 的 `CURRICULUM` 数组里把对应课程的 `live:true` 打开、填上 `href`；新术语加到 `glossary.html` 的 `TERMS`，用 `l:"NN"` 链回课程。
 
 ## 站点特性
 
@@ -39,6 +39,7 @@ price-action-course/
 - **分享卡片**：每页 Open Graph / Twitter meta + 品牌封面图，链接分享到社媒有预览卡。
 - **深浅色**：首次随系统偏好，之后可手动切换并记住选择。
 - **视觉**：扁平清爽、无多余阴影与动效。
+- **教学图表**：KLineChart 渲染（时间轴、成交量、十字光标）；作者写关键 K 线，`PA.densify` 把非关键 K 线拆成拟真的细周期 K 线，开高低收保持不变。需要逐根计数或看单根形状的图传 `dense:false`。
 
 ## 课程体系（六阶段 / 24 课）
 
@@ -51,7 +52,7 @@ price-action-course/
 5. **反转**：主要趋势反转 MTR → 磁力位 → 二次入场
 6. **风控与执行**：止损止盈仓位 → 交易者方程/盈亏比 → 逐棒检查单/二元决策 → 交易计划与复盘
 
-目前本地已完成**前 17 课**（阶段一至四全部），其余 7 课在 `index.html` 的 `CURRICULUM` 中登记、逐课更新（详见 `PLAN.md`）。线上内容以最近一次推送到 `main` 的版本为准；24 课也只是入门范围，不等于三本原著的完整替代。
+目前本地已完成**前 20 课**（阶段一至五全部），其余 4 课在 `index.html` 的 `CURRICULUM` 中登记、逐课更新（详见 `PLAN.md`）。线上内容以最近一次推送到 `main` 的版本为准；24 课也只是入门范围，不等于三本原著的完整替代。
 
 ## 本地预览
 

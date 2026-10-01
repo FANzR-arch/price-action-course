@@ -5,9 +5,10 @@
 ## 站点现状（截至最近一次更新）
 
 - **已上线：** https://price-action-course.vercel.app （GitHub `main` push 自动部署）。
-- **进度：** 阶段一~四完结，本地共 **17 课完成**；18–24 课待建（见下表）。
+- **进度：** 阶段一~五完结，本地共 **20 课完成**；21–24 课待建（见下表）。
 - **站点级已完成：** favicon、自定义 404 页、手动深浅色切换、社交分享卡片（OG/Twitter + 封面图）、图表无障碍（role/aria）、skip-link、参考资料与适用边界页面、全站文案事实与去 AI 味审查。
-- **待办（非课程内容）：** `rrCalculator` 组件（Phase F 需要）。
+- **教学图表：** 全站 annotatedChart / drawOnChart / patternGallery 大图改用 KLineChart（`PA.teachChart`），数据由 `PA.densify` 拟真细化；标注 overlay（paHLine / paZone / paSeg / paLabel）自动避让 K 线。
+- **页脚：** 关注区加 OKX 邀请链接（邀请码 78417231）。注意它与下文「不荐平台」口径的关系，由作者自行把握。
 
 ## 架构
 
@@ -38,7 +39,7 @@ assets/
 | patternGallery | 点一个形态/信号看一个（图 + 讲解切换） | ✅ |
 | annotatedChart | 真实图上叠标注（S/R、通道、H1H2、MTR 箭头） | ✅ |
 | drawOnChart | 用户在图上自己画线并判定 | ✅ |
-| rrCalculator | 拖入场/止损/止盈算盈亏比+仓位+期望值 | ⏳ Phase F |
+| rrCalculator | 拖入场/止损/止盈算盈亏比+仓位+期望值 | ✅（第 20 课首用） |
 
 > 沙盘 `mountPlayground`（随机行情 + 参数拖动）在 candles.js，已可用。
 
@@ -63,9 +64,9 @@ assets/
 | 15 | 三角形与收敛形态 | 文件27-三角形与收敛形态 | patternGallery / annotatedChart | ✅ 完成 |
 | 16 | 双重顶/底与微型结构 | 文件28-双重顶底与微型结构 | patternGallery / annotatedChart | ✅ 完成 |
 | 17 | 最终旗形与趋势末端 | 文件24-最终旗形与趋势末端 | patternGallery / annotatedChart | ✅ 完成 |
-| 18 | 主要趋势反转 MTR | 文件25-主要趋势反转MTR | annotatedChart | ⏳ |
-| 19 | 信号失败后的磁力位 | 文件22-信号失败后的磁力位 | annotatedChart | ⏳ |
-| 20 | 二次入场机会 | 文件15-二次入场机会 | patternGallery | ⏳ |
+| 18 | 主要趋势反转 MTR | 文件25-主要趋势反转MTR | patternGallery / annotatedChart | ✅ 完成 |
+| 19 | 信号失败后的磁力位 | 文件22-信号失败后的磁力位 | annotatedChart / drawOnChart | ✅ 完成 |
+| 20 | 二次入场机会 | 文件15-二次入场机会 | patternGallery / annotatedChart / rrCalculator | ✅ 完成 |
 | 21 | 止损止盈与仓位管理 | 文件17-止损和止盈与仓位管理 | rrCalculator | ⏳ |
 | 22 | 交易者方程与盈亏比 | 二元决策（节选） | rrCalculator | ⏳ |
 | 23 | 逐棒检查单 & 二元决策 | 逐棒分析检查单 + 二元决策 | quizChoice 流程 | ⏳ |

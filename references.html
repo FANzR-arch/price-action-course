@@ -81,6 +81,7 @@
         <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/9781119202608.ch20" target="_blank" rel="noopener noreferrer">Wiley：“Reversal” Patterns</a> 与 <a href="https://onlinelibrary.wiley.com/doi/10.1002/9781119202622.ch8" target="_blank" rel="noopener noreferrer">Double Top and Bottom Pullbacks</a>，对应双重顶底既可能参与反转，也可能构成趋势中的回调与旗形。</li>
         <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/9781119202622.ch7" target="_blank" rel="noopener noreferrer">Wiley：Final Flags</a> 与 <a href="https://www.brookstradingcourse.com/price-action/10-best-price-action-trading-patterns/" target="_blank" rel="noopener noreferrer">Brooks Trading Course：10 Best Price Action Trading Patterns</a>，对应最终旗形的趋势、横向回调、邻近磁力位与失败突破语境。</li>
         <li><a href="https://www.brookstradingcourse.com/ask-al/trading-range-days-price-action/" target="_blank" rel="noopener noreferrer">Brooks Trading Course：Trading Range Days</a> 与 <a href="https://www.brookstradingcourse.com/ask-al/high-probability-trades/" target="_blank" rel="noopener noreferrer">High Probability Trades</a>，用于理解概率表述依赖具体环境。</li>
+        <li><a href="https://onlinelibrary.wiley.com/doi/book/10.1002/9781119202622" target="_blank" rel="noopener noreferrer"><em>Trading Price Action Reversals</em></a> 中关于主要趋势反转、被套交易者与二次入场的论述，对应第 18–20 课：MTR 需要趋势线突破与旧极点测试失败、失败信号的入场价常被回测、市场两次尝试失败后常转向。课程只取入门部分，并改写成可练习的步骤。</li>
       </ul>
       <p class="muted">公开网页用于定位概念，不替代书中完整章节；本站对原文作中文概括，没有照录长段内容。</p>
     </div>
@@ -105,6 +106,15 @@
     <div class="card pad">
       <p class="muted">Brooks 常用 60%、70% 或 80% 说明某些具体市场环境下的倾向。这些数字帮助建立概率思维，但不能脱离品种、周期和形态质量单独使用。</p>
       <p class="muted">历史回放和模拟交易不会完整反映滑点、流动性、手续费、实时决策压力和连续亏损。CFTC 也要求模拟业绩附带这些限制说明。可参阅 <a href="https://www.cftc.gov/LearnAndProtect/AdvisoriesAndArticles/fraudadv_tradingsystem.html" target="_blank" rel="noopener noreferrer">CFTC 关于网络交易系统与模拟结果的说明</a>。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker"><span class="num">6</span> 图表与数据</div>
+    <h2>课程图表都是模拟数据</h2>
+    <div class="card pad">
+      <p class="muted">图表由开源库 <a href="https://github.com/klinecharts/KLineChart" target="_blank" rel="noopener noreferrer">KLineChart</a>（Apache-2.0）绘制。每张教学图先由课程作者写出几根关键 K 线，确定高低点与结构；再把非关键 K 线随机拆成更细周期的 K 线，路径、影线和成交量参照真实盘面的样子生成，但每组的开高低收与原来完全一致。被标注点名的信号棒、突破棒保持单根。</p>
+      <p class="muted">这些图不是任何真实品种的历史行情，时间轴和成交量也只为盘面观感，不能用来回测或验证策略。</p>
     </div>
   </section>
 
