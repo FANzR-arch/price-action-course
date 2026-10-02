@@ -14,14 +14,14 @@ price-action-course/
 ├── 404.html                自定义 404 页
 ├── favicon.svg             站点图标（K 线）
 ├── lessons/
-│   └── lesson-01.html … lesson-23.html   当前完成的 23 课
+│   └── lesson-01.html … lesson-24.html   完整 24 课
 ├── assets/
 │   ├── css/site.css        全站共享样式（设计令牌 + 组件，扁平清爽）
 │   ├── js/
 │   │   ├── candles.js      K 线引擎：drawCandle / genSeries / mountChart / mountPlayground / teachChart / densify
 │   │   ├── theme.js        深浅色主题：系统偏好、手动切换与本地记忆
 │   │   ├── shell.js        课程外壳：顶栏 / 进度 / 章节高亮 / 颜色开关 / 上下课
-│   │   └── widgets.js      交互组件库（candleLab / quiz / patternGallery / annotatedChart / rrCalculator / tradeSim / decisionTree …）
+│   │   └── widgets.js      交互组件库（candleLab / quiz / patternGallery / annotatedChart / rrCalculator / tradeSim / decisionTree / planCard / tradeJournal …）
 │   ├── vendor/klinecharts.min.js   图表库（KLineChart v9，Apache-2.0）
 │   └── og-cover.jpg        社交分享封面（1200×630）
 ├── .nojekyll               GitHub Pages 用（避免忽略某些文件）
@@ -52,7 +52,9 @@ price-action-course/
 5. **反转**：主要趋势反转 MTR → 磁力位 → 二次入场
 6. **风控与执行**：止损止盈仓位 → 交易者方程/盈亏比 → 逐棒检查单/二元决策 → 交易计划与复盘
 
-目前本地已完成**前 23 课**（阶段一至五全部，阶段六已开篇），最后 1 课在 `index.html` 的 `CURRICULUM` 中登记、逐课更新（详见 `PLAN.md`）。线上内容以最近一次推送到 `main` 的版本为准；24 课也只是入门范围，不等于三本原著的完整替代。
+本地六阶段 **24 课已完结**，每课入口、术语与前后课导航均已接入（详见 `PLAN.md`）。线上内容以最近一次推送到 `main` 的版本为准；24 课也只是入门范围，不等于三本原著的完整替代。
+
+计划卡与交易日志的数据只保存在当前浏览器的 localStorage 中；存储不可用时仍可编辑和导出，刷新不保留。日志支持 CSV 备份，计划卡支持单卡打印 / 存为 PDF。
 
 ## 本地预览
 

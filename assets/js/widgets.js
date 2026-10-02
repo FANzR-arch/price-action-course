@@ -434,6 +434,68 @@
     return {redraw:showScene};
   };
 
+  // ---------- 可保存与打印的交易计划 ----------
+  // opts: {storageKey?,defaults?}；存储不可用时继续以内存编辑。
+  W.planCard = function(host, opts){
+    opts=opts||{};var key=opts.storageKey||'pa-plan-v1', available=true;
+    function esc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+    var defaults=Object.assign({market:'教学品种',timeframe:'15 分钟',session:'自选固定时段',setups:'顺势 H2/L2；区间边界二次测试；突破回踩',riskPct:'1',dailyR:'3',streak:'3',exclude:'重大数据公布前后；流动性不足的时段',stop:'结构失效位外，按距离反推仓位',target:'近端结构 TP1；延伸目标在入场前写好',review:'每周固定复盘，净结果按入场前 1R 记录'},opts.defaults||{}), state=Object.assign({},defaults);
+    try{var saved=JSON.parse(localStorage.getItem(key));if(saved&&typeof saved==='object'&&!Array.isArray(saved))Object.keys(defaults).forEach(function(k){if(typeof saved[k]==='string'||typeof saved[k]==='number')state[k]=String(saved[k]).slice(0,1000);});}catch(e){available=false;}
+    var fields=[['market','品种'],['timeframe','周期'],['session','交易时段'],['setups','只做的 2–3 个 setup'],['riskPct','单笔风险 %','number'],['dailyR','每日最大亏损 R','number'],['streak','连亏暂停笔数','number'],['exclude','不交易时段'],['stop','止损与仓位规则'],['target','目标规则'],['review','复盘安排']];
+    host.innerHTML='<div class="card pad plan-widget"><div class="journal-fields">'+fields.map(function(f){return '<label>'+f[1]+(f[2]?'<input type="number" min="0.1" step="'+(f[0]==='streak'?'1':'0.1')+'" max="100" data-plan="'+f[0]+'" value="'+esc(state[f[0]])+'">':'<textarea rows="2" maxlength="1000" data-plan="'+f[0]+'">'+esc(state[f[0]])+'</textarea>')+'</label>';}).join('')+'</div><article class="plan-preview" data-el="plan"><h3>我的交易计划</h3><dl></dl><p class="muted">计划是执行约束，不是收益承诺。1R 是每笔入场前固定的计划风险金额。</p></article><div class="journal-toolbar"><button class="btn" type="button" data-act="print">打印 / 存为 PDF</button><p class="muted" data-el="storage" role="status"></p></div></div>';
+    function status(){host.querySelector('[data-el="storage"]').textContent=available?'数据只保存在你这台设备的浏览器里。清理浏览器数据会删除它。':'浏览器存储不可用，当前仍可编辑和打印；刷新后不会保留。';}
+    function draw(){host.querySelector('dl').innerHTML=fields.map(function(f){var value=state[f[0]]||'尚未填写';if(f[0]==='riskPct')value+='%';if(f[0]==='dailyR')value+='R';if(f[0]==='streak')value+=' 笔';return '<div><dt>'+esc(f[1])+'</dt><dd>'+esc(value)+'</dd></div>';}).join('');status();}
+    Array.prototype.forEach.call(host.querySelectorAll('[data-plan]'),function(input){input.addEventListener('input',function(){if(input.type==='number'&&!input.validity.valid)return;state[input.dataset.plan]=input.value;try{localStorage.setItem(key,JSON.stringify(state));}catch(e){available=false;}draw();});});
+    function preparePrint(){var old=document.querySelector('.pa-print-surface');if(old)old.remove();var copy=host.querySelector('[data-el="plan"]').cloneNode(true);copy.classList.add('pa-print-surface');copy.removeAttribute('data-el');document.body.appendChild(copy);document.body.classList.add('pa-print-mode');}
+    function cleanPrint(){var copy=document.querySelector('.pa-print-surface');if(copy)copy.remove();document.body.classList.remove('pa-print-mode');}
+    window.addEventListener('beforeprint',preparePrint);window.addEventListener('afterprint',cleanPrint);
+    host.querySelector('[data-act="print"]').addEventListener('click',function(){preparePrint();window.print();});
+    draw();return {redraw:draw};
+  };
+
+  // ---------- 本机交易日志 ----------
+  // opts: {storageKey?,demo?}；统计采用实际净 R 平均，包含平手和超出 1R 的亏损。
+  W.tradeJournal = function(host, opts){
+    opts=opts||{};var key=opts.storageKey||'pa-journal-v1', available=true, rows=[], editing=null;
+    function esc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+    function valid(r){return r&&typeof r==='object'&&isFinite(Number(r.resultR))&&['long','short'].indexOf(r.direction)>=0;}
+    function clean(r){var out={};['date','symbol','direction','setup','context','note'].forEach(function(k){out[k]=String(r[k]||'').slice(0,2000);});['entry','stop','target','resultR'].forEach(function(k){out[k]=isFinite(Number(r[k]))?Number(r[k]):0;});out.followed=r.followed===true;out.demo=r.demo===true;return out;}
+    try{var cached=localStorage.getItem(key);if(cached!==null){var parsed=JSON.parse(cached);if(!Array.isArray(parsed))throw Error('invalid journal');rows=parsed.filter(valid).map(clean);}else rows=(opts.demo||[]).filter(valid).map(clean);}catch(e){available=false;rows=(opts.demo||[]).filter(valid).map(clean);}
+    var fields=[['date','日期','date'],['symbol','品种','text'],['direction','方向','select'],['setup','setup','text'],['context','上下文','text'],['entry','入场','number'],['stop','止损','number'],['target','目标','number'],['resultR','净结果 R','number'],['followed','按计划执行','check'],['note','备注','text']];
+    host.innerHTML='<div class="card pad trade-journal"><p class="muted" data-el="storage" role="status"></p><p class="muted" data-el="demo"></p><div class="readout" data-el="stats" aria-live="polite"></div><div class="journal-groups" data-el="groups"></div><div class="journal-toolbar"><button type="button" class="btn ghost mini" data-act="export">导出 CSV</button><button type="button" class="btn ghost mini" data-act="clear">清空所有记录</button></div><div class="journal-list" data-el="list"></div><form data-el="form"><h3 data-el="form-title">新增交易</h3><div class="journal-fields">'+fields.map(function(f){var k=f[0],type=f[2],field;if(type==='select')field='<select name="direction"><option value="long">多</option><option value="short">空</option></select>';else if(type==='check')field='<input type="checkbox" name="followed" checked>';else if(k==='note'||k==='context')field='<textarea name="'+k+'" maxlength="2000" rows="2"></textarea>';else field='<input name="'+k+'" type="'+type+'"'+(type==='number'?' step="any"'+(k==='resultR'?'':' min="0.00000001"'):' maxlength="2000"')+(k==='setup'?' list="journal-setups"':'')+' required>';return '<label'+(type==='check'?' class="check-field"':'')+'>'+f[1]+field+'</label>';}).join('')+'</div><datalist id="journal-setups"><option value="顺势 H2/L2"><option value="区间边界二次测试"><option value="突破回踩"></datalist><div class="journal-toolbar"><button class="btn" type="submit" data-act="save">保存交易</button><button class="btn ghost" type="button" data-act="cancel" hidden>取消编辑</button></div><p data-el="message" role="status"></p></form><p class="sim-model">净结果 R = 扣除手续费和滑点后的实际盈亏 ÷ 入场前的 1R。演示数据只用于学习统计，不能验证策略；先导出备份，再清空。</p></div>';
+    var form=host.querySelector('form'), list=host.querySelector('[data-el="list"]');
+    function fixed(n){return (Math.abs(n)<0.0005?0:n).toFixed(3);}
+    function mean(a){return a.length?a.reduce(function(s,r){return s+r.resultR;},0)/a.length:null;}
+    function meanText(a){var value=mean(a);return value===null?'—':fixed(value)+'R';}
+    function save(){try{localStorage.setItem(key,JSON.stringify(rows));}catch(e){available=false;}}
+    function reset(){editing=null;form.reset();form.elements.date.value=new Date().toLocaleDateString('en-CA');host.querySelector('[data-el="form-title"]').textContent='新增交易';host.querySelector('[data-act="save"]').textContent='保存交易';host.querySelector('[data-act="cancel"]').hidden=true;}
+    function render(){
+      var wins=rows.filter(function(r){return r.resultR>0;}),losses=rows.filter(function(r){return r.resultR<0;}),follow=rows.filter(function(r){return r.followed;}),no=rows.filter(function(r){return !r.followed;});
+      host.querySelector('[data-el="storage"]').textContent=available?'数据只保存在你这台设备的浏览器里；请定期导出 CSV 备份。':'浏览器存储不可用，仍可增改记录和导出；刷新后不会保留。';
+      host.querySelector('[data-el="demo"]').textContent=rows.some(function(r){return r.demo;})?'含演示数据：每条均有标记，可一键清空后开始自己的记录。':'当前记录不含演示数据。';
+      host.querySelector('[data-el="stats"]').innerHTML=chip('笔数','<b>'+rows.length+'</b>')+chip('胜率','<b>'+(rows.length?(wins.length/rows.length*100).toFixed(1)+'%':'—')+'</b>')+chip('平均盈利','<b>'+meanText(wins)+'</b>')+chip('平均亏损幅度','<b>'+(losses.length?fixed(-mean(losses))+'R':'—')+'</b>')+chip('净期望','<b>'+meanText(rows)+'</b>')+chip('按计划比例','<b>'+(rows.length?(follow.length/rows.length*100).toFixed(1)+'%':'—')+'</b>');
+      var names=[];rows.forEach(function(r){if(names.indexOf(r.setup)<0)names.push(r.setup);});
+      host.querySelector('[data-el="groups"]').innerHTML='<p class="muted">按 setup 的平均净 R</p><div class="readout">'+names.map(function(name){var group=rows.filter(function(r){return r.setup===name;});return chip(esc(name)+' · '+group.length+' 笔','<b>'+meanText(group)+'</b>');}).join('')+'</div><div class="readout">'+chip('按计划 · '+follow.length+' 笔','<b>'+meanText(follow)+'</b>')+chip('未按计划 · '+no.length+' 笔','<b>'+meanText(no)+'</b>')+'</div>';
+      list.innerHTML=rows.length?rows.map(function(r,i){return '<article class="journal-row"><div class="journal-row-head"><strong>'+esc(r.date)+' · '+esc(r.symbol)+' · '+(r.direction==='long'?'多':'空')+'</strong><span class="chip">'+fixed(r.resultR)+'R</span>'+(r.demo?'<span class="chip">演示数据</span>':'')+'</div><p>'+esc(r.setup)+' · '+esc(r.context)+'</p><p class="muted">入场 '+r.entry+' / 止损 '+r.stop+' / 目标 '+r.target+' · '+(r.followed?'按计划':'未按计划')+'</p><p class="journal-note">'+esc(r.note)+'</p><div class="journal-toolbar"><button type="button" class="btn ghost mini" data-edit="'+i+'" aria-label="编辑第 '+(i+1)+' 笔">编辑</button><button type="button" class="btn ghost mini" data-delete="'+i+'" aria-label="删除第 '+(i+1)+' 笔">删除</button></div></article>';}).join(''):'<p class="muted">还没有记录。用下面的表单新增一笔。</p>';
+      Array.prototype.forEach.call(list.querySelectorAll('[data-edit]'),function(b){b.addEventListener('click',function(){editing=+b.dataset.edit;var r=rows[editing];fields.forEach(function(f){var input=form.elements[f[0]];if(f[2]==='check')input.checked=r.followed;else input.value=r[f[0]];});host.querySelector('[data-el="form-title"]').textContent='编辑第 '+(editing+1)+' 笔';host.querySelector('[data-act="save"]').textContent='保存修改';host.querySelector('[data-act="cancel"]').hidden=false;form.scrollIntoView({block:'start'});form.elements.date.focus({preventScroll:true});});});
+      Array.prototype.forEach.call(list.querySelectorAll('[data-delete]'),function(b){b.addEventListener('click',function(){rows.splice(+b.dataset.delete,1);reset();save();render();host.querySelector('[data-el="message"]').textContent='已删除该记录。';});});
+    }
+    form.addEventListener('submit',function(e){e.preventDefault();var r={demo:editing!==null?rows[editing].demo:false};fields.forEach(function(f){var input=form.elements[f[0]];r[f[0]]=f[2]==='check'?input.checked:(f[2]==='number'?Number(input.value):input.value.trim());});
+      if(!valid(r)||!r.symbol||!r.setup||!isFinite(r.entry)||!isFinite(r.stop)||!isFinite(r.target)){host.querySelector('[data-el="message"]').textContent='请补全字段，结果 R 要是有效数字。';return;}
+      var ordered=r.direction==='long'?r.stop<r.entry&&r.target>r.entry:r.stop>r.entry&&r.target<r.entry;
+      if(!ordered){host.querySelector('[data-el="message"]').textContent='请核对方向：多头止损低于入场、目标高于入场；空头相反。';return;}
+      if(editing===null)rows.push(clean(r));else rows[editing]=clean(r);save();reset();render();host.querySelector('[data-el="message"]').textContent='已保存。净结果 R 按入场前的计划风险计算。';
+    });
+    host.querySelector('[data-act="cancel"]').addEventListener('click',function(){reset();host.querySelector('[data-el="message"]').textContent='已取消编辑。';});
+    host.querySelector('[data-act="clear"]').addEventListener('click',function(){if(!window.confirm('清空所有日志记录？建议先导出 CSV。'))return;rows=[];reset();save();render();host.querySelector('[data-el="message"]').textContent='已清空。';});
+    host.querySelector('[data-act="export"]').addEventListener('click',function(){
+      function cell(value){var s=String(value==null?'':value);if(/^[=+@\-\t\r]/.test(s)&&!/^[-+]?\d+(\.\d+)?$/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}
+      var csv='\uFEFF'+fields.map(function(f){return cell(f[1]);}).concat(cell('演示数据')).join(',')+'\r\n'+rows.map(function(r){return fields.map(function(f){return cell(f[0]==='direction'?(r.direction==='long'?'多':'空'):f[0]==='followed'?(r.followed?'是':'否'):r[f[0]]);}).concat(cell(r.demo?'是':'否')).join(',');}).join('\r\n');
+      var blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='交易日志.csv';document.body.appendChild(a);a.click();a.remove();window.setTimeout(function(){URL.revokeObjectURL(url);},1000);
+    });
+    save();reset();render();return {redraw:render};
+  };
+
   // ---------- 捏一根 K 线 ----------
   W.candleLab = function(host, opts){
     opts = opts||{};

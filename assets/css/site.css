@@ -485,3 +485,28 @@ strong,.hl,b{font-weight:600}
 .checklist{counter-reset:check;list-style:none;padding:0}
 .checklist li{counter-increment:check;padding:12px 0;border-bottom:1px solid var(--line)}
 .checklist li::before{content:counter(check) ". ";color:var(--accent);font-weight:600}
+
+/* 本机计划与日志；手机直接使用卡片，不制造整页横向滚动 */
+.journal-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 20px;margin:16px 0}
+.journal-fields label{display:flex;flex-direction:column;gap:7px;font-size:13px;color:var(--ink-soft);min-width:0}
+.journal-fields input,.journal-fields textarea,.journal-fields select{font:inherit;font-size:15px;background:var(--surface-2);color:var(--ink);border:1px solid var(--line);border-radius:7px;padding:9px 11px;max-width:100%;width:100%;min-width:0;box-sizing:border-box}
+.journal-fields textarea{resize:vertical}
+.journal-fields .check-field{flex-direction:row;align-items:center}
+.journal-fields input[type="checkbox"]{width:20px;height:20px;accent-color:var(--accent)}
+.journal-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0}
+.journal-toolbar p{font-size:13px;margin:0;flex:1;min-width:180px}
+.plan-preview{border:1px solid var(--line);padding:20px;margin:24px 0;background:var(--surface-2);overflow-wrap:anywhere}
+.plan-preview dl{margin:0}.plan-preview dl>div{display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;border-bottom:1px solid var(--line);padding:10px 0}
+.plan-preview dt{font-size:13px;color:var(--ink-soft)}.plan-preview dd{margin:0;white-space:pre-wrap}
+.journal-list{margin:24px 0}.journal-row{padding:16px 0;border-top:1px solid var(--line);overflow-wrap:anywhere}
+.journal-row-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.journal-row p{margin:8px 0;font-size:14px}.journal-row .journal-toolbar{margin:10px 0 0}.journal-note{white-space:pre-wrap;color:var(--ink-soft)}
+.journal-groups{margin:14px 0}.journal-groups p{font-size:13px;margin:10px 0}.trade-journal form{scroll-margin-top:130px;border-top:1px solid var(--line);padding-top:18px}
+.course-map{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.course-map ul{list-style:none;padding:0}.course-map li{padding:8px 0;border-bottom:1px solid var(--line)}.course-map small{display:block;color:var(--ink-soft);margin-top:5px}
+.pa-print-surface{display:none}
+@media(max-width:599px){.journal-fields,.course-map{grid-template-columns:1fr}.plan-preview dl>div{grid-template-columns:1fr;gap:4px}.plan-preview{padding:16px}}
+@media print{
+ body.pa-print-mode> :not(.pa-print-surface){display:none!important}
+ body.pa-print-mode{background:var(--paper);margin:0}
+ .pa-print-surface{display:block!important;break-inside:avoid;margin:0;border:0;max-width:100%;color:var(--ink)}
+ .pa-print-surface h3{font-size:22px}.pa-print-surface dl>div{grid-template-columns:140px minmax(0,1fr);padding:7px 0}
+}

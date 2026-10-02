@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第二十四课：交易计划、复盘与交易日志 · 价格行为交易入门课</title>
+<meta name="description" content="写交易计划、记录实际净 R，分开复盘过程与结果。使用本机保存的计划卡和日志，回顾完整 24 课。">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://price-action-course.vercel.app/lessons/lesson-24.html">
+<meta name="theme-color" content="#B0761A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="价格行为交易 · 入门课">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="第二十四课：交易计划、复盘与交易日志 · 价格行为交易入门课">
+<meta property="og:description" content="计划在入场前写好，净结果在出场后记录。用计划卡、日志和课程地图练习执行与复盘。">
+<meta property="og:url" content="https://price-action-course.vercel.app/lessons/lesson-24.html">
+<meta property="og:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="价格行为交易 · 入门课">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第二十四课：交易计划、复盘与交易日志 · 价格行为交易入门课">
+<meta name="twitter:description" content="计划在入场前写好，净结果在出场后记录。用计划卡、日志和课程地图练习执行与复盘。">
+<meta name="twitter:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<script src="../assets/js/theme.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+<div class="wrap" id="main" tabindex="-1">
+  <header class="hero">
+    <p class="eyebrow">第二十四课 · 阶段六 · 风控与执行</p>
+    <h1>交易计划、复盘与交易日志：<br>把决定留下来。</h1>
+    <p class="lede">学完图形，下一步是把每次判断写成可以检查的记录。<strong>入场前有计划，出场后有日志，每周分开检查过程和结果</strong>。这一课把前面的工具收进同一套练习。</p>
+    <div id="heroCandles"></div>
+  </header>
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 写一张交易计划</div>
+    <h2>下单前就约定自己会做什么</h2>
+    <p class="muted">先限定品种、周期和时段，只练 2–3 个 setup（固定的交易机会类型）。例如顺势 H2/L2、区间边界二次测试、突破回踩。数量少，记录才容易比较；不是每个形态都要做。</p>
+    <ul class="clean muted"><li><span class="hl">风险：</span>写单笔风险%、每日最大亏损和连亏暂停条件；</li><li><span class="hl">执行：</span>结构止损、近端目标、订单触发条件提前选好；</li><li><span class="hl">不交易：</span>重大数据公布前后或流动性不足时，按事先写好的时段暂停。</li></ul>
+    <div class="callout"><div class="t">本站练习标准，不是原著规定</div>默认单笔风险 1%，当天净亏约 3R 就停止，连亏 3 笔暂停并重看环境。连亏笔数是本站演示设置，可按计划调节。若每笔 1R 的金额不同，每日金额上限也要单独写清；不要把 3R 当作固定货币金额。</div>
+    <p class="muted">填下面的字段，计划卡会实时更新。“打印 / 存为 PDF”使用浏览器打印功能，只打印计划卡。默认文字是演示，你可以换成自己的约束。</p>
+    <div id="w-plan"></div>
+  </section>
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 交易日志</div>
+    <h2>把实际成交和当时理由记在一起</h2>
+    <p class="muted">每笔记日期、品种、方向、setup、上下文、入场、初始止损、目标、净结果 R、是否按计划、备注。备注写可核对的事实，例如“提前入场”或“止损触发后有滑点”，别只写“运气不好”。</p>
+    <p class="muted"><strong>净结果 R = 扣费后的实际盈亏 ÷ 入场前固定的 1R。</strong>移到保本后，分母也不改。计划风险 100 元，实际净赚 120 元是 +1.2R；净亏 120 元是 −1.2R。见<a href="../lessons/lesson-21.html">第 21 课</a>。</p>
+    <p class="muted">胜率 = 净盈利笔数 ÷ 全部笔数，平手也在分母里。平均亏损显示为正的“幅度”；净期望直接取所有净 R 的平均，不再扣一遍费用。没有盈利或亏损样本时，对应均值显示“—”。小样本的分组差异只用于提出问题。</p>
+    <div id="w-journal"></div>
+    <div class="callout"><div class="t">先核对演示统计</div>首次打开有 10 笔演示：净结果为 +1.2、−1、+2、−1、0、−1.2、+1、−0.5、+1.5、−1R。合计 +1R，平均 <strong>+0.100R</strong>；4 笔净盈利，胜率 <strong>40.0%</strong>。平均盈利 1.425R，平均亏损幅度 0.940R。按计划 8 笔均值 +0.338R，未按计划 2 笔均值 −0.850R。它们是演示数据，不代表实际策略表现。</div>
+    <p class="muted">清空前先导出 CSV。导出文件保留演示标记，避免和自己的记录混在一起。日志与计划只在这台设备的这个浏览器保存，不会自动同步到其他设备。</p>
+  </section>
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 分开复盘过程与结果</div>
+    <h2>赚了，也可能做错；亏了，也可能做对</h2>
+    <div class="card"><table class="formula-table"><caption class="sr-only">交易过程与结果四象限</caption><thead><tr><th scope="col">过程 / 结果</th><th scope="col">好结果</th><th scope="col">坏结果</th></tr></thead><tbody><tr><th scope="row">好过程</th><td>按计划盈利：继续记录，别把一笔当证明。</td><td>按计划亏损：检查执行偏差与样本，接受计划内风险。</td></tr><tr><th scope="row">坏过程</th><td>违规盈利：容易强化坏习惯，仍需纠正。</td><td>违规亏损：先找漏掉的步骤，再调整执行。</td></tr></tbody></table></div>
+    <p class="muted">“坏过程好结果”容易让人相信违规有效。例如扩大止损后碰巧反弹赚钱，下一次可能付出更大代价。过程评价以入场前的规则为准，不能看到结果再改标准。</p>
+    <div id="w-process1"></div><div id="w-process2" style="margin-top:16px"></div>
+    <p class="muted" style="margin-top:20px"><strong>每周固定问：</strong>哪个 setup 的净期望较高、样本是否够？未按计划的交易怎样？亏损是否都在 1R 以内，超出是费用、滑点还是擅自扩大止损？计划内亏损有没有被误判成执行错误？下一周只改一项可检验的执行问题。</p>
+  </section>
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 从模拟到真实</div>
+    <h2>先练记录，再承受真实执行差异</h2>
+    <p class="muted">回放可以暂停，也可能已经知道后面的走势。模拟成交不一定包含排队、滑点、流动性和临场压力。参阅<a href="../references.html#simulation">CFTC 对模拟结果局限的说明</a>，别把演示日志或资金曲线当成实盘证明。</p>
+    <p class="muted">先在回放中执行一套固定计划，保留每笔理由和净 R。样本少时承认误差，回看<a href="../lessons/lesson-22.html">第 22 课的胜率估计</a>。如果决定进入真实交易，先用能承担的小仓位，重新检查实际费用、最小交易单位和强平机制；合适的金额取决于你的条件。</p>
+    <p class="muted">没有“做满多少笔就能盈利”的门槛。记录能帮助发现问题，不能保证下一段市场仍然适合原来的方法。</p>
+  </section>
+  <section id="s5" class="reveal">
+    <div class="kicker"><span class="num">5</span> 24 课地图</div>
+    <h2>遇到问题，回到对应的那一课</h2>
+    <p class="muted">先环境，再位置和信号，最后风控与执行。下面的标题与要点取自首页 CURRICULUM。</p>
+<div class="course-map">
+<div class="card pad"><h3>阶段一 · 看懂图</h3><ul>
+<li><a href="../lessons/lesson-01.html">01 · 读懂一根 K 线</a><small>开高低收、实体影线；涨跌看收盘 vs 开盘，颜色只是可切换的设置。</small></li>
+<li><a href="../lessons/lesson-02.html">02 · K 线形状与候选信号</a><small>认识趋势棒、十字星、锤子、流星与吞没，并把形状放回上下文。</small></li>
+<li><a href="../lessons/lesson-03.html">03 · 支撑与阻力</a><small>怎样从前期高低点和反复测试中标出可能起作用的价格区域。</small></li>
+<li><a href="../lessons/lesson-04.html">04 · 市场环境：趋势·通道·区间</a><small>用三个常见标签描述行情，并识别它们之间的过渡。</small></li>
+</ul></div>
+<div class="card pad"><h3>阶段二 · 趋势</h3><ul>
+<li><a href="../lessons/lesson-05.html">05 · 趋势的解剖</a><small>用摆动高点、低点、回调和 K 线重叠评估趋势结构。</small></li>
+<li><a href="../lessons/lesson-06.html">06 · 回调与波段：H1/H2、L1/L2 计数</a><small>趋势回调中的触发次数怎么数，以及上下文为什么比编号更重要。</small></li>
+<li><a href="../lessons/lesson-07.html">07 · 通道：窄通道 vs 宽通道</a><small>通道怎么画、斜率说明什么、边界怎么用。</small></li>
+<li><a href="../lessons/lesson-08.html">08 · 均线与 Always In（20 均线）</a><small>理解当前方向偏好，以及 20 EMA 在判断中的辅助作用。</small></li>
+<li><a href="../lessons/lesson-09.html">09 · 测量移动（Measured Move）</a><small>把前一段行情投影到后面，得到一个待验证的目标区。</small></li>
+</ul></div>
+<div class="card pad"><h3>阶段三 · 交易区间与突破</h3><ul>
+<li><a href="../lessons/lesson-10.html">10 · 交易区间：高抛低吸</a><small>区间里在边界做反转、在中间不动手。</small></li>
+<li><a href="../lessons/lesson-11.html">11 · 突破：真突破还是假突破</a><small>突破的力度、跟随、回踩怎么判断。</small></li>
+<li><a href="../lessons/lesson-12.html">12 · 突破失败与突破测试</a><small>怎样识别突破失败，并等待后续结构说明方向。</small></li>
+<li><a href="../lessons/lesson-13.html">13 · 铁丝网与无交易环境</a><small>识别信号质量太差、不值得交易的环境。</small></li>
+</ul></div>
+<div class="card pad"><h3>阶段四 · 形态</h3><ul>
+<li><a href="../lessons/lesson-14.html">14 · 楔形与三推</a><small>三次推动怎样构成候选衰竭结构。</small></li>
+<li><a href="../lessons/lesson-15.html">15 · 三角形与收敛形态</a><small>对称、上升、下降与扩张结构，以及突破后的确认条件。</small></li>
+<li><a href="../lessons/lesson-16.html">16 · 双重顶 / 底与微型结构</a><small>双重测试、颈线确认、微型结构与失效条件。</small></li>
+<li><a href="../lessons/lesson-17.html">17 · 最终旗形与趋势末端</a><small>从潜在末端整理到顺势突破、失败回收与反向跟进。</small></li>
+</ul></div>
+<div class="card pad"><h3>阶段五 · 反转</h3><ul>
+<li><a href="../lessons/lesson-18.html">18 · 主要趋势反转（MTR）</a><small>趋势线突破、旧极点测试失败、反向跟进：把反转拆成可检查的过程。</small></li>
+<li><a href="../lessons/lesson-19.html">19 · 信号失败后的磁力位</a><small>信号失败后，被套一方的入场价、止损区和突破点怎样成为测试目标。</small></li>
+<li><a href="../lessons/lesson-20.html">20 · 二次入场机会</a><small>第一次尝试失败后，怎样评估第二次触发，以及它更晚入场的代价。</small></li>
+</ul></div>
+<div class="card pad"><h3>阶段六 · 风控与执行</h3><ul>
+<li><a href="../lessons/lesson-21.html">21 · 止损、止盈与仓位管理</a><small>按失效位置、目标距离与账户风险计算仓位。</small></li>
+<li><a href="../lessons/lesson-22.html">22 · 交易者方程与盈亏比</a><small>用胜率、平均盈利与平均亏损一起估算期望值。</small></li>
+<li><a href="../lessons/lesson-23.html">23 · 逐棒检查单 &amp; 二元决策</a><small>用固定问题减少临场遗漏，保留不下单的选项。</small></li>
+<li><a href="../lessons/lesson-24.html">24 · 交易计划、复盘与交易日志</a><small>记录计划、执行和结果，为后续复盘保留可比较的数据。</small></li>
+</ul></div>
+</div>
+    <p class="muted" style="margin-top:20px">想继续阅读，先看<a href="../references.html">参考资料中的 Brooks 原著</a>，结合自己的日志检验理解。本课程是入门顺序，不替代原著的完整讨论。</p>
+  </section>
+  <section id="s6" class="reveal">
+    <div class="kicker"><span class="num">6</span> 随堂自测</div><h2>记录能不能解释你的决定</h2>
+    <div id="w-q1"></div><div id="w-q2" style="margin-top:16px"></div><div id="w-fill" style="margin-top:16px"></div>
+  </section>
+  <footer>
+    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 本课要点</div>
+    <ul>
+      <li>计划先限定品种、周期、时段与 2–3 个 setup，写好风险和不交易条件；</li>
+      <li>净结果 R = 扣费后实际盈亏 ÷ 入场前固定的 1R；</li>
+      <li>日志净期望直接平均所有净 R，平手也计入笔数，不重复扣成本；</li>
+      <li>过程按原计划评价，结果按实际盈亏记录，违规盈利仍需纠正；</li>
+      <li>模拟不能完整复现真实成交和压力，少量样本不能证明长期优势；</li>
+      <li>定期导出本机日志，回到对应课程检查具体问题。</li>
+    </ul>
+    <p class="muted">24 课到这里结束。把检查顺序留在计划里，把每次执行留在记录里。</p></div>
+    <div class="next">
+      <a class="btn ghost" href="../lessons/lesson-23.html">← 上一课</a>
+      <a class="btn" href="../index.html#catalog">课程完结 · 回到课程地图</a>
+      <a class="btn ghost" href="../glossary.html">术语表</a>
+      <a class="btn ghost" href="../references.html">参考资料</a>
+    </div>
+    <div class="follow">
+      <a href="../references.html">参考资料与适用边界</a>
+      <span class="follow-label">关注作者 · 课程持续更新</span>
+      <a href="https://x.com/Formulasearch" target="_blank" rel="noopener noreferrer" aria-label="在 X 上关注 @Formulasearch"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@Formulasearch</a>
+      <a href="https://rzcthink.top/" target="_blank" rel="noopener noreferrer" aria-label="访问 Philthink（rzcthink.top）"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>Philthink</a>
+      <a class="okx" href="https://www.mitxcqvwnhj.com/join/78417231" target="_blank" rel="sponsored noopener noreferrer" aria-label="通过作者邀请链接注册 OKX，邀请码 78417231"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><rect x="1.5" y="1.5" width="7" height="7"/><rect x="15.5" y="1.5" width="7" height="7"/><rect x="8.5" y="8.5" width="7" height="7"/><rect x="1.5" y="15.5" width="7" height="7"/><rect x="15.5" y="15.5" width="7" height="7"/></svg>OKX · 邀请码 78417231</a>
+    </div>
+    <p class="disclaim">本课只用于交易知识学习，不构成投资建议。图表和价格均为教学演示，未计入滑点、手续费、流动性与真实执行差异；历史回放和模拟结果不能代表未来实盘表现。</p>
+  </footer>
+</div>
+<script src="../assets/vendor/klinecharts.min.js"></script><script src="../assets/js/candles.js"></script><script src="../assets/js/shell.js"></script><script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+ "use strict";
+ PA.mountPlayground(document.getElementById('heroCandles'),{ma:[7,30]});
+ PA.widgets.planCard(document.getElementById('w-plan'));
+ // 教学记录：净 R 已含费用与滑点，1R 分母在入场前固定。
+ var values=[1.2,-1,2,-1,0,-1.2,1,-0.5,1.5,-1],setups=['顺势 H2/L2','顺势 H2/L2','区间边界二次测试','区间边界二次测试','区间边界二次测试','顺势 H2/L2','顺势 H2/L2','突破回踩','突破回踩','突破回踩'];
+ var demo=values.map(function(v,i){var long=i%2===0;return {date:'2026-09-'+String(i+1).padStart(2,'0'),symbol:'教学品种',direction:long?'long':'short',setup:setups[i],context:i<2||i===5||i===6?'趋势回调':i<5?'区间边界':'突破测试',entry:50,stop:long?49:51,target:long?53:47,resultR:v,followed:i!==5&&i!==7,note:i===5?'提前入场，实际退出含不利滑点':i===7?'未等测试信号收盘':'按演示计划记录净结果',demo:true};});
+ PA.widgets.tradeJournal(document.getElementById('w-journal'),{demo:demo});
+ PA.widgets.quizChoice(document.getElementById('w-process1'),{q:'过程题 A：按预先写好的信号、仓位和止损执行，最后亏了 1R。属于哪一格？',options:[{t:'好过程，坏结果',ok:true,why:'计划允许亏损，亏钱本身不等于执行错误。继续检查费用和足够样本。'},{t:'坏过程，坏结果',why:'过程要看有没有执行原计划，不能只按盈利与否评分。'},{t:'好过程，好结果',why:'这笔资金结果为负；过程合格和结果盈利是两个维度。'}]});
+ PA.widgets.quizChoice(document.getElementById('w-process2'),{q:'过程题 B：擅自扩大止损，碰巧反弹赚了 2R。属于哪一格？',options:[{t:'坏过程，好结果',ok:true,why:'盈利不能替违规辩护。下一笔可能没有反弹，应纠正扩大止损的行为。'},{t:'好过程，好结果',why:'结果好不代表按计划做了；风险约束已经被破坏。'},{t:'坏过程，坏结果',why:'实际结果为正，但过程仍有问题。两个维度分别评价。'}]});
+ PA.widgets.quizChoice(document.getElementById('w-q1'),{q:'① 入场前 1R = 100 元，扣除全部费用后实际亏 120 元，日志怎么记？',options:[{t:'−1.2R，仍用入场前的 100 元作分母',ok:true,why:'净结果 ÷ 初始计划风险；实际亏损可以超过 1R。'},{t:'−1R，把分母改成实际亏损 120 元',why:'事后改分母会隐藏超出计划的损失。'},{t:'−1.2R 后再减一次手续费 R',why:'这里已经是扣费后的净结果，不能重复扣费。'}]});
+ PA.widgets.quizChoice(document.getElementById('w-q2'),{q:'② 一个 setup 只有 3 笔盈利记录，能认定它长期有优势吗？',options:[{t:'不能，继续记录并检查样本和执行条件',ok:true,why:'少量盈利无法排除随机性和选择偏差。'},{t:'能，三笔连续盈利足够证明',why:'第 22 课说明概率估计有误差，少量结果不能证明。'},{t:'能，只要未按计划的记录先删掉',why:'删去不喜欢的结果会造成偏差；分组比较比删除更有用。'}]});
+ PA.widgets.fillBlank(document.getElementById('w-fill'),{prompt:'③ 实际日志的净期望怎么计算？',parts:['净期望 R = 全部净结果 R 的',{a:['总和','合计','和'],w:80},'÷',{a:['总笔数','笔数','全部笔数','交易笔数'],w:100},'，平手也计入分母。'],okText:'✓ 实际净 R 的平均值，包含平手和超出计划的亏损。'});
+ PA.initLesson({n:24,sections:[{id:'s1',label:'交易计划'},{id:'s2',label:'交易日志'},{id:'s3',label:'过程与结果'},{id:'s4',label:'模拟到真实'},{id:'s5',label:'课程地图'},{id:'s6',label:'随堂自测'}]});
+})();
+</script></body></html>
