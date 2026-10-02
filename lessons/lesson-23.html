@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第二十三课：逐棒检查单 &amp; 二元决策 · 价格行为交易入门课</title>
+<meta name="description" content="按分类、角色、环境、跟随和计划逐棒检查。用二元决策树练习等待、不交易与按计划下单。">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://price-action-course.vercel.app/lessons/lesson-23.html">
+<meta name="theme-color" content="#B0761A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="价格行为交易 · 入门课">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="第二十三课：逐棒检查单 &amp; 二元决策 · 价格行为交易入门课">
+<meta property="og:description" content="先看环境，再看信号，最后检查风险与回报。通过逐棒回放和决策树练习固定顺序。">
+<meta property="og:url" content="https://price-action-course.vercel.app/lessons/lesson-23.html">
+<meta property="og:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="价格行为交易 · 入门课">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第二十三课：逐棒检查单 &amp; 二元决策 · 价格行为交易入门课">
+<meta name="twitter:description" content="先看环境，再看信号，最后检查风险与回报。通过逐棒回放和决策树练习固定顺序。">
+<meta name="twitter:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<script src="../assets/js/theme.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+<div class="wrap" id="main" tabindex="-1">
+  <header class="hero">
+    <p class="eyebrow">第二十三课 · 阶段六 · 风控与执行</p>
+    <h1>逐棒检查单 &amp; 二元决策：<br>每次只回答一个问题。</h1>
+    <p class="lede">学过一个形态，不等于临场能把每一步都做到。固定顺序能减少遗漏：<strong>先看环境，再看信号，最后检查风险和回报</strong>。答不上来，就先等。</p>
+    <div id="heroCandles"></div>
+  </header>
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 为什么固定顺序</div>
+    <h2>检查单把知道的事变成做过的事</h2>
+    <p class="muted">看到漂亮的多头棒，很容易跳过“是不是区间中部”。看到价格突然上涨，又容易忘记“止损在哪里”。检查单每一步只问一个是 / 否问题。先检查上一层，再走下一层。</p>
+    <div class="callout"><div class="t">本站练习标准：不下单是默认选项</div>“不知道”不算“是”。信息不够时停止这次检查，等下一根收盘，再从环境重新看。检查单帮助执行已有计划，不能替你识别图上不存在的优势。</div>
+  </section>
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 每根收盘后的五问</div>
+    <h2>只用当前已经出现的 K 线</h2>
+    <ol class="checklist muted">
+      <li><strong>分类：</strong>实体是趋势棒还是十字星？高低点关系是内包还是外包？这两组标签可以同时成立。</li>
+      <li><strong>角色：</strong>它是候选信号棒、触发计划的入场棒，还是后面的跟进棒？</li>
+      <li><strong>上下文：</strong>是趋势、通道、区间、突破后，还是反转尝试？</li>
+      <li><strong>跟随：</strong>已经出现的后续 1–2 根有没有同向推进？没有后续数据，就写“尚未知”。</li>
+      <li><strong>更新计划：</strong>顺势评估、等第二次、等突破测试，还是放弃？已经成交时按第 21 课的预设风控执行。</li>
+    </ol>
+    <p class="muted">下面按时间增加 1–2 根棒。第一次向上尝试在第 5 根出现，第 7 根再向上尝试。切换前先自己回答五问；别用最后一张图的结局解释前面的决定。</p>
+    <div id="w-replay"></div>
+  </section>
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 二元决策树</div>
+    <h2>先排除不合格，再考虑下单</h2>
+    <p class="muted">三张图都是教学场景。图下给定了候选计划与风险假设；只有图形本身时，无法精确知道胜率。点“是 / 否”走下去，点路径中的任一步可以回退，“重来”回到起点。</p>
+    <p class="muted"><strong>本站练习标准：</strong>逆势只评估第二次，并优先结合<a href="../lessons/lesson-18.html">趋势线突破和旧极点测试失败</a>。这棵入门树对逆势两项都要求看清；缺一项就先观察。第二次也不等于必须下单。</p>
+    <div id="w-tree"></div>
+  </section>
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 选择下单方式</div>
+    <h2>等待价格确认，或等待价格回到指定位置</h2>
+    <div class="course-compare">
+      <div class="card pad"><h3>止损单：等价格通过触发位</h3><p class="muted">买入止损单可设在当前价格上方，卖出止损单可设在下方。它既能用于入场，也能用于退出。趋势回调或突破测试后，用它等信号极点被越过。市价止损触发后按市价成交，仍可能有滑点。</p><p class="muted"><strong>本站新手练习默认用止损单</strong>，先等信号收盘。突破或高潮第一根不追，先等回踩。见<a href="../lessons/lesson-11.html">第 11 课</a>与<a href="../lessons/lesson-12.html">第 12 课</a>。</p></div>
+      <div class="card pad"><h3>限价单：等指定价格或更好价格</h3><p class="muted">买入限价限制最高买价，卖出限价限制最低卖价。价格满足条件也不保证成交。窄通道回调、区间边界，有经验的交易者可以提前安排限价计划；代价是可能没成交，也可能接到继续向反方向走的行情。</p><p class="muted"><strong>区间中部不挂单</strong>是本站练习标准。先回到<a href="../lessons/lesson-10.html">第 10 课的边界位置</a>，再讨论订单类型。</p></div>
+    </div>
+    <p class="muted">止损单和止损限价单不同。后者触发后变成限价单，可能一直无法成交。订单名称、触发规则和可用时段要核对交易场所说明；见<a href="../lessons/lesson-21.html">第 21 课的执行边界</a>。</p>
+  </section>
+  <section id="s5" class="reveal">
+    <div class="kicker"><span class="num">5</span> 口诀与禁止清单</div>
+    <h2>少记几个口号，多检查一次图</h2>
+    <ol class="muted"><li>先看上下文，再看形状。</li><li>先等信号收盘，再写入场计划。</li><li>先等第二次，再评估逆势反转。</li><li>先看已有跟随，再确认力度。</li><li>先尊重原趋势惯性，再讨论反转。</li><li>看不懂，就等下一根。</li></ol>
+    <div class="callout"><div class="t">本站新手练习：遇到这些就停</div>铁丝网或区间中部；追高潮、尖峰第一根；强趋势里第一次逆势；为了改善方程把止损缩进结构；信号棒还没收盘就抢进。这是执行练习清单，不是所有交易者的通用禁令。</div>
+    <p class="muted">止损宽时，先按<a href="../lessons/lesson-21.html">第 21 课</a>减小仓位。若最小交易单位仍超出预算，或结构目标给不出合理回报，就等更小的信号或放弃。不要移动结构失效位来凑数。</p>
+  </section>
+  <section id="s6" class="reveal">
+    <div class="kicker"><span class="num">6</span> 随堂自测</div><h2>能说清等待的理由，也算完成判断</h2>
+    <div id="w-q1"></div><div id="w-q2" style="margin-top:16px"></div><div id="w-fill" style="margin-top:16px"></div>
+  </section>
+  <footer>
+    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 本课要点</div>
+    <ul>
+      <li>每根收盘后按分类、角色、上下文、跟随、更新计划五问检查；</li>
+      <li>只用已经出现的棒，信号后没有数据就记“跟随尚未知”；</li>
+      <li>答不上来先等待；铁丝网、区间中部不交易；</li>
+      <li>本站逆势练习先等第二次，再结合趋势线突破和旧极点测试失败；</li>
+      <li>先按结构定止损，再算仓位、目标和含成本的期望；</li>
+      <li>新手默认用止损单等确认，订单类型不能补救坏位置。</li>
+    </ul></div>
+    <div class="next">
+      <a class="btn ghost" href="../lessons/lesson-22.html">← 上一课</a>
+      <a class="btn" href="../index.html">课程首页</a>
+      <span class="chip" style="color:var(--ink)">下一课「交易计划、复盘与交易日志」即将推出</span>
+    </div>
+    <div class="follow">
+      <a href="../references.html">参考资料与适用边界</a>
+      <span class="follow-label">关注作者 · 课程持续更新</span>
+      <a href="https://x.com/Formulasearch" target="_blank" rel="noopener noreferrer" aria-label="在 X 上关注 @Formulasearch"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@Formulasearch</a>
+      <a href="https://rzcthink.top/" target="_blank" rel="noopener noreferrer" aria-label="访问 Philthink（rzcthink.top）"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>Philthink</a>
+      <a class="okx" href="https://www.mitxcqvwnhj.com/join/78417231" target="_blank" rel="sponsored noopener noreferrer" aria-label="通过作者邀请链接注册 OKX，邀请码 78417231"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><rect x="1.5" y="1.5" width="7" height="7"/><rect x="15.5" y="1.5" width="7" height="7"/><rect x="8.5" y="8.5" width="7" height="7"/><rect x="1.5" y="15.5" width="7" height="7"/><rect x="15.5" y="15.5" width="7" height="7"/></svg>OKX · 邀请码 78417231</a>
+    </div>
+    <p class="disclaim">本课只用于交易知识学习，不构成投资建议。图表和价格均为教学演示，未计入滑点、手续费、流动性与真实执行差异；历史回放和模拟结果不能代表未来实盘表现。</p>
+  </footer>
+</div>
+<script src="../assets/vendor/klinecharts.min.js"></script><script src="../assets/js/candles.js"></script><script src="../assets/js/shell.js"></script><script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+ "use strict";
+ PA.mountPlayground(document.getElementById('heroCandles'),{ma:[7,30]});
+ var acc=PA.cssv('--accent'),soft=PA.cssv('--ink-soft');
+ var bs=[[40,42,39.8,41.8],[41.8,44.3,41.6,44],[44,44.2,42.4,42.7],[42.7,43,41.4,41.8],[41.8,43.6,41.6,43.4],[43.4,43.5,40.8,41.1],[41.1,43.7,41,43.5],[43.5,44.9,43.4,44.7],[44.7,46.3,44.5,46],[46,46.2,45.5,45.8],[45.8,46,44.8,45],[45,45.7,44.6,45.6]];
+ function note(a,b,c,d,e){return '<ol class="muted"><li>分类：'+a+'</li><li>角色：'+b+'</li><li>上下文：'+c+'</li><li>跟随：'+d+'</li><li>更新计划：'+e+'</li></ol>';}
+ var replay=[
+ {name:'① 2 根',bars:bs.slice(0,2),note:note('第 2 根是多头趋势棒。','结构棒，暂时只提供方向证据。','教学图此前为上涨；当前继续推进。','第 1 根后已有第 2 根同向，之后尚未知。','有多头偏向，等回调；两根棒本身不足以推断完整环境。')},
+ {name:'② 4 根',bars:bs.slice(0,4),note:note('第 3、4 根是空头棒，高低点都下移。','回调棒，还没有多头信号。','上涨后的回调。','第 3 根之后第 4 根继续向下。','等多头尝试，不能因为跌了两根就买。')},
+ {name:'③ 5 根',bars:bs.slice(0,5),annotations:[{type:'label',i:4,value:44.5,text:'H1',color:soft}],note:note('第 5 根是多头趋势棒。','第一次向上尝试，候选 H1 信号。','上涨回调里恢复的尝试。','信号后尚无数据。','本次练习等第二次，记录信号低点与失效条件。')},
+ {name:'④ 6 根',bars:bs.slice(0,6),note:note('第 6 根空头棒，跌破第 5 根低点。','对第一次信号的失败证据。','回调仍在延续。','没有多头跟随。','取消第一次的候选计划，等第二次；不立即反手。')},
+ {name:'⑤ 7 根',bars:bs.slice(0,7),annotations:[{type:'label',i:6,value:44.7,text:'H2',color:acc}],note:note('第 7 根多头趋势棒，高点超过第 6 根。','第二次向上尝试，H2 候选信号。','上涨背景，回调两次尝试。','信号后尚无数据。','可评估顺势止损入场；先定结构止损、目标和仓位，不能称为已经确认成功。')},
+ {name:'⑥ 9 根',bars:bs.slice(0,9),note:note('第 8、9 根同向多头棒。','第 8 根越过信号高点，可是入场棒；第 9 根是跟进棒。','回调后恢复上涨的证据增加。','已有两根同向推进。','已成交按预设风控执行；未成交别追高，等下一次回调。')},
+ {name:'⑦ 10 根',bars:bs.slice(0,10),note:note('第 10 根实体较小且内包于第 9 根。','暂停棒，不能单独当作反转。','上涨后的短暂停顿。','此前跟进存在，内包暂未否定它。','不因一根小棒临时改变计划，观察下一根。')},
+ {name:'⑧ 12 根',bars:bs.slice(0,12),note:note('第 11 根空头，第 12 根多头且下探后收回。','新回调里的候选信号。','上涨恢复后的另一段回调。','新信号后尚无数据。','重新检查新计划，不能沿用前一笔的止损、目标和胜率。')}
+ ];
+ var rp=PA.widgets.annotatedChart(document.getElementById('w-replay'),{scenes:replay,dense:false});
+ var nodes={
+ q1:{q:'能把市场归到趋势、通道或区间吗？',hint:'答不上来就等更多棒。',yes:'q2',no:'wait'},
+ q2:{q:'当前是铁丝网或极端混乱吗？',hint:'高度重叠、空间不足时，计数也无法改善位置。',yes:'chaos',no:'q3'},
+ q3:{q:'当前有明确的方向偏向吗？',hint:'Always In 是偏向，不是必须下单。',yes:'pullback',no:'edge'},
+ pullback:{q:'候选位置在回调或清晰通道边界吗？',hint:'远离边界追尖峰时，先等价格回调。',yes:'signal',no:'chase'},
+ edge:{q:'候选位置在区间边界吗？',hint:'区间中部的空间和失效点通常不合适。',yes:'signal',no:'middle'},
+ signal:{q:'已经有合格且收盘的信号棒吗？',hint:'方向和计划一致，长度可承担；没收盘、过长或逆向就等。',yes:'counter',no:'signalWait'},
+ counter:{q:'这笔候选计划是逆势的吗？',hint:'比较计划方向与原趋势，区间边界不能只靠颜色决定。',yes:'second',no:'stop'},
+ second:{q:'这是同一方向的第二次尝试吗？',hint:'本站逆势练习先排除第一次。',yes:'mtr',no:'observe'},
+ mtr:{q:'已看清趋势线突破和旧极点测试失败吗？',hint:'本树对逆势采用更保守练习；没有 MTR 证据先观察。',yes:'stop',no:'observe'},
+ stop:{q:'能把止损放在明确的结构失效位吗？',hint:'信号棒或波段极点由计划选定，不按资金上限挪近。',yes:'wide',no:'noStop'},
+ wide:{q:'按止损减仓后，这笔风险仍承担不起吗？',hint:'最小交易单位超出预算，或止损相对目标仍太大，就等更小信号。',yes:'tooWide',no:'equation'},
+ equation:{q:'含成本的交易者方程通过了吗？',hint:'目标有结构依据；胜率是待验证的估计，不能随意抬高。',yes:'go',no:'noEdge'}
+ };
+ var leaves={
+ wait:{title:'等待：先看清市场',tone:'wait',text:'停止本轮判断，等环境可以描述再开始。',links:[{l:'04',t:'第 4 课 · 市场环境'}]},
+ chaos:{title:'不交易：铁丝网',tone:'no',text:'等连续趋势棒、清晰通道或可辨认的边界重新形成。',links:[{l:'13',t:'第 13 课 · 无交易环境'}]},
+ chase:{title:'等待：不追尖峰',tone:'wait',text:'等回调或突破测试，不抢高潮第一根。',links:[{l:'12',t:'第 12 课 · 突破测试'}]},
+ middle:{title:'不交易：区间中部',tone:'no',text:'等价格回到边界，再重新检查信号。',links:[{l:'10',t:'第 10 课 · 区间边界'}]},
+ signalWait:{title:'等待：下一根或更小信号',tone:'wait',text:'信号收盘、方向与风险都合格，才继续评估。',links:[{l:'02',t:'第 2 课 · 候选信号'}]},
+ observe:{title:'只观察：逆势证据不足',tone:'wait',text:'第二次也不自动合格。先结合趋势线突破与旧极点测试失败。',links:[{l:'18',t:'第 18 课 · MTR'},{l:'20',t:'第 20 课 · 第二次尝试'}]},
+ noStop:{title:'不交易：没有失效位',tone:'no',text:'说不出为什么该退出，就无法定义这一笔的风险。',links:[{l:'21',t:'第 21 课 · 结构止损'}]},
+ tooWide:{title:'等待：风险仍太大',tone:'wait',text:'减仓仍不可行或目标空间不足，放弃本次，等更小信号。不能缩进结构。',links:[{l:'21',t:'第 21 课 · 仓位计算'}]},
+ noEdge:{title:'不交易：方程未通过',tone:'no',text:'接受没有合适交易，不修改结构和概率来凑数。',links:[{l:'22',t:'第 22 课 · 交易者方程'}]},
+ go:{title:'允许下单：按计划等待触发',tone:'go',text:'只表示给定练习条件合格。仍要选择订单、计算数量，成交后按预设风控执行。',links:[{l:'21',t:'第 21 课 · 风控'},{l:'22',t:'第 22 课 · 假设检验'}]}
+ };
+ var scen=[
+ {name:'H2 顺势',bars:bs.slice(0,7),dense:false,annotations:[{type:'label',i:6,value:44.8,text:'H2',color:acc}],expect:'go',answers:{q1:true,q2:false,q3:true,pullback:true,signal:true,counter:false,stop:true,wide:false,equation:true},note:'给定背景：此前上涨，此处 H2 候选。练习计划买入 43.8、止损 40.7、前高目标 48.5（前高在左侧图外）。减仓可满足预算。假设胜率 50%、成本 0.05R，盈亏比约 1.52，期望约 +0.21R；这些是假设，不是图形胜率。'},
+ {name:'区间中部',bars:[[45,47,44.8,46.8],[46.8,50,46.6,49.5],[49.5,49.7,45.1,45.5],[45.5,48.1,45.3,47.8],[47.8,48,46.6,47]],dense:false,annotations:[{type:'hline',value:45,label:'下沿',color:soft},{type:'hline',value:50,label:'上沿',color:soft}],expect:'middle',answers:{q1:true,q2:false,q3:false,edge:false},note:'给定背景：45–50 的普通区间，尚有边界空间。候选在 47 附近，处于中部。这里没有合格的边界计划。'},
+ {name:'首次逆势',bars:[[40,42,39.8,41.8],[41.8,44.3,41.6,44],[44,46.4,43.8,46.2],[46.2,48.7,46,48.5],[48.5,48.8,47.8,48],[48,48.2,46.8,47]],dense:false,annotations:[{type:'label',i:5,value:49.4,text:'第一次做空候选',color:soft}],expect:'observe',answers:{q1:true,q2:false,q3:true,pullback:true,signal:true,counter:true,second:false},note:'给定背景：强上涨通道，价格在上沿出现已收盘空头信号。假设信号长度可承担，但这是第一次逆势做空；尚无完整 MTR 过程。位置和单根形状不能越过逆势检查。'}
+ ];
+ var dt=PA.widgets.decisionTree(document.getElementById('w-tree'),{start:'q1',nodes:nodes,leaves:leaves,scenarios:scen});
+ PA.registerRedraw(function(){replay.concat(scen).forEach(function(s){(s.annotations||[]).forEach(function(a){a.color=PA.cssv(a.text==='H2'?'--accent':'--ink-soft');});});rp.redraw();dt.redraw();});
+ PA.widgets.quizChoice(document.getElementById('w-q1'),{q:'① 区间中部出现一根漂亮的多头信号，下一步？',options:[{t:'不做，等边界位置再重新检查',ok:true,why:'位置先于形状；中部的信号不能自动提供目标空间。'},{t:'用更近止损，让方程通过',why:'止损必须按结构设置，不能用距离凑数字。'},{t:'立刻限价买入，确保成交',why:'限价单不保证成交，订单类型也无法改善位置。'}]});
+ PA.widgets.quizChoice(document.getElementById('w-q2'),{q:'② 强趋势里第一次逆势反转棒收盘，本站新手练习怎么做？',options:[{t:'先观察，等第二次并结合 MTR 条件',ok:true,why:'沿用第 20 课口径。第一次形状好看也不能越过上下文。'},{t:'只要实体大就抢第一根',why:'强原趋势的惯性仍可能让反转变成回调。'},{t:'逆势交易在任何条件下都被课程禁止',why:'课程允许在条件更充分时评估逆势，不沿用内部分析工具的硬禁令。'}]});
+ PA.widgets.fillBlank(document.getElementById('w-fill'),{prompt:'③ 补全检查顺序',parts:['先看',{a:['上下文','环境','市场环境'],w:95},'，再看信号，最后检查',{a:['风险收益','风险和回报','风险与回报','盈亏比和期望值'],w:130},'。答不上来，就',{a:['等待','等'],w:70},'。'],okText:'✓ 顺序固定，答不上来先等待。'});
+ PA.initLesson({n:23,sections:[{id:'s1',label:'固定顺序'},{id:'s2',label:'逐棒五问'},{id:'s3',label:'决策树'},{id:'s4',label:'订单方式'},{id:'s5',label:'执行清单'},{id:'s6',label:'随堂自测'}]});
+})();
+</script></body></html>

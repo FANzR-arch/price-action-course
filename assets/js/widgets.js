@@ -381,6 +381,59 @@
     return {redraw:draw};
   };
 
+  // ---------- 二元决策树 ----------
+  // opts: {start,nodes:{id:{q,hint,yes,no}},leaves:{id:{title,tone,text,links}},scenarios?}
+  // scenario 可传 answers:{节点id:boolean}，用于指出该图最早答错的分支。
+  W.decisionTree = function(host, opts){
+    opts=opts||{};
+    var nodes=opts.nodes||{}, leaves=opts.leaves||{}, scenes=opts.scenarios||[], current=opts.start, trail=[], scene=0;
+    function esc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+    host.innerHTML='<div class="card pad decision-tree">'+(scenes.length?'<div class="scene-tabs" data-el="scenes">'+scenes.map(function(s,i){return '<button class="scene-tab" type="button" data-scene="'+i+'">'+esc(s.name)+'</button>';}).join('')+'</div><div class="chartbox" data-el="chart"></div><p class="scene-note" data-el="context"></p>':'')+
+      '<nav class="tree-trail" aria-label="已走过的决策步骤" data-el="trail"></nav><div data-el="step"></div><button type="button" class="btn ghost mini" data-act="restart">重来</button></div>';
+    var step=host.querySelector('[data-el="step"]'), tc=null, fallback=null;
+    if(scenes.length){
+      tc=PA.teachChart&&PA.teachChart(host.querySelector('[data-el="chart"]'),{height:300,volume:false});
+      if(!tc){host.querySelector('[data-el="chart"]').innerHTML='<svg viewBox="0 0 640 300" role="img" aria-label="决策练习图"></svg>';fallback=host.querySelector('svg');}
+    }
+    function expectedPath(){
+      var queue=[{id:opts.start,path:[]}], seen={};
+      while(queue.length){var item=queue.shift();if(item.id===scenes[scene].expect)return item.path;
+        if(seen[item.id]||!nodes[item.id])continue;seen[item.id]=true;
+        ['yes','no'].forEach(function(key){queue.push({id:nodes[item.id][key],path:item.path.concat([{id:item.id,yes:key==='yes'}])});});
+      }return [];
+    }
+    function render(focus){
+      host.querySelector('[data-el="trail"]').innerHTML=trail.map(function(t,i){return '<button class="tree-crumb" type="button" data-back="'+i+'" aria-label="回到第 '+(i+1)+' 步">'+(i+1)+'. '+esc(nodes[t.id].q)+' · '+(t.yes?'是':'否')+'</button>';}).join('');
+      if(nodes[current]){
+        var n=nodes[current];
+        step.innerHTML='<h3 tabindex="-1" data-el="title">'+esc(n.q)+'</h3><p class="muted">'+esc(n.hint||'答不上来时，先等待更多证据。')+'</p><div class="tree-answers" role="group" aria-label="回答当前问题"><button class="btn" type="button" data-answer="yes" aria-label="是">是</button><button class="btn ghost" type="button" data-answer="no" aria-label="否">否</button></div>';
+        Array.prototype.forEach.call(step.querySelectorAll('[data-answer]'),function(b){b.addEventListener('click',function(){var yes=b.dataset.answer==='yes';trail.push({id:current,yes:yes});current=yes?n.yes:n.no;render(true);});});
+      }else if(leaves[current]){
+        var leaf=leaves[current], tone=['wait','no','go'].indexOf(leaf.tone)>=0?leaf.tone:'wait';
+        step.innerHTML='<div class="tree-result '+tone+'"><h3 tabindex="-1" data-el="title">'+esc(leaf.title)+'</h3><p>'+esc(leaf.text)+'</p><div class="tree-links">'+(leaf.links||[]).map(function(l){return /^\d{1,2}$/.test(l.l)?'<a href="../lessons/lesson-'+String(l.l).padStart(2,'0')+'.html">'+esc(l.t)+'</a>':'';}).join('')+'</div></div>';
+        if(scenes.length){
+          var s=scenes[scene], correct=current===s.expect, path=expectedPath(), answers=s.answers;
+          var wrong=trail.find(function(t,i){return answers&&Object.prototype.hasOwnProperty.call(answers,t.id)?answers[t.id]!==t.yes:(!answers&&path[i]&&(path[i].id!==t.id||path[i].yes!==t.yes));});
+          if(answers&&wrong)correct=false;
+          var msg=correct?'✓ 本图判断一致。结论只针对这张教学图和给定计划。':'再检查一下。本图预期结论是「'+leaves[s.expect].title+'」。';
+          if(!correct&&wrong)msg+=' 最早需要重看的是「'+nodes[wrong.id].q+'」。';
+          step.innerHTML+='<p class="verdict" role="status">'+esc(msg)+'</p>';
+        }
+      }else step.innerHTML='<p role="status">当前分支没有配置结论，请重来。</p>';
+      Array.prototype.forEach.call(host.querySelectorAll('[data-back]'),function(b){b.addEventListener('click',function(){var i=+b.dataset.back;current=trail[i].id;trail=trail.slice(0,i);render(true);});});
+      if(focus){var title=step.querySelector('[data-el="title"]');if(title)title.focus({preventScroll:true});}
+    }
+    function showScene(){if(!scenes.length)return;var s=scenes[scene];
+      if(tc)tc.show(s,PA.denseK([s],s.dense),PA.keepBars([s]));else drawChartSVG(fallback,s.bars,{annotations:s.annotations});
+      host.querySelector('[data-el="context"]').textContent=s.note||'';
+      Array.prototype.forEach.call(host.querySelectorAll('[data-scene]'),function(b){b.classList.toggle('on',+b.dataset.scene===scene);b.setAttribute('aria-pressed',String(+b.dataset.scene===scene));});
+    }
+    Array.prototype.forEach.call(host.querySelectorAll('[data-scene]'),function(b){b.addEventListener('click',function(){scene=+b.dataset.scene;current=opts.start;trail=[];showScene();render(false);});});
+    host.querySelector('[data-act="restart"]').addEventListener('click',function(){current=opts.start;trail=[];render(true);});
+    showScene();render(false);PA.registerRedraw(showScene);
+    return {redraw:showScene};
+  };
+
   // ---------- 捏一根 K 线 ----------
   W.candleLab = function(host, opts){
     opts = opts||{};

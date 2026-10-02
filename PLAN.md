@@ -5,7 +5,7 @@
 ## 站点现状（截至最近一次更新）
 
 - **已上线：** https://price-action-course.vercel.app （GitHub `main` push 自动部署）。
-- **进度：** 阶段一~五完结，阶段六已开篇，本地共 **22 课完成**；23–24 课待建（见下表）。
+- **进度：** 阶段一~五完结，阶段六已开篇，本地共 **23 课完成**；24 课待建（见下表）。
 - **站点级已完成：** favicon、自定义 404 页、手动深浅色切换、社交分享卡片（OG/Twitter + 封面图）、图表无障碍（role/aria）、skip-link、参考资料与适用边界页面、全站文案事实与去 AI 味审查。
 - **教学图表：** 全站 annotatedChart / drawOnChart / patternGallery 大图改用 KLineChart（`PA.teachChart`），数据由 `PA.densify` 拟真细化；标注 overlay（paHLine / paZone / paSeg / paLabel）自动避让 K 线。
 - **页脚：** 关注区加 OKX 邀请链接（邀请码 78417231）。注意它与下文「不荐平台」口径的关系，由作者自行把握。
@@ -43,6 +43,8 @@ assets/
 
 | tradeSim | 可复现资金路径、成本期望、回撤与连亏 | ✅（第 22 课首用） |
 
+| decisionTree | 数据驱动是/否分支、回退、场景判断反馈 | ✅（第 23 课首用） |
+
 > 沙盘 `mountPlayground`（随机行情 + 参数拖动）在 candles.js，已可用。
 
 ## 24 课 → 源文件 → 组件 映射
@@ -71,7 +73,7 @@ assets/
 | 20 | 二次入场机会 | 文件15-二次入场机会 | patternGallery / annotatedChart / rrCalculator | ✅ 完成 |
 | 21 | 止损、止盈与仓位管理 | 文件17-止损和止盈与仓位管理 + 二元决策 §10–§11 | drawOnChart / annotatedChart / rrCalculator / quizChoice / fillBlank | ✅ 完成 |
 | 22 | 交易者方程与盈亏比 | 二元决策（节选） | tradeSim / rrCalculator / quizChoice / fillBlank | ✅ 完成 |
-| 23 | 逐棒检查单 & 二元决策 | 逐棒分析检查单 + 二元决策 | quizChoice 流程 | ⏳ |
+| 23 | 逐棒检查单 & 二元决策 | 逐棒分析检查单 + 二元决策 | decisionTree / annotatedChart / quizChoice / fillBlank | ✅ 完成 |
 | 24 | 交易计划、复盘与日志 | （原创落地） | fillBlank / checklist | ⏳ |
 
 ## 分阶段

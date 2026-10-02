@@ -473,3 +473,15 @@ strong,.hl,b{font-weight:600}
 .formula-table th{color:var(--ink-soft);font-weight:600;background:var(--surface-2)}
 .course-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 @media(max-width:599px){.sim-fields,.course-compare{grid-template-columns:1fr}.formula-table th,.formula-table td{padding:9px 12px}}
+
+/* 检查单与决策路径 */
+.tree-trail{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0}
+.tree-crumb{font:inherit;font-size:12px;text-align:left;max-width:100%;white-space:normal;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-soft);padding:7px 10px;cursor:pointer}
+.tree-answers,.tree-links{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+.tree-result{border-left:3px solid var(--accent);padding:4px 16px;background:var(--surface-2);margin:16px 0}
+.tree-result.go{border-color:var(--hue-green)}
+.tree-result.no{border-color:var(--hue-red)}
+.decision-tree [data-act="restart"]{margin-top:12px}
+.checklist{counter-reset:check;list-style:none;padding:0}
+.checklist li{counter-increment:check;padding:12px 0;border-bottom:1px solid var(--line)}
+.checklist li::before{content:counter(check) ". ";color:var(--accent);font-weight:600}
