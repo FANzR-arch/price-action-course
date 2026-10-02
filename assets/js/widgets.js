@@ -175,7 +175,7 @@
     var svg=null;
     if(!tc){ host.querySelector('[data-el="tc"]').outerHTML='<svg data-el="svg" viewBox="0 0 640 300"></svg>'; svg=host.querySelector('[data-el="svg"]'); }
     var userVal=null, revealed=false;
-    function base(){ return { annotations: fixed.concat(revealed? targets.map(function(t){ return {type:'zone', from:t.low, to:t.high, label:t.label, color:PA.cssv('--accent')}; }) : []).concat(userVal!=null? [{type:'hline', value:userVal, label:'你画的线', color:PA.cssv('--ink'), dash:false}] : []) }; }
+    function base(){ return { annotations: fixed.concat(revealed? targets.map(function(t){ return {type:'zone', from:t.low, to:t.high, label:t.label, color:PA.cssv('--accent')}; }) : []).concat(userVal!=null? [{type:'hline', value:userVal, label:'你画的线', color:PA.cssv('--accent'), dash:false}] : []) }; }
     var shown=false;
     function render(){
       if(tc){ if(!shown){ tc.show({ bars:bars, annotations:base().annotations }, k, keep); shown=true; } else tc.setAnnotations(base().annotations); }
@@ -241,7 +241,7 @@
         {type:'zone', from:S.entry, to:S.stop, color:dn},
         {type:'zone', from:S.entry, to:S.target, color:up},
         {type:'hline', value:S.target, label:'目标', color:up, dash:false},
-        {type:'hline', value:S.entry, label:'入场', color:PA.cssv('--ink'), dash:false},
+        {type:'hline', value:S.entry, label:'入场', color:PA.cssv('--accent'), dash:false},
         {type:'hline', value:S.stop, label:'止损', color:dn, dash:false}
       ]);
     }
@@ -261,7 +261,7 @@
         '<span class="chip">每单位风险 <b>'+f2(risk)+'</b></span>'+
         '<span class="chip">每单位回报 <b>'+f2(reward)+'</b></span>'+
         '<span class="chip">盈亏比 <b>1 : '+f2(rr)+'</b></span>'+
-        '<span class="chip">单笔最多亏 <b>'+money(riskAmt)+' 元</b></span>'+
+        '<span class="chip">单笔计划风险 <b>'+money(riskAmt)+' 元</b></span>'+
         '<span class="chip">仓位 <b>'+(Math.floor(size*100)/100)+' 单位</b></span>'+
         '<span class="chip">保本胜率 <b>'+Math.round(be*1000)/10+'%</b></span>';
       var good=evR>0;

@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第二十一课：止损、止盈与仓位管理 · 价格行为交易入门课</title>
+<meta name="description" content="先找交易理由失效的位置，再定结构目标，按单笔风险反推仓位。学习止损、止盈、1R、滑点与杠杆的执行边界。">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://price-action-course.vercel.app/lessons/lesson-21.html">
+<meta name="theme-color" content="#B0761A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="价格行为交易 · 入门课">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="第二十一课：止损、止盈与仓位管理 · 价格行为交易入门课">
+<meta property="og:description" content="止损放在结构失效位，目标取自图表，仓位按风险反推。计划亏损不等于保证亏损。">
+<meta property="og:url" content="https://price-action-course.vercel.app/lessons/lesson-21.html">
+<meta property="og:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="价格行为交易 · 入门课">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第二十一课：止损、止盈与仓位管理 · 价格行为交易入门课">
+<meta name="twitter:description" content="止损放在结构失效位，目标取自图表，仓位按风险反推。计划亏损不等于保证亏损。">
+<meta name="twitter:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<script src="../assets/js/theme.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+
+<div class="wrap" id="main" tabindex="-1">
+  <header class="hero">
+    <p class="eyebrow">第二十一课 · 阶段六 · 风控与执行</p>
+    <h1>止损、止盈与仓位管理：<br>先算能亏多少。</h1>
+    <p class="lede">找到入场机会后，先想清楚三件事：走到哪里说明看错了，哪里可能遇到阻力，这次准备承担多少损失。<strong>止损由结构决定，仓位由风险反推</strong>。这三件事要在下单前写好。</p>
+    <div id="heroCandles"></div>
+  </header>
+
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 先找失效位</div>
+    <h2>止损放在交易理由不再成立的地方</h2>
+    <p class="muted">你买的是“回调结束、多头恢复”。如果价格跌破你依赖的低点，这个理由就需要被否定。<strong>结构止损</strong>是按这个失效位置设置的退出价。做空时方向相反，要看上方高点。</p>
+    <p class="muted"><strong>本站练习标准：</strong>普通回调默认把止损放在信号棒极点外 1 跳。“1 跳”是该品种允许的最小价格变化。本图假设 1 跳 = 0.1：H2 信号棒低点是 <strong>45.0</strong>，默认止损是 <strong>44.9</strong>。宽通道或边界经常被刺穿时，单根信号棒未必代表结构失效，可改用波段低点 <strong>43.8</strong> 下方的 <strong>43.7</strong>。</p>
+    <div id="w-stop"></div>
+    <div class="callout">
+      <div class="t">结构止损定位置，资金止损设上限</div>
+      <strong>资金止损</strong>指你预先设定的亏损金额或固定距离上限，用来检查这笔交易是否承担得起。若上限要求止损更近，却挤进正常波动里，应该放弃或等更小的信号。<strong>不能为了少亏，把结构失效位挪近。</strong>如果只是想控制亏损金额，可以在结构不变的前提下减小仓位，第三节会算。
+    </div>
+    <p class="muted">距离过宽、近端目标太近，即使减仓也未必值得做。减仓解决亏损金额，不能改善交易位置或盈亏比。图上点击的浅色带只容许少量定位误差；下单时要按最小跳动单位选定具体价位。</p>
+  </section>
+
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 止盈分两级</div>
+    <h2>近端结构算盈亏比，远端结构作延伸目标</h2>
+    <ul class="clean muted">
+      <li><span class="hl">TP1 · 近端目标</span>：前高、区间对边或<a href="../lessons/lesson-19.html">第 19 课的磁力位</a>。本课用它计算计划回报和盈亏比；</li>
+      <li><span class="hl">TP2 · 延伸目标</span>：更远的结构，如<a href="../lessons/lesson-09.html">第 9 课的测量移动（MM）</a>或<a href="../lessons/lesson-07.html">第 7 课的通道对边</a>。能否到达，要看价格经过 TP1 后的表现。</li>
+    </ul>
+    <p class="muted">目标是<strong>价格可能起反应的地方</strong>，没有到达承诺。切换下面三个多头场景，比较入场、止损和两级目标。TP1 / TP2 是本课组织目标的写法，并不要求每笔交易都分批卖出。</p>
+    <div id="w-targets"></div>
+    <div class="callout">
+      <div class="t">不拿远端目标美化账面</div>
+      盈亏比 =（TP1 − 入场）÷（入场 − 止损），这是多头的写法。若近处就有阻力，不要把 TP1 往远处拉，也不要用 TP2 代替它来算。数字不好看，可以放弃或等更好的入场位置。
+    </div>
+  </section>
+
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 按风险反推仓位</div>
+    <h2>止损宽，买得少；计划亏损金额相同</h2>
+    <p class="muted"><strong>仓位</strong>就是这笔交易买卖的数量。本课先假设价格每变动 1 元，每单位持仓盈亏也变动 1 元；账户与报价使用同一种货币。公式分两步：</p>
+    <div class="callout">
+      <div class="t">仓位公式</div>
+      单笔风险金额 = 账户资金 × 单笔风险%<br>
+      <strong>仓位 = 单笔风险金额 ÷ 每单位止损距离</strong><br>
+      每单位止损距离是入场价与止损价的差额，做多、做空都取正数。
+    </div>
+    <p class="muted">账户 <strong>10,000 元</strong>，单笔风险 <strong>1%</strong>，计划风险金额就是 <strong>100 元</strong>。这个预先固定的风险金额叫 <strong>1R</strong>，用它记录不同交易的结果：</p>
+    <ul class="clean muted">
+      <li><span class="hl">交易 A</span>：入场 50.0，止损 49.0，距离 1.0。仓位 = 100 ÷ 1.0 = <strong>100 单位</strong>；</li>
+      <li><span class="hl">交易 B</span>：入场仍是 50.0，按更大结构把止损放在 47.0，距离 3.0。仓位 = 100 ÷ 3.0 ≈ <strong>33.33 单位</strong>，是 A 的三分之一。</li>
+    </ul>
+    <p class="muted">两种止损分别对应图中信号棒低点 49.1、波段低点 47.1 下方 1 跳。A 依赖局部信号，B 给整个波段留空间，必须在入场前选定。把计算器的<strong>止损从 49.0 改到 47.0</strong>，看仓位如何变化；账户和风险比例保持不变。目标 52.0 是图上的前高。</p>
+    <div id="w-rr"></div>
+    <p class="muted">这里只用计算器观察仓位。改止损会同时改变盈亏比，不能据此认定两个计划都值得交易；胜率 55% 是本站演示假设，不是统计结论。期望值留到第 22 课展开。</p>
+    <p class="muted">期货多一个换算：<strong>合约数 = 风险金额 ÷（止损跳数 × 每跳价值）</strong>。实际数量按最小交易单位向下取整；不足 1 手就不做。股票等还要检查可用资金，公式算得出，不代表资金足够买入。手续费、汇率和滑点要另外留余量。</p>
+  </section>
+
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 执行有误差</div>
+    <h2>止损单不是保证成交价</h2>
+    <p class="muted">这里说的是保护性<strong>市价止损单</strong>：价格到达止损价后，订单转成市价单，以当时能成交的价格卖出或买回。<strong>滑点</strong>是预期价格与实际成交价的差额。<strong>跳空</strong>是价格直接跨过一段区间，中间没有可供成交的价格。跳空、快速行情或流动性不足时，实际损失可能超过 1R。</p>
+    <p class="muted">用交易 A 算一次：买入 100 单位，入场 50.0，止损设在 49.0。如果跳空后实际在 48.5 卖出，亏损是（50.0 − 48.5）× 100 = <strong>150 元，即 1.5R</strong>，还没算手续费。计算器显示的是计划风险。</p>
+    <div class="callout">
+      <div class="t">限价能限制价格，也可能让你出不去</div>
+      <strong>止损限价单</strong>触发后变成限价单，只按限价或更好的价格成交。价格跳过限价时，订单可能一直不成交，持仓风险仍在。<a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-15" target="_blank" rel="noopener noreferrer">Investor.gov 的投资者公告</a>说明了这两类订单的差别；具体触发价格和订单规则要核对交易场所说明。
+    </div>
+    <p class="muted"><strong>杠杆</strong>会改变持仓占用的保证金。对同一仓位和同一止损距离，按止损算出的价格亏损金额不随杠杆变化。但杠杆太高、保证金不足时，强平价可能比止损价更早触及，仓位会先被强制平掉，计划中的止损就失去了作用。强平还取决于保证金规则、费用及标记价格等因素。</p>
+    <div class="callout">
+      <div class="t">本站练习标准 · 先限制单笔和单日风险</div>
+      新手单笔计划风险<strong>不超过账户的 1%</strong>；当天实际累计亏损达到约 <strong>3R</strong>，就停止交易。练习时当天先固定同一个 R，例如 1R = 100 元，约亏 300 元就停，不靠加大下一笔风险追回。<strong>这是本站练习标准，不是 Brooks 原著规定</strong>，也不能保证实际亏损被封顶。
+    </div>
+  </section>
+
+  <section id="s5" class="reveal">
+    <div class="kicker"><span class="num">5</span> 入场之后</div>
+    <h2>先按计划执行，再研究怎么管理持仓</h2>
+    <p class="muted">下面三种做法会改变持仓的盈亏分布。先认识名字，不用急着加进每笔交易：</p>
+    <ul class="clean muted">
+      <li><span class="hl">移到保本</span>：把止损移到入场价附近。保护了已有浮盈，但过早移动，正常回调就可能让原本能到目标的交易变成平手或小亏；入场价出场也仍有手续费和滑点；</li>
+      <li><span class="hl">部分止盈</span>：到近端目标先卖出一部分。先落袋一部分收益，剩余仓位继续承担风险；若之后一直上涨，总盈利也会少于全仓持有；</li>
+      <li><span class="hl">跟踪止损</span>：行情有利时，按新形成的波段低点或高点逐步移动止损。可以保留延伸空间，但回撤可能触发出场，并交回一部分浮盈。</li>
+    </ul>
+    <p class="muted"><strong>本站练习标准：</strong>新手先在下单前选好结构止损和目标，入场后按计划执行。不要每涨一点就移止损，也不要因为不想认亏就把止损越放越远。先练出可比较的记录，再测试进阶方法。</p>
+    <p class="muted">把入场、止损、目标、仓位、计划风险和实际成交结果记进日志，区分计划亏损与滑点造成的偏差。第 24 课会整理日志写法。一次赚亏不能说明某种管理方法更好。</p>
+  </section>
+
+  <section id="s6" class="reveal">
+    <div class="kicker"><span class="num">6</span> 随堂自测</div>
+    <h2>位置按结构，数量按风险</h2>
+    <div id="w-q1"></div>
+    <div id="w-q2" style="margin-top:16px"></div>
+    <div id="w-fill" style="margin-top:16px"></div>
+  </section>
+
+  <footer>
+    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 本课要点</div>
+    <ul>
+      <li>先找交易理由失效的位置，再定止损；资金上限不能把结构止损挪近；</li>
+      <li>TP1 取近端结构，用来算盈亏比；TP2 是有条件的延伸目标；</li>
+      <li>仓位 = 账户资金 × 单笔风险% ÷ 每单位止损距离；止损宽，仓位小；</li>
+      <li>1R 是入场前的计划风险金额；滑点、跳空和费用可能让实际亏损超过 1R；</li>
+      <li>杠杆改变保证金占用；强平先于止损时，止损计划无法按预期执行；</li>
+      <li>本站练习标准：单笔不超过 1%，日亏约 3R 就停；先按计划执行，结果记入日志。</li>
+    </ul></div>
+    <div class="next">
+      <a class="btn ghost" href="../lessons/lesson-20.html">← 上一课</a>
+      <a class="btn" href="../index.html">课程首页</a>
+      <span class="chip" style="color:var(--ink)">下一课「交易者方程与盈亏比」即将推出</span>
+    </div>
+    <div class="follow">
+      <a href="../references.html">参考资料与适用边界</a>
+      <span class="follow-label">关注作者 · 课程持续更新</span>
+      <a href="https://x.com/Formulasearch" target="_blank" rel="noopener noreferrer" aria-label="在 X 上关注 @Formulasearch"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@Formulasearch</a>
+      <a href="https://rzcthink.top/" target="_blank" rel="noopener noreferrer" aria-label="访问 Philthink（rzcthink.top）"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>Philthink</a>
+      <a class="okx" href="https://www.mitxcqvwnhj.com/join/78417231" target="_blank" rel="sponsored noopener noreferrer" aria-label="通过作者邀请链接注册 OKX，邀请码 78417231"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><rect x="1.5" y="1.5" width="7" height="7"/><rect x="15.5" y="1.5" width="7" height="7"/><rect x="8.5" y="8.5" width="7" height="7"/><rect x="1.5" y="15.5" width="7" height="7"/><rect x="15.5" y="15.5" width="7" height="7"/></svg>OKX · 邀请码 78417231</a>
+    </div>
+    <p class="disclaim">本课只用于交易知识学习，不构成投资建议。图表和价格均为教学演示，未计入滑点、手续费、流动性与真实执行差异；历史回放和模拟结果不能代表未来实盘表现。</p>
+  </footer>
+</div>
+
+<script src="../assets/vendor/klinecharts.min.js"></script>
+<script src="../assets/js/candles.js"></script>
+<script src="../assets/js/shell.js"></script>
+<script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+  PA.mountPlayground(document.getElementById("heroCandles"), { ma:[7,30] });
+  var acc=PA.cssv("--accent"), red=PA.cssv("--hue-red"), green=PA.cssv("--hue-green"), soft=PA.cssv("--ink-soft");
+
+  // 手写 OHLC：第 6 根首次向上尝试，第 7 根失败；第 9 根是 H2 信号棒。
+  // 信号棒低点 45.0，回调波段低点 43.8，1 跳 = 0.1。
+  var pullback = [[40,42.2,39.8,42],[42,44.4,41.8,44.1],[44.1,46.6,43.9,46.3],[46.3,48,46.1,47.7],[47.7,47.9,45.2,45.8],[45.8,46,44.2,44.6],[44.6,46.2,44.4,46],[46,46.1,43.8,44.1],[44.1,45.5,44,45.2],[45.2,46.6,45,46.5]];
+  var stopOpts = {
+    bars:pullback, dense:false,
+    prompt:"做多 H2：在图上点一下，选择止损位置。1 跳 = 0.1。",
+    annotations:[
+      {type:"label", i:6, value:47.2, text:"H1", color:soft},
+      {type:"label", i:9, value:47.8, text:"H2 信号棒", color:acc},
+      {type:"label", i:9, value:44.5, text:"低点 45.0", color:soft},
+      {type:"label", i:7, value:43.3, text:"波段低点 43.8", color:soft}
+    ],
+    targets:[
+      {low:44.8, high:44.9, label:"信号棒止损区", tip:"本图默认用信号棒低点 45.0 下方 1 跳，即 44.9。适用于普通回调、信号棒能代表局部失效位的计划。"},
+      {low:43.6, high:43.7, label:"波段止损备选区", tip:"宽通道或边界经常被刺穿时，可在入场前改用波段低点 43.8 下方 1 跳，即 43.7。止损更宽，需要重新计算仓位和盈亏比；不是亏了以后再扩大止损。"}
+    ]
+  };
+  var stopWidget = PA.widgets.drawOnChart(document.getElementById("w-stop"), stopOpts);
+
+  function levels(entry, stop, tp1, tp2){
+    return [
+      {type:"hline", value:entry, label:"入场 "+entry.toFixed(1), color:acc, dash:false},
+      {type:"hline", value:stop, label:"止损 "+stop.toFixed(1), color:red, dash:false},
+      {type:"hline", value:tp1, label:"TP1 "+tp1.toFixed(1), color:green, dash:false},
+      {type:"hline", value:tp2, label:"TP2 "+tp2.toFixed(1), color:soft}
+    ];
+  }
+  var range = [[44,45.5,43.7,45.2],[45.2,46,43.8,44],[44,44.2,40,40.4],[40.4,42.2,40.2,41.9],[41.9,45.8,41.6,45.5],[45.5,46,43.3,43.8],[43.8,44,40.1,40.5],[40.5,41.3,39.9,41.2]];
+  var breakout = [[42,44,41.8,43.6],[43.6,43.8,40,40.4],[40.4,42.2,40.2,42],[42,44,41.7,43.5],[43.5,46.5,43.3,46.2],[46.2,46.4,44.6,44.9],[44.9,45.4,44.2,45.3]];
+  var targetOpts = {
+    dense:false, height:360,
+    scenes:[
+      {name:"① 趋势回调", bars:pullback, annotations:levels(46.7,44.9,48,51.8),
+        note:'<span class="lead">H2 信号棒高点 46.6 上方入场 46.7，低点 45.0 下方止损 44.9。</span> TP1 取前高 48.0，计划盈亏比 = 1.3 ÷ 1.8 ≈ 0.72。TP2 用前一段 40.0 → 48.0 的 8.0 高度，从回调低点 43.8 投影到 51.8（MM）。远端空间存在，也不能抹掉近处的阻力。'},
+      {name:"② 交易区间", bars:range, annotations:levels(41.4,39.8,46,52),
+        note:'<span class="lead">区间约为 40.0–46.0，末根信号棒高点 41.3、低点 39.9。</span> 入场 41.4，止损 39.8，TP1 取区间对边 46.0。TP2 是上沿 46.0 加区间高度 6.0，得到 52.0；只有向上有效突破后才有这个延伸依据。区间内先看对边，不预设一定突破。'},
+      {name:"③ 突破后回踩", bars:breakout, annotations:levels(45.5,44.1,46.5,48),
+        note:'<span class="lead">旧区间为 40.0–44.0，突破后回踩信号棒高点 45.4、低点 44.2。</span> 入场 45.5，止损 44.1，TP1 取突破后的前高 46.5；TP2 按旧区间高度 4.0，从 44.0 投影到 48.0。近端回报仅 1.0，风险 1.4，盈亏比约 0.71，不能拿 TP2 替换 TP1 来美化；可以放弃或等更好的位置。'}
+    ]
+  };
+  var targetWidget = PA.widgets.annotatedChart(document.getElementById("w-targets"), targetOpts);
+
+  // 两种入场前方案：局部信号低点 49.1 / 波段低点 47.1，前高 52.0。
+  var sizing = [[45.5,47,45.3,46.8],[46.8,49,46.6,48.7],[48.7,52,48.5,51.7],[51.7,52,49.8,50.1],[50.1,50.3,47.1,47.5],[47.5,49.6,47.3,49.3],[49.3,49.5,49.1,49.2],[49.2,49.9,49.1,49.8]];
+  var sizingOpts = {
+    bars:sizing, dense:false,
+    annotations:[
+      {type:"label", i:7, value:48.5, text:"信号棒", color:soft},
+      {type:"label", i:4, value:46.6, text:"波段低点 47.1", color:soft}
+    ],
+    side:"long", entry:50, stop:49, target:52,
+    account:10000, riskPct:1, winRate:55
+  };
+  var sizingWidget = PA.widgets.rrCalculator(document.getElementById("w-rr"), sizingOpts);
+
+  // 主题切换时重取标注色，同时保留点击答案、当前场景与计算器输入。
+  PA.registerRedraw(function(){
+    stopOpts.annotations.forEach(function(a,i){ a.color=PA.cssv(i===1?'--accent':'--ink-soft'); });
+    targetOpts.scenes.forEach(function(s){
+      s.annotations.forEach(function(a,i){ a.color=PA.cssv(['--accent','--hue-red','--hue-green','--ink-soft'][i]); });
+    });
+    sizingOpts.annotations.forEach(function(a){ a.color=PA.cssv('--ink-soft'); });
+    stopWidget.redraw(); targetWidget.redraw(); sizingWidget.redraw();
+  });
+
+  PA.widgets.quizChoice(document.getElementById("w-q1"), {
+    q:"① 结构止损和资金止损，分别回答什么问题？",
+    options:[
+      {t:"结构止损看交易理由在哪里失效；资金止损检查计划亏损是否超出上限", ok:true, why:"先按结构定退出位置，再检查距离和金额能否接受。不能为了符合资金上限，把止损挪进正常波动里。"},
+      {t:"资金止损规定退出价，结构止损只用来参考", why:"固定金额或固定跳数不能代替失效位。仓位应适应结构止损，而不是让结构止损迎合想买的数量。"},
+      {t:"两者都保证实际亏损不会超过 1R", why:"滑点、跳空和费用可能让实际亏损超过计划风险。止损价不是保证成交价。"}
+    ]
+  });
+  PA.widgets.quizChoice(document.getElementById("w-q2"), {
+    q:"② 账户 10,000 元，单笔风险 1%。结构止损距离从 1.0 变成 3.0，其他条件仍可接受，应该怎样定仓位？",
+    options:[
+      {t:"从 100 单位减到约 33.33 单位，保持计划风险约 100 元", ok:true, why:"100 ÷ 3.0 ≈ 33.33。止损位置由结构决定，仓位随止损距离反向变化。最小交易单位不允许时向下取整，或放弃。"},
+      {t:"仍买 100 单位，把止损拉近到距离 1.0", why:"这会改变认错位置，可能被正常波动扫出。想控制金额要减小数量，不能随意挪动结构失效位。"},
+      {t:"仍买 100 单位，增加杠杆就能把计划亏损降回 100 元", why:"同一仓位、同一止损距离，价格亏损仍是 100 × 3.0 = 300 元。增加杠杆改变保证金占用，不会替你降低价格风险。"}
+    ]
+  });
+  PA.widgets.fillBlank(document.getElementById("w-fill"), {
+    prompt:"③ 填出仓位公式（风险%按百分比换算，例如 1% = 0.01）",
+    parts:["仓位 =", {a:["账户资金","账户金额","账户余额"], w:108}, "×", {a:["单笔风险%","单笔风险比例","风险比例","单笔风险百分比","单笔风险百分率"], w:116}, "÷", {a:["每单位止损距离","止损距离","单位止损距离"], w:136}, "。"],
+    okText:"✓ 对了。先算可承担的金额，再除以每单位止损距离。",
+    noText:"先用账户资金乘风险比例得到风险金额，再除以每单位止损距离。",
+    revealText:"仓位 = <strong>账户资金 × 单笔风险% ÷ 每单位止损距离</strong>。"
+  });
+
+  PA.initLesson({
+    n:21,
+    sections:[
+      {id:"s1", label:"先找失效位"},
+      {id:"s2", label:"两级目标"},
+      {id:"s3", label:"反推仓位"},
+      {id:"s4", label:"执行误差"},
+      {id:"s5", label:"按计划执行"},
+      {id:"s6", label:"随堂自测"}
+    ]
+  });
+})();
+</script>
+</body>
+</html>
