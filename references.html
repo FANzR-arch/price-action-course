@@ -74,7 +74,7 @@
     <h2>术语与具体说法</h2>
     <div class="card pad">
       <ul class="clean muted">
-        <li><a href="https://www.brookstradingcourse.com/price-action-trading-terms-glossary/" target="_blank" rel="noopener noreferrer">Brooks Trading Course：Price Action Trading Terms Glossary</a>，用于核对 Always In、H1/H2、20 Gap Bars 等术语。</li>
+        <li><a href="https://www.brookstradingcourse.com/price-action-trading-terms-glossary/" target="_blank" rel="noopener noreferrer">Brooks Trading Course：Price Action Trading Terms Glossary</a>，用于核对 Always In、H1/H2、20 Gap Bars、trader’s equation 与 directional probability 等术语。第 22 课的约 60% 配 1 倍风险、约 40%–50% 配 2 倍风险，按作者在 trader’s equation 词条里的经验法则概括，不是固定统计胜率。链接与词条原文于 2026 年 10 月 2 日核实。</li>
         <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/9781119202592.ch1" target="_blank" rel="noopener noreferrer">Wiley：The Spectrum of Price Action</a>，用于说明趋势、通道与区间是连续变化的市场环境。</li>
         <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/9781119202608.ch17" target="_blank" rel="noopener noreferrer">Wiley：Bar Counting</a>，对应 H1/H2、L1/L2 计数。</li>
         <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/9781119202608.ch23" target="_blank" rel="noopener noreferrer">Wiley：Triangles</a>，对应三角形的交易区间属性、多次推进与边界结构。</li>
@@ -85,6 +85,7 @@
         <li><a href="https://onlinelibrary.wiley.com/doi/book/10.1002/9781119202608" target="_blank" rel="noopener noreferrer"><em>Trading Price Action Trading Ranges</em></a> 中关于订单与交易管理的部分，包含保护性止损、跟踪止损、获利目标和分批进出场，对应第 21 课。本站将止损失效位置、目标与仓位计算分开讲，不把单笔 1% 或日亏 3R 归为原著规定。</li>
         <li><a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-15" target="_blank" rel="noopener noreferrer">Investor.gov：Stop, Stop-Limit, and Trailing Stop Orders — Investor Bulletin</a>，对应第 21 课的订单执行边界：止损价是触发价，不是保证成交价；市价止损触发后转成市价单，止损限价单触发后转成限价单，后者可能无法成交。公告面向股票投资者，其他市场需核对具体交易场所规则。链接及相关原文已于 2026 年 10 月 2 日核实。</li>
       </ul>
+      <p class="muted">第 22 课的交易者方程对应 <em>Trading Price Action Trading Ranges</em> 关于交易数学、概率、风险和回报的讨论。公开概括对照上面的作者术语页；本站未核实原著页码，不提供页码引用。</p>
       <p class="muted">公开网页用于定位概念，不替代书中完整章节；本站对原文作中文概括，没有照录长段内容。</p>
     </div>
   </section>
@@ -104,11 +105,12 @@
     </div>
   </section>
 
-  <section>
+  <section id="simulation">
     <div class="kicker"><span class="num">5</span> 概率与模拟</div>
     <h2>数字要带着条件读</h2>
     <div class="card pad">
       <p class="muted">Brooks 常用 60%、70% 或 80% 说明某些具体市场环境下的倾向。这些数字帮助建立概率思维，但不能脱离品种、周期和形态质量单独使用。</p>
+      <p class="muted">第 22 课的样本误差采用标准二项分布正态近似：p ± 1.96 × √[p(1−p)/n]，假设独立且成功概率稳定。p=0.55、n=100 时半宽约 9.8 个百分点。资金模拟每笔按当前资金计算风险，净结果为盈利 bR 或亏损 1R 再扣成本 cR；固定参数和独立交易只用于演示。</p>
       <p class="muted">历史回放和模拟交易不会完整反映滑点、流动性、手续费、实时决策压力和连续亏损。CFTC 也要求模拟业绩附带这些限制说明。可参阅 <a href="https://www.cftc.gov/LearnAndProtect/AdvisoriesAndArticles/fraudadv_tradingsystem.html" target="_blank" rel="noopener noreferrer">CFTC 关于网络交易系统与模拟结果的说明</a>。</p>
     </div>
   </section>

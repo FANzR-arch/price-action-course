@@ -459,3 +459,17 @@ strong,.hl,b{font-weight:600}
 /* 次按钮（上一课 / 返回首页）：浅一档的“凹陷”胶囊，和主按钮拉开明显深浅差 */
 .btn.ghost{background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
 .btn.ghost:hover{background:var(--surface-2);border-color:var(--accent);color:var(--accent-ink);opacity:1}
+
+/* 风控实验：资金模拟器与公式表 */
+.sim-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px;margin-bottom:16px}
+.sim-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:12px}
+.sim-seed{max-width:290px}
+.sim-toolbar .btn{margin-left:auto}
+.sim-legend,.sim-model{font-size:13px;color:var(--ink-soft);margin:12px 0 0;line-height:1.7}
+.sim-key{display:inline-block;width:22px;border-top:3px solid var(--accent);vertical-align:middle;margin-right:8px}
+.trade-sim .chartbox svg{width:100%;height:auto;min-width:0}
+.formula-table{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums}
+.formula-table th,.formula-table td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line)}
+.formula-table th{color:var(--ink-soft);font-weight:600;background:var(--surface-2)}
+.course-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media(max-width:599px){.sim-fields,.course-compare{grid-template-columns:1fr}.formula-table th,.formula-table td{padding:9px 12px}}

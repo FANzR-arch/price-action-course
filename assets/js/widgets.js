@@ -294,6 +294,93 @@
     return { redraw:calc };
   };
 
+  // ---------- 随机交易路径：同一概率假设下，观察资金波动 ----------
+  // opts: {winRate:55, rr:1.2, riskPct:1, trades:100, paths:20, cost:0, seed:22022}
+  // 起点为 100；每笔按当时资金的 riskPct 承担 1R，结果扣除 cost R。
+  // 各笔独立、盈亏固定是演示假设；固定种子便于复现和对比风险比例。
+  W.tradeSim = function(host, opts){
+    opts=opts||{};
+    function bounded(v, fallback, lo, hi){ v=Number(v); return isFinite(v)?Math.min(hi,Math.max(lo,v)):fallback; }
+    var S={winRate:bounded(opts.winRate,55,1,99), rr:bounded(opts.rr,1.2,0.1,10),
+      riskPct:bounded(opts.riskPct,1,0.1,10), cost:bounded(opts.cost,0,0,2),
+      trades:Math.round(bounded(opts.trades,100,1,500)), paths:Math.round(bounded(opts.paths,20,1,100)),
+      seed:Math.floor(bounded(opts.seed,22022,0,4294967295))>>>0};
+    var fields=[['winRate','胜率','%',1,99,1],['rr','盈亏比','倍',0.1,10,0.1],
+      ['riskPct','单笔风险','%',0.1,10,0.1],['cost','每笔成本','R',0,2,0.01]];
+    host.innerHTML='<div class="card pad trade-sim">'+
+      '<div class="sim-fields">'+fields.map(function(f){return '<label class="rr-num"><span>'+f[1]+'</span><input type="number" data-sim="'+f[0]+'" min="'+f[3]+'" max="'+f[4]+'" step="'+f[5]+'" value="'+S[f[0]]+'"><em>'+f[2]+'</em></label>';}).join('')+'</div>'+
+      '<div class="sim-toolbar"><label class="rr-num sim-seed"><span>随机种子</span><input type="number" data-sim="seed" min="0" max="4294967295" step="1" value="'+S.seed+'"></label><button type="button" class="btn ghost mini" data-act="simulate">再模拟一次</button></div>'+
+      '<p class="draw-hint">'+S.paths+' 条路径 × '+S.trades+' 笔 · 起点 = 100% · 每笔按当前资金计算风险</p>'+
+      '<div class="chartbox"><svg viewBox="0 0 640 320" role="img" aria-label="多条模拟资金曲线，起点为百分之百"></svg></div>'+
+      '<p class="sim-legend"><span class="sim-key"></span>金线：每一步资金的中位数，不是某一条实际交易路径。</p>'+
+      '<div class="readout" data-el="sim-read" aria-live="polite"></div><div class="verdict" data-el="sim-verdict"></div>'+
+      '<p class="sim-model">模型假设：每笔独立，盈利为盈亏比 × 1R，亏损为 1R，再扣成本。真实胜率、盈亏和交易顺序会变化；模拟不能证明策略有效。</p></div>';
+    var svg=host.querySelector('svg'), summary=null, curves=null;
+    function rng(seed){return function(){var t=seed+=0x6D2B79F5;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return ((t^(t>>>14))>>>0)/4294967296;};}
+    function median(values){var a=values.slice().sort(function(x,y){return x-y;});var m=Math.floor(a.length/2);return a.length%2?a[m]:(a[m-1]+a[m])/2;}
+    function pct(n){return (Math.abs(n)>=1000000?n.toExponential(2):n.toFixed(1))+'%';}
+    function fixed(n){return n.toFixed(2);}
+    function compute(){
+      var random=rng(S.seed), p=S.winRate/100, f=S.riskPct/100, finals=[], draws=[], streaks=[];
+      curves=[];
+      for(var j=0;j<S.paths;j++){
+        var capital=100, peak=100, dd=0, lossRun=0, longest=0, values=[100];
+        for(var i=0;i<S.trades;i++){
+          var outcome=(random()<p?S.rr:-1)-S.cost;
+          capital*=1+f*outcome;
+          peak=Math.max(peak,capital); dd=Math.max(dd,1-capital/peak);
+          lossRun=outcome<0?lossRun+1:0; longest=Math.max(longest,lossRun); values.push(capital);
+        }
+        curves.push(values);finals.push(capital);draws.push(dd*100);streaks.push(longest);
+      }
+      summary={ev:p*S.rr-(1-p)-S.cost, be:(1+S.cost)/(1+S.rr), finalMedian:median(finals),
+        finalWorst:Math.min.apply(null,finals), ddMedian:median(draws), ddWorst:Math.max.apply(null,draws),
+        streakMedian:median(streaks), streakWorst:Math.max.apply(null,streaks),
+        below:finals.filter(function(v){return v<100;}).length/S.paths*100};
+    }
+    function draw(){
+      var W=640,H=320,L=54,R=12,T=18,B=34, low=100,high=100;
+      curves.forEach(function(a){a.forEach(function(v){low=Math.min(low,v);high=Math.max(high,v);});});
+      var span=(high-low)||1; low=Math.max(0,low-span*0.08); high+=span*0.08;
+      function x(i){return L+(W-L-R)*i/S.trades;}
+      function y(v){return T+(high-v)/(high-low)*(H-T-B);}
+      function point(v,i){return x(i).toFixed(2)+','+y(v).toFixed(2);}
+      var soft=PA.cssv('--ink-soft'), acc=PA.cssv('--accent'), html='';
+      for(var k=0;k<=4;k++){
+        var value=high-(high-low)*k/4, yy=y(value);
+        html+='<line x1="'+L+'" y1="'+yy+'" x2="'+(W-R)+'" y2="'+yy+'" stroke="'+soft+'" opacity=".14"/><text x="'+(L-6)+'" y="'+(yy+4)+'" text-anchor="end" font-size="10" fill="'+soft+'">'+pct(value)+'</text>';
+      }
+      html+='<line x1="'+L+'" y1="'+y(100)+'" x2="'+(W-R)+'" y2="'+y(100)+'" stroke="'+soft+'" stroke-dasharray="5 4"/>';
+      curves.forEach(function(a){html+='<polyline points="'+a.map(point).join(' ')+'" fill="none" stroke="'+soft+'" stroke-width="1" opacity=".3"/>';});
+      var mid=[];for(var i=0;i<=S.trades;i++)mid.push(median(curves.map(function(a){return a[i];})));
+      html+='<polyline points="'+mid.map(point).join(' ')+'" fill="none" stroke="'+acc+'" stroke-width="2.8"/>';
+      [0,Math.round(S.trades/2),S.trades].filter(function(v,i,a){return a.indexOf(v)===i;}).forEach(function(i){html+='<text x="'+x(i)+'" y="'+(H-9)+'" text-anchor="middle" font-size="11" fill="'+soft+'">'+i+' 笔</text>';});
+      svg.innerHTML=html;
+      svg.setAttribute('aria-label',S.paths+' 条模拟资金曲线；中位终值 '+pct(summary.finalMedian)+'，最差终值 '+pct(summary.finalWorst)+'，起点为 100%');
+    }
+    function render(){
+      compute();draw();var a=summary;
+      host.querySelector('[data-el="sim-read"]').innerHTML=
+        chip('理论期望','<b>'+(a.ev>=0?'+':'')+fixed(a.ev)+'R</b>')+
+        chip('中位终值','<b>'+pct(a.finalMedian)+'</b>')+chip('最差终值','<b>'+pct(a.finalWorst)+'</b>')+
+        chip('最大回撤 · 中位 / 最差','<b>'+pct(a.ddMedian)+' / '+pct(a.ddWorst)+'</b>')+
+        chip('最长连亏 · 中位 / 最差','<b>'+a.streakMedian+' / '+a.streakWorst+' 笔</b>')+
+        chip('终值低于起点','<b>'+pct(a.below)+'</b>');
+      var be=a.be>1?'即使每笔都盈利，也无法覆盖这里设置的成本。':'计入成本后的保本胜率为 <strong>'+pct(a.be*100)+'</strong>。';
+      host.querySelector('[data-el="sim-verdict"]').innerHTML=a.ev>0?
+        '<strong>假设下的期望为正，也会出现回撤和连亏。</strong> 最差模拟最大回撤 '+pct(a.ddWorst)+'，最长连亏 '+a.streakWorst+' 笔；这是本组随机结果，不是未来上限。'+be:
+        '<strong>假设下的期望'+(a.ev<0?'为负':'为零')+'。</strong> 当前胜率 '+pct(S.winRate)+'，期望 '+fixed(a.ev)+'R / 笔。'+be+' 多做几笔不会自动改善这个数学关系。';
+    }
+    Array.prototype.forEach.call(host.querySelectorAll('[data-sim]'),function(input){input.addEventListener('input',function(){
+      if(input.value===''||!input.validity.valid)return;
+      var key=input.dataset.sim,v=Number(input.value);if(!isFinite(v))return;
+      S[key]=key==='seed'?(Math.floor(v)>>>0):v;render();
+    });});
+    host.querySelector('[data-act="simulate"]').addEventListener('click',function(){S.seed=(S.seed+0x9E3779B9)>>>0;host.querySelector('[data-sim="seed"]').value=S.seed;render();});
+    render();PA.registerRedraw(draw);
+    return {redraw:draw};
+  };
+
   // ---------- 捏一根 K 线 ----------
   W.candleLab = function(host, opts){
     opts = opts||{};

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第二十二课：交易者方程与盈亏比 · 价格行为交易入门课</title>
+<meta name="description" content="用 R 计算期望与保本胜率，比较胜率、回报和成本。通过可复现的资金模拟观察回撤与连亏。">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://price-action-course.vercel.app/lessons/lesson-22.html">
+<meta name="theme-color" content="#B0761A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="价格行为交易 · 入门课">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="第二十二课：交易者方程与盈亏比 · 价格行为交易入门课">
+<meta property="og:description" content="胜率和回报一起算。用可复现的随机实验理解成本、回撤和连亏。">
+<meta property="og:url" content="https://price-action-course.vercel.app/lessons/lesson-22.html">
+<meta property="og:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="价格行为交易 · 入门课">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第二十二课：交易者方程与盈亏比 · 价格行为交易入门课">
+<meta name="twitter:description" content="胜率和回报一起算。用可复现的随机实验理解成本、回撤和连亏。">
+<meta name="twitter:image" content="https://price-action-course.vercel.app/assets/og-cover.jpg">
+<script src="../assets/js/theme.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主内容</a>
+<div class="wrap" id="main" tabindex="-1">
+  <header class="hero">
+    <p class="eyebrow">第二十二课 · 阶段六 · 风控与执行</p>
+    <h1>交易者方程与盈亏比：<br>胜率和回报一起算。</h1>
+    <p class="lede">一笔交易赚得多，不代表这类交易长期有优势。经常获利，也可能被少数大亏抵消。<strong>把胜率、平均盈利、平均亏损和成本放在一起</strong>，才知道自己的假设是否值得验证。</p>
+    <div id="heroCandles"></div>
+  </header>
+
+  <section id="s1" class="reveal">
+    <div class="kicker"><span class="num">1</span> 一个不等式</div>
+    <h2>成功时能赚的，要覆盖失败时会亏的</h2>
+    <p class="muted"><strong>交易者方程：</strong>胜率 × 平均盈利 &gt; 败率 × 平均亏损。败率 = 1 − 胜率。这里先用只有盈利和亏损两种结果的简化模型，不计平手交易和费用。</p>
+    <div class="callout"><div class="t">用 R 统一单位</div>
+      <a href="../lessons/lesson-21.html">第 21 课</a>的 1R 是入场前的单笔计划风险。本课模型每次亏损为 1R，平均盈利为 bR，b 就是盈亏比。<br>
+      <strong>每笔期望 E = p × b − (1 − p)</strong><br>
+      p 是胜率，百分比要先换成小数。计入每笔成本 cR 后：<strong>E = p × b − (1 − p) − c</strong>。
+    </div>
+    <ul class="clean muted">
+      <li><span class="hl">本站演示假设 A</span>：胜率 55%，盈利 1.2R、亏损 1R。E = 0.55 × 1.2 − 0.45 = <strong>+0.21R / 笔</strong>；</li>
+      <li><span class="hl">本站演示假设 B</span>：胜率 45%，盈利 1R、亏损 1R。E = 0.45 × 1 − 0.55 = <strong>−0.10R / 笔</strong>。</li>
+    </ul>
+    <p class="muted">“期望”是这个假设下的平均值，不是下一笔或某一组交易的结果。实际复盘要用扣费后的平均盈利和平均亏损；若平均亏损超过 1R，就不能继续用上面的简化式。含平手的完整写法是：盈利概率 × 平均盈利 R − 亏损概率 × 平均亏损 R。</p>
+  </section>
+
+  <section id="s2" class="reveal">
+    <div class="kicker"><span class="num">2</span> 保本胜率</div>
+    <h2>回报越小，需要成功的次数越多</h2>
+    <p class="muted">把 E 设成 0，就得到<strong>保本胜率 = 1 ÷（1 + 盈亏比）</strong>。下表是公式推导值，不是某个形态的统计胜率；仍假设每次亏 1R、没有成本。</p>
+    <div class="card"><table class="formula-table"><caption class="sr-only">不同盈亏比对应的无成本保本胜率</caption><thead><tr><th scope="col">盈亏比 b</th><th scope="col">保本胜率</th></tr></thead><tbody>
+      <tr><td>0.5</td><td>66.7%</td></tr><tr><td>1</td><td>50%</td></tr><tr><td>1.5</td><td>40%</td></tr><tr><td>2</td><td>33.3%</td></tr><tr><td>3</td><td>25%</td></tr>
+    </tbody></table></div>
+    <p class="muted" style="margin-top:16px">把目标拉远，盈亏比会升高，价格能到达目标的机会却可能降低。把止损拉近，也会更容易被正常波动扫出。<strong>盈亏比和胜率会一起变</strong>，不能只改一格数字，假设其他条件不动。</p>
+  </section>
+
+  <section id="s3" class="reveal">
+    <div class="kicker"><span class="num">3</span> 概率与回报的配合</div>
+    <h2>两种组合，都需要条件成立</h2>
+    <p class="muted"><strong>Brooks 的经验法则：</strong>对交易较有把握时，可按约 60% 的成功概率、回报至少等于风险来评估；不确定时，按约 40%–50% 的成功概率，要求回报至少是风险的 2 倍。作者的<a href="https://www.brookstradingcourse.com/price-action-trading-terms-glossary/" target="_blank" rel="noopener noreferrer">官方术语页</a>可以核对这一说法。它不是任何市场固定成立的统计定律。</p>
+    <div class="course-compare">
+      <div class="card pad"><h3>较高胜率，较近目标</h3><p class="muted">例如区间边界出现二次测试，计划在近端结构出场，偏向短线剥头皮。用本站算例 60% 和 1:1：E = 0.6 − 0.4 = <strong>+0.2R</strong>，未计成本。</p><a href="../lessons/lesson-10.html">回看第 10 课的边界位置 →</a></div>
+      <div class="card pad"><h3>较低胜率，较远目标</h3><p class="muted">例如趋势 H2 后尝试持有波段，目标更远，也更可能在到达前被止损。用本站算例 40% 和 1:2：E = 0.4 × 2 − 0.6 = <strong>+0.2R</strong>，未计成本。</p><a href="../lessons/lesson-20.html">回看第 20 课的二次入场 →</a></div>
+    </div>
+    <p class="muted" style="margin-top:16px">这两个场景不自带 60% 或 40% 胜率。先有合格的位置、信号和目标，再用记录检验假设。Brooks 还用“等距离向上或向下的概率常接近 50%”提醒方向的不确定性；看不清方向时，不要把自己的愿望当作高胜率。</p>
+  </section>
+
+  <section id="s4" class="reveal">
+    <div class="kicker"><span class="num">4</span> 同一个假设，多种结果</div>
+    <h2>正期望，也可能连亏和回撤</h2>
+    <p class="muted">下面是本站的随机实验，不是真实交易记录。默认胜率 55%、盈亏比 1.2、风险 1%、成本 0，每条路径做 100 笔，共 20 条路径。每笔按当时资金承担风险，所以资金会复利变化；随机种子 <strong>22022</strong> 让首次结果可复现。</p>
+    <div id="w-sim"></div>
+    <p class="muted" id="sim-example">默认结果：期望 <strong>+0.21R</strong>，中位终值 <strong>120.1%</strong>，最差终值 <strong>98.4%</strong>；最大回撤中位 / 最差为 <strong>7.2% / 13.1%</strong>，最长连亏为 <strong>5 / 7 笔</strong>，终值低于起点的路径占 <strong>5.0%</strong>。最差路径只是这 20 条中的最差，不能当作未来损失上限。</p>
+    <ol class="muted">
+      <li><strong>先保持种子不动，把风险从 1% 改成 5%。</strong>胜负顺序不变，观察最大回撤和终值。理论期望 R 不变，资金波动会放大；5% 只是本站对比实验，不是风险建议。</li>
+      <li><strong>把成本从 0 改成 0.1R。</strong>默认假设的 E 从 +0.21R 缩成 +0.11R。成本以每笔当时的 1R 为单位，包括你填入的手续费与滑点估计。</li>
+      <li><strong>恢复成本 0、风险 1%，将盈亏比改成 1，胜率保持 55%。</strong>读“最长连亏”的中位和最差值，再点“再模拟一次”。同一个正期望，连亏长度也会变化。</li>
+    </ol>
+    <p class="muted">最大回撤是从此前资金峰值跌到之后低点的比例，包含尚未回到新高的下降。最长连亏按扣成本后为负的结果计数。金线取每一步的资金中位数；回撤和连亏的中位数，则分别在全部路径的统计结果中计算。</p>
+  </section>
+
+  <section id="s5" class="reveal">
+    <div class="kicker"><span class="num">5</span> 胜率只是估计</div>
+    <h2>100 笔记录，还不足以把概率钉死</h2>
+    <p class="muted"><strong>统计近似：</strong>若各笔独立、成功概率稳定，样本胜率的约 95% 置信区间可用 p ± 1.96 × √[p(1 − p) ÷ n] 估计。这是标准二项分布的正态近似，不是 Brooks 的经验法则。</p>
+    <p class="muted">用本站演示假设 p = 0.55、n = 100，误差半宽约为 <strong>9.8 个百分点</strong>，区间约为 <strong>45.2%–64.8%</strong>。这里说的是百分点，不是胜率的 9.8%。交易相关、环境变化或样本有偏时，这个近似也可能低估误差。</p>
+    <div class="callout"><div class="t">成本抬高保本线</div><strong>含成本的保本胜率 =（1 + 每笔成本 R）÷（1 + 盈亏比）</strong>。例如盈亏比 1、成本 0.1R，保本线从 50% 升到 55%；这是公式计算值。若输入的成本比盈利本身还高，就连每笔都赢也不能保本。</div>
+    <p class="muted">回放容易带入已经知道结局的判断；模拟交易也不能完整复现真实成交、流动性和临场压力。见<a href="../references.html#simulation">参考资料中的 CFTC 模拟结果说明</a>。不要把模拟里的 55% 直接搬成实盘胜率。</p>
+  </section>
+
+  <section id="s6" class="reveal">
+    <div class="kicker"><span class="num">6</span> 不为方程作弊</div>
+    <h2>数字变好看，交易理由可能变差</h2>
+    <p class="muted">图中多头回调低点是 <strong>47.1</strong>。本站演示计划在 <strong>50.0</strong> 入场、<strong>47.0</strong> 止损、前高 <strong>54.5</strong> 止盈。计划风险 3.0，回报 4.5，盈亏比 1:1.5。先看计算器，再把止损改到 49.0。</p>
+    <div id="w-rr"></div>
+    <ul class="clean muted">
+      <li><span class="hl">缩小止损</span>：改到 49.0 后，盈亏比变成 1:4.5，但止损已经进入回调结构。更容易被扫出，不能仍假设胜率 55%；</li>
+      <li><span class="hl">随意挪目标</span>：拉远提高了账面回报，也降低了到达机会；拉近看似容易获利，却减少了平均盈利。目标应有结构依据；</li>
+      <li><span class="hl">高估胜率</span>：因为“看起来很强”就把胜率填到 80%，不会让真实概率跟着升高。没有足够记录，宁可承认不确定。</li>
+    </ul>
+    <p class="muted">这里的胜率数字都是本站输入示例，不是该形态的统计胜率。计算器只检验你填入的假设，无法替你证明这些假设。</p>
+  </section>
+
+  <section id="s7" class="reveal">
+    <div class="kicker"><span class="num">7</span> 随堂自测</div>
+    <h2>算得出，也要问假设从哪里来</h2>
+    <div id="w-q1"></div><div id="w-q2" style="margin-top:16px"></div><div id="w-fill" style="margin-top:16px"></div>
+  </section>
+
+  <footer>
+    <div class="takeaway"><div class="tk-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 本课要点</div>
+    <ul>
+      <li>交易者方程同时看成功概率、回报和风险，不能只看胜率；</li>
+      <li>简化模型每次亏 1R：E = p × b −（1 − p）− c；</li>
+      <li>无成本保本胜率 = 1 ÷（1 + b）；成本会抬高保本线；</li>
+      <li>正期望也会出现连亏和回撤，随机模拟不能证明策略有效；</li>
+      <li>胜率来自有条件的估计，100 笔记录仍可能有约 10 个百分点误差；</li>
+      <li>止损和目标先按结构选择，不能为了改善数字随意挪动。</li>
+    </ul></div>
+    <div class="next">
+      <a class="btn ghost" href="../lessons/lesson-21.html">← 上一课</a>
+      <a class="btn" href="../index.html">课程首页</a>
+      <span class="chip" style="color:var(--ink)">下一课「逐棒检查单 &amp; 二元决策」即将推出</span>
+    </div>
+    <div class="follow">
+      <a href="../references.html">参考资料与适用边界</a>
+      <span class="follow-label">关注作者 · 课程持续更新</span>
+      <a href="https://x.com/Formulasearch" target="_blank" rel="noopener noreferrer" aria-label="在 X 上关注 @Formulasearch"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@Formulasearch</a>
+      <a href="https://rzcthink.top/" target="_blank" rel="noopener noreferrer" aria-label="访问 Philthink（rzcthink.top）"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>Philthink</a>
+      <a class="okx" href="https://www.mitxcqvwnhj.com/join/78417231" target="_blank" rel="sponsored noopener noreferrer" aria-label="通过作者邀请链接注册 OKX，邀请码 78417231"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><rect x="1.5" y="1.5" width="7" height="7"/><rect x="15.5" y="1.5" width="7" height="7"/><rect x="8.5" y="8.5" width="7" height="7"/><rect x="1.5" y="15.5" width="7" height="7"/><rect x="15.5" y="15.5" width="7" height="7"/></svg>OKX · 邀请码 78417231</a>
+    </div>
+    <p class="disclaim">本课只用于交易知识学习，不构成投资建议。图表和价格均为教学演示，未计入滑点、手续费、流动性与真实执行差异；历史回放和模拟结果不能代表未来实盘表现。</p>
+  </footer>
+</div>
+<script src="../assets/vendor/klinecharts.min.js"></script>
+<script src="../assets/js/candles.js"></script>
+<script src="../assets/js/shell.js"></script>
+<script src="../assets/js/widgets.js"></script>
+<script>
+(function(){
+  "use strict";
+  PA.mountPlayground(document.getElementById("heroCandles"), {ma:[7,30]});
+  PA.widgets.tradeSim(document.getElementById("w-sim"), {winRate:55,rr:1.2,riskPct:1,trades:100,paths:20,cost:0,seed:22022});
+  var bars=[[44,46,43.8,45.8],[45.8,49,45.6,48.7],[48.7,52,48.5,51.7],[51.7,54.5,51.5,54.2],[54.2,54.3,50.2,50.6],[50.6,50.8,47.1,47.5],[47.5,49.9,47.3,49.8]];
+  var ann=[{type:"label",i:5,value:46.5,text:"结构低点 47.1",color:PA.cssv('--ink-soft')}];
+  var rr=PA.widgets.rrCalculator(document.getElementById("w-rr"), {bars:bars,dense:false,annotations:ann,side:'long',entry:50,stop:47,target:54.5,account:10000,riskPct:1,winRate:55});
+  PA.registerRedraw(function(){ann[0].color=PA.cssv('--ink-soft');rr.redraw();});
+  PA.widgets.quizChoice(document.getElementById("w-q1"), {
+    q:"① 本站算例中，胜率 40%、盈亏比 2，每次亏 1R，不计成本。理论期望是多少？",
+    options:[{t:"+0.2R / 笔",ok:true,why:"0.4 × 2 − 0.6 = +0.2R。这只是条件成立时的平均值，不保证这一组交易盈利。"},{t:"−0.2R / 笔，胜率不足一半就不能盈利",why:"胜率要和回报一起看。较低胜率也可能被较大的平均盈利补偿。"},{t:"+2R / 笔",why:"2R 是获利交易的盈利，不是把亏损交易也算进去后的每笔平均。"}]
+  });
+  PA.widgets.quizChoice(document.getElementById("w-q2"), {
+    q:"② 把止损挪进结构里后，计算器期望变高了。还可以沿用原来的胜率吗？",
+    options:[{t:"不能。更近的止损会改变被扫出的机会，需要重新估计胜率",ok:true,why:"改变止损、目标或执行方式，就是改变了交易。方程里其他参数不能自动保持原值。"},{t:"可以。胜率只由信号棒形状决定",why:"胜率取决于上下文、止损、目标和执行方式，不能只看单根形状。"},{t:"可以。模拟资金曲线向上就证明假设正确",why:"模拟器按你给出的胜率生成结果，本身不能验证这个胜率是真实的。"}]
+  });
+  PA.widgets.fillBlank(document.getElementById("w-fill"), {
+    prompt:"③ 盈亏比为 2、无成本、每次亏 1R 时，保本胜率是多少？",
+    parts:["保本胜率 = 1 ÷（1 +",{a:['2','二'],w:60},"）≈",{a:['33.3%','33.33%','33.3','33.33','1/3','三分之一'],w:100},"。"],
+    okText:"✓ 对了。保本线约为 33.3%；成本会让它更高。",revealText:"1 ÷（1 + 2）≈ <strong>33.3%</strong>。"
+  });
+  PA.initLesson({n:22,sections:[{id:'s1',label:'交易者方程'},{id:'s2',label:'保本胜率'},{id:'s3',label:'两种组合'},{id:'s4',label:'资金实验'},{id:'s5',label:'估计误差'},{id:'s6',label:'不改假设'},{id:'s7',label:'随堂自测'}]});
+})();
+</script>
+</body>
+</html>
