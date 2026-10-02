@@ -354,7 +354,7 @@
       curves.forEach(function(a){html+='<polyline points="'+a.map(point).join(' ')+'" fill="none" stroke="'+soft+'" stroke-width="1" opacity=".3"/>';});
       var mid=[];for(var i=0;i<=S.trades;i++)mid.push(median(curves.map(function(a){return a[i];})));
       html+='<polyline points="'+mid.map(point).join(' ')+'" fill="none" stroke="'+acc+'" stroke-width="2.8"/>';
-      [0,Math.round(S.trades/2),S.trades].filter(function(v,i,a){return a.indexOf(v)===i;}).forEach(function(i){html+='<text x="'+x(i)+'" y="'+(H-9)+'" text-anchor="middle" font-size="11" fill="'+soft+'">'+i+' 笔</text>';});
+      [0,Math.round(S.trades/2),S.trades].filter(function(v,i,a){return a.indexOf(v)===i;}).forEach(function(i){html+='<text x="'+x(i)+'" y="'+(H-9)+'" text-anchor="'+(i===0?'start':i===S.trades?'end':'middle')+'" font-size="11" fill="'+soft+'">'+i+' 笔</text>';});
       svg.innerHTML=html;
       svg.setAttribute('aria-label',S.paths+' 条模拟资金曲线；中位终值 '+pct(summary.finalMedian)+'，最差终值 '+pct(summary.finalWorst)+'，起点为 100%');
     }
@@ -388,7 +388,7 @@
     opts=opts||{};
     var nodes=opts.nodes||{}, leaves=opts.leaves||{}, scenes=opts.scenarios||[], current=opts.start, trail=[], scene=0;
     function esc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-    host.innerHTML='<div class="card pad decision-tree">'+(scenes.length?'<div class="scene-tabs" data-el="scenes">'+scenes.map(function(s,i){return '<button class="scene-tab" type="button" data-scene="'+i+'">'+esc(s.name)+'</button>';}).join('')+'</div><div class="chartbox" data-el="chart"></div><p class="scene-note" data-el="context"></p>':'')+
+    host.innerHTML='<div class="card pad decision-tree">'+(scenes.length?'<div class="scene-tabs" data-el="scenes">'+scenes.map(function(s,i){return '<button class="scene-tab" type="button" data-scene="'+i+'">'+esc(s.name)+'</button>';}).join('')+'</div><div class="chartbox"><div data-el="chart"></div></div><p class="scene-note" data-el="context"></p>':'')+
       '<nav class="tree-trail" aria-label="已走过的决策步骤" data-el="trail"></nav><div data-el="step"></div><button type="button" class="btn ghost mini" data-act="restart">重来</button></div>';
     var step=host.querySelector('[data-el="step"]'), tc=null, fallback=null;
     if(scenes.length){

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>术语表 · 价格行为交易入门课</title>
 <meta name="description" content="价格行为交易核心术语速查：K线、结构、趋势、区间、风险，每个术语配图解，可搜索、可按分类筛选。">
-<link rel="stylesheet" href="./assets/css/site.css">
+<link rel="stylesheet" href="./assets/css/site.css?v=24">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://price-action-course.vercel.app/glossary.html">
 <meta name="theme-color" content="#B0761A">
@@ -71,7 +71,7 @@
 
 <script src="./assets/vendor/klinecharts.min.js"></script>
 <script src="./assets/js/candles.js"></script>
-<script src="./assets/js/widgets.js"></script>
+<script src="./assets/js/widgets.js?v=24"></script>
 <script>
 (function(){
   "use strict";
@@ -99,7 +99,7 @@
     { cat:"k", name:"锤子线", l:"02", desc:"小实体在上端、下影线很长：价格曾被打低，又收回大部分跌幅。出现在下跌后的支撑附近才可能成为候选多头信号，单独出现没有方向意义。", candle:[52,56,26,55] },
     { cat:"k", name:"流星线", l:"02", desc:"小实体在下端、上影线很长：价格曾冲高，又被压回。出现在上涨后的阻力附近才可能成为候选空头信号。", candle:[48,76,45,46] },
     { cat:"k", name:"吞没", l:"02", desc:"一根 K 线的实体完全覆盖前一根的实体，方向相反。它描述力量的突然转换，但在区间中部或强趋势里很常失效。", bars:[[56,57,52,53],[53,54,49,50],[50,51,47.4,48],[48.2,48.8,47.2,47.6],[47.4,56,47,55.5]], ann:[{type:"label", i:4, value:44, text:"吞没"}] },
-    { cat:"k", name:"信号棒 / 入场棒", l:"02", desc:"信号棒是交易者据以计划入场的那根 K 线；入场棒是真正触发订单的下一根。先有背景和位置，信号棒才有意义，入场后仍可能失败。第 23 课将信号、入场和跟进放进固定检查顺序。", bars:[[56,57,52,53],[53,54,49,50],[50,51,46,47],[47,50.5,44.5,50],[50,53,49.6,52.6]], ann:[{type:"label", i:3, value:43, text:"信号棒"},{type:"label", i:4, value:54.5, text:"入场棒"}] },
+    { cat:"k", name:"信号棒 / 入场棒", l:"23", desc:"信号棒是交易者据以计划入场的那根 K 线；入场棒是真正触发订单的下一根。先有背景和位置，信号棒才有意义，入场后仍可能失败。第 23 课将信号、入场和跟进放进固定检查顺序。", bars:[[56,57,52,53],[53,54,49,50],[50,51,46,47],[47,50.5,44.5,50],[50,53,49.6,52.6]], ann:[{type:"label", i:3, value:43, text:"信号棒"},{type:"label", i:4, value:54.5, text:"入场棒"}] },
 
     { cat:"jg", name:"更高高点 HH", l:"05", desc:"一个波段高点高于前一个波段高点，是上涨结构的一项证据。单独一个新高还不能确认趋势。", g:[18,71,{start:38,vol:0.7,rise:16,amp:2}], a:"up" },
     { cat:"jg", name:"更高低点 HL", l:"05", desc:"回调低点高于前一个波段低点。连续的 HH 与 HL 常见于上涨结构。", g:[18,72,{start:38,vol:0.7,rise:13,amp:3}], a:"up" },
